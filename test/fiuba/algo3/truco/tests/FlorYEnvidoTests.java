@@ -42,7 +42,23 @@ public class FlorYEnvidoTests {
 
     }
 
+    @Test (expected = NoHayFlorException.class)
+    public void manoLanzaExcepcionSiSeCantaFlorSinTenerFlor() {
 
+        Mano mano = new Mano(new Carta(7, Palo.BASTO), new Carta(1, Palo.ESPADA), new Figura(10, Palo.ESPADA), new JuegoConFlor());
+
+        mano.flor();
+
+    }
+
+    @Test (expected = JuegoSinFlorException.class)
+    public void manoLanzaExcepcionSiSeCantaFlorCuandoNoSeJuegaConFlor() {
+
+        Mano mano = new Mano(new Carta(7, Palo.ESPADA), new Carta(1, Palo.ESPADA), new Figura(10, Palo.ESPADA), new JuegoSinFlor());
+
+        mano.flor();
+
+    }
 
 
 }
