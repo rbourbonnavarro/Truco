@@ -15,8 +15,8 @@ public class Mano {
 
     public Mano(List<Carta> cartas, CalculadorTanto calculadorTanto) {
 
-        this.cartasRecibidas = new LinkedList<Carta>(cartas);
-        this.cartasEnMano = new LinkedList<Carta>(cartas);
+        this.cartasRecibidas = new LinkedList<>(cartas);
+        this.cartasEnMano = new LinkedList<>(cartas);
 
         for(Carta carta : this.cartasRecibidas) {
 
@@ -28,7 +28,7 @@ public class Mano {
 
     }
 
-    /*public Mano() {
+    public Mano() {
         this.cartasRecibidas = new LinkedList<>();
         calculadorTanto = new JuegoSinFlor();
         cantidadEspada = 0;
@@ -36,7 +36,7 @@ public class Mano {
         cantidadOro = 0;
         cantidadCopa = 0;
     }
-
+/*
     public Mano(Carta carta1, Carta carta2, Carta carta3) {
         this.cartasRecibidas = new LinkedList<>();
         cantidadEspada = 0;

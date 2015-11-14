@@ -7,11 +7,8 @@ import org.junit.Assert;
 import org.junit.Test;
 
 
-/**
- * Created by GomezPeter on 14/11/2015.
- */
 public class CartaTest {
-    /*@Test
+    @Test
     public void Test1SeCreoCorrectamenteUnaCarta () {
         Carta carta = new Carta(5, new Espada());
         Assert.assertEquals(5, carta.getValor());
@@ -52,7 +49,7 @@ public class CartaTest {
 
         carta.getPalo().agregarA(mano);
         Assert.assertEquals(mano.getCantidadBasto(),1);
-    }*/
+    }
 
     @Test
     public void Test6toStringFunciona() {
