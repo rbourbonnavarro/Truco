@@ -1,5 +1,7 @@
 package fiuba.algo3.truco.modelo;
 
+import fiuba.algo3.truco.modelo.Palo.Palo;
+
 public class Carta {
 
     private int valor;
@@ -28,4 +30,5 @@ public class Carta {
     public int getValor() {
         return valor;
     }
+
 }
