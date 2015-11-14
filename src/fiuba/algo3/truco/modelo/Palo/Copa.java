@@ -6,6 +6,7 @@ import fiuba.algo3.truco.modelo.Mano;
  * Created by GomezPeter on 14/11/2015.
  */
 public class Copa implements Palo {
+
     @Override
     public void AgregarA(Mano mano) {
         mano.incrementarCopa();
@@ -15,4 +16,13 @@ public class Copa implements Palo {
     public boolean equals(Object palo) {
         return palo instanceof Copa;
     }
+
+    @Override
+    public String toString() {
+
+        return "Copa";
+
+    }
+
+
 }

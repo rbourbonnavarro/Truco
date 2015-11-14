@@ -22,4 +22,10 @@ public class Carta {
         return valor;
     }
 
+    public String toString() {
+
+        return this.valor + this.palo.toString();
+
+    }
+
 }

@@ -53,4 +53,15 @@ public class CartaTest {
         carta.getPalo().AgregarA(mano);
         Assert.assertEquals(mano.getCantidadBasto(),1);
     }
+
+    @Test
+    public void Test6toStringFunciona() {
+
+        Carta carta = new Carta(7, new Espada());
+
+        Assert.assertEquals("7Espada", carta.toString());
+
+    }
+
+
 }
