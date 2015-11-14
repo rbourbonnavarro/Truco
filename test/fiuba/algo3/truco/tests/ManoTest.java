@@ -2,17 +2,12 @@ package fiuba.algo3.truco.tests;
 
 import fiuba.algo3.truco.modelo.Carta;
 import fiuba.algo3.truco.modelo.Mano;
-import fiuba.algo3.truco.modelo.Palo.Basto;
-import fiuba.algo3.truco.modelo.Palo.Copa;
-import fiuba.algo3.truco.modelo.Palo.Espada;
-import fiuba.algo3.truco.modelo.Palo.Oro;
+import fiuba.algo3.truco.modelo.Palo.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-/**
- * Created by GomezPeter on 14/11/2015.
- */
+
 public class ManoTest {
     Carta carta;
     Mano mano;
