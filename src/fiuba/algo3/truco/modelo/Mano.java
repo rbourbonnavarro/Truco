@@ -1,42 +1,55 @@
 package fiuba.algo3.truco.modelo;
 
+import java.util.LinkedList;
+import java.util.List;
+
 public class Mano {
 
-    private Carta carta1;
-    private Carta carta2;
-    private Carta carta3;
+    private List<Carta> cartas;
     private int cantidadEspada;
     private int cantidadBasto;
     private int cantidadCopa;
     private int cantidadOro;
-    private EstadoFlor estadoFlor;
+    private CalculadorTanto calculadorTanto;
 
-    public Mano(Carta carta1, Carta carta2, Carta carta3, EstadoFlor estadoFlor) {
-
-        this.carta1 = carta1;
-        this.carta2 = carta2;
-        this.carta3 = carta3;
-        this.estadoFlor = estadoFlor;
+    public Mano(Carta carta1, Carta carta2, Carta carta3, CalculadorTanto calculadorTanto) {
+        this.cartas = new LinkedList<>();
+        this.agregar(carta1);
+        this.agregar(carta2);
+        this.agregar(carta3);
+        this.calculadorTanto = calculadorTanto;
 
     }
 
     public Mano() {
-        estadoFlor = new JuegoSinFlor();
+        this.cartas = new LinkedList<>();
+        calculadorTanto = new JuegoSinFlor();
         cantidadEspada = 0;
         cantidadBasto = 0;
         cantidadOro = 0;
         cantidadCopa = 0;
     }
 
+    public Mano(Carta carta1, Carta carta2, Carta carta3) {
+        this.cartas = new LinkedList<>();
+        cantidadEspada = 0;
+        cantidadBasto = 0;
+        cantidadOro = 0;
+        cantidadCopa = 0;
+        this.agregar(carta1);
+        this.agregar(carta2);
+        this.agregar(carta3);
+    }
+
     public int flor() {
 
-        return this.estadoFlor.flor(this.carta1, this.carta2, this.carta3);
+        return this.calculadorTanto.flor(cartas);
 
     }
 
     public int envido() {
 
-        return this.estadoFlor.envido(this.carta1, this.carta2, this.carta3);
+        return this.calculadorTanto.envido(cartas);
 
     }
 
@@ -72,6 +85,7 @@ public class Mano {
     }
 
     public void agregar(Carta carta) {
+        cartas.add(carta);
         carta.getPalo().agregarA(this);
     }
 }

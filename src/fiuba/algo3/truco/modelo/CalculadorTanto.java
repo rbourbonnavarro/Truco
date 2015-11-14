@@ -1,14 +1,16 @@
 package fiuba.algo3.truco.modelo;
 
-public abstract class EstadoFlor {
+import java.util.List;
 
-    public abstract int flor(Carta carta1, Carta carta2, Carta carta3);
+public abstract class CalculadorTanto {
 
-    public int envido(Carta carta1, Carta carta2, Carta carta3) {
+    public abstract int flor(List<Carta> cartas);
 
-        int envido1 = this.calcularEnvido(carta1, carta2);
-        int envido2 = this.calcularEnvido(carta2, carta3);
-        int envido3 = this.calcularEnvido(carta1, carta3);
+    public int envido(List<Carta> cartas) {
+
+        int envido1 = this.calcularEnvido(cartas.get(1), cartas.get(2));
+        int envido2 = this.calcularEnvido(cartas.get(2), cartas.get(0));
+        int envido3 = this.calcularEnvido(cartas.get(1), cartas.get(0));
 
         return Math.max(Math.max(envido1, envido2), envido3);
 
