@@ -52,6 +52,7 @@ public class Mesa {
 
         }*/
 
+
     }
 
     private Equipo calcularGanadorJugada(Carta cartaEquipoActual, Carta cartaEquipoContrario) {
