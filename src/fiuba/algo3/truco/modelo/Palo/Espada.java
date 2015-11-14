@@ -20,7 +20,7 @@ public class Espada implements Palo {
     @Override
     public String toString() {
 
-        return "Espada";
+        return this.getClass().getSimpleName();
 
     }
 

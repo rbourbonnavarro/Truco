@@ -20,7 +20,7 @@ public class Oro implements Palo {
     @Override
     public String toString() {
 
-        return "Oro";
+        return this.getClass().getSimpleName();
 
     }
 

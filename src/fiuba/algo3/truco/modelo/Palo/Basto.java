@@ -20,7 +20,7 @@ public class Basto implements Palo {
     @Override
     public String toString() {
 
-        return "Basto";
+        return this.getClass().getSimpleName();
 
     }
 

@@ -20,7 +20,7 @@ public class Copa implements Palo {
     @Override
     public String toString() {
 
-        return "Copa";
+        return this.getClass().getSimpleName();
 
     }
 

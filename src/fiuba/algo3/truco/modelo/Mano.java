@@ -5,24 +5,31 @@ import java.util.List;
 
 public class Mano {
 
-    private List<Carta> cartas;
+    private List<Carta> cartasRecibidas;
+    private List<Carta> cartasEnMano;
     private int cantidadEspada;
     private int cantidadBasto;
     private int cantidadCopa;
     private int cantidadOro;
     private CalculadorTanto calculadorTanto;
 
-    public Mano(Carta carta1, Carta carta2, Carta carta3, CalculadorTanto calculadorTanto) {
-        this.cartas = new LinkedList<>();
-        this.agregar(carta1);
-        this.agregar(carta2);
-        this.agregar(carta3);
+    public Mano(List<Carta> cartas, CalculadorTanto calculadorTanto) {
+
+        this.cartasRecibidas = new LinkedList<Carta>(cartas);
+        this.cartasEnMano = new LinkedList<Carta>(cartas);
+
+        for(Carta carta : this.cartasRecibidas) {
+
+            carta.getPalo().agregarA(this);
+
+        }
+
         this.calculadorTanto = calculadorTanto;
 
     }
 
-    public Mano() {
-        this.cartas = new LinkedList<>();
+    /*public Mano() {
+        this.cartasRecibidas = new LinkedList<>();
         calculadorTanto = new JuegoSinFlor();
         cantidadEspada = 0;
         cantidadBasto = 0;
@@ -31,7 +38,7 @@ public class Mano {
     }
 
     public Mano(Carta carta1, Carta carta2, Carta carta3) {
-        this.cartas = new LinkedList<>();
+        this.cartasRecibidas = new LinkedList<>();
         cantidadEspada = 0;
         cantidadBasto = 0;
         cantidadOro = 0;
@@ -39,53 +46,67 @@ public class Mano {
         this.agregar(carta1);
         this.agregar(carta2);
         this.agregar(carta3);
-    }
+    }*/
 
     public int flor() {
 
-        return this.calculadorTanto.flor(cartas);
+        if(this.cartasEnMano.size() < 3) throw new JugadorNoPuedeCantarTantoNoEsPrimeraRonda();
+
+        return this.calculadorTanto.flor(this.cartasRecibidas);
 
     }
 
     public int envido() {
 
-        return this.calculadorTanto.envido(cartas);
+        if(this.cartasEnMano.size() < 3) throw new JugadorNoPuedeCantarTantoNoEsPrimeraRonda();
+
+        return this.calculadorTanto.envido(this.cartasRecibidas);
 
     }
 
 
     public int getCantidadEspada() {
-        return cantidadEspada;
+        return this.cantidadEspada;
     }
 
     public void incrementarEspada() {
-        cantidadEspada++;
+        this.cantidadEspada++;
     }
 
     public void incrementarCopa() {
-        cantidadCopa++;
+        this.cantidadCopa++;
     }
 
     public void incrementarOro() {
-        cantidadOro++;
+        this.cantidadOro++;
     }
 
     public void incrementarBasto() {
-        cantidadBasto++;
+        this.cantidadBasto++;
     }
 
     public int getCantidadCopa() {
-        return cantidadCopa;
+        return this.cantidadCopa;
     }
     public int getCantidadOro() {
-        return cantidadOro;
+        return this.cantidadOro;
     }
     public int getCantidadBasto() {
-        return cantidadBasto;
+        return this.cantidadBasto;
     }
 
-    public void agregar(Carta carta) {
-        cartas.add(carta);
-        carta.getPalo().agregarA(this);
+
+    public List<Carta> getCartas() {
+
+        return this.cartasRecibidas;
+
     }
+
+    public void jugar(Carta carta) {
+
+        this.cartasEnMano.remove(carta);
+
+    }
+
+
 }
