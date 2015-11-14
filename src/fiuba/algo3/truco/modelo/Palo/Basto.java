@@ -7,7 +7,7 @@ import fiuba.algo3.truco.modelo.Mano;
  */
 public class Basto implements Palo {
     @Override
-    public void AgregarA(Mano mano) {
+    public void agregarA(Mano mano) {
         mano.incrementarBasto();
     }
 

@@ -70,4 +70,8 @@ public class Mano {
     public int getCantidadBasto() {
         return cantidadBasto;
     }
+
+    public void agregar(Carta carta) {
+        carta.getPalo().agregarA(this);
+    }
 }
