@@ -1,12 +1,14 @@
 package fiuba.algo3.truco.modelo;
 
-public class JuegoConFlor extends EstadoFlor {
+import java.util.List;
 
-    public int flor(Carta carta1, Carta carta2, Carta carta3) {
+public class JuegoConFlor extends CalculadorTanto {
 
-        if(!this.hayFlor(carta1, carta2, carta3)) throw new NoHayFlorException();
+    public int flor(List<Carta> cartas) {
 
-        int flor = carta1.envido() + carta2.envido() + carta3.envido();
+        if(!this.hayFlor(cartas)) throw new NoHayFlorException();
+
+        int flor = cartas.get(1).envido() + cartas.get(2).envido() + cartas.get(3).envido();
 
         if(flor == 60) return 20;
 
@@ -18,10 +20,10 @@ public class JuegoConFlor extends EstadoFlor {
 
     }
 
-    private boolean hayFlor(Carta carta1, Carta carta2, Carta carta3) {
+    private boolean hayFlor(List<Carta> cartas) {
 
-        return (carta1.getPalo().equals(carta2.getPalo()) &&
-                carta2.getPalo().equals(carta3.getPalo()));
+        return (cartas.get(1).getPalo().equals(cartas.get(2).getPalo()) &&
+                cartas.get(2).getPalo().equals(cartas.get(3).getPalo()));
 
     }
 

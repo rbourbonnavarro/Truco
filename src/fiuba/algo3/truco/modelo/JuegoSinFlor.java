@@ -1,8 +1,10 @@
 package fiuba.algo3.truco.modelo;
 
-public class JuegoSinFlor extends EstadoFlor{
+import java.util.List;
 
-    public int flor(Carta carta1, Carta carta2, Carta carta3) {
+public class JuegoSinFlor extends CalculadorTanto {
+
+    public int flor(List<Carta> cartas) {
 
         throw new JuegoSinFlorException();
 
