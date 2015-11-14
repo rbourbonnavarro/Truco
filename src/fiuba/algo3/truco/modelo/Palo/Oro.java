@@ -7,7 +7,6 @@ import fiuba.algo3.truco.modelo.Mano;
  */
 public class Oro implements Palo {
 
-    String palo;
     @Override
     public void agregarA(Mano mano) {
         mano.incrementarOro();

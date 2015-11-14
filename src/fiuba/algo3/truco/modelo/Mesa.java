@@ -2,12 +2,12 @@ package fiuba.algo3.truco.modelo;
 
 public class Mesa {
 
-    private EstadoFlor estadoFlor;
+    private CalculadorTanto calculadorTanto;
     private ValoresTruco valoresTruco;
 
-    public Mesa(EstadoFlor estadoFlor) {
+    public Mesa(CalculadorTanto calculadorTanto) {
 
-        this.estadoFlor = estadoFlor;
+        this.calculadorTanto = calculadorTanto;
 
         this.valoresTruco = new ValoresTruco();
 

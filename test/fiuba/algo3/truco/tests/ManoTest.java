@@ -12,6 +12,7 @@ import java.util.List;
 
 
 public class ManoTest {
+
     Carta carta;
     Mano mano;
     @Before
@@ -50,4 +51,5 @@ public class ManoTest {
         mano = new Mano(carta1 , carta2, carta3, new JuegoSinFlor());
         Assert.assertEquals(mano.envido(),30);
     }
+
 }
