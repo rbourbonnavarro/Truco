@@ -7,6 +7,11 @@ import org.junit.Test;
 public class FlorYEnvidoTest {
 
     @Test
+    public void probandoelGitHub (){
+        Assert.assertTrue(true);
+    }
+
+    @Test
     public void manoCalculaCorrectamenteElEnvido() {
 
         Mano mano = new Mano(new Carta(7, Palo.ESPADA), new Carta(1, Palo.ESPADA), new Figura(10, Palo.BASTO), new JuegoConFlor());
