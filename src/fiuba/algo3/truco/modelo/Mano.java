@@ -21,7 +21,6 @@ public class Mano {
         for(Carta carta : this.cartasRecibidas) {
 
             carta.getPalo().agregarA(this);
-
         }
 
         this.calculadorTanto = calculadorTanto;
