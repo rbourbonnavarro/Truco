@@ -7,10 +7,7 @@ import org.junit.Test;
 
 public class FlorYEnvidoTest {
 
-    @Test
-    public void probandoelGitHub (){
-        Assert.assertTrue(true);
-    }
+
 
     @Test
     public void manoCalculaCorrectamenteElEnvido() {
