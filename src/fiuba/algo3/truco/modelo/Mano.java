@@ -64,11 +64,9 @@ public class Mano {
     public int getCantidadCopa() {
         return cantidadCopa;
     }
-
     public int getCantidadOro() {
         return cantidadOro;
     }
-
     public int getCantidadBasto() {
         return cantidadBasto;
     }
