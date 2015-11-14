@@ -22,7 +22,7 @@ public class CartaTest {
         Mano mano = new Mano();
         Carta carta = new Carta(7,new Espada());
         Assert.assertEquals(mano.getCantidadEspada(),0);
-        carta.getPalo().AgregarA(mano);
+        carta.getPalo().agregarA(mano);
         Assert.assertEquals(mano.getCantidadEspada(),1);
     }
     @Test
@@ -32,7 +32,7 @@ public class CartaTest {
         Assert.assertEquals(mano.getCantidadEspada(),0);
         Assert.assertEquals(mano.getCantidadCopa(),0);
 
-        carta.getPalo().AgregarA(mano);
+        carta.getPalo().agregarA(mano);
         Assert.assertEquals(mano.getCantidadCopa(),1);
     }
     @Test
@@ -41,7 +41,7 @@ public class CartaTest {
         Carta carta = new Carta(7,new Oro());
         Assert.assertEquals(mano.getCantidadOro(),0);
 
-        carta.getPalo().AgregarA(mano);
+        carta.getPalo().agregarA(mano);
         Assert.assertEquals(mano.getCantidadOro(),1);
     }
     @Test
@@ -50,7 +50,7 @@ public class CartaTest {
         Carta carta = new Carta(7,new Basto());
         Assert.assertEquals(mano.getCantidadBasto(),0);
 
-        carta.getPalo().AgregarA(mano);
+        carta.getPalo().agregarA(mano);
         Assert.assertEquals(mano.getCantidadBasto(),1);
     }
 

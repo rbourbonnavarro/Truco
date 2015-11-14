@@ -9,7 +9,7 @@ public class Oro implements Palo {
 
     String palo;
     @Override
-    public void AgregarA(Mano mano) {
+    public void agregarA(Mano mano) {
         mano.incrementarOro();
     }
 
