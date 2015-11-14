@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 
@@ -16,36 +17,44 @@ public class ManoTest {
 
     Carta carta;
     Mano mano;
-    /*@Before
-    public void setUp(){
-        mano = new Mano();
-    }
     @Test
     public void Test1AgregarCartaIncrementaCantidadDeEspada(){
-        carta = new Carta(7,new Espada());
-        mano.agregar(carta);
-        Assert.assertEquals(mano.getCantidadEspada(),1);
+        List<Carta> lista = new LinkedList<>();
+        lista.add(new Carta(7,new Espada()));
+        lista.add(new Carta(3,new Espada()));
+        lista.add(new Carta(7,new Copa()));
+        mano = new Mano(lista, new JuegoSinFlor());
+        Assert.assertEquals(mano.getCantidadEspada(),2);
     }
     @Test
     public void Test2AgregarCartaIncrementaCantidadDeCopa(){
-        carta = new Carta(7,new Copa());
-        mano.agregar(carta);
+        List<Carta> lista = new LinkedList<>();
+        lista.add(new Carta(7,new Espada()));
+        lista.add(new Carta(3,new Espada()));
+        lista.add(new Carta(7,new Copa()));
+        mano = new Mano(lista, new JuegoSinFlor());
         Assert.assertEquals(mano.getCantidadCopa(),1);
     }
     @Test
     public void Test3AgregarCartaIncrementaCantidadDeBasto(){
-        carta = new Carta(7,new Basto());
-        mano.agregar(carta);
-        Assert.assertEquals(mano.getCantidadBasto(),1);
+        List<Carta> lista = new LinkedList<>();
+        lista.add(new Carta(7,new Basto()));
+        lista.add(new Carta(3,new Basto()));
+        lista.add(new Carta(7,new Copa()));
+        mano = new Mano(lista, new JuegoSinFlor());
+        Assert.assertEquals(mano.getCantidadBasto(),2);
     }
     @Test
     public void Test4AgregarCartaIncrementaCantidadDeOro(){
-        carta = new Carta(7,new Oro());
-        mano.agregar(carta);
+        List<Carta> lista = new LinkedList<>();
+        lista.add(new Carta(7,new Espada()));
+        lista.add(new Carta(3,new Espada()));
+        lista.add(new Carta(7,new Oro()));
+        mano = new Mano(lista, new JuegoSinFlor());
         Assert.assertEquals(mano.getCantidadOro(),1);
-    }*/
+    }
     @Test
-    public void Test5AlAgregar3CartasLaManoInstanciaElEnvidoDelPaloCorrespondiente(){
+    public void Test5AlAgregar3CartasLaManoCalculaElEnvido(){
         Carta carta1 = new Carta (3, new Espada());
         Carta carta2 = new Carta (7, new Espada());
         Carta carta3 = new Carta (3, new Basto());
