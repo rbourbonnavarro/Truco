@@ -37,7 +37,7 @@ public class Carta {
     }
 
     public int tantoBasto() {
-        return palo.tantoOro(this.envido());
+        return palo.tantoBasto(this.envido());
     }
     public int tantoEspada() {
         return palo.tantoEspada(this.envido());
