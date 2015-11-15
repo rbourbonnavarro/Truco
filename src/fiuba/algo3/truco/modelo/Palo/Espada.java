@@ -45,5 +45,6 @@ public class Espada implements Palo {
     @Override
     public int tantoBasto(int valor) {
         return 0;
+
     }
 }
