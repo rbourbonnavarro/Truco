@@ -1,4 +1,6 @@
-package fiuba.algo3.truco.modelo;
+package fiuba.algo3.truco.modelo.EnvidoYFlor;
+
+import fiuba.algo3.truco.modelo.Carta;
 
 import java.util.List;
 

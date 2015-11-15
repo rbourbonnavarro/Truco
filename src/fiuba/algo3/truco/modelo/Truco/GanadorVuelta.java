@@ -1,4 +1,7 @@
-package fiuba.algo3.truco.modelo;
+package fiuba.algo3.truco.modelo.Truco;
+
+import fiuba.algo3.truco.modelo.Carta;
+import fiuba.algo3.truco.modelo.Equipo;
 
 public class GanadorVuelta {
 

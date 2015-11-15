@@ -1,5 +1,10 @@
 package fiuba.algo3.truco.modelo;
 
+import fiuba.algo3.truco.modelo.EnvidoYFlor.CalculadorTanto;
+import fiuba.algo3.truco.modelo.Truco.GanadorVuelta;
+import fiuba.algo3.truco.modelo.Truco.Parda;
+import fiuba.algo3.truco.modelo.Truco.ValoresTruco;
+
 import java.util.ArrayDeque;
 import java.util.Deque;
 

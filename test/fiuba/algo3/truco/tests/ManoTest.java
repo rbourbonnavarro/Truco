@@ -1,6 +1,10 @@
 package fiuba.algo3.truco.tests;
 
 import fiuba.algo3.truco.modelo.*;
+import fiuba.algo3.truco.modelo.EnvidoYFlor.CantasteEnvidoCuandoTenesFlorException;
+import fiuba.algo3.truco.modelo.EnvidoYFlor.JuegoConFlor;
+import fiuba.algo3.truco.modelo.EnvidoYFlor.JuegoSinFlor;
+import fiuba.algo3.truco.modelo.EnvidoYFlor.JuegoSinFlorException;
 import fiuba.algo3.truco.modelo.Palo.*;
 import org.junit.Assert;
 import org.junit.Test;

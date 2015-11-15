@@ -1,5 +1,10 @@
 package fiuba.algo3.truco.modelo;
 
+import fiuba.algo3.truco.modelo.EnvidoYFlor.CalculadorTanto;
+import fiuba.algo3.truco.modelo.EnvidoYFlor.CantasteEnvidoCuandoTenesFlorException;
+import fiuba.algo3.truco.modelo.EnvidoYFlor.JuegoSinFlor;
+import fiuba.algo3.truco.modelo.EnvidoYFlor.JuegoSinFlorException;
+
 import java.util.LinkedList;
 import java.util.List;
 
