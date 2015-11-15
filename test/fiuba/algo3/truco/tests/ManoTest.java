@@ -126,5 +126,13 @@ public class ManoTest {
         mano = new Mano(Arrays.asList(carta1 , carta2, carta3), new JuegoConFlor());
         Assert.assertEquals(mano.flor(),20);
     }
+    @Test(expected = JuegoSinFlorException.class)
+    public void Test14FlorLanzaExcepcionSiSeJuegaSinFlor() throws JuegoSinFlorException {
+        Carta carta1 = new Figura(12, new Espada());
+        Carta carta2 = new Figura (11, new Espada());
+        Carta carta3 = new Figura (10, new Espada());
+        mano = new Mano(Arrays.asList(carta1 , carta2, carta3), new JuegoSinFlor());
+        mano.flor();
+    }
 
 }
