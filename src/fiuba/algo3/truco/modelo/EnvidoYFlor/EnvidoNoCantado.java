@@ -1,5 +1,7 @@
 package fiuba.algo3.truco.modelo.EnvidoYFlor;
 
+import fiuba.algo3.truco.modelo.Puntos.Puntaje;
+
 public class EnvidoNoCantado implements EstadoEnvido {
 
     @Override
@@ -17,31 +19,27 @@ public class EnvidoNoCantado implements EstadoEnvido {
     }
 
     @Override
-    public boolean sePuedeCantarEnvido() {
-
-        return true;
-
+    public EstadoEnvido envido() {
+        return new EnvidoCantado();
     }
 
     @Override
-    public boolean sePuedeCantarEnvidoEnvido() {
-
-        return false;
-
+    public EstadoEnvido envidoEnvido() {
+        throw new NoSePuedeCantarEnvidoEnvido();
     }
 
     @Override
-    public boolean sePuedeCantarRealEnvido() {
-
-        return true;
-
+    public EstadoEnvido realEnvido() {
+        return new RealEnvidoCantado();
     }
 
     @Override
-    public boolean sePuedeCantarFaltaEnvido() {
-
-        return true;
-
+    public EstadoEnvido faltaEnvido(Puntaje puntos) {
+        return new FaltaEnvidoCantado(puntos);
+    }
+    @Override
+    public boolean equals(Object estado) {
+        return estado instanceof EnvidoNoCantado;
     }
 
 

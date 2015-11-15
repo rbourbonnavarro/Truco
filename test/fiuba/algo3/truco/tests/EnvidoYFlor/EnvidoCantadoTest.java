@@ -1,8 +1,9 @@
 package fiuba.algo3.truco.tests.EnvidoYFlor;
 
-import fiuba.algo3.truco.modelo.EnvidoYFlor.EnvidoCantado;
-import fiuba.algo3.truco.modelo.EnvidoYFlor.EstadoEnvido;
+import fiuba.algo3.truco.modelo.EnvidoYFlor.*;
 
+import fiuba.algo3.truco.modelo.Puntos.Malas;
+import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -21,20 +22,24 @@ public class EnvidoCantadoTest {
     public void Test2NoQueridoDevuelve1Punto(){
         Assert.assertEquals(envido.noQuerido(),1);
     }
-    @Test
+    @Test(expected = NoSePuedeCantarEnvido.class)
     public void Test3NoSePuedeCantarEnvido(){
-        Assert.assertFalse(envido.sePuedeCantarEnvido());
+      envido.envido();
     }
     @Test
     public void Test4SePuedeCantarEnvidoEnvido(){
-        Assert.assertTrue(envido.sePuedeCantarEnvidoEnvido());
+        envido.envidoEnvido();
+        Assert.assertEquals(envido.envidoEnvido(),new EnvidoEnvidoCantado());
     }
     @Test
     public void Test5SePuedeCantarRealEnvido(){
-        Assert.assertTrue(envido.sePuedeCantarRealEnvido());
+        envido.realEnvido();
+        Assert.assertEquals(envido.realEnvido(),new RealEnvidoCantado());
     }
     @Test
     public void Test6SePuedeCantarFaltaEnvido(){
-        Assert.assertTrue(envido.sePuedeCantarFaltaEnvido());
+        Puntaje puntos = new Malas(3);
+        envido.faltaEnvido(puntos);
+        Assert.assertEquals(envido.faltaEnvido(puntos),new FaltaEnvidoCantado(puntos));
     }
 }

@@ -1,18 +1,18 @@
 package fiuba.algo3.truco.modelo.EnvidoYFlor;
 
+import fiuba.algo3.truco.modelo.Puntos.Puntaje;
+
 public interface EstadoEnvido {
 
     int puntos();
 
     int noQuerido();
 
-    boolean sePuedeCantarEnvido();
+    EstadoEnvido envido();
 
-    boolean sePuedeCantarEnvidoEnvido();
+    EstadoEnvido envidoEnvido();
 
-    boolean sePuedeCantarRealEnvido();
+    EstadoEnvido realEnvido();
 
-    boolean sePuedeCantarFaltaEnvido();
-
-
+    EstadoEnvido faltaEnvido(Puntaje puntos);
 }

@@ -33,32 +33,27 @@ public class FaltaEnvidoCantado implements EstadoEnvido {
     }
 
     @Override
-    public boolean sePuedeCantarEnvido() {
-
-        return false;
-
+    public EstadoEnvido envido() {
+        throw new NoSePuedeCantarEnvido();
     }
 
     @Override
-    public boolean sePuedeCantarEnvidoEnvido() {
-
-        return false;
-
+    public EstadoEnvido envidoEnvido() {
+        throw new NoSePuedeCantarEnvidoEnvido();
     }
 
     @Override
-    public boolean sePuedeCantarRealEnvido() {
-
-        return false;
-
+    public EstadoEnvido realEnvido() {
+        throw new NoSePuedeCantarRealEnvido();
     }
 
     @Override
-    public boolean sePuedeCantarFaltaEnvido() {
-
-        return false;
-
+    public EstadoEnvido faltaEnvido(Puntaje puntos) {
+        throw new NoSePuedeCantarFaltaEnvido();
     }
-
+    @Override
+    public boolean equals(Object estado) {
+        return estado instanceof FaltaEnvidoCantado;
+    }
 
 }

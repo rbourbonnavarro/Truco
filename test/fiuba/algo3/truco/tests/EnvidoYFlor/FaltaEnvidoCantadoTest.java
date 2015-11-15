@@ -60,28 +60,28 @@ public class FaltaEnvidoCantadoTest {
         envido = new FaltaEnvidoCantado(puntos,new RealEnvidoCantado(puntosEnvido).puntos());
         Assert.assertEquals(envido.noQuerido(),5);
     }
-    @Test
+    @Test(expected = NoSePuedeCantarEnvido.class)
     public void Test9NoSePuedeCantarEnvido(){
         puntos = new Malas();
         envido = new FaltaEnvidoCantado(puntos);
-        Assert.assertFalse(envido.sePuedeCantarEnvido());
+        envido.envido();
     }
-    @Test
+    @Test(expected = NoSePuedeCantarEnvidoEnvido.class)
     public void Test10NoSePuedeCantarEnvidoEnvido(){
         puntos = new Malas();
         envido = new FaltaEnvidoCantado(puntos);
-        Assert.assertFalse(envido.sePuedeCantarEnvidoEnvido());
+        envido.envidoEnvido();
     }
-    @Test
+    @Test(expected = NoSePuedeCantarRealEnvido.class)
     public void Test11NoSePuedeCantarRealEnvido(){
         puntos = new Malas();
         envido = new FaltaEnvidoCantado(puntos);
-        Assert.assertFalse(envido.sePuedeCantarRealEnvido());
+        envido.realEnvido();
     }
-    @Test
+    @Test(expected = NoSePuedeCantarFaltaEnvido.class)
     public void Test12NoSePuedeCantarFaltaEnvido(){
         puntos = new Malas();
         envido = new FaltaEnvidoCantado(puntos);
-        Assert.assertFalse(envido.sePuedeCantarFaltaEnvido());
+        envido.faltaEnvido(puntos);
     }
 }

@@ -69,10 +69,7 @@ public class Mesa {
     }
 
     public void envido() {
-
-        if(!this.estadoEnvido.sePuedeCantarEnvido()) throw new NoSePuedeCantarEnvido();
-
-        this.estadoEnvido = new EnvidoCantado();
+        this.estadoEnvido = this.estadoEnvido.envido();
 
         this.intercambiarEquipos();
 
@@ -80,9 +77,7 @@ public class Mesa {
 
     public void envidoEnvido() {
 
-        if(!this.estadoEnvido.sePuedeCantarEnvidoEnvido()) throw new NoSePuedeCantarEnvidoEnvido();
-
-        this.estadoEnvido = new EnvidoEnvidoCantado();
+        this.estadoEnvido =this.estadoEnvido.envidoEnvido();
 
         this.intercambiarEquipos();
 
@@ -90,20 +85,14 @@ public class Mesa {
 
     public void realEnvido() {
 
-        if(!this.estadoEnvido.sePuedeCantarRealEnvido()) throw new NoSePuedeCantarRealEnvido();
-
-        this.estadoEnvido = new RealEnvidoCantado(this.estadoEnvido.puntos());
-
+        this.estadoEnvido = this.estadoEnvido.realEnvido();
         this.intercambiarEquipos();
 
     }
 
     public void faltaEnvido() {
 
-        if(!this.estadoEnvido.sePuedeCantarFaltaEnvido()) throw new NoSePuedeCantarFaltaEnvido();
-
-        this.estadoEnvido = new FaltaEnvidoCantado(this.equipoContrario.getPuntaje(), this.estadoEnvido.puntos());
-
+        this.estadoEnvido = this.estadoEnvido.faltaEnvido(this.equipoContrario.getPuntaje());
         this.intercambiarEquipos();
 
     }
