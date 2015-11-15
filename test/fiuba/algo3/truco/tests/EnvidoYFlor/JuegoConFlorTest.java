@@ -1,9 +1,7 @@
 package fiuba.algo3.truco.tests.EnvidoYFlor;
 
 import fiuba.algo3.truco.modelo.Carta;
-import fiuba.algo3.truco.modelo.EnvidoYFlor.CalculadorTanto;
-import fiuba.algo3.truco.modelo.EnvidoYFlor.CantasteEnvidoCuandoTenesFlorException;
-import fiuba.algo3.truco.modelo.EnvidoYFlor.JuegoConFlor;
+import fiuba.algo3.truco.modelo.EnvidoYFlor.*;
 import fiuba.algo3.truco.modelo.Figura;
 import fiuba.algo3.truco.modelo.Palo.Copa;
 import fiuba.algo3.truco.modelo.Palo.Espada;
@@ -66,6 +64,26 @@ public class JuegoConFlorTest {
         cartas.add(carta2);
         cartas.add(carta3);
         calculador.envido(cartas);
+    }
+    @Test
+    public void test5FlorDevuelveTanto() throws CantasteEnvidoCuandoTenesFlorException, JuegoSinFlorException {
+        carta1 = new Carta(5,new Oro());
+        carta2 = new Figura(12,new Oro());
+        carta3 = new Figura(10,new Oro());
+        cartas.add(carta1);
+        cartas.add(carta2);
+        cartas.add(carta3);
+        Assert.assertEquals(calculador.flor(cartas),25);
+    }
+    @Test(expected = NoHayFlorException.class)
+    public void test6FlorDevuelveTanto() throws NoHayFlorException, JuegoSinFlorException {
+        carta1 = new Carta(5,new Oro());
+        carta2 = new Figura(12,new Espada());
+        carta3 = new Figura(10,new Oro());
+        cartas.add(carta1);
+        cartas.add(carta2);
+        cartas.add(carta3);
+        calculador.flor(cartas);
     }
 }
 
