@@ -8,15 +8,15 @@ public abstract class CalculadorTanto {
 
     public int envido(List<Carta> cartas) {
 
-        int envido1 = this.calcularEnvido(cartas.get(1), cartas.get(2));
-        int envido2 = this.calcularEnvido(cartas.get(2), cartas.get(0));
-        int envido3 = this.calcularEnvido(cartas.get(1), cartas.get(0));
+        int envido1 = cartas.get(0).sumarParaEnvido(cartas.get(1));
+        int envido2 = cartas.get(1).sumarParaEnvido(cartas.get(2));
+        int envido3 = cartas.get(2).sumarParaEnvido(cartas.get(0));
 
         return Math.max(Math.max(envido1, envido2), envido3);
 
     }
 
-    public int calcularEnvido(Carta carta1, Carta carta2) {
+    /*public int calcularEnvido(Carta carta1, Carta carta2) {
 
         if(carta1.getPalo().equals(carta2.getPalo())) {
 
@@ -32,7 +32,7 @@ public abstract class CalculadorTanto {
 
         return 0;
 
-    }
+    }*/
 
 
 }

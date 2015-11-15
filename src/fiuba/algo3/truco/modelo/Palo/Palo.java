@@ -10,4 +10,9 @@ public interface Palo {
 
     String toString();
 
+    int getTanto(int valor);
+    int tantoEspada();
+    int tantoOro();
+    int tantoBasto();
+    int tantoCopa();
 }

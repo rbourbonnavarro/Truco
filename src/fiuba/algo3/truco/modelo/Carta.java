@@ -28,4 +28,8 @@ public class Carta {
 
     }
 
+    public int sumarParaEnvido(Carta carta) {
+        return this.valor + palo.getTanto(carta.valor);
+    }
+
 }

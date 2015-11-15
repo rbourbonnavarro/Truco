@@ -24,5 +24,30 @@ public class Espada implements Palo {
 
     }
 
+    @Override
+    public int getTanto(int valor) {
+        return valor + tantoEspada();
+    }
+
+    @Override
+    public int tantoEspada() {
+        return 20;
+    }
+
+    @Override
+    public int tantoOro() {
+        return 0;
+    }
+
+    @Override
+    public int tantoBasto() {
+        return 0;
+    }
+
+    @Override
+    public int tantoCopa() {
+        return 0;
+    }
+
 
 }
