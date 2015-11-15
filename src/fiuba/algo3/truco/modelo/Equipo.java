@@ -8,25 +8,35 @@ public class Equipo {
     private String nombre;
     private List<Jugador> integrantes;
     private int puntaje;
-    private Jugador jugadorActual;
+    private int indiceJugador;
 
     public Equipo(String nombre, List<Jugador> jugadores) {
 
-        this.integrantes = new ArrayList<Jugador>(jugadores);
+        this.integrantes = new ArrayList<>(jugadores);
 
         this.puntaje = 0;
+
+        this.indiceJugador = 0;
 
     }
 
     public Jugador getJugadorActual() {
 
-        return this.jugadorActual;
+        return this.integrantes.get(this.indiceJugador % this.integrantes.size());
 
     }
 
     public int getCantidadIntegrantes() {
 
         return this.integrantes.size();
+
+    }
+
+    public void terminarJugada() {
+
+        //if(this.indiceJugador > 2) this.indiceJugador = 0;
+
+        this.indiceJugador++;
 
     }
 

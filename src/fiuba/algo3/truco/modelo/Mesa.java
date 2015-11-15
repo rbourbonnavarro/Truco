@@ -13,16 +13,19 @@ public class Mesa {
     private Equipo equipoActual;
     private Equipo equipoContrario;
     private Jugador jugadorActual;
-    private Equipo ganadorRonda;
+    private GanadorVuelta resultadoGanadorVuelta;
+    private Ronda ronda;
 
     public Mesa(Equipo equipo1, Equipo equipo2, CalculadorTanto calculadorTanto) {
 
         this.calculadorTanto = calculadorTanto;
         this.valoresTruco = new ValoresTruco();
-        this.cartasEnMesa = new ArrayDeque<Carta>();
+        this.cartasEnMesa = new ArrayDeque<>();
 
         this.equipo1 = equipo1;
         this.equipo2 = equipo2;
+
+        this.ronda= new Ronda();
 
     }
 
@@ -40,33 +43,62 @@ public class Mesa {
 
     }
 
-    public void terminarJugada(Carta carta) {
+    public void hacerJugada(Carta carta) {
 
         this.cartasEnMesa.add(carta);
 
-        this.ganadorRonda = this.calcularGanadorJugada(carta, this.cartasEnMesa.getLast());
+        if(this.cartasEnMesa.size() > 0)
+            this.resultadoGanadorVuelta = this.calcularGanadorJugada(carta, this.resultadoGanadorVuelta.getCarta());
 
-       /* if(this.cartasEnMesa.size() == 2*(this.equipoActual.getCantidadIntegrantes()) {
+        this.terminarJugada();
 
+        if(this.cartasEnMesa.size() == 2*(this.equipoActual.getCantidadIntegrantes())) {
 
+            this.terminarVuelta();
 
-        }*/
+        }
 
 
     }
 
-    private Equipo calcularGanadorJugada(Carta cartaEquipoActual, Carta cartaEquipoContrario) {
+    private void terminarJugada() {
+
+        this.equipoActual.terminarJugada();
+
+        Equipo aux = this.equipoActual;
+        this.equipoActual = this.equipoContrario;
+        this.equipoContrario = aux;
+
+        this.jugadorActual = this.equipoActual.getJugadorActual();
+
+    }
+
+
+    private void terminarVuelta() {
+
+        this.ronda.setGanadorVuelta(this.resultadoGanadorVuelta);
+
+        if(this.ronda.finalRonda()) this.terminarRonda();
+
+    }
+
+    private void terminarRonda() {
+
+        this.ronda.sumarPuntosEquipoGanador();
+
+    }
+
+    private GanadorVuelta calcularGanadorJugada(Carta cartaEquipoActual, Carta cartaEquipoContrario) {
 
         if(this.valoresTruco.rankingCarta(cartaEquipoActual) > this.valoresTruco.rankingCarta(cartaEquipoContrario))
-            return this.equipoActual;
+            return new GanadorVuelta(this.equipoActual, cartaEquipoActual);
         else {
             if (this.valoresTruco.rankingCarta(cartaEquipoActual) < this.valoresTruco.rankingCarta(cartaEquipoContrario))
-                return this.equipoContrario;
-
+                return new GanadorVuelta(this.equipoContrario, cartaEquipoContrario);
+            else
+                return new Parda(cartaEquipoActual);
 
         }
-
-        return this.equipo1;
 
     }
 
