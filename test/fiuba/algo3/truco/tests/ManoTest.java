@@ -1,9 +1,6 @@
 package fiuba.algo3.truco.tests;
 
-import fiuba.algo3.truco.modelo.Carta;
-import fiuba.algo3.truco.modelo.Figura;
-import fiuba.algo3.truco.modelo.JuegoSinFlor;
-import fiuba.algo3.truco.modelo.Mano;
+import fiuba.algo3.truco.modelo.*;
 import fiuba.algo3.truco.modelo.Palo.*;
 import org.junit.Assert;
 import org.junit.Test;
@@ -54,7 +51,7 @@ public class ManoTest {
         Assert.assertEquals(mano.getCantidadOro(),1);
     }
     @Test
-    public void Test5AlAgregar3CartasLaManoCalculaElEnvido(){
+    public void Test5AlAgregar3CartasLaManoCalculaElEnvido() throws CantasteEnvidoCuandoTenesFlorException {
         Carta carta1 = new Carta (3, new Espada());
         Carta carta2 = new Carta (7, new Espada());
         Carta carta3 = new Carta (3, new Basto());
@@ -62,7 +59,7 @@ public class ManoTest {
         Assert.assertEquals(mano.envido(),30);
     }
     @Test
-    public void Test6SiTengo2FigurasElEnvidoDevuelve20(){
+    public void Test6SiTengo2FigurasElEnvidoDevuelve20() throws CantasteEnvidoCuandoTenesFlorException {
         Carta carta1 = new Figura(12, new Espada());
         Carta carta2 = new Figura (10, new Espada());
         Carta carta3 = new Carta (3, new Basto());
@@ -70,7 +67,7 @@ public class ManoTest {
         Assert.assertEquals(mano.envido(),20);
     }
     @Test
-    public void Test7SiTengoTresCartasDeDistintoPaloDevuelvoLaDeMayorValor(){
+    public void Test7SiTengoTresCartasDeDistintoPaloDevuelvoLaDeMayorValor() throws CantasteEnvidoCuandoTenesFlorException {
         Carta carta1 = new Carta (3, new Copa());
         Carta carta2 = new Carta (7, new Espada());
         Carta carta3 = new Carta (3, new Basto());
@@ -78,12 +75,20 @@ public class ManoTest {
         Assert.assertEquals(mano.envido(),7);
     }
     @Test
-    public void Test8SiTengo1FiguraYOtraDelMismoPaloElEnvidoDevuelveValorCorrecto(){
+    public void Test8SiTengo1FiguraYOtraDelMismoPaloElEnvidoDevuelveValorCorrecto() throws CantasteEnvidoCuandoTenesFlorException {
         Carta carta1 = new Figura(12, new Espada());
         Carta carta2 = new Carta (7, new Espada());
         Carta carta3 = new Carta (3, new Basto());
         mano = new Mano(Arrays.asList(carta1 , carta2, carta3), new JuegoSinFlor());
         Assert.assertEquals(mano.envido(),27);
+    }
+    @Test (expected = CantasteEnvidoCuandoTenesFlorException.class)
+    public void Test9TengoFlorSeJuegaConFlorYCantoEnvidoLanzaExcepcion() throws CantasteEnvidoCuandoTenesFlorException {
+        Carta carta1 = new Figura(12, new Espada());
+        Carta carta2 = new Carta (7, new Espada());
+        Carta carta3 = new Carta (3, new Espada());
+        mano = new Mano(Arrays.asList(carta1 , carta2, carta3), new JuegoConFlor());
+        mano.envido();
     }
 
 }

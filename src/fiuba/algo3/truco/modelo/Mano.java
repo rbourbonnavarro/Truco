@@ -47,7 +47,7 @@ public class Mano {
         this.agregar(carta3);
     }*/
 
-    public int flor() {
+    public int flor() throws JuegoSinFlorException {
 
         if(this.cartasEnMano.size() < 3) throw new JugadorNoPuedeCantarTantoNoEsPrimeraRonda();
 
@@ -55,7 +55,7 @@ public class Mano {
 
     }
 
-    public int envido() {
+    public int envido() throws CantasteEnvidoCuandoTenesFlorException {
 
         if(this.cartasEnMano.size() < 3) throw new JugadorNoPuedeCantarTantoNoEsPrimeraRonda();
 

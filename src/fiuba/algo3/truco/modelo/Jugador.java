@@ -33,7 +33,7 @@ public class Jugador {
 
     }
 
-    public void envido() {
+    public void envido() throws CantasteEnvidoCuandoTenesFlorException {
 
         if(!this.jugadorPie) throw new JugadorNoPuedeCantarEnvidoNoEsPie();
 
