@@ -14,6 +14,11 @@ public class RealEnvidoCantado implements EstadoEnvido {
 
     }
 
+    public RealEnvidoCantado() {
+        this.puntos = this.puntosRealEnvido;
+        this.puntosNoQuerido = 1;
+    }
+
     @Override
     public int puntos() {
 
@@ -45,7 +50,7 @@ public class RealEnvidoCantado implements EstadoEnvido {
 
     @Override
     public boolean sePuedeCantarFaltaEnvido() {
-        return false;
+        return true;
     }
 
 
