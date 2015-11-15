@@ -8,10 +8,14 @@ import java.util.List;
 public class Ronda {
 
     private List<GanadorVuelta> ganadoresVueltas;
+    private Equipo equipoGanador;
+    private int puntosRonda;
 
     public Ronda() {
 
         this.ganadoresVueltas = new ArrayList<>();
+
+        this.puntosRonda = 0;
 
     }
 
@@ -23,6 +27,28 @@ public class Ronda {
 
     public boolean finalRonda() {
 
+        if(this.ganadoresVueltas.size() == 2) {
+
+            if(this.ganadoresVueltas.get(0).getEquipoGanador() == this.ganadoresVueltas.get(1).getEquipoGanador()) {
+
+                this.equipoGanador = this.ganadoresVueltas.get(0).getEquipoGanador();
+
+                return true;
+
+            }
+
+            return false;
+
+        }
+
+        if(this.ganadoresVueltas.size() == 3) {
+
+            this.equipoGanador = this.ganadoresVueltas.get(2).getEquipoGanador();
+
+            return true;
+
+        }
+
         return false;
 
     }
@@ -30,6 +56,12 @@ public class Ronda {
     public void sumarPuntosEquipoGanador() {
 
 
+
+    }
+
+    public void agregarPuntosRonda(int puntosRonda) {
+
+        this.puntosRonda += puntosRonda;
 
     }
 

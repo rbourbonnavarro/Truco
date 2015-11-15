@@ -1,9 +1,7 @@
 package fiuba.algo3.truco.modelo;
 
-import fiuba.algo3.truco.modelo.EnvidoYFlor.CalculadorTanto;
-import fiuba.algo3.truco.modelo.Truco.GanadorVuelta;
-import fiuba.algo3.truco.modelo.Truco.Parda;
-import fiuba.algo3.truco.modelo.Truco.ValoresTruco;
+import fiuba.algo3.truco.modelo.EnvidoYFlor.*;
+import fiuba.algo3.truco.modelo.Truco.*;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -20,6 +18,8 @@ public class Mesa {
     private Jugador jugadorActual;
     private GanadorVuelta resultadoGanadorVuelta;
     private Ronda ronda;
+    private EstadoEnvido estadoEnvido;
+    private EstadoTruco estadoTruco;
 
     public Mesa(Equipo equipo1, Equipo equipo2, CalculadorTanto calculadorTanto) {
 
@@ -31,6 +31,9 @@ public class Mesa {
         this.equipo2 = equipo2;
 
         this.ronda= new Ronda();
+
+        this.estadoTruco = new TrucoNoCantado();
+        this.estadoEnvido = new EnvidoNoCantado();
 
     }
 
@@ -63,12 +66,101 @@ public class Mesa {
 
         }
 
+    }
+
+    public void envido() {
+
+        if(!this.estadoEnvido.sePuedeCantarEnvido()) throw new NoSePuedeCantarEnvido();
+
+        this.estadoEnvido = new EnvidoCantado();
+
+        this.intercambiarEquipos();
+
+    }
+
+    public void envidoEnvido() {
+
+        if(!this.estadoEnvido.sePuedeCantarEnvidoEnvido()) throw new NoSePuedeCantarEnvidoEnvido();
+
+        this.estadoEnvido = new EnvidoEnvidoCantado();
+
+        this.intercambiarEquipos();
+
+    }
+
+    public void realEnvido() {
+
+        if(!this.estadoEnvido.sePuedeCantarRealEnvido()) throw new NoSePuedeCantarRealEnvido();
+
+        this.estadoEnvido = new RealEnvidoCantado(this.estadoEnvido.puntos());
+
+        this.intercambiarEquipos();
+
+    }
+
+    public void faltaEnvido() {
+
+        if(!this.estadoEnvido.sePuedeCantarFaltaEnvido()) throw new NoSePuedeCantarFaltaEnvido();
+
+        this.estadoEnvido = new FaltaEnvidoCantado(this.equipoContrario.getPuntaje(), this.estadoEnvido.puntos());
+
+        this.intercambiarEquipos();
+
+    }
+
+    public void truco() {
+
+        if(!this.estadoTruco.sePuedeCantarTruco()) throw new NoSePuedeCantarTrucoException();
+
+        this.estadoTruco = new TrucoCantado();
+
+        this.intercambiarEquipos();
+
+    }
+
+    public void retruco() {
+
+        if(!this.estadoTruco.sePuedeCantarRetruco()) throw new NoSePuedeCantarRetrucoException();
+
+        this.estadoTruco = new RetrucoCantado();
+
+        this.intercambiarEquipos();
+
+    }
+
+    public void valeCuatro() {
+
+        if(!this.estadoTruco.sePuedeCantarValeCuatro()) throw new NoSePuedeCantarValeCuatroException();
+
+        this.estadoTruco = new ValeCuatroCantado();
+
+        this.intercambiarEquipos();
+
+    }
+
+    public void quieroTruco(boolean quiero) {
+
+        if(!quiero) {
+
+            this.ronda.agregarPuntosRonda(this.estadoTruco.noQuerido());
+
+            this.terminarRonda();
+
+        }
+
+        this.intercambiarEquipos();
 
     }
 
     private void terminarJugada() {
 
         this.equipoActual.terminarJugada();
+
+        this.intercambiarEquipos();
+
+    }
+
+    private void intercambiarEquipos() {
 
         Equipo aux = this.equipoActual;
         this.equipoActual = this.equipoContrario;
@@ -77,7 +169,6 @@ public class Mesa {
         this.jugadorActual = this.equipoActual.getJugadorActual();
 
     }
-
 
     private void terminarVuelta() {
 
@@ -89,6 +180,7 @@ public class Mesa {
 
     private void terminarRonda() {
 
+        this.ronda.agregarPuntosRonda(this.estadoTruco.puntos());
         this.ronda.sumarPuntosEquipoGanador();
 
     }

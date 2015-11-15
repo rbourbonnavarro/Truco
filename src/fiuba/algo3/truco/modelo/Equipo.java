@@ -7,14 +7,14 @@ public class Equipo {
 
     private String nombre;
     private List<Jugador> integrantes;
-    private int puntaje;
+    private Puntaje puntaje;
     private int indiceJugador;
 
     public Equipo(String nombre, List<Jugador> jugadores) {
 
         this.integrantes = new ArrayList<>(jugadores);
 
-        this.puntaje = 0;
+        this.puntaje = new Malas();
 
         this.indiceJugador = 0;
 
@@ -37,6 +37,12 @@ public class Equipo {
         //if(this.indiceJugador > 2) this.indiceJugador = 0;
 
         this.indiceJugador++;
+
+    }
+
+    public Puntaje getPuntaje() {
+
+        return this.puntaje;
 
     }
 

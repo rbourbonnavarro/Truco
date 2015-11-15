@@ -21,5 +21,11 @@ public class GanadorVuelta {
 
     }
 
+    public Equipo getEquipoGanador() {
+
+        return this.equipoGanador;
+
+    }
+
 
 }
