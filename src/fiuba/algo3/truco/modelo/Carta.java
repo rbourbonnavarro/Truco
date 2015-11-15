@@ -29,7 +29,20 @@ public class Carta {
     }
 
     public int sumarParaEnvido(Carta carta) {
-        return this.valor + palo.getTanto(carta.valor);
+        return this.envido() + palo.getTanto(carta);
     }
 
+    public int tantoOro() {
+        return palo.tantoOro(this.envido());
+    }
+
+    public int tantoBasto() {
+        return palo.tantoOro(this.envido());
+    }
+    public int tantoEspada() {
+        return palo.tantoEspada(this.envido());
+    }
+    public int tantoCopa() {
+        return palo.tantoCopa(this.envido());
+    }
 }

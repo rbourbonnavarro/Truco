@@ -1,10 +1,9 @@
 package fiuba.algo3.truco.modelo.Palo;
 
+import fiuba.algo3.truco.modelo.Carta;
 import fiuba.algo3.truco.modelo.Mano;
 
-/**
- * Created by GomezPeter on 14/11/2015.
- */
+
 public class Oro implements Palo {
 
     @Override
@@ -25,27 +24,26 @@ public class Oro implements Palo {
     }
 
     @Override
-    public int getTanto(int valor) {
-        return valor + this.tantoOro();
+    public int getTanto(Carta carta) {
+        return carta.tantoOro();
+    }
+    @Override
+    public int tantoOro(int valor) {
+        return valor + 20;
     }
 
     @Override
-    public int tantoEspada() {
+    public int tantoEspada(int valor) {
         return 0;
     }
 
     @Override
-    public int tantoOro() {
-        return 20;
-    }
-
-    @Override
-    public int tantoBasto() {
+    public int tantoCopa(int valor) {
         return 0;
     }
 
     @Override
-    public int tantoCopa() {
+    public int tantoBasto(int valor) {
         return 0;
     }
 

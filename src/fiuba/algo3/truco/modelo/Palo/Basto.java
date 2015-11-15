@@ -1,10 +1,8 @@
 package fiuba.algo3.truco.modelo.Palo;
 
+import fiuba.algo3.truco.modelo.Carta;
 import fiuba.algo3.truco.modelo.Mano;
 
-/**
- * Created by GomezPeter on 14/11/2015.
- */
 public class Basto implements Palo {
 
     @Override
@@ -23,30 +21,28 @@ public class Basto implements Palo {
         return this.getClass().getSimpleName();
 
     }
-
     @Override
-    public int getTanto(int valor) {
-        return valor + tantoBasto();
+    public int getTanto(Carta carta) {
+        return carta.tantoBasto();
     }
-
     @Override
-    public int tantoEspada() {
+    public int tantoOro(int valor) {
         return 0;
     }
 
     @Override
-    public int tantoOro() {
+    public int tantoEspada(int valor) {
         return 0;
     }
 
     @Override
-    public int tantoBasto() {
-        return 20;
+    public int tantoCopa(int valor) {
+        return 0;
     }
 
     @Override
-    public int tantoCopa() {
-        return 0;
+    public int tantoBasto(int valor) {
+        return valor + 20;
     }
 
 
