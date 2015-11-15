@@ -10,7 +10,7 @@ public class Figura extends Carta {
 
     }
 
-    public int envido() {
+    public int tanto() {
 
         return 0;
 

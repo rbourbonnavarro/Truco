@@ -27,10 +27,10 @@ public class FlorYEnvidoTest {
 
         Mano mano3 = new Mano(new Carta(7, new Espada()), new Carta(1, new Oro()), new Figura(10, new Basto()), new JuegoConFlor());
 
-        Assert.assertTrue(mano.envido() == 28);
-        Assert.assertTrue(mano1.envido() == 27);
-        Assert.assertTrue(mano2.envido() == 20);
-        Assert.assertTrue(mano3.envido() == 0);
+        Assert.assertTrue(mano.tanto() == 28);
+        Assert.assertTrue(mano1.tanto() == 27);
+        Assert.assertTrue(mano2.tanto() == 20);
+        Assert.assertTrue(mano3.tanto() == 0);
 
     }
 
