@@ -1,4 +1,4 @@
-package fiuba.algo3.truco.tests;
+package fiuba.algo3.truco.tests.Palo;
 
 import fiuba.algo3.truco.modelo.Palo.*;
 import org.junit.Assert;
