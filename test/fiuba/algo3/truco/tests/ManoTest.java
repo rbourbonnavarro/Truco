@@ -90,5 +90,13 @@ public class ManoTest {
         mano = new Mano(Arrays.asList(carta1 , carta2, carta3), new JuegoConFlor());
         mano.envido();
     }
+    @Test
+    public void Test10NoTengoFlorSeJuegaConFlorEntoncesEnvidoDevuelveElTanto() throws CantasteEnvidoCuandoTenesFlorException {
+        Carta carta1 = new Carta(6, new Espada());
+        Carta carta2 = new Carta (7, new Espada());
+        Carta carta3 = new Carta (3, new Basto());
+        mano = new Mano(Arrays.asList(carta1 , carta2, carta3), new JuegoConFlor());
+        Assert.assertEquals(mano.envido(),33);
+    }
 
 }
