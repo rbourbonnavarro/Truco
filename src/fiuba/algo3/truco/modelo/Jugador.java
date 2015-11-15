@@ -49,5 +49,10 @@ public class Jugador {
 
     }
 
+    public int calcularEnvido() {
+
+        return this.mano.envido();
+
+    }
 
 }
