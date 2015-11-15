@@ -13,8 +13,11 @@ import org.junit.Test;
 import java.util.LinkedList;
 import java.util.List;
 
+/**
+ * Created by GomezPeter on 15/11/2015.
+ */
+public class JuegoSinFlorTest {
 
-public class JuegoConFlorTest {
     Carta carta1;
     Carta carta2;
     Carta carta3;
@@ -23,7 +26,7 @@ public class JuegoConFlorTest {
     @Before
     public void setUp(){
         cartas = new LinkedList<>();
-        calculador = new JuegoConFlor();
+        calculador = new JuegoSinFlor();
     }
     @Test
     public void test1EnvidoDevuelve20SiHayDosFiguras() throws CantasteEnvidoCuandoTenesFlorException {
@@ -55,30 +58,10 @@ public class JuegoConFlorTest {
         cartas.add(carta3);
         Assert.assertEquals(calculador.envido(cartas),5);
     }
-    @Test(expected = CantasteEnvidoCuandoTenesFlorException.class)
-    public void test4EnvidoLanzaExcepcionSiHayFlor() throws CantasteEnvidoCuandoTenesFlorException {
+    @Test(expected = JuegoSinFlorException.class)
+    public void test5FlorLanzaExcepcion() throws CantasteEnvidoCuandoTenesFlorException, JuegoSinFlorException {
         carta1 = new Carta(5,new Oro());
         carta2 = new Figura(12,new Oro());
-        carta3 = new Figura(10,new Oro());
-        cartas.add(carta1);
-        cartas.add(carta2);
-        cartas.add(carta3);
-        calculador.envido(cartas);
-    }
-    @Test
-    public void test5FlorDevuelveTanto() throws CantasteEnvidoCuandoTenesFlorException, JuegoSinFlorException {
-        carta1 = new Carta(5,new Oro());
-        carta2 = new Figura(12,new Oro());
-        carta3 = new Figura(10,new Oro());
-        cartas.add(carta1);
-        cartas.add(carta2);
-        cartas.add(carta3);
-        Assert.assertEquals(calculador.flor(cartas),25);
-    }
-    @Test(expected = NoHayFlorException.class)
-    public void test6FlorDevuelveTanto() throws NoHayFlorException, JuegoSinFlorException {
-        carta1 = new Carta(5,new Oro());
-        carta2 = new Figura(12,new Espada());
         carta3 = new Figura(10,new Oro());
         cartas.add(carta1);
         cartas.add(carta2);
@@ -86,4 +69,3 @@ public class JuegoConFlorTest {
         calculador.flor(cartas);
     }
 }
-
