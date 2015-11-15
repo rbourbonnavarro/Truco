@@ -17,7 +17,7 @@ public class Equipo {
 
         this.integrantes = new ArrayList<>(jugadores);
 
-        this.puntaje = new Malas();
+        this.puntaje = new Puntaje();
 
         this.indiceJugador = 0;
 
@@ -46,6 +46,12 @@ public class Equipo {
     public Puntaje getPuntaje() {
 
         return this.puntaje;
+
+    }
+
+    public void sumarPuntos(int puntosRonda) {
+
+        this.puntaje.sumar(puntosRonda);
 
     }
 

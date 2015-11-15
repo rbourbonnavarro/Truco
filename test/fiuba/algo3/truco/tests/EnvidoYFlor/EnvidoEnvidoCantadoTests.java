@@ -36,7 +36,8 @@ public class EnvidoEnvidoCantadoTests {
     }
     @Test
     public void Test6SePuedeCantarFaltaEnvido(){
-        Puntaje puntos = new Buenas(4);
+        Puntaje puntos = new Puntaje();
+        puntos.sumar(19);
         Assert.assertEquals(envido.faltaEnvido(puntos),new FaltaEnvidoCantado(puntos));
     }
 }

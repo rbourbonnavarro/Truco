@@ -1,22 +1,19 @@
 package fiuba.algo3.truco.modelo.Puntos;
 
-public class Buenas implements Puntaje {
+public class Buenas implements EstadoPuntaje {
 
-    private int puntos;
+    /*private int puntos;
 
     public Buenas(int puntos) {
 
         this.puntos = puntos;
 
-    }
-    public Buenas() {
-        this.puntos = 0;
-    }
+    }*/
 
     @Override
-    public int faltaEnvido() {
+    public int faltaEnvido(int puntos) {
 
-        return 15 - this.puntos;
+        return 30 - puntos;
 
     }
 

@@ -37,6 +37,7 @@ public class EnvidoCantado implements EstadoEnvido {
     public EstadoEnvido faltaEnvido(Puntaje puntos) {
         return new FaltaEnvidoCantado(puntos,this.puntos());
     }
+
     @Override
     public boolean equals(Object estado) {
         return estado instanceof EnvidoCantado;

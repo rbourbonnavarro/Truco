@@ -69,6 +69,7 @@ public class Mesa {
     }
 
     public void envido() {
+
         this.estadoEnvido = this.estadoEnvido.envido();
 
         this.intercambiarEquipos();
@@ -86,6 +87,7 @@ public class Mesa {
     public void realEnvido() {
 
         this.estadoEnvido = this.estadoEnvido.realEnvido();
+
         this.intercambiarEquipos();
 
     }
@@ -93,6 +95,7 @@ public class Mesa {
     public void faltaEnvido() {
 
         this.estadoEnvido = this.estadoEnvido.faltaEnvido(this.equipoContrario.getPuntaje());
+
         this.intercambiarEquipos();
 
     }

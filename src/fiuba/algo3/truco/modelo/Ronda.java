@@ -55,7 +55,7 @@ public class Ronda {
 
     public void sumarPuntosEquipoGanador() {
 
-
+        this.equipoGanador.sumarPuntos(this.puntosRonda);
 
     }
 
