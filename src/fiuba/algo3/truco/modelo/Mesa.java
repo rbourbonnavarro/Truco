@@ -152,6 +152,18 @@ public class Mesa {
 
     }
 
+    public void quieroEnvido(boolean quiero) {
+
+        if(!quiero) {
+
+            this.ronda.agregarPuntosRonda(this.estadoEnvido.noQuerido());
+
+        }
+
+        //this.obtenerGanadorEnvido();
+
+    }
+
     private void terminarJugada() {
 
         this.equipoActual.terminarJugada();
@@ -174,13 +186,18 @@ public class Mesa {
 
         this.ronda.setGanadorVuelta(this.resultadoGanadorVuelta);
 
-        if(this.ronda.finalRonda()) this.terminarRonda();
+        if(this.ronda.finalRonda()) {
+
+            this.ronda.agregarPuntosRonda(this.estadoTruco.puntos());
+
+            this.terminarRonda();
+
+        }
 
     }
 
     private void terminarRonda() {
 
-        this.ronda.agregarPuntosRonda(this.estadoTruco.puntos());
         this.ronda.sumarPuntosEquipoGanador();
 
     }
