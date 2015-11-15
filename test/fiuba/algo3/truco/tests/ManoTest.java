@@ -77,5 +77,13 @@ public class ManoTest {
         mano = new Mano(Arrays.asList(carta1 , carta2, carta3), new JuegoSinFlor());
         Assert.assertEquals(mano.envido(),7);
     }
+    @Test
+    public void Test8SiTengo1FiguraYOtraDelMismoPaloElEnvidoDevuelveValorCorrecto(){
+        Carta carta1 = new Figura(12, new Espada());
+        Carta carta2 = new Carta (7, new Espada());
+        Carta carta3 = new Carta (3, new Basto());
+        mano = new Mano(Arrays.asList(carta1 , carta2, carta3), new JuegoSinFlor());
+        Assert.assertEquals(mano.envido(),27);
+    }
 
 }
