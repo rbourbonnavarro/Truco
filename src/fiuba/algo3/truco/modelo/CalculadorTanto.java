@@ -16,23 +16,5 @@ public abstract class CalculadorTanto {
 
     }
 
-    /*public int calcularEnvido(Carta carta1, Carta carta2) {
-
-        if(carta1.getPalo().equals(carta2.getPalo())) {
-
-            int envido = carta1.envido() + carta2.envido();
-
-            if(envido == 40) return 20;
-
-            if(envido < 20) return envido + 20;
-
-            return envido;
-
-        }
-
-        return 0;
-
-    }*/
-
 
 }
