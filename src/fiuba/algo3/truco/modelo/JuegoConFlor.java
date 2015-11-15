@@ -13,15 +13,10 @@ public class JuegoConFlor extends CalculadorTanto {
 
         if(!this.hayFlor(cartas)) throw new NoHayFlorException();
 
-        int flor = cartas.get(1).getTanto() + cartas.get(2).getTanto() + cartas.get(3).getTanto();
-
-        if(flor == 60) return 20;
-
-        if(flor > 40) return flor - 20;
-
-        if(flor > 20) return flor;
-
-        return flor + 20;
+        int flor = 0;
+        for(Carta carta: cartas)
+            flor += carta.getTanto();
+        return flor +20;
 
     }
 

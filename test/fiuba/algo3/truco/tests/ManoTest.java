@@ -98,5 +98,29 @@ public class ManoTest {
         mano = new Mano(Arrays.asList(carta1 , carta2, carta3), new JuegoConFlor());
         Assert.assertEquals(mano.envido(),33);
     }
+    @Test
+    public void Test11FlorDevuelveElTanto() throws JuegoSinFlorException {
+        Carta carta1 = new Carta(2, new Espada());
+        Carta carta2 = new Carta (7, new Espada());
+        Carta carta3 = new Carta (3, new Espada());
+        mano = new Mano(Arrays.asList(carta1 , carta2, carta3), new JuegoConFlor());
+        Assert.assertEquals(mano.flor(),32);
+    }
+    @Test
+    public void Test12FlorDevuelveElTantoCorrectoSiTengo1Figura() throws JuegoSinFlorException {
+        Carta carta1 = new Figura(12, new Espada());
+        Carta carta2 = new Carta (7, new Espada());
+        Carta carta3 = new Carta (3, new Espada());
+        mano = new Mano(Arrays.asList(carta1 , carta2, carta3), new JuegoConFlor());
+        Assert.assertEquals(mano.flor(),30);
+    }
+    @Test
+    public void Test13FlorDevuelve20SiTengo3Figuras() throws JuegoSinFlorException {
+        Carta carta1 = new Figura(12, new Espada());
+        Carta carta2 = new Figura (11, new Espada());
+        Carta carta3 = new Figura (10, new Espada());
+        mano = new Mano(Arrays.asList(carta1 , carta2, carta3), new JuegoConFlor());
+        Assert.assertEquals(mano.flor(),20);
+    }
 
 }
