@@ -9,6 +9,9 @@ public class Malas implements Puntaje {
         this.puntos = 0;
 
     }
+    public Malas(int puntos){
+        this.puntos = 0;
+    }
 
     @Override
     public int faltaEnvido() {

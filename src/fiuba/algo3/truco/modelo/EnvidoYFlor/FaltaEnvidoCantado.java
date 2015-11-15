@@ -7,7 +7,11 @@ public class FaltaEnvidoCantado implements EstadoEnvido {
     private int puntos;
     private int puntosNoQuerido;
 
-    public FaltaEnvidoCantado(Puntaje puntaje, int puntos) {
+    public FaltaEnvidoCantado(Puntaje puntaje) {
+        this.puntos = puntaje.faltaEnvido();
+        this.puntosNoQuerido = 1;
+    }
+    public FaltaEnvidoCantado(Puntaje puntaje, int puntos ) {
 
         this.puntos = puntaje.faltaEnvido();
         this.puntosNoQuerido = puntos;

@@ -9,11 +9,14 @@ public class Buenas implements Puntaje {
         this.puntos = puntos;
 
     }
+    public Buenas() {
+        this.puntos = 0;
+    }
 
     @Override
     public int faltaEnvido() {
 
-        return 30 - this.puntos;
+        return 15 - this.puntos;
 
     }
 
