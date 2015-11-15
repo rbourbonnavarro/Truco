@@ -6,13 +6,17 @@ public class JuegoConFlor extends CalculadorTanto {
 
     @Override
     public int envido(List<Carta> cartas) throws CantasteEnvidoCuandoTenesFlorException {
-        if(hayFlor(cartas)) throw new CantasteEnvidoCuandoTenesFlorException();
-        return super.envido(cartas);
+        try{
+            this.hayFlor(cartas);
+        }
+        catch (NoHayFlorException error) {
+            return super.envido(cartas);
+        }
+        throw new CantasteEnvidoCuandoTenesFlorException();
     }
     public int flor(List<Carta> cartas) {
 
-        if(!this.hayFlor(cartas)) throw new NoHayFlorException();
-
+        this.hayFlor(cartas);
         int flor = 0;
         for(Carta carta: cartas)
             flor += carta.getTanto();
@@ -20,11 +24,11 @@ public class JuegoConFlor extends CalculadorTanto {
 
     }
 
-    private boolean hayFlor(List<Carta> cartas) {
+    private void hayFlor(List<Carta> cartas) {
 
-        return (cartas.get(0).getPalo().equals(cartas.get(1).getPalo()) &&
-                cartas.get(2).getPalo().equals(cartas.get(1).getPalo()));
-
+        if(!(cartas.get(0).getPalo().equals(cartas.get(1).getPalo()) &&
+                cartas.get(2).getPalo().equals(cartas.get(1).getPalo())))
+            throw new NoHayFlorException();
     }
 
 
