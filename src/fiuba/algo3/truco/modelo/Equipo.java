@@ -1,5 +1,8 @@
 package fiuba.algo3.truco.modelo;
 
+import fiuba.algo3.truco.modelo.Puntos.Malas;
+import fiuba.algo3.truco.modelo.Puntos.Puntaje;
+
 import java.util.ArrayList;
 import java.util.List;
 

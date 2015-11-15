@@ -1,6 +1,6 @@
 package fiuba.algo3.truco.modelo.EnvidoYFlor;
 
-import fiuba.algo3.truco.modelo.Puntaje;
+import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 
 public class FaltaEnvidoCantado implements EstadoEnvido {
 

@@ -25,7 +25,7 @@ public class ManoTest {
         lista.add(new Carta(3,new Espada()));
         lista.add(new Carta(7,new Copa()));
         mano = new Mano(lista, new JuegoSinFlor());
-        Assert.assertEquals(mano.getCantidadEspada(),2);
+        Assert.assertEquals(mano.getCantidadEspada(), 2);
     }
     @Test
     public void Test2AgregarCartaIncrementaCantidadDeCopa(){
