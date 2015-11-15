@@ -5,7 +5,7 @@ public class EnvidoNoCantado implements EstadoEnvido {
     @Override
     public int puntos() {
 
-        return 0;
+        return 1;
 
     }
 
@@ -26,7 +26,7 @@ public class EnvidoNoCantado implements EstadoEnvido {
     @Override
     public boolean sePuedeCantarEnvidoEnvido() {
 
-        return true;
+        return false;
 
     }
 
