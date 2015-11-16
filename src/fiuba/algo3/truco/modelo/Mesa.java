@@ -14,6 +14,7 @@ import fiuba.algo3.truco.modelo.Truco.TrucoCantado;
 import fiuba.algo3.truco.modelo.Truco.TrucoNoCantado;
 import fiuba.algo3.truco.modelo.Truco.ValeCuatroCantado;
 import fiuba.algo3.truco.modelo.Truco.ValoresTruco;
+import fiuba.algo3.truco.tests.Mesa.NoHayCartasParaJugar;
 
 public class Mesa {
 
@@ -60,7 +61,7 @@ public class Mesa {
 
     }
 
-    public void hacerJugada(Carta carta) {
+    public void hacerJugada(Carta carta) throws NoHayCartasParaJugar {
 
         this.cartasEnMesa.add(carta);
 
