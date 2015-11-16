@@ -14,7 +14,6 @@ import fiuba.algo3.truco.modelo.Truco.TrucoCantado;
 import fiuba.algo3.truco.modelo.Truco.TrucoNoCantado;
 import fiuba.algo3.truco.modelo.Truco.ValeCuatroCantado;
 import fiuba.algo3.truco.modelo.Truco.ValoresTruco;
-import fiuba.algo3.truco.tests.Mesa.NoHayCartasParaJugar;
 
 public class Mesa {
 
@@ -47,12 +46,15 @@ public class Mesa {
 
     }
 
-    public void comenzarJuego() {
+    public void comenzarJuego() throws SeNecesitanDosEquiposParaJugar {
 
-        this.equipoActual = this.equipo1;
-        this.equipoContrario = this.equipo2;
-        this.jugadorActual = this.equipoActual.getJugadorActual();
-
+    	if ((equipo1.getCantidadIntegrantes() == 0) || (equipo2.getCantidadIntegrantes() == 0)) {
+    		throw new SeNecesitanDosEquiposParaJugar();
+    	}else{
+    		this.equipoActual = this.equipo1;
+    		this.equipoContrario = this.equipo2;
+    		this.jugadorActual = this.equipoActual.getJugadorActual();
+    	}
     }
 
     public Jugador getJugadorActual() {
@@ -63,18 +65,21 @@ public class Mesa {
 
     public void hacerJugada(Carta carta) throws NoHayCartasParaJugar {
 
-        this.cartasEnMesa.add(carta);
+    	if (carta == null){
+    		throw new NoHayCartasParaJugar();
+    	}else{
+    		this.cartasEnMesa.add(carta);
 
-        if(this.cartasEnMesa.size() > 0)
-            this.resultadoGanadorVuelta = this.calcularGanadorJugada(carta, this.resultadoGanadorVuelta.getCarta());
+    		if(this.cartasEnMesa.size() > 0)
+    			this.resultadoGanadorVuelta = this.calcularGanadorJugada(carta, this.resultadoGanadorVuelta.getCarta());
 
-        this.terminarJugada();
+    		this.terminarJugada();
 
-        if(this.cartasEnMesa.size() == 2*(this.equipoActual.getCantidadIntegrantes())) {
+    		if(this.cartasEnMesa.size() == 2*(this.equipoActual.getCantidadIntegrantes())) {
 
-            this.terminarVuelta();
-
-        }
+    			this.terminarVuelta();
+    		}
+    	}	
 
     }
 

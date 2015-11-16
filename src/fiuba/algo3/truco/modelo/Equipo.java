@@ -30,6 +30,10 @@ public class Equipo {
 
     public int getCantidadIntegrantes() {
 
+    	if (this.integrantes == null){
+    		return 0;
+    	}
+    	
         return this.integrantes.size();
 
     }
