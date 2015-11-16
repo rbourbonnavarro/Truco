@@ -14,6 +14,8 @@ public class Equipo {
 
     public Equipo(String nombre, List<Jugador> jugadores) {
 
+    	this.nombre = nombre;
+    	
         this.integrantes = new ArrayList<>(jugadores);
 
         this.puntaje = new Puntaje();
