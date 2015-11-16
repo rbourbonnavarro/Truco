@@ -85,6 +85,7 @@ public class Mazo {
 
             cartasMano.add(aux.get(posicionCarta));
             aux.remove(posicionCarta);
+            limite -= 1;
 
         }
 

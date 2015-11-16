@@ -44,4 +44,18 @@ public class Carta {
     public int tantoCopa() {
         return palo.tantoCopa(this.getTanto());
     }
+
+    public boolean equals(Object objeto) {
+
+        if(objeto instanceof Carta) {
+
+            return this.valor == ((Carta) objeto).getValor() && this.palo.equals(((Carta) objeto).getPalo());
+
+        }
+
+        return false;
+
+    }
+
+
 }
