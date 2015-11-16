@@ -7,63 +7,60 @@ import fiuba.algo3.truco.modelo.Palo.Espada;
 import fiuba.algo3.truco.modelo.Palo.Oro;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 public class Mazo {
 
-    private final List<Carta> cartas;
-
-    public Mazo() {
-
-        this.cartas = new ArrayList<>();
-
-        this.cartas.add(new Carta(1, new Espada()));
-        this.cartas.add(new Carta(1, new Basto()));
-        this.cartas.add(new Carta(1, new Oro()));
-        this.cartas.add(new Carta(1, new Copa()));
-        this.cartas.add(new Carta(2, new Espada()));
-        this.cartas.add(new Carta(2, new Basto()));
-        this.cartas.add(new Carta(2, new Oro()));
-        this.cartas.add(new Carta(2, new Copa()));
-        this.cartas.add(new Carta(3, new Espada()));
-        this.cartas.add(new Carta(3, new Basto()));
-        this.cartas.add(new Carta(3, new Oro()));
-        this.cartas.add(new Carta(3, new Copa()));
-        this.cartas.add(new Carta(4, new Espada()));
-        this.cartas.add(new Carta(4, new Basto()));
-        this.cartas.add(new Carta(4, new Oro()));
-        this.cartas.add(new Carta(4, new Copa()));
-        this.cartas.add(new Carta(5, new Espada()));
-        this.cartas.add(new Carta(5, new Basto()));
-        this.cartas.add(new Carta(5, new Oro()));
-        this.cartas.add(new Carta(5, new Copa()));
-        this.cartas.add(new Carta(6, new Espada()));
-        this.cartas.add(new Carta(6, new Basto()));
-        this.cartas.add(new Carta(6, new Oro()));
-        this.cartas.add(new Carta(6, new Copa()));
-        this.cartas.add(new Carta(7, new Espada()));
-        this.cartas.add(new Carta(7, new Basto()));
-        this.cartas.add(new Carta(7, new Oro()));
-        this.cartas.add(new Carta(7, new Copa()));
-        this.cartas.add(new Figura(10, new Espada()));
-        this.cartas.add(new Figura(10, new Basto()));
-        this.cartas.add(new Figura(10, new Oro()));
-        this.cartas.add(new Figura(10, new Copa()));
-        this.cartas.add(new Figura(11, new Espada()));
-        this.cartas.add(new Figura(11, new Basto()));
-        this.cartas.add(new Figura(11, new Oro()));
-        this.cartas.add(new Figura(11, new Copa()));
-        this.cartas.add(new Figura(12, new Espada()));
-        this.cartas.add(new Figura(12, new Basto()));
-        this.cartas.add(new Figura(12, new Oro()));
-        this.cartas.add(new Figura(12, new Copa()));
-
-    }
+    private static final List<Carta> CARTAS = new ArrayList<>(
+            Arrays.asList(
+                    new Carta(1, new Espada()),
+                    new Carta(1, new Basto()),
+                    new Carta(1, new Oro()),
+                    new Carta(1, new Copa()),
+                    new Carta(2, new Espada()),
+                    new Carta(2, new Basto()),
+                    new Carta(2, new Oro()),
+                    new Carta(2, new Copa()),
+                    new Carta(3, new Espada()),
+                    new Carta(3, new Basto()),
+                    new Carta(3, new Oro()),
+                    new Carta(3, new Copa()),
+                    new Carta(4, new Espada()),
+                    new Carta(4, new Basto()),
+                    new Carta(4, new Oro()),
+                    new Carta(4, new Copa()),
+                    new Carta(5, new Espada()),
+                    new Carta(5, new Basto()),
+                    new Carta(5, new Oro()),
+                    new Carta(5, new Copa()),
+                    new Carta(6, new Espada()),
+                    new Carta(6, new Basto()),
+                    new Carta(6, new Oro()),
+                    new Carta(6, new Copa()),
+                    new Carta(7, new Espada()),
+                    new Carta(7, new Basto()),
+                    new Carta(7, new Oro()),
+                    new Carta(7, new Copa()),
+                    new Figura(10, new Espada()),
+                    new Figura(10, new Basto()),
+                    new Figura(10, new Oro()),
+                    new Figura(10, new Copa()),
+                    new Figura(11, new Espada()),
+                    new Figura(11, new Basto()),
+                    new Figura(11, new Oro()),
+                    new Figura(11, new Copa()),
+                    new Figura(12, new Espada()),
+                    new Figura(12, new Basto()),
+                    new Figura(12, new Oro()),
+                    new Figura(12, new Copa())
+            )
+    );
 
     public void repartir(List<Jugador> jugadores, CalculadorTanto calculadorTanto) {
 
-        List<Carta> aux = new ArrayList<>(this.cartas);
+        List<Carta> aux = new ArrayList<>(CARTAS);
 
         for(Jugador jugador : jugadores) {
 
