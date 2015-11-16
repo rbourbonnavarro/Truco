@@ -1,12 +1,16 @@
 package fiuba.algo3.truco.tests.EnvidoYFlor;
 
-import fiuba.algo3.truco.modelo.EnvidoYFlor.*;
-
-import fiuba.algo3.truco.modelo.Puntos.Malas;
-import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import fiuba.algo3.truco.modelo.EnvidoYFlor.EnvidoCantado;
+import fiuba.algo3.truco.modelo.EnvidoYFlor.EnvidoEnvidoCantado;
+import fiuba.algo3.truco.modelo.EnvidoYFlor.EstadoEnvido;
+import fiuba.algo3.truco.modelo.EnvidoYFlor.FaltaEnvidoCantado;
+import fiuba.algo3.truco.modelo.EnvidoYFlor.NoSePuedeCantarEnvido;
+import fiuba.algo3.truco.modelo.EnvidoYFlor.RealEnvidoCantado;
+import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 
 public class EnvidoCantadoTest {
     EstadoEnvido envido;

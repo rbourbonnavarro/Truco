@@ -1,9 +1,9 @@
 package fiuba.algo3.truco.modelo;
 
-import fiuba.algo3.truco.modelo.Truco.GanadorVuelta;
-
 import java.util.ArrayList;
 import java.util.List;
+
+import fiuba.algo3.truco.modelo.Truco.GanadorVuelta;
 
 public class Ronda {
 

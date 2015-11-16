@@ -1,10 +1,19 @@
 package fiuba.algo3.truco.modelo;
 
-import fiuba.algo3.truco.modelo.EnvidoYFlor.*;
-import fiuba.algo3.truco.modelo.Truco.*;
-
 import java.util.ArrayDeque;
 import java.util.Deque;
+
+import fiuba.algo3.truco.modelo.EnvidoYFlor.CalculadorTanto;
+import fiuba.algo3.truco.modelo.EnvidoYFlor.EnvidoNoCantado;
+import fiuba.algo3.truco.modelo.EnvidoYFlor.EstadoEnvido;
+import fiuba.algo3.truco.modelo.Truco.EstadoTruco;
+import fiuba.algo3.truco.modelo.Truco.GanadorVuelta;
+import fiuba.algo3.truco.modelo.Truco.Parda;
+import fiuba.algo3.truco.modelo.Truco.RetrucoCantado;
+import fiuba.algo3.truco.modelo.Truco.TrucoCantado;
+import fiuba.algo3.truco.modelo.Truco.TrucoNoCantado;
+import fiuba.algo3.truco.modelo.Truco.ValeCuatroCantado;
+import fiuba.algo3.truco.modelo.Truco.ValoresTruco;
 
 public class Mesa {
 
