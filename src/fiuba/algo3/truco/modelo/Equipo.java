@@ -70,7 +70,7 @@ public class Equipo {
 
         for(Jugador jugador : this.integrantes) {
 
-            envido = (jugador.calcularEnvido() > envido) ? jugador.calcularEnvido() : envido;
+            envido = (jugador.envido() > envido) ? jugador.envido() : envido;
 
         }
 

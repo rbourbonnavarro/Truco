@@ -36,7 +36,7 @@ public class JuegoSinFlorTest {
         cartas.add(carta1);
         cartas.add(carta2);
         cartas.add(carta3);
-        Assert.assertEquals(calculador.envido(cartas), 20);
+        Assert.assertEquals(20, calculador.envido(cartas));
     }
     @Test
     public void test2EnvidoDevuelve25SiHayFiguraYUnCinco() throws CantasteEnvidoCuandoTenesFlorException {
@@ -46,7 +46,7 @@ public class JuegoSinFlorTest {
         cartas.add(carta1);
         cartas.add(carta2);
         cartas.add(carta3);
-        Assert.assertEquals(calculador.envido(cartas),25);
+        Assert.assertEquals(25, calculador.envido(cartas));
     }
     @Test
     public void test3EnvidoDevuelveCartaMasAltaSiPalosDistintos() throws CantasteEnvidoCuandoTenesFlorException {
@@ -56,7 +56,7 @@ public class JuegoSinFlorTest {
         cartas.add(carta1);
         cartas.add(carta2);
         cartas.add(carta3);
-        Assert.assertEquals(calculador.envido(cartas),5);
+        Assert.assertEquals(5, calculador.envido(cartas));
     }
     @Test(expected = JuegoSinFlorException.class)
     public void test5FlorLanzaExcepcion() throws CantasteEnvidoCuandoTenesFlorException, JuegoSinFlorException {

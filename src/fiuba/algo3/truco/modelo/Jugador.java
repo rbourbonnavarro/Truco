@@ -3,7 +3,6 @@ package fiuba.algo3.truco.modelo;
 import java.util.List;
 
 import fiuba.algo3.truco.modelo.EnvidoYFlor.CantasteEnvidoCuandoTenesFlorException;
-import fiuba.algo3.truco.modelo.EnvidoYFlor.JugadorNoPuedeCantarEnvidoNoEsPie;
 
 public class Jugador {
 
@@ -36,10 +35,9 @@ public class Jugador {
 
     }
 
-    public void envido() throws CantasteEnvidoCuandoTenesFlorException {
+    public int envido() throws CantasteEnvidoCuandoTenesFlorException {
 
-        if(!this.jugadorPie) throw new JugadorNoPuedeCantarEnvidoNoEsPie();
-        this.mano.envido();
+        return this.mano.envido();
 
     }
 
@@ -49,10 +47,11 @@ public class Jugador {
 
     }
 
-    public int calcularEnvido() {
+    public boolean jugadorPie() {
 
-        return this.mano.envido();
+        return this.jugadorPie;
 
     }
+
 
 }

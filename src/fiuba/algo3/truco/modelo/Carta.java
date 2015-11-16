@@ -8,17 +8,28 @@ public class Carta {
     private Palo palo;
 
     public Carta(int valor, Palo palo) {
+
         this.valor = valor;
         this.palo = palo;
+
     }
+
     public Palo getPalo() {
+
         return this.palo;
+
     }
+
     public int getTanto() {
+
         return this.valor;
+
     }
+
     public int getValor() {
+
         return valor;
+
     }
 
     public String toString() {
@@ -28,21 +39,33 @@ public class Carta {
     }
 
     public int sumarParaEnvido(Carta carta) {
+
         return this.getTanto() + palo.getTanto(carta);
+
     }
 
     public int tantoOro() {
+
         return palo.tantoOro(this.getTanto());
+
     }
 
     public int tantoBasto() {
+
         return palo.tantoBasto(this.getTanto());
+
     }
+
     public int tantoEspada() {
+
         return palo.tantoEspada(this.getTanto());
+
     }
+
     public int tantoCopa() {
+
         return palo.tantoCopa(this.getTanto());
+
     }
 
     public boolean equals(Object objeto) {

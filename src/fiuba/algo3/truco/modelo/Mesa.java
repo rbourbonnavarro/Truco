@@ -1,8 +1,9 @@
 package fiuba.algo3.truco.modelo;
 
-import java.util.*;
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Deque;
+import java.util.List;
 
 import fiuba.algo3.truco.modelo.EnvidoYFlor.CalculadorTanto;
 import fiuba.algo3.truco.modelo.EnvidoYFlor.EnvidoNoCantado;
@@ -94,6 +95,8 @@ public class Mesa {
     }
 
     public void envido() {
+
+        if(!this.jugadorActual.jugadorPie()) throw new JugadorNoPieNoPuedeCantarEnvido();
 
         this.estadoEnvido = this.estadoEnvido.envido();
 
