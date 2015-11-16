@@ -65,5 +65,17 @@ public class Ronda {
 
     }
 
+    public Equipo getEquipoGanador() {
+
+        return this.equipoGanador;
+
+    }
+
+    public void setEquipoGanador(Equipo equipoGanador) {
+
+        this.equipoGanador = equipoGanador;
+
+    }
+
 
 }

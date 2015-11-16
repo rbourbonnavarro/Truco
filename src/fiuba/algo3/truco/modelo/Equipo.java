@@ -54,5 +54,25 @@ public class Equipo {
 
     }
 
+    public int getPuntos() {
+
+        return this.puntaje.getPuntos();
+
+    }
+
+    public int calcularEnvido() {
+
+        int envido = 0;
+
+        for(Jugador jugador : this.integrantes) {
+
+            envido = (jugador.calcularEnvido() > envido) ? jugador.calcularEnvido() : envido;
+
+        }
+
+        return envido;
+
+    }
+
 
 }

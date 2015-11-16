@@ -31,5 +31,11 @@ public class Puntaje {
 
     }
 
+    public int getPuntos() {
+
+        return this.puntos;
+
+    }
+
 
 }
