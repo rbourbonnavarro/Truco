@@ -9,6 +9,8 @@ import org.junit.Test;
 import fiuba.algo3.truco.modelo.Equipo;
 import fiuba.algo3.truco.modelo.Jugador;
 import fiuba.algo3.truco.modelo.Mesa;
+import fiuba.algo3.truco.modelo.NoHayCartasParaJugar;
+import fiuba.algo3.truco.modelo.SeNecesitanDosEquiposParaJugar;
 import fiuba.algo3.truco.modelo.EnvidoYFlor.CalculadorTanto;
 
 public class ComenzarJuegoTest {
@@ -37,17 +39,18 @@ public class ComenzarJuegoTest {
 		mesa = new Mesa(equipo1, equipo2, calculadorTanto);
 	}
 	
+	@Test(expected = SeNecesitanDosEquiposParaJugar.class)
+	public void equipoSinJugadoresFalla(){
+		mesa.comenzarJuego();
+	}
+	
 	@Test
 	public void mesaSeInicioCorrectamenteTest(){
+			
 		mesa.comenzarJuego();
 		
 		Assert.assertEquals(mesa.cartasJugador(Jugador jugador1), 3);
 		Assert.assertTrue(mesa.getJugadorActual() == jugador1);
-	}
-	
-	@Test(expected = NoHayCartasParaJugar.class)
-	public void soloPuedeJugarElJugadorActualTest(){
-		mesa.hacerJugada(null);
 	}
 
 	
