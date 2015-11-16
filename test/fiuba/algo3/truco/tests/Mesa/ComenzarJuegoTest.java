@@ -1,16 +1,17 @@
 package fiuba.algo3.truco.tests.Mesa;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import fiuba.algo3.truco.modelo.Carta;
 import fiuba.algo3.truco.modelo.Equipo;
 import fiuba.algo3.truco.modelo.Jugador;
 import fiuba.algo3.truco.modelo.Mesa;
-import fiuba.algo3.truco.modelo.NoHayCartasParaJugar;
-import fiuba.algo3.truco.modelo.SeNecesitanDosEquiposParaJugar;
 import fiuba.algo3.truco.modelo.EnvidoYFlor.CalculadorTanto;
 
 public class ComenzarJuegoTest {
@@ -23,22 +24,15 @@ public class ComenzarJuegoTest {
 	Equipo equipo1;
 	Equipo equipo2;
 	CalculadorTanto calculadorTanto;
-
-	@Test
-	public void testParaQuePaseJenkins() {
-
-		Assert.assertTrue(true);
-
-	}
 	
-	/*@Before
+	@Before
 	public void setUp(){
 		
 		jugador1 = new Jugador("Juan");
 		jugador2 = new Jugador("Pedro");
 		
-		jugadoresEquipo1.add(jugador1);
-		jugadoresEquipo2.add(jugador2);
+		jugadoresEquipo1 = new ArrayList<>(Arrays.asList(jugador1));
+		jugadoresEquipo2 = new ArrayList<>(Arrays.asList(jugador2));
 		
 		equipo1 = new Equipo("equipo1", jugadoresEquipo1);
 		equipo2 = new Equipo("equipo2", jugadoresEquipo2);
@@ -46,18 +40,32 @@ public class ComenzarJuegoTest {
 		mesa = new Mesa(equipo1, equipo2, calculadorTanto);
 	}
 	
-	@Test(expected = SeNecesitanDosEquiposParaJugar.class)
-	public void equipoSinJugadoresFalla(){
-		mesa.comenzarJuego();
-	}
 	
 	@Test
 	public void mesaSeInicioCorrectamenteTest(){
 			
 		mesa.comenzarJuego();
-		
-		Assert.assertEquals(mesa.cartasJugador(Jugador jugador1), 3);
 		Assert.assertTrue(mesa.getJugadorActual() == jugador1);
+		Assert.assertEquals(mesa.getJugadorActual().obtenerCartas().size(), 3);
+	}
+	
+	/*@Test
+	public void mesaIntercambiaEquipoCorrectamente(){
+		
+		if (mesa.getJugadorActual() == null){
+			System.out.println("jugador es null");
+		}
+		
+		if (mesa.getJugadorActual() == jugador1){
+			System.out.println("jugador es jugador1");
+		}	
+		
+		List<Carta> cartas = jugadorActual.obtenerCartas();
+		if (cartas.isEmpty()){
+			System.out.println("no hay cartas");
+		}
+		Assert.assertTrue(mesa.getJugadorActual() == jugador2);
+		
 	}
 	*/
 	

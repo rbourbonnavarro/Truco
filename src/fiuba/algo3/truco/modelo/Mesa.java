@@ -74,7 +74,7 @@ public class Mesa {
 
     }
 
-    public void hacerJugada(Carta carta) {
+    public void hacerJugada(Carta carta) throws NoHayCartasParaJugar {
 
     	if (carta == null){
     		throw new NoHayCartasParaJugar();
