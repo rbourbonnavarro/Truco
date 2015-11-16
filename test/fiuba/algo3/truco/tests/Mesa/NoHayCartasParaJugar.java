@@ -1,6 +1,6 @@
 package fiuba.algo3.truco.tests.Mesa;
 
-public class NoHayCartasParaJugar extends RuntimeException{
+public class NoHayCartasParaJugar extends RuntimeException {
 
 	/**
 	 * 
