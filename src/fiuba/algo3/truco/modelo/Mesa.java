@@ -50,11 +50,15 @@ public class Mesa {
 
     }
 
-    public void comenzarJuego() {
+    public void comenzarJuego() throws SeNecesitanDosEquiposParaJugar {
 
-        this.equipoActual = this.equipo1;
-        this.equipoContrario = this.equipo2;
-        this.jugadorActual = this.equipoActual.getJugadorActual();
+    	if ((equipo1.getCantidadIntegrantes() == 0) || (equipo2.getCantidadIntegrantes() == 0)) {
+    		throw new SeNecesitanDosEquiposParaJugar();
+    	}else{
+    		this.equipoActual = this.equipo1;
+    		this.equipoContrario = this.equipo2;
+    		this.jugadorActual = this.equipoActual.getJugadorActual();
+    	}
 
         List<Jugador> jugadores = new ArrayList<>(this.equipo1.getIntegrantes());
         jugadores.addAll(this.equipo2.getIntegrantes());
@@ -71,18 +75,21 @@ public class Mesa {
 
     public void hacerJugada(Carta carta) {
 
-        this.cartasEnMesa.add(carta);
+    	if (carta == null){
+    		throw new NoHayCartasParaJugar();
+    	}else{
+    		this.cartasEnMesa.add(carta);
 
-        if(this.cartasEnMesa.size() > 0)
-            this.resultadoGanadorVuelta = this.calcularGanadorJugada(carta, this.resultadoGanadorVuelta.getCarta());
+    		if(this.cartasEnMesa.size() > 0)
+    			this.resultadoGanadorVuelta = this.calcularGanadorJugada(carta, this.resultadoGanadorVuelta.getCarta());
 
-        this.terminarJugada();
+    		this.terminarJugada();
 
-        if(this.cartasEnMesa.size() == 2*(this.equipoActual.getCantidadIntegrantes())) {
+    		if(this.cartasEnMesa.size() == 2*(this.equipoActual.getCantidadIntegrantes())) {
 
-            this.terminarVuelta();
-
-        }
+    			this.terminarVuelta();
+    		}
+    	}	
 
     }
 

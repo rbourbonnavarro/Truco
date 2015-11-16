@@ -9,6 +9,8 @@ import org.junit.Test;
 import fiuba.algo3.truco.modelo.Equipo;
 import fiuba.algo3.truco.modelo.Jugador;
 import fiuba.algo3.truco.modelo.Mesa;
+import fiuba.algo3.truco.modelo.NoHayCartasParaJugar;
+import fiuba.algo3.truco.modelo.SeNecesitanDosEquiposParaJugar;
 import fiuba.algo3.truco.modelo.EnvidoYFlor.CalculadorTanto;
 
 public class ComenzarJuegoTest {
@@ -22,7 +24,7 @@ public class ComenzarJuegoTest {
 	Equipo equipo2;
 	CalculadorTanto calculadorTanto;
 	
-	/*@Before
+	@Before
 	public void setUp(){
 		
 		jugador1 = new Jugador("Juan");
@@ -35,27 +37,21 @@ public class ComenzarJuegoTest {
 		equipo2 = new Equipo("equipo2", jugadoresEquipo2);
 		
 		mesa = new Mesa(equipo1, equipo2, calculadorTanto);
-	}*/
-
-	@Test
-	public void testParaQuePaseJenkins() {
-
-		Assert.assertTrue(true);
-
 	}
 	
-	/*@Test
+	@Test(expected = SeNecesitanDosEquiposParaJugar.class)
+	public void equipoSinJugadoresFalla(){
+		mesa.comenzarJuego();
+	}
+	
+	@Test
 	public void mesaSeInicioCorrectamenteTest(){
+			
 		mesa.comenzarJuego();
 		
 		Assert.assertEquals(mesa.cartasJugador(Jugador jugador1), 3);
 		Assert.assertTrue(mesa.getJugadorActual() == jugador1);
 	}
-	
-	@Test(expected = NoHayCartasParaJugar.class)
-	public void soloPuedeJugarElJugadorActualTest(){
-		mesa.hacerJugada(null);
-	}*/
 
 	
 }
