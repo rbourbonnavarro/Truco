@@ -12,7 +12,7 @@ import java.util.Random;
 
 public class Mazo {
 
-    private List<Carta> cartas;
+    private final List<Carta> cartas;
 
     public Mazo() {
 
