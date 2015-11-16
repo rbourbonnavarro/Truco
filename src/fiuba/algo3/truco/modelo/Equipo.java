@@ -78,5 +78,11 @@ public class Equipo {
 
     }
 
+    public List<Jugador> getIntegrantes() {
+
+        return this.integrantes;
+
+    }
+
 
 }

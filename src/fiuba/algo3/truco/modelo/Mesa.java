@@ -1,5 +1,6 @@
 package fiuba.algo3.truco.modelo;
 
+import java.util.*;
 import java.util.ArrayDeque;
 import java.util.Deque;
 
@@ -29,6 +30,7 @@ public class Mesa {
     private Ronda ronda;
     private EstadoEnvido estadoEnvido;
     private EstadoTruco estadoTruco;
+    private Mazo mazo;
 
     public Mesa(Equipo equipo1, Equipo equipo2, CalculadorTanto calculadorTanto) {
 
@@ -44,6 +46,8 @@ public class Mesa {
         this.estadoTruco = new TrucoNoCantado();
         this.estadoEnvido = new EnvidoNoCantado();
 
+        this.mazo = new Mazo();
+
     }
 
     public void comenzarJuego() throws SeNecesitanDosEquiposParaJugar {
@@ -55,6 +59,12 @@ public class Mesa {
     		this.equipoContrario = this.equipo2;
     		this.jugadorActual = this.equipoActual.getJugadorActual();
     	}
+
+        List<Jugador> jugadores = new ArrayList<>(this.equipo1.getIntegrantes());
+        jugadores.addAll(this.equipo2.getIntegrantes());
+
+        this.mazo.repartir(jugadores, this.calculadorTanto);
+
     }
 
     public Jugador getJugadorActual() {
@@ -63,7 +73,7 @@ public class Mesa {
 
     }
 
-    public void hacerJugada(Carta carta) throws NoHayCartasParaJugar {
+    public void hacerJugada(Carta carta) {
 
     	if (carta == null){
     		throw new NoHayCartasParaJugar();
