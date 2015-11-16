@@ -8,10 +8,10 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import fiuba.algo3.truco.modelo.Carta;
 import fiuba.algo3.truco.modelo.Equipo;
 import fiuba.algo3.truco.modelo.Jugador;
 import fiuba.algo3.truco.modelo.Mesa;
+import fiuba.algo3.truco.modelo.NoHayCartasParaJugar;
 import fiuba.algo3.truco.modelo.EnvidoYFlor.CalculadorTanto;
 
 public class ComenzarJuegoTest {
@@ -42,31 +42,19 @@ public class ComenzarJuegoTest {
 	
 	
 	@Test
-	public void mesaSeInicioCorrectamenteTest(){
+	public void mesaSeInicioCorrectamente(){
 			
 		mesa.comenzarJuego();
 		Assert.assertTrue(mesa.getJugadorActual() == jugador1);
 		Assert.assertEquals(mesa.getJugadorActual().obtenerCartas().size(), 3);
 	}
 	
-	/*@Test
-	public void mesaIntercambiaEquipoCorrectamente(){
-		
-		if (mesa.getJugadorActual() == null){
-			System.out.println("jugador es null");
-		}
-		
-		if (mesa.getJugadorActual() == jugador1){
-			System.out.println("jugador es jugador1");
-		}	
-		
-		List<Carta> cartas = jugadorActual.obtenerCartas();
-		if (cartas.isEmpty()){
-			System.out.println("no hay cartas");
-		}
-		Assert.assertTrue(mesa.getJugadorActual() == jugador2);
+	@Test(expected = NoHayCartasParaJugar.class)
+	public void hacerJugadaConCartaNulaFalla(){
+	
+		mesa.hacerJugada(null);
 		
 	}
-	*/
+	
 	
 }
