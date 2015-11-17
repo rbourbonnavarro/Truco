@@ -1,10 +1,7 @@
 package fiuba.algo3.truco.tests;
 
 import fiuba.algo3.truco.modelo.*;
-import fiuba.algo3.truco.modelo.EnvidoYFlor.CantasteEnvidoCuandoTenesFlorException;
-import fiuba.algo3.truco.modelo.EnvidoYFlor.JuegoConFlor;
-import fiuba.algo3.truco.modelo.EnvidoYFlor.JuegoSinFlor;
-import fiuba.algo3.truco.modelo.EnvidoYFlor.JuegoSinFlorException;
+import fiuba.algo3.truco.modelo.EnvidoYFlor.*;
 import fiuba.algo3.truco.modelo.Palo.*;
 import org.junit.Assert;
 import org.junit.Test;
@@ -134,6 +131,27 @@ public class ManoTest {
         mano = new Mano(Arrays.asList(carta1 , carta2, carta3), new JuegoSinFlor());
         mano.flor();
     }
+    @Test(expected = JugadorNoPuedeCantarTantoNoEsPrimeraRonda.class)
+    public void test15NoSePuedeCantarTantoNoEsPrimeraMano() throws JuegoSinFlorException {
+        Carta carta1 = new Carta(7,new Espada());
+        Carta carta2 = new Carta(3,new Basto());
+        Carta carta3 = new Carta (3,new Espada());
+        List<Carta> cartas =  Arrays.asList(carta1,carta2,carta3);
+        mano = new Mano(cartas , new JuegoConFlor());
+        mano.jugar(carta1);
 
+        mano.flor();
+    }
+    @Test(expected = JugadorNoPuedeCantarTantoNoEsPrimeraRonda.class)
+    public void test16NoSePuedeCantarEnvidoNoEsPrimeraMano() {
+        Carta carta1 = new Carta(7,new Espada());
+        Carta carta2 = new Carta(3,new Basto());
+        Carta carta3 = new Carta (3,new Espada());
+        List<Carta> cartas =  Arrays.asList(carta1,carta2,carta3);
+        mano = new Mano(cartas , new JuegoSinFlor());
+        mano.jugar(carta1);
+
+        mano.envido();
+    }
 
 }
