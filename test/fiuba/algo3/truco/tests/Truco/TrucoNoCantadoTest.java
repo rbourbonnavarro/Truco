@@ -31,4 +31,8 @@ public class TrucoNoCantadoTest {
     public void test5NoSePuedeCantarValeCuatro() {
         truco.valeCuatro();
     }
+    @Test
+    public void test6ProbandoEquals() {
+        Assert.assertEquals(truco,new TrucoNoCantado());
+    }
 }
