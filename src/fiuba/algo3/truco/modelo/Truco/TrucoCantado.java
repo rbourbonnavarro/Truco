@@ -17,23 +17,23 @@ public class TrucoCantado implements EstadoTruco {
     }
 
     @Override
-    public boolean sePuedeCantarTruco() {
+    public EstadoTruco truco() {
 
-        return false;
-
-    }
-
-    @Override
-    public boolean sePuedeCantarRetruco() {
-
-        return true;
+        throw new NoSePuedeCantarTrucoException();
 
     }
 
     @Override
-    public boolean sePuedeCantarValeCuatro() {
+    public EstadoTruco reTruco() {
 
-        return false;
+        return new RetrucoCantado();
+
+    }
+
+    @Override
+    public EstadoTruco valeCuatro() {
+
+        throw new NoSePuedeCantarValeCuatroException();
 
     }
 

@@ -6,11 +6,11 @@ public interface EstadoTruco {
 
     int noQuerido();
 
-    boolean sePuedeCantarTruco();
+    EstadoTruco truco();
 
-    boolean sePuedeCantarRetruco();
+    EstadoTruco reTruco();
 
-    boolean sePuedeCantarValeCuatro();
+    EstadoTruco valeCuatro();
 
 
 }

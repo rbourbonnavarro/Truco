@@ -8,14 +8,7 @@ import java.util.List;
 import fiuba.algo3.truco.modelo.EnvidoYFlor.CalculadorTanto;
 import fiuba.algo3.truco.modelo.EnvidoYFlor.EnvidoNoCantado;
 import fiuba.algo3.truco.modelo.EnvidoYFlor.EstadoEnvido;
-import fiuba.algo3.truco.modelo.Truco.EstadoTruco;
-import fiuba.algo3.truco.modelo.Truco.GanadorVuelta;
-import fiuba.algo3.truco.modelo.Truco.Parda;
-import fiuba.algo3.truco.modelo.Truco.RetrucoCantado;
-import fiuba.algo3.truco.modelo.Truco.TrucoCantado;
-import fiuba.algo3.truco.modelo.Truco.TrucoNoCantado;
-import fiuba.algo3.truco.modelo.Truco.ValeCuatroCantado;
-import fiuba.algo3.truco.modelo.Truco.ValoresTruco;
+import fiuba.algo3.truco.modelo.Truco.*;
 
 public class Mesa {
 
@@ -146,30 +139,21 @@ public class Mesa {
 
     public void truco() {
 
-        if(!this.estadoTruco.sePuedeCantarTruco()) throw new NoSePuedeCantarTrucoException();
-
-        this.estadoTruco = new TrucoCantado();
-
+        estadoTruco.truco();
         this.intercambiarEquipos();
 
     }
 
     public void retruco() {
 
-        if(!this.estadoTruco.sePuedeCantarRetruco()) throw new NoSePuedeCantarRetrucoException();
-
-        this.estadoTruco = new RetrucoCantado();
-
+        this.estadoTruco.reTruco();
         this.intercambiarEquipos();
 
     }
 
     public void valeCuatro() {
 
-        if(!this.estadoTruco.sePuedeCantarValeCuatro()) throw new NoSePuedeCantarValeCuatroException();
-
-        this.estadoTruco = new ValeCuatroCantado();
-
+        this.estadoTruco.valeCuatro();
         this.intercambiarEquipos();
 
     }

@@ -1,4 +1,4 @@
-package fiuba.algo3.truco.tests;
+package fiuba.algo3.truco.tests.Truco;
 
 import fiuba.algo3.truco.modelo.Carta;
 import fiuba.algo3.truco.modelo.Palo.Espada;
@@ -6,7 +6,7 @@ import fiuba.algo3.truco.modelo.Truco.ValoresTruco;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class TrucoTest {
+public class ValoresTrucoTest {
 
     @Test
     public void valoresTrucoDevuelveRankingCorrecto() {
