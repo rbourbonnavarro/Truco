@@ -1,11 +1,13 @@
 package fiuba.algo3.truco.tests;
 
 import fiuba.algo3.truco.modelo.Carta;
+import fiuba.algo3.truco.modelo.EnvidoYFlor.EnvidoCantado;
 import fiuba.algo3.truco.modelo.Equipo;
 import fiuba.algo3.truco.modelo.Jugador;
 import fiuba.algo3.truco.modelo.Palo.Espada;
 import fiuba.algo3.truco.modelo.Ronda;
 import fiuba.algo3.truco.modelo.Truco.GanadorVuelta;
+import fiuba.algo3.truco.modelo.Truco.RetrucoCantado;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -66,6 +68,15 @@ public class RondaTest {
 
         Assert.assertEquals(this.equipo1, this.ronda.getEquipoGanador());
 
+    }
+
+    @Test
+    public void test3RondaSumaPuntosAlEquipoGanador(){
+        this.ronda.agregarPuntosRonda(new RetrucoCantado().puntos()+new EnvidoCantado().puntos());
+        this.ronda.setEquipoGanador(equipo1);
+        this.ronda.sumarPuntosEquipoGanador();
+
+        Assert.assertEquals(5, equipo1.getPuntos());
     }
 
 
