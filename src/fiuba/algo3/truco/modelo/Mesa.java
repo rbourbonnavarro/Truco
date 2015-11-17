@@ -65,6 +65,8 @@ public class Mesa {
         jugadores.addAll(this.equipo2.getIntegrantes());
 
         this.mazo.repartir(jugadores, this.calculadorTanto);
+        
+        this.resultadoGanadorVuelta = new GanadorVuelta(this.equipoActual, this.jugadorActual.obtenerCartas().get(0));
 
     }
 
@@ -95,9 +97,10 @@ public class Mesa {
     	}else{
     		this.cartasEnMesa.add(carta);
 
-    		if(this.cartasEnMesa.size() > 0)
-    			this.resultadoGanadorVuelta = this.calcularGanadorJugada(carta, this.resultadoGanadorVuelta.getCarta());
-
+    		if(this.cartasEnMesa.size() > 0){
+    			
+    				this.resultadoGanadorVuelta = this.calcularGanadorJugada(carta, this.resultadoGanadorVuelta.getCarta());
+    			}	
     		this.terminarJugada();
 
     		if(this.cartasEnMesa.size() == 2*(this.equipoActual.getCantidadIntegrantes())) {
