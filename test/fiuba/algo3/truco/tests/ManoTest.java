@@ -12,45 +12,7 @@ import java.util.List;
 
 
 public class ManoTest {
-
-    Carta carta;
     Mano mano;
-    @Test
-    public void Test1AgregarCartaIncrementaCantidadDeEspada(){
-        List<Carta> lista = new LinkedList<>();
-        lista.add(new Carta(7,new Espada()));
-        lista.add(new Carta(3,new Espada()));
-        lista.add(new Carta(7,new Copa()));
-        mano = new Mano(lista, new JuegoSinFlor());
-        Assert.assertEquals(mano.getCantidadEspada(), 2);
-    }
-    @Test
-    public void Test2AgregarCartaIncrementaCantidadDeCopa(){
-        List<Carta> lista = new LinkedList<>();
-        lista.add(new Carta(7,new Espada()));
-        lista.add(new Carta(3,new Espada()));
-        lista.add(new Carta(7,new Copa()));
-        mano = new Mano(lista, new JuegoSinFlor());
-        Assert.assertEquals(mano.getCantidadCopa(),1);
-    }
-    @Test
-    public void Test3AgregarCartaIncrementaCantidadDeBasto(){
-        List<Carta> lista = new LinkedList<>();
-        lista.add(new Carta(7,new Basto()));
-        lista.add(new Carta(3,new Basto()));
-        lista.add(new Carta(7,new Copa()));
-        mano = new Mano(lista, new JuegoSinFlor());
-        Assert.assertEquals(mano.getCantidadBasto(),2);
-    }
-    @Test
-    public void Test4AgregarCartaIncrementaCantidadDeOro(){
-        List<Carta> lista = new LinkedList<>();
-        lista.add(new Carta(7,new Espada()));
-        lista.add(new Carta(3,new Espada()));
-        lista.add(new Carta(7,new Oro()));
-        mano = new Mano(lista, new JuegoSinFlor());
-        Assert.assertEquals(mano.getCantidadOro(),1);
-    }
     @Test
     public void Test5AlAgregar3CartasLaManoCalculaElEnvido() throws CantasteEnvidoCuandoTenesFlorException {
         Carta carta1 = new Carta (3, new Espada());

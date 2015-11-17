@@ -7,11 +7,6 @@ import fiuba.algo3.truco.modelo.Mano;
 public class Oro implements Palo {
 
     @Override
-    public void agregarA(Mano mano) {
-        mano.incrementarOro();
-    }
-
-    @Override
     public boolean equals(Object palo) {
         return palo instanceof Oro;
     }
