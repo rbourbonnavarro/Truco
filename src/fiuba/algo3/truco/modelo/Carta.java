@@ -67,7 +67,7 @@ public class Carta {
         return palo.tantoCopa(this.getTanto());
 
     }
-
+    @Override
     public boolean equals(Object objeto) {
         Carta carta = (Carta) objeto;
         return this.valor == carta.getValor() && this.palo.equals(carta.palo);

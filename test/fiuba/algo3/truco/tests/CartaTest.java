@@ -59,6 +59,13 @@ public class CartaTest {
         Assert.assertEquals("7Espada", carta.toString());
 
     }
+    @Test
+    public void Test7ProbandoEquals(){
+        Carta carta = new Carta(1,new Espada());
+        Assert.assertEquals(carta, new Carta(1,new Espada()));
+        Assert.assertFalse(carta.equals(new Carta(1,new Basto())));
+        Assert.assertFalse(carta.equals(new Carta(2,new Espada())));
+    }
 
 
 }
