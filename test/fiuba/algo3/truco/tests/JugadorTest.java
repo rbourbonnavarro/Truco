@@ -16,22 +16,28 @@ import java.util.Arrays;
 public class JugadorTest {
 
     private Jugador jugador;
+    private Carta carta1;
+    private Carta carta2;
+    private Carta carta3;
 
     @Before
     public void setUp() {
 
         this.jugador = new Jugador("J1");
-
+        this.carta1 = new Carta(4, new Basto());
+        this.carta2 = new Carta(5, new Basto());
+        this.carta3= new Figura(11, new Espada());
     }
 
     @Test
-    public void jugadorCalculaCorrectamenteElEnvido() {
+    public void test1JugadorCalculaCorrectamenteElEnvido() {
 
-        this.jugador.setMano(new Mano(Arrays.asList(new Carta(4, new Basto()), new Carta(5, new Basto()), new Figura(11, new Espada())), new JuegoSinFlor()));
+        this.jugador.setMano(new Mano(Arrays.asList(carta1,carta2,carta3), new JuegoSinFlor()));
 
         Assert.assertEquals(29, this.jugador.envido());
 
     }
+
 
 
 }
