@@ -74,6 +74,10 @@ public class Mesa {
 
     }
     
+    public int puntaje(Equipo equipo){
+    	return equipo.getPuntos();
+    }
+    
     private void intercambiarEquipos() {
 
         Equipo aux = this.equipoActual;
