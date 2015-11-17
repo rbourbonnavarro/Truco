@@ -44,15 +44,11 @@ public class Mesa {
 
     }
 
-    public void comenzarJuego() throws SeNecesitanDosEquiposParaJugar {
+    public void comenzarJuego() {
 
-    	if ((equipo1.getCantidadIntegrantes() == 0) || (equipo2.getCantidadIntegrantes() == 0)) {
-    		throw new SeNecesitanDosEquiposParaJugar();
-    	}else{
-    		this.equipoActual = this.equipo1;
-    		this.equipoContrario = this.equipo2;
-    		this.jugadorActual = this.equipoActual.getJugadorActual();
-    	}
+        this.equipoActual = this.equipo1;
+        this.equipoContrario = this.equipo2;
+        this.jugadorActual = this.equipoActual.getJugadorActual();
 
         List<Jugador> jugadores = new ArrayList<>(this.equipo1.getIntegrantes());
         jugadores.addAll(this.equipo2.getIntegrantes());

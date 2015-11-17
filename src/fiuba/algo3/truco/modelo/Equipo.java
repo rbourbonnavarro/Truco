@@ -13,7 +13,8 @@ public class Equipo {
     private int indiceJugador;
 
     public Equipo(String nombre, List<Jugador> jugadores) {
-
+        if(jugadores.size() == 0)
+            throw new EquipoSinIntegrantesException();
     	this.nombre = nombre;
     	
         this.integrantes = new ArrayList<>(jugadores);
