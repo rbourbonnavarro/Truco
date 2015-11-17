@@ -5,7 +5,6 @@ import java.util.List;
 
 import fiuba.algo3.truco.modelo.EnvidoYFlor.CalculadorTanto;
 import fiuba.algo3.truco.modelo.EnvidoYFlor.CantasteEnvidoCuandoTenesFlorException;
-import fiuba.algo3.truco.modelo.EnvidoYFlor.JuegoSinFlor;
 import fiuba.algo3.truco.modelo.EnvidoYFlor.JuegoSinFlorException;
 import fiuba.algo3.truco.modelo.EnvidoYFlor.JugadorNoPuedeCantarTantoNoEsPrimeraRonda;
 
@@ -19,11 +18,6 @@ public class Mano {
         this.cartasEnMano = new LinkedList<>(cartas);
         this.calculadorTanto = calculadorTanto;
 
-    }
-
-    public Mano() {
-        this.cartasEnMano = new LinkedList<>();
-        calculadorTanto = new JuegoSinFlor();
     }
 
 
