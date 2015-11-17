@@ -73,6 +73,16 @@ public class Mesa {
         return this.jugadorActual;
 
     }
+    
+    private void intercambiarEquipos() {
+
+        Equipo aux = this.equipoActual;
+        this.equipoActual = this.equipoContrario;
+        this.equipoContrario = aux;
+
+        this.jugadorActual = this.equipoActual.getJugadorActual();
+
+    }
 
     public void hacerJugada(Carta carta) throws NoHayCartasParaJugar {
 
@@ -201,16 +211,6 @@ public class Mesa {
         this.equipoActual.terminarJugada();
 
         this.intercambiarEquipos();
-
-    }
-
-    private void intercambiarEquipos() {
-
-        Equipo aux = this.equipoActual;
-        this.equipoActual = this.equipoContrario;
-        this.equipoContrario = aux;
-
-        this.jugadorActual = this.equipoActual.getJugadorActual();
 
     }
 
