@@ -57,7 +57,7 @@ public class Mano {
 
         if(this.cartasEnMano.size() < 3) throw new JugadorNoPuedeCantarTantoNoEsPrimeraRonda();
 
-        return this.calculadorTanto.flor(this.cartasRecibidas);
+        return this.calculadorTanto.flor(this.cartasEnMano);
 
     }
 
@@ -65,7 +65,7 @@ public class Mano {
 
         if(this.cartasEnMano.size() < 3) throw new JugadorNoPuedeCantarTantoNoEsPrimeraRonda();
 
-        return this.calculadorTanto.envido(this.cartasRecibidas);
+        return this.calculadorTanto.envido(this.cartasEnMano);
 
     }
 
@@ -103,7 +103,7 @@ public class Mano {
 
     public List<Carta> getCartas() {
 
-        return this.cartasRecibidas;
+        return this.cartasEnMano;
 
     }
 
