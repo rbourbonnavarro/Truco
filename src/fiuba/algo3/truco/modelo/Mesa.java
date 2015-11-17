@@ -89,7 +89,9 @@ public class Mesa {
     		if(this.cartasEnMesa.size() == 2*(this.equipoActual.getCantidadIntegrantes())) {
 
     			this.terminarVuelta();
+
     		}
+
     	}	
 
     }
