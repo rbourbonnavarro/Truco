@@ -69,16 +69,9 @@ public class Carta {
     }
 
     public boolean equals(Object objeto) {
-
-        if(objeto instanceof Carta) {
-
-            return this.valor == ((Carta) objeto).getValor() && this.palo.equals(((Carta) objeto).getPalo());
-
-        }
-
-        return false;
-
-    }
+        Carta carta = (Carta) objeto;
+        return this.valor == carta.getValor() && this.palo.equals(carta.palo);
+   }
 
 
 }
