@@ -47,6 +47,10 @@ public class EnvidoNoCantadoTest {
         puntos.sumar(16);
         Assert.assertEquals(envido.faltaEnvido(puntos),new FaltaEnvidoCantado(puntos));
     }
+    @Test
+    public void Test7ProbandoEquals(){
+        Assert.assertEquals(envido,new EnvidoNoCantado());
+    }
 
 
 }
