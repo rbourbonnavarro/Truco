@@ -1,8 +1,6 @@
 package fiuba.algo3.truco.tests.Truco;
 
-import fiuba.algo3.truco.modelo.Truco.EstadoTruco;
-import fiuba.algo3.truco.modelo.Truco.NoSePuedeCantarTrucoException;
-import fiuba.algo3.truco.modelo.Truco.TrucoCantado;
+import fiuba.algo3.truco.modelo.Truco.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -25,6 +23,14 @@ public class TrucoCantadoTest {
     @Test(expected = NoSePuedeCantarTrucoException.class)
     public void test3NoSePuedeCantarTruco() {
         truco.truco();
+    }
+    @Test
+    public void test4SePuedeCantarReTruco() {
+        Assert.assertEquals(truco.reTruco(),new RetrucoCantado());
+    }
+    @Test(expected = NoSePuedeCantarValeCuatroException.class)
+    public void test5NoSePuedeCantarValeCuatro() {
+        truco.valeCuatro();
     }
 
 }

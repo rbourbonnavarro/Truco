@@ -12,5 +12,4 @@ public interface EstadoTruco {
 
     EstadoTruco valeCuatro();
 
-
 }

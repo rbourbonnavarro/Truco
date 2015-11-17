@@ -32,6 +32,9 @@ public class TrucoNoCantado implements EstadoTruco {
         throw new NoSePuedeCantarValeCuatroException();
 
     }
-
+    @Override
+    public boolean equals (Object estado){
+        return estado instanceof TrucoNoCantado;
+    }
 
 }

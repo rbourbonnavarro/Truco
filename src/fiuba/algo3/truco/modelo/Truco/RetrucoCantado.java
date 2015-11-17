@@ -36,6 +36,10 @@ public class RetrucoCantado implements EstadoTruco {
         return new ValeCuatroCantado();
 
     }
+    @Override
+    public boolean equals (Object estado){
+        return estado instanceof RetrucoCantado;
+    }
 
 
 }

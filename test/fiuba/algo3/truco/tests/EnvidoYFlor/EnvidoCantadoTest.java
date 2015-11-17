@@ -55,10 +55,6 @@ public class EnvidoCantadoTest {
         envido.faltaEnvido(puntos);
         Assert.assertEquals(envido.faltaEnvido(puntos),new FaltaEnvidoCantado(puntos));
     }
-    @Test
-    public void Test7EqualsDevuelveTrueEnInstanciaDeEnvidoCantado(){
-        Assert.assertEquals(envido,new EnvidoCantado());
-    }
 
 
 }
