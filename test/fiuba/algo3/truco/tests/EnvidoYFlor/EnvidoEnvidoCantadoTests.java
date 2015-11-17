@@ -1,10 +1,8 @@
 package fiuba.algo3.truco.tests.EnvidoYFlor;
 
 import fiuba.algo3.truco.modelo.EnvidoYFlor.*;
-import fiuba.algo3.truco.modelo.Puntos.Buenas;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 import org.junit.Assert;
-import org.junit.Before;
 import org.junit.Test;
 
 
