@@ -36,6 +36,9 @@ public class Puntaje {
         return this.puntos;
 
     }
+    public EstadoPuntaje getEstadoPuntaje(){
+        return this.estadoPuntaje;
+    }
 
 
 }

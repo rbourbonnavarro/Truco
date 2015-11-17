@@ -16,6 +16,10 @@ public class Malas implements EstadoPuntaje {
         return 30;
 
     }
+    @Override
+    public boolean equals(Object puntaje) {
+        return puntaje instanceof Malas;
+    }
 
 
 }

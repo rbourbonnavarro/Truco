@@ -16,6 +16,10 @@ public class Buenas implements EstadoPuntaje {
         return 30 - puntos;
 
     }
+    @Override
+    public boolean equals(Object puntaje) {
+        return puntaje instanceof Buenas;
+    }
 
 
 }
