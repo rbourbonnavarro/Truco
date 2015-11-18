@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -49,21 +50,20 @@ public class JugarEnvidoTest {
 	}
 	
 	@Test(expected = JugadorNoPieNoPuedeCantarEnvido.class)
-	public void seJuegaEnvidoCorrectamente(){
+	public void siJugadorNoEsPieNoPuedeCantarEnvido(){
 		
 		mesa.envido();
 		
 	}
 	
-	/*@Test
+	@Test
 	public void envidoNoQueridoEsUnPuntoParaElEquipoContrario(){
-		
-		boolean noQuiero = false;
+
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(1));
 		mesa.envido();
-		mesa.quieroEnvido(noQuiero);
-		Assert.assertTrue(mesa.puntajeActual(azules), 1);
+		mesa.quieroEnvido(false);
+		Assert.assertEquals(mesa.puntaje(azules), 1);
 	}
-	*/
+
 }

@@ -30,6 +30,9 @@ public class Equipo {
         return this.integrantes.get(this.indiceJugador % this.integrantes.size());
 
     }
+    public void setPie(){
+        this.integrantes.get((this.indiceJugador + 1) % this.integrantes.size()).setJugadorPie(true);
+    }
 
     public int getCantidadIntegrantes() {
         return this.integrantes.size();

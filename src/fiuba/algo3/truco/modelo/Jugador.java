@@ -16,6 +16,9 @@ public class Jugador {
         this.jugadorPie = false;
 
     }
+    public String getNombre(){
+        return nombre;
+    }
 
     public void setMano(Mano mano) {
 

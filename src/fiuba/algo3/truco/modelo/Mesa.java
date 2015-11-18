@@ -48,6 +48,9 @@ public class Mesa {
         this.mazo = new Mazo();
 
     }
+    public List<Carta> getCartasDelJugadorActual(){
+        return this.jugadorActual.obtenerCartas();
+    }
 
     public void comenzarJuego() {
 
@@ -57,6 +60,8 @@ public class Mesa {
 
         List<Jugador> jugadores = new ArrayList<>(this.equipo1.getIntegrantes());
         jugadores.addAll(this.equipo2.getIntegrantes());
+        this.equipo1.setPie();
+        this.equipo2.setPie();
 
         this.mazo.repartir(jugadores, this.calculadorTanto);
         
@@ -90,6 +95,7 @@ public class Mesa {
     		throw new NoHayCartasParaJugar();
     	}else{
     		this.cartasEnMesa.add(carta);
+            this.jugadorActual.jugar(carta);
 
     		if(this.cartasEnMesa.size() > 0){
     			
@@ -206,11 +212,11 @@ public class Mesa {
             this.equipoContrario.sumarPuntos(this.estadoEnvido.noQuerido());
 
         }
+        else{
 
-        this.obtenerGanadorEnvido().sumarPuntos(this.estadoEnvido.puntos());
+            this.obtenerGanadorEnvido().sumarPuntos(this.estadoEnvido.puntos());
 
-        this.intercambiarEquipos();
-
+        }
     }
 
     private Equipo obtenerGanadorEnvido() {
@@ -261,6 +267,9 @@ public class Mesa {
 
         }
 
+    }
+    public GanadorVuelta getGanadorVuelta (){
+        return resultadoGanadorVuelta;
     }
 
 
