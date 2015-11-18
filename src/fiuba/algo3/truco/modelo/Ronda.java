@@ -25,37 +25,64 @@ public class Ronda {
 
     }
 
-    public boolean finalRonda() {
+    /*public boolean finalRonda() {
+
+        if(obtenerEquipoGanador() != null)
+            return true;
+
+        return false;
+
+    }*/
+
+    private Equipo obtenerEquipoGanador() {
+
+        if(this.equipoGanador != null) return this.equipoGanador;
 
         if(this.ganadoresVueltas.size() == 2) {
 
             if(this.ganadoresVueltas.get(0).getEquipoGanador() == this.ganadoresVueltas.get(1).getEquipoGanador()) {
 
-                this.equipoGanador = this.ganadoresVueltas.get(0).getEquipoGanador();
-
-                return true;
+                return this.ganadoresVueltas.get(0).getEquipoGanador();
 
             }
 
-            return false;
+            return null;
 
         }
 
         if(this.ganadoresVueltas.size() == 3) {
 
-            this.equipoGanador = this.ganadoresVueltas.get(2).getEquipoGanador();
-
-            return true;
+            return this.ganadoresVueltas.get(2).getEquipoGanador();
 
         }
 
-        return false;
+        return null;
 
     }
 
-    public void sumarPuntosEquipoGanador() {
+    private void sumarPuntosEquipoGanador() {
 
-        this.equipoGanador.sumarPuntos(this.puntosRonda);
+        try {
+
+            this.equipoGanador = this.obtenerEquipoGanador();
+
+            this.equipoGanador.sumarPuntos(this.puntosRonda);
+
+        } catch(NullPointerException nullPointerException) {
+
+            throw new LaRondaNoTerminoAunException();
+
+        }
+
+    }
+
+    public void terminar() {
+
+        this.sumarPuntosEquipoGanador();
+
+        this.equipoGanador = null;
+
+        this.ganadoresVueltas = new ArrayList<>();
 
     }
 

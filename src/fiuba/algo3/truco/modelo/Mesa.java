@@ -58,10 +58,11 @@ public class Mesa {
         this.equipoContrario = this.equipo2;
         this.jugadorActual = this.equipoActual.getJugadorActual();
 
-        List<Jugador> jugadores = new ArrayList<>(this.equipo1.getIntegrantes());
-        jugadores.addAll(this.equipo2.getIntegrantes());
         this.equipo1.setPie();
         this.equipo2.setPie();
+
+        List<Jugador> jugadores = new ArrayList<>(this.equipo1.getIntegrantes());
+        jugadores.addAll(this.equipo2.getIntegrantes());
 
         this.mazo.repartir(jugadores, this.calculadorTanto);
         
@@ -78,16 +79,6 @@ public class Mesa {
     public int puntaje(Equipo equipo){
     	return equipo.getPuntos();
     }
-    
-    private void intercambiarEquipos() {
-
-        Equipo aux = this.equipoActual;
-        this.equipoActual = this.equipoContrario;
-        this.equipoContrario = aux;
-
-        this.jugadorActual = this.equipoActual.getJugadorActual();
-
-    }
 
     public void hacerJugada(Carta carta) throws NoHayCartasParaJugar {
 
@@ -100,7 +91,9 @@ public class Mesa {
     		if(this.cartasEnMesa.size() > 0){
     			
     				this.resultadoGanadorVuelta = this.calcularGanadorJugada(carta, this.resultadoGanadorVuelta.getCarta());
-    			}	
+
+            }
+
     		this.terminarJugada();
 
     		if(this.cartasEnMesa.size() == 2*(this.equipoActual.getCantidadIntegrantes())) {
@@ -197,7 +190,7 @@ public class Mesa {
 
             this.ronda.setEquipoGanador(this.equipoContrario);
 
-            this.terminarRonda();
+            this.ronda.terminar();
 
         }
 
@@ -233,27 +226,37 @@ public class Mesa {
 
     }
 
+    private void intercambiarEquipos() {
+
+        Equipo aux = this.equipoActual;
+        this.equipoActual = this.equipoContrario;
+        this.equipoContrario = aux;
+
+        this.jugadorActual = this.equipoActual.getJugadorActual();
+
+    }
+
     private void terminarVuelta() {
 
         this.ronda.setGanadorVuelta(this.resultadoGanadorVuelta);
 
-        if(this.ronda.finalRonda()) {
+        this.ronda.agregarPuntosRonda(this.estadoTruco.puntos());
 
-            this.ronda.agregarPuntosRonda(this.estadoTruco.puntos());
+        try {
 
-            this.terminarRonda();
+            this.ronda.terminar();
 
-        }
+        } catch(LaRondaNoTerminoAunException laRondaNoTerminoAunException) {}
 
     }
 
-    private void terminarRonda() {
+    /*private void terminarRonda() {
 
         this.ronda.sumarPuntosEquipoGanador();
 
         //if(this.ronda.getEquipoGanador().getPuntos() >= 30) this.terminarJuego();
 
-    }
+    }*/
 
     private GanadorVuelta calcularGanadorJugada(Carta cartaEquipoActual, Carta cartaEquipoContrario) {
 

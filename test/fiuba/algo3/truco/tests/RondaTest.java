@@ -1,11 +1,8 @@
 package fiuba.algo3.truco.tests;
 
-import fiuba.algo3.truco.modelo.Carta;
+import fiuba.algo3.truco.modelo.*;
 import fiuba.algo3.truco.modelo.Envido.EnvidoCantado;
-import fiuba.algo3.truco.modelo.Equipo;
-import fiuba.algo3.truco.modelo.Jugador;
 import fiuba.algo3.truco.modelo.Palo.Espada;
-import fiuba.algo3.truco.modelo.Ronda;
 import fiuba.algo3.truco.modelo.Truco.GanadorVuelta;
 import fiuba.algo3.truco.modelo.Truco.RetrucoCantado;
 import org.junit.Assert;
@@ -28,22 +25,22 @@ public class RondaTest {
 
     }
 
-    @Test
+    @Test(expected = LaRondaNoTerminoAunException.class)
     public void rondaDeterminaCorrectamenteSiEsElFinalDeLaRondaLuegoDeUnaJugada() {
 
         this.ronda.setGanadorVuelta(new GanadorVuelta(this.equipo1, new Carta(7, new Espada())));
 
-        Assert.assertFalse(this.ronda.finalRonda());
+        this.ronda.terminar();
 
     }
 
-    @Test
+    @Test(expected = LaRondaNoTerminoAunException.class)
     public void rondaDeterminaCorrectamenteSiEsElFinalDeLaRondaLuegoDeDosJugadasGanadasPorDistintosEquipos() {
 
         this.ronda.setGanadorVuelta(new GanadorVuelta(this.equipo1, new Carta(7, new Espada())));
         this.ronda.setGanadorVuelta(new GanadorVuelta(this.equipo2, new Carta(3, new Espada())));
 
-        Assert.assertFalse(this.ronda.finalRonda());
+        this.ronda.terminar();
 
     }
 
@@ -53,7 +50,9 @@ public class RondaTest {
         this.ronda.setGanadorVuelta(new GanadorVuelta(this.equipo1, new Carta(7, new Espada())));
         this.ronda.setGanadorVuelta(new GanadorVuelta(this.equipo1, new Carta(6, new Espada())));
 
-        Assert.assertTrue(this.ronda.finalRonda());
+        this.ronda.terminar();
+
+        Assert.assertEquals(null, this.ronda.getEquipoGanador());
 
     }
 
@@ -64,20 +63,20 @@ public class RondaTest {
         this.ronda.setGanadorVuelta(new GanadorVuelta(this.equipo2, new Carta(2, new Espada())));
         this.ronda.setGanadorVuelta(new GanadorVuelta(this.equipo1, new Carta(1, new Espada())));
 
-        Assert.assertTrue(this.ronda.finalRonda());
+        this.ronda.terminar();
 
-        Assert.assertEquals(this.equipo1, this.ronda.getEquipoGanador());
+        Assert.assertEquals(null, this.ronda.getEquipoGanador());
 
     }
 
-    @Test
+    /*@Test
     public void test3RondaSumaPuntosAlEquipoGanador(){
         this.ronda.agregarPuntosRonda(new RetrucoCantado().puntos()+new EnvidoCantado().puntos());
         this.ronda.setEquipoGanador(equipo1);
         this.ronda.sumarPuntosEquipoGanador();
 
         Assert.assertEquals(5, equipo1.getPuntos());
-    }
+    }*/
 
 
 }
