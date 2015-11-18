@@ -8,6 +8,9 @@ import java.util.List;
 import fiuba.algo3.truco.modelo.Envido.CalculadorTanto;
 import fiuba.algo3.truco.modelo.Envido.EnvidoNoCantado;
 import fiuba.algo3.truco.modelo.Envido.EstadoEnvido;
+import fiuba.algo3.truco.modelo.EstadoFlor.EstadoFlor;
+import fiuba.algo3.truco.modelo.EstadoFlor.FlorNoCantada;
+import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 import fiuba.algo3.truco.modelo.Truco.*;
 
 public class Mesa {
@@ -24,6 +27,7 @@ public class Mesa {
     private Ronda ronda;
     private EstadoEnvido estadoEnvido;
     private EstadoTruco estadoTruco;
+    private EstadoFlor estadoFlor;
     private Mazo mazo;
 
     public Mesa(Equipo equipo1, Equipo equipo2, CalculadorTanto calculadorTanto) {
@@ -39,6 +43,7 @@ public class Mesa {
 
         this.estadoTruco = new TrucoNoCantado();
         this.estadoEnvido = new EnvidoNoCantado();
+        this.estadoFlor = new FlorNoCantada();
 
         this.mazo = new Mazo();
 
@@ -129,9 +134,9 @@ public class Mesa {
     }
 
     public void faltaEnvido() {
-
-        this.estadoEnvido = this.estadoEnvido.faltaEnvido(this.equipoContrario.getPuntaje());
-
+        Puntaje puntosEnJuego = (this.equipoActual.getPuntos()>this.equipoContrario.getPuntos())?
+                this.equipoActual.getPuntaje():this.equipoContrario.getPuntaje();
+        this.estadoEnvido = this.estadoEnvido.faltaEnvido(puntosEnJuego);
         this.intercambiarEquipos();
 
     }
@@ -141,6 +146,23 @@ public class Mesa {
         estadoTruco.truco();
         this.intercambiarEquipos();
 
+    }
+    public void flor() {
+
+        estadoFlor.flor();
+        this.intercambiarEquipos();
+
+    }
+
+    public void contraFlorAlResto(){
+        Puntaje puntosEnJuego = (this.equipoActual.getPuntos()>this.equipoContrario.getPuntos())?
+                this.equipoActual.getPuntaje():this.equipoContrario.getPuntaje();
+        estadoFlor.contraFlorAlResto(puntosEnJuego);
+        this.intercambiarEquipos();
+    }
+    public void contraFlorAlPartido(){
+        estadoFlor.contraFlorAlPartido();
+        this.intercambiarEquipos();
     }
 
     public void retruco() {
