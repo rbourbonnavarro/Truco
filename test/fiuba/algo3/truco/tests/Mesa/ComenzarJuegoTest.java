@@ -47,6 +47,7 @@ public class ComenzarJuegoTest {
 		mesa.comenzarJuego();
 		Assert.assertTrue(mesa.getJugadorActual() == jugador1);
 		Assert.assertEquals(mesa.getJugadorActual().obtenerCartas().size(), 3);
+		Assert.assertEquals(mesa.puntaje(equipo1),0);
 	}
 	
 	@Test(expected = NoHayCartasParaJugar.class)
