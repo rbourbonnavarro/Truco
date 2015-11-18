@@ -10,7 +10,7 @@ public class FlorFlorCantada implements EstadoFlor {
 
     @Override
     public int noQuerido() {
-        throw new NoSePuedeNoQuererFlorException();
+        return 3;
     }
 
     @Override
