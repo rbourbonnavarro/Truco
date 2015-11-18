@@ -103,6 +103,11 @@ public class Ronda {
         this.equipoGanador = equipoGanador;
 
     }
-
+    
+    public boolean sePuedeCantarEnvido(){
+    	
+    	return this.ganadoresVueltas.size() > 0;  
+    	
+    }
 
 }

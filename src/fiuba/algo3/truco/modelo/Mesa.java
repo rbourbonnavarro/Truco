@@ -8,6 +8,7 @@ import java.util.List;
 import fiuba.algo3.truco.modelo.Envido.CalculadorTanto;
 import fiuba.algo3.truco.modelo.Envido.EnvidoNoCantado;
 import fiuba.algo3.truco.modelo.Envido.EstadoEnvido;
+import fiuba.algo3.truco.modelo.Envido.JugadorNoPuedeCantarTantoNoEsPrimeraRonda;
 import fiuba.algo3.truco.modelo.EstadoFlor.EstadoFlor;
 import fiuba.algo3.truco.modelo.EstadoFlor.FlorNoCantada;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
@@ -108,6 +109,8 @@ public class Mesa {
 
     public void envido() {
 
+    	if(this.ronda.sePuedeCantarEnvido()) throw new JugadorNoPuedeCantarTantoNoEsPrimeraRonda();
+    	
         if(!this.jugadorActual.jugadorPie()) throw new JugadorNoPieNoPuedeCantarEnvido();
 
         this.estadoEnvido = this.estadoEnvido.envido();

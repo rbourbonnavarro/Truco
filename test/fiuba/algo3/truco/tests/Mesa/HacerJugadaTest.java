@@ -13,6 +13,7 @@ import fiuba.algo3.truco.modelo.Jugador;
 import fiuba.algo3.truco.modelo.JugadorNoPieNoPuedeCantarEnvido;
 import fiuba.algo3.truco.modelo.Mesa;
 import fiuba.algo3.truco.modelo.Envido.CalculadorTanto;
+import fiuba.algo3.truco.modelo.Envido.JugadorNoPuedeCantarTantoNoEsPrimeraRonda;
 
 public class HacerJugadaTest {
 
@@ -75,5 +76,17 @@ public class HacerJugadaTest {
 		Assert.assertEquals(mesa.puntaje(azules), 0);
 		Assert.assertEquals(mesa.puntaje(rojos), 1);
 	}
+	
+	@Test(expected = JugadorNoPuedeCantarTantoNoEsPrimeraRonda.class)
+	public void noSePuedeCantarEnvidoDespuesDeLaPrimerRonda(){
+		
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		mesa.envido();
+	}
+	
 
 }
