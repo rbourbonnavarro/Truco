@@ -14,7 +14,7 @@ import fiuba.algo3.truco.modelo.JugadorNoPieNoPuedeCantarEnvido;
 import fiuba.algo3.truco.modelo.Mesa;
 import fiuba.algo3.truco.modelo.Envido.CalculadorTanto;
 
-public class JugarEnvidoTest {
+public class HacerJugadaTest {
 
 	Mesa mesa;
 	
@@ -64,6 +64,16 @@ public class JugarEnvidoTest {
 		mesa.envido();
 		mesa.quieroEnvido(false);
 		Assert.assertEquals(mesa.puntaje(azules), 1);
+	}
+	
+	@Test
+	public void trucoNoQueridoEsUnPuntoParaElEquipoContrario(){
+		
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		mesa.truco();
+		mesa.quieroTruco(false);
+		Assert.assertEquals(mesa.puntaje(azules), 0);
+		Assert.assertEquals(mesa.puntaje(azules), 0);
 	}
 
 }
