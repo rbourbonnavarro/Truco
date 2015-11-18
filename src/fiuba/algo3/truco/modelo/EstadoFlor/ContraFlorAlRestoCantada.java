@@ -7,7 +7,7 @@ public class ContraFlorAlRestoCantada implements EstadoFlor {
     private int puntosNoQuerido;
 
     public ContraFlorAlRestoCantada(Puntaje puntaje, int puntos) {
-        this.puntos = puntaje.faltaEnvido();
+        this.puntos = puntaje.flor();
         this.puntosNoQuerido = puntos;
     }
 

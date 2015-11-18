@@ -1,8 +1,11 @@
 package fiuba.algo3.truco.modelo.Puntos;
 
-public interface EstadoPuntaje {
+public abstract class EstadoPuntaje {
 
-    int faltaEnvido(int puntos);
+    public abstract int faltaEnvido(int puntos);
 
+    public int flor(int puntos) {
+        return 30 - puntos;
+    }
 
 }

@@ -39,6 +39,9 @@ public class Puntaje {
     public EstadoPuntaje getEstadoPuntaje(){
         return this.estadoPuntaje;
     }
+    public int flor(){
+        return this.estadoPuntaje.flor(puntos);
+    }
 
 
 }

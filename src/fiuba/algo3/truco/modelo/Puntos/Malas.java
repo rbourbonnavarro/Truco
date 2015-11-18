@@ -1,6 +1,6 @@
 package fiuba.algo3.truco.modelo.Puntos;
 
-public class Malas implements EstadoPuntaje {
+public class Malas extends EstadoPuntaje {
 
     /*private int puntos;
 

@@ -1,6 +1,6 @@
 package fiuba.algo3.truco.modelo.Puntos;
 
-public class Buenas implements EstadoPuntaje {
+public class Buenas extends EstadoPuntaje {
 
     /*private int puntos;
 
@@ -16,6 +16,7 @@ public class Buenas implements EstadoPuntaje {
         return 30 - puntos;
 
     }
+
     @Override
     public boolean equals(Object puntaje) {
         return puntaje instanceof Buenas;
