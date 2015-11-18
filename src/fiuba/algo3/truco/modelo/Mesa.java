@@ -141,20 +141,20 @@ public class Mesa {
 
     public void truco() {
 
-        estadoTruco.truco();
+        this.estadoTruco = estadoTruco.truco();
         this.intercambiarEquipos();
 
     }
     public void flor() {
 
-        estadoFlor.flor();
+    	this.estadoFlor = estadoFlor.flor();
         this.intercambiarEquipos();
 
     }
 
     public void contraFlorAlResto(){
         Puntaje puntosEnJuego = this.obtenerMayorPuntaje();
-        estadoFlor.contraFlorAlResto(puntosEnJuego);
+        this.estadoFlor = estadoFlor.contraFlorAlResto(puntosEnJuego);
         this.intercambiarEquipos();
     }
 
@@ -164,20 +164,20 @@ public class Mesa {
     }
 
     public void contraFlorAlPartido(){
-        estadoFlor.contraFlorAlPartido();
+    	this.estadoFlor = estadoFlor.contraFlorAlPartido();
         this.intercambiarEquipos();
     }
 
     public void retruco() {
 
-        this.estadoTruco.reTruco();
+    	this.estadoTruco = this.estadoTruco.reTruco();
         this.intercambiarEquipos();
 
     }
 
     public void valeCuatro() {
 
-        this.estadoTruco.valeCuatro();
+    	this.estadoTruco = this.estadoTruco.valeCuatro();
         this.intercambiarEquipos();
 
     }

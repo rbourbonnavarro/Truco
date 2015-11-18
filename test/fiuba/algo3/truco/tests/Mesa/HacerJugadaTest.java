@@ -73,7 +73,7 @@ public class HacerJugadaTest {
 		mesa.truco();
 		mesa.quieroTruco(false);
 		Assert.assertEquals(mesa.puntaje(azules), 0);
-		Assert.assertEquals(mesa.puntaje(azules), 0);
+		Assert.assertEquals(mesa.puntaje(rojos), 1);
 	}
 
 }
