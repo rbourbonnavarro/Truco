@@ -1,4 +1,4 @@
-package fiuba.algo3.truco.tests.EnvidoYFlor;
+package fiuba.algo3.truco.tests.Envido;
 
 import org.junit.Assert;
 import org.junit.Before;

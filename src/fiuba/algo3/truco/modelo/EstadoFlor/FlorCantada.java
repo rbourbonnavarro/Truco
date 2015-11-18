@@ -2,9 +2,7 @@ package fiuba.algo3.truco.modelo.EstadoFlor;
 
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 
-/**
- * Created by GomezPeter on 17/11/2015.
- */
+
 public class FlorCantada implements EstadoFlor {
     @Override
     public int puntos() {
@@ -28,6 +26,11 @@ public class FlorCantada implements EstadoFlor {
 
     @Override
     public EstadoFlor contraFlorAlPartido() {
-        return new ContraFlorAlPartido();
+        return new ContraFlorAlPartidoCantado();
     }
+    @Override
+    public boolean equals(Object estado) {
+        return estado instanceof FlorCantada;
+    }
+
 }

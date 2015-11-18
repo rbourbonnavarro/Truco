@@ -1,4 +1,4 @@
-package fiuba.algo3.truco.tests.EnvidoYFlor;
+package fiuba.algo3.truco.tests.Envido;
 
 import fiuba.algo3.truco.modelo.Envido.*;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;

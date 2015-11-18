@@ -1,7 +1,8 @@
-package fiuba.algo3.truco.tests.EnvidoYFlor;
+package fiuba.algo3.truco.tests.Envido;
 
 import fiuba.algo3.truco.modelo.Carta;
 import fiuba.algo3.truco.modelo.Envido.*;
+import fiuba.algo3.truco.modelo.EstadoFlor.JuegoConFlor;
 import fiuba.algo3.truco.modelo.EstadoFlor.JuegoSinFlorException;
 import fiuba.algo3.truco.modelo.Figura;
 import fiuba.algo3.truco.modelo.Palo.Copa;
@@ -14,11 +15,8 @@ import org.junit.Test;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Created by GomezPeter on 15/11/2015.
- */
-public class JuegoSinFlorTest {
 
+public class JuegoConFlorTest {
     Carta carta1;
     Carta carta2;
     Carta carta3;
@@ -27,7 +25,7 @@ public class JuegoSinFlorTest {
     @Before
     public void setUp(){
         cartas = new LinkedList<>();
-        calculador = new JuegoSinFlor();
+        calculador = new JuegoConFlor();
     }
     @Test
     public void test1EnvidoDevuelve20SiHayDosFiguras() throws CantasteEnvidoCuandoTenesFlorException {
@@ -37,7 +35,7 @@ public class JuegoSinFlorTest {
         cartas.add(carta1);
         cartas.add(carta2);
         cartas.add(carta3);
-        Assert.assertEquals(20, calculador.envido(cartas));
+        Assert.assertEquals(calculador.envido(cartas), 20);
     }
     @Test
     public void test2EnvidoDevuelve25SiHayFiguraYUnCinco() throws CantasteEnvidoCuandoTenesFlorException {
@@ -47,7 +45,7 @@ public class JuegoSinFlorTest {
         cartas.add(carta1);
         cartas.add(carta2);
         cartas.add(carta3);
-        Assert.assertEquals(25, calculador.envido(cartas));
+        Assert.assertEquals(calculador.envido(cartas),25);
     }
     @Test
     public void test3EnvidoDevuelveCartaMasAltaSiPalosDistintos() throws CantasteEnvidoCuandoTenesFlorException {
@@ -57,12 +55,32 @@ public class JuegoSinFlorTest {
         cartas.add(carta1);
         cartas.add(carta2);
         cartas.add(carta3);
-        Assert.assertEquals(5, calculador.envido(cartas));
+        Assert.assertEquals(calculador.envido(cartas),5);
     }
-    @Test(expected = JuegoSinFlorException.class)
-    public void test5FlorLanzaExcepcion() throws CantasteEnvidoCuandoTenesFlorException, JuegoSinFlorException {
+    @Test(expected = CantasteEnvidoCuandoTenesFlorException.class)
+    public void test4EnvidoLanzaExcepcionSiHayFlor() throws CantasteEnvidoCuandoTenesFlorException {
         carta1 = new Carta(5,new Oro());
         carta2 = new Figura(12,new Oro());
+        carta3 = new Figura(10,new Oro());
+        cartas.add(carta1);
+        cartas.add(carta2);
+        cartas.add(carta3);
+        calculador.envido(cartas);
+    }
+    @Test
+    public void test5FlorDevuelveTanto() throws CantasteEnvidoCuandoTenesFlorException, JuegoSinFlorException {
+        carta1 = new Carta(5,new Oro());
+        carta2 = new Figura(12,new Oro());
+        carta3 = new Figura(10,new Oro());
+        cartas.add(carta1);
+        cartas.add(carta2);
+        cartas.add(carta3);
+        Assert.assertEquals(calculador.flor(cartas),25);
+    }
+    @Test(expected = NoHayFlorException.class)
+    public void test6FlorDevuelveTanto() throws NoHayFlorException, JuegoSinFlorException {
+        carta1 = new Carta(5,new Oro());
+        carta2 = new Figura(12,new Espada());
         carta3 = new Figura(10,new Oro());
         cartas.add(carta1);
         cartas.add(carta2);
@@ -70,3 +88,4 @@ public class JuegoSinFlorTest {
         calculador.flor(cartas);
     }
 }
+
