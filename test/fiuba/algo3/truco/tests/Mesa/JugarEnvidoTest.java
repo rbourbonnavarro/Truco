@@ -60,7 +60,7 @@ public class JugarEnvidoTest {
 	public void envidoNoQueridoEsUnPuntoParaElEquipoContrario(){
 
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
-		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(1));
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
 		mesa.envido();
 		mesa.quieroEnvido(false);
 		Assert.assertEquals(mesa.puntaje(azules), 1);
