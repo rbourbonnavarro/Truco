@@ -12,7 +12,7 @@ import fiuba.algo3.truco.modelo.Equipo;
 import fiuba.algo3.truco.modelo.Jugador;
 import fiuba.algo3.truco.modelo.Mesa;
 import fiuba.algo3.truco.modelo.NoHayCartasParaJugar;
-import fiuba.algo3.truco.modelo.EnvidoYFlor.CalculadorTanto;
+import fiuba.algo3.truco.modelo.Envido.CalculadorTanto;
 
 public class ComenzarJuegoTest {
 	

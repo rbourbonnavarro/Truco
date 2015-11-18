@@ -1,26 +1,26 @@
-package fiuba.algo3.truco.modelo.EnvidoYFlor;
+package fiuba.algo3.truco.modelo.Envido;
 
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 
-public class EnvidoNoCantado implements EstadoEnvido {
+public class EnvidoEnvidoCantado implements EstadoEnvido {
 
     @Override
     public int puntos() {
 
-        return 1;
+        return 4;
 
     }
 
     @Override
     public int noQuerido() {
 
-        return 0;
+        return 2;
 
     }
 
     @Override
     public EstadoEnvido envido() {
-        return new EnvidoCantado();
+        throw new NoSePuedeCantarEnvido();
     }
 
     @Override
@@ -30,17 +30,16 @@ public class EnvidoNoCantado implements EstadoEnvido {
 
     @Override
     public EstadoEnvido realEnvido() {
-        return new RealEnvidoCantado();
+        return new RealEnvidoCantado(this.puntos());
     }
 
     @Override
     public EstadoEnvido faltaEnvido(Puntaje puntos) {
-        return new FaltaEnvidoCantado(puntos);
+        return new FaltaEnvidoCantado(puntos, this.puntos());
     }
     @Override
     public boolean equals(Object estado) {
-        return estado instanceof EnvidoNoCantado;
+        return estado instanceof EnvidoEnvidoCantado;
     }
-
 
 }

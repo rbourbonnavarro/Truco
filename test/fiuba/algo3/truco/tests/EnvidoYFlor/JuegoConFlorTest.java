@@ -1,7 +1,9 @@
 package fiuba.algo3.truco.tests.EnvidoYFlor;
 
 import fiuba.algo3.truco.modelo.Carta;
-import fiuba.algo3.truco.modelo.EnvidoYFlor.*;
+import fiuba.algo3.truco.modelo.Envido.*;
+import fiuba.algo3.truco.modelo.EstadoFlor.JuegoConFlor;
+import fiuba.algo3.truco.modelo.EstadoFlor.JuegoSinFlorException;
 import fiuba.algo3.truco.modelo.Figura;
 import fiuba.algo3.truco.modelo.Palo.Copa;
 import fiuba.algo3.truco.modelo.Palo.Espada;

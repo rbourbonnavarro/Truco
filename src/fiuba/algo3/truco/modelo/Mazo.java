@@ -1,6 +1,6 @@
 package fiuba.algo3.truco.modelo;
 
-import fiuba.algo3.truco.modelo.EnvidoYFlor.CalculadorTanto;
+import fiuba.algo3.truco.modelo.Envido.CalculadorTanto;
 import fiuba.algo3.truco.modelo.Palo.Basto;
 import fiuba.algo3.truco.modelo.Palo.Copa;
 import fiuba.algo3.truco.modelo.Palo.Espada;

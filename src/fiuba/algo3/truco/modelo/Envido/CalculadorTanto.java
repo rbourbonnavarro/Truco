@@ -1,6 +1,7 @@
-package fiuba.algo3.truco.modelo.EnvidoYFlor;
+package fiuba.algo3.truco.modelo.Envido;
 
 import fiuba.algo3.truco.modelo.Carta;
+import fiuba.algo3.truco.modelo.EstadoFlor.JuegoSinFlorException;
 
 import java.util.List;
 

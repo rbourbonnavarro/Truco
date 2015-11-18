@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
-import fiuba.algo3.truco.modelo.EnvidoYFlor.CalculadorTanto;
-import fiuba.algo3.truco.modelo.EnvidoYFlor.EnvidoNoCantado;
-import fiuba.algo3.truco.modelo.EnvidoYFlor.EstadoEnvido;
+import fiuba.algo3.truco.modelo.Envido.CalculadorTanto;
+import fiuba.algo3.truco.modelo.Envido.EnvidoNoCantado;
+import fiuba.algo3.truco.modelo.Envido.EstadoEnvido;
 import fiuba.algo3.truco.modelo.Truco.*;
 
 public class Mesa {

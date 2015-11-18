@@ -1,7 +1,7 @@
 package fiuba.algo3.truco.tests;
 
 import fiuba.algo3.truco.modelo.Carta;
-import fiuba.algo3.truco.modelo.EnvidoYFlor.EnvidoCantado;
+import fiuba.algo3.truco.modelo.Envido.EnvidoCantado;
 import fiuba.algo3.truco.modelo.Equipo;
 import fiuba.algo3.truco.modelo.Jugador;
 import fiuba.algo3.truco.modelo.Palo.Espada;

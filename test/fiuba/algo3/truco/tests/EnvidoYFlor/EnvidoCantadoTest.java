@@ -4,12 +4,12 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import fiuba.algo3.truco.modelo.EnvidoYFlor.EnvidoCantado;
-import fiuba.algo3.truco.modelo.EnvidoYFlor.EnvidoEnvidoCantado;
-import fiuba.algo3.truco.modelo.EnvidoYFlor.EstadoEnvido;
-import fiuba.algo3.truco.modelo.EnvidoYFlor.FaltaEnvidoCantado;
-import fiuba.algo3.truco.modelo.EnvidoYFlor.NoSePuedeCantarEnvido;
-import fiuba.algo3.truco.modelo.EnvidoYFlor.RealEnvidoCantado;
+import fiuba.algo3.truco.modelo.Envido.EnvidoCantado;
+import fiuba.algo3.truco.modelo.Envido.EnvidoEnvidoCantado;
+import fiuba.algo3.truco.modelo.Envido.EstadoEnvido;
+import fiuba.algo3.truco.modelo.Envido.FaltaEnvidoCantado;
+import fiuba.algo3.truco.modelo.Envido.NoSePuedeCantarEnvido;
+import fiuba.algo3.truco.modelo.Envido.RealEnvidoCantado;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 
 public class EnvidoCantadoTest {

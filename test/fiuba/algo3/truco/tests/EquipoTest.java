@@ -1,9 +1,8 @@
 package fiuba.algo3.truco.tests;
 
 import fiuba.algo3.truco.modelo.*;
-import fiuba.algo3.truco.modelo.EnvidoYFlor.CalculadorTanto;
 
-import fiuba.algo3.truco.modelo.EnvidoYFlor.JuegoSinFlor;
+import fiuba.algo3.truco.modelo.Envido.JuegoSinFlor;
 import fiuba.algo3.truco.modelo.Palo.Basto;
 import fiuba.algo3.truco.modelo.Palo.Espada;
 import fiuba.algo3.truco.modelo.Puntos.Buenas;
