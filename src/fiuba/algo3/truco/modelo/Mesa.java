@@ -134,8 +134,7 @@ public class Mesa {
     }
 
     public void faltaEnvido() {
-        Puntaje puntosEnJuego = (this.equipoActual.getPuntos()>this.equipoContrario.getPuntos())?
-                this.equipoActual.getPuntaje():this.equipoContrario.getPuntaje();
+        Puntaje puntosEnJuego = this.obtenerMayorPuntaje();
         this.estadoEnvido = this.estadoEnvido.faltaEnvido(puntosEnJuego);
         this.intercambiarEquipos();
 
@@ -155,11 +154,16 @@ public class Mesa {
     }
 
     public void contraFlorAlResto(){
-        Puntaje puntosEnJuego = (this.equipoActual.getPuntos()>this.equipoContrario.getPuntos())?
-                this.equipoActual.getPuntaje():this.equipoContrario.getPuntaje();
+        Puntaje puntosEnJuego = this.obtenerMayorPuntaje();
         estadoFlor.contraFlorAlResto(puntosEnJuego);
         this.intercambiarEquipos();
     }
+
+    private Puntaje obtenerMayorPuntaje() {
+        return (this.equipoActual.getPuntos()>this.equipoContrario.getPuntos())?
+                this.equipoActual.getPuntaje():this.equipoContrario.getPuntaje();
+    }
+
     public void contraFlorAlPartido(){
         estadoFlor.contraFlorAlPartido();
         this.intercambiarEquipos();
