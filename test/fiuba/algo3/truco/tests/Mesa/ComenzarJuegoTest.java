@@ -143,5 +143,66 @@ public class ComenzarJuegoTest {
 
 	}
 
+	@Test
+	public void test4AlJugarCartasSeDeterminaGanadorDeVueltaEnJuegoDeSeis(){
+
+		jugador1 = new Jugador("Juan");
+		jugador2 = new Jugador("Pedro");
+		Jugador jugador3 = new Jugador("Raul");
+		Jugador jugador4 = new Jugador("Antonio");
+		Jugador jugador5 = new Jugador("Jorge");
+		Jugador jugador6 = new Jugador("Fausto");
+
+		jugadoresEquipo1 = new ArrayList<>(Arrays.asList(jugador1, jugador3, jugador5));
+		jugadoresEquipo2 = new ArrayList<>(Arrays.asList(jugador2, jugador4, jugador6));
+
+		equipo1 = new Equipo("equipo1", jugadoresEquipo1);
+		equipo2 = new Equipo("equipo2", jugadoresEquipo2);
+
+		calculadorTanto = new JuegoSinFlor();
+
+		mesa = new Mesa(equipo1, equipo2, calculadorTanto);
+
+		Carta carta1 = new Carta(7,new Espada());
+		Carta carta2 = new Carta(7,new Basto());
+		Carta carta3 = new Carta(7,new Oro());
+		LinkedList<Carta> cartas1 = new LinkedList<>(Arrays.asList(carta1,carta2,carta3));
+		Carta carta4 = new Carta(3,new Espada());
+		Carta carta5 = new Carta(3,new Basto());
+		Carta carta6 = new Carta(3,new Oro());
+		LinkedList<Carta> cartas2 = new LinkedList<>(Arrays.asList(carta4,carta5,carta6));
+		Carta carta7 = new Carta(2,new Espada());
+		Carta carta8 = new Carta(2,new Basto());
+		Carta carta9 = new Carta(2,new Oro());
+		LinkedList<Carta> cartas3 = new LinkedList<>(Arrays.asList(carta7,carta8,carta9));
+		Carta carta10 = new Carta(6,new Espada());
+		Carta carta11 = new Carta(1,new Basto());
+		Carta carta12 = new Carta(1,new Oro());
+		LinkedList<Carta> cartas4 = new LinkedList<>(Arrays.asList(carta10,carta11,carta12));
+		Carta carta13 = new Carta(1,new Espada());
+		Carta carta14 = new Carta(6,new Basto());
+		Carta carta15 = new Carta(6,new Oro());
+		LinkedList<Carta> cartas5 = new LinkedList<>(Arrays.asList(carta7,carta8,carta9));
+		Carta carta16 = new Carta(5,new Espada());
+		Carta carta17 = new Carta(5,new Basto());
+		Carta carta18 = new Carta(5,new Oro());
+		LinkedList<Carta> cartas6 = new LinkedList<>(Arrays.asList(carta10,carta11,carta12));
+		jugador1.setMano(new Mano(cartas1,calculadorTanto));
+		jugador2.setMano(new Mano(cartas2,calculadorTanto));
+		jugador3.setMano(new Mano(cartas3,calculadorTanto));
+		jugador4.setMano(new Mano(cartas4,calculadorTanto));
+		jugador5.setMano(new Mano(cartas5,calculadorTanto));
+		jugador6.setMano(new Mano(cartas6,calculadorTanto));
+
+		mesa.hacerJugada(carta1);
+		mesa.hacerJugada(carta4);
+		mesa.hacerJugada(carta7);
+		mesa.hacerJugada(carta11);
+		mesa.hacerJugada(carta13);
+		mesa.hacerJugada(carta18);
+		Assert.assertEquals("equipo1", mesa.getGanadorVuelta().getEquipoGanador().getNombre());
+
+	}
+
 	
 }
