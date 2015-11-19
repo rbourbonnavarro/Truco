@@ -58,7 +58,7 @@ public class Mesa {
         List<Jugador> jugadores = new ArrayList<>(this.equipo1.getIntegrantes());
         jugadores.addAll(this.equipo2.getIntegrantes());
 
-        this.mazo.repartir(jugadores, this.calculadorTanto);
+        this.mazo.repartir(jugadores);
 
         this.resultadoGanadorVuelta = new GanadorVuelta(this.equipoActual, this.jugadorActual.obtenerCartas().get(0));
 

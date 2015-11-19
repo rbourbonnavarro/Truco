@@ -2,7 +2,7 @@ package fiuba.algo3.truco.tests;
 
 import fiuba.algo3.truco.modelo.*;
 
-import fiuba.algo3.truco.modelo.Envido.JuegoSinFlor;
+import fiuba.algo3.truco.modelo.JuegoSinFlor;
 import fiuba.algo3.truco.modelo.Palo.Basto;
 import fiuba.algo3.truco.modelo.Palo.Espada;
 import fiuba.algo3.truco.modelo.Puntos.Buenas;
@@ -89,8 +89,8 @@ public class EquipoTest {
         LinkedList<Carta> cartas1 = new LinkedList<>(Arrays.asList(carta1,carta2,carta3));
         LinkedList<Carta> cartas2 = new LinkedList<>(Arrays.asList(carta4,carta5,carta6));
 
-        jugador1.setMano(new Mano(cartas1,new JuegoSinFlor()));
-        jugador2.setMano(new Mano(cartas2,new JuegoSinFlor()));
+        jugador1.setMano(new Mano(cartas1));
+        jugador2.setMano(new Mano(cartas2));
 
         Assert.assertEquals(33,this.equipo.calcularEnvido());
     }

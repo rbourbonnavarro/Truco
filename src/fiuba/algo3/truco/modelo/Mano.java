@@ -13,10 +13,10 @@ public class Mano {
     private List<Carta> cartasEnMano;
     private CalculadorTanto calculadorTanto;
 
-    public Mano(List<Carta> cartas, CalculadorTanto calculadorTanto) {
+    public Mano(List<Carta> cartas) {
 
         this.cartasEnMano = new LinkedList<>(cartas);
-        this.calculadorTanto = calculadorTanto;
+        this.calculadorTanto = new CalculadorTanto();
 
     }
 

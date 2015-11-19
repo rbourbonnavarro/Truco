@@ -1,7 +1,7 @@
 package fiuba.algo3.truco.tests;
 
 import fiuba.algo3.truco.modelo.Carta;
-import fiuba.algo3.truco.modelo.Envido.JuegoSinFlor;
+import fiuba.algo3.truco.modelo.JuegoSinFlor;
 import fiuba.algo3.truco.modelo.Figura;
 import fiuba.algo3.truco.modelo.Jugador;
 import fiuba.algo3.truco.modelo.Mano;
@@ -27,7 +27,7 @@ public class JugadorTest {
         this.carta1 = new Carta(4, new Basto());
         this.carta2 = new Carta(5, new Basto());
         this.carta3= new Figura(11, new Espada());
-        this.jugador.setMano(new Mano(Arrays.asList(carta1,carta2,carta3), new JuegoSinFlor()));
+        this.jugador.setMano(new Mano(Arrays.asList(carta1,carta2,carta3)));
     }
 
     @Test

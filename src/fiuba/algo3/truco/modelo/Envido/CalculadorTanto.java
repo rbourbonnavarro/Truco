@@ -5,9 +5,7 @@ import fiuba.algo3.truco.modelo.EstadoFlor.JuegoSinFlorException;
 
 import java.util.List;
 
-public abstract class CalculadorTanto {
-
-    public abstract int flor(List<Carta> cartas) throws JuegoSinFlorException;
+public class CalculadorTanto {
 
     public int envido(List<Carta> cartas) throws CantasteEnvidoCuandoTenesFlorException {
 
@@ -19,6 +17,23 @@ public abstract class CalculadorTanto {
 
     }
 
+    public int flor(List<Carta> cartas) {
+
+        this.hayFlor(cartas);
+        int flor = 0;
+        for(Carta carta: cartas)
+            flor += carta.getTanto();
+        return flor +20;
+
+    }
+
+    private void hayFlor(List<Carta> cartas) {
+
+        if(!(cartas.get(0).getPalo().equals(cartas.get(1).getPalo()) &&
+                cartas.get(2).getPalo().equals(cartas.get(1).getPalo())))
+            throw new NoHayFlorException();
+
+    }
 
 
 }

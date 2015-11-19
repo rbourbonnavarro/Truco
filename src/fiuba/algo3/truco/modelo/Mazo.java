@@ -58,19 +58,19 @@ public class Mazo {
             )
     );
 
-    public void repartir(List<Jugador> jugadores, CalculadorTanto calculadorTanto) {
+    public void repartir(List<Jugador> jugadores) {
 
         List<Carta> aux = new ArrayList<>(CARTAS);
 
         for(Jugador jugador : jugadores) {
 
-            jugador.setMano(this.armarMano(aux, calculadorTanto));
+            jugador.setMano(this.armarMano(aux));
 
         }
 
     }
 
-    private Mano armarMano(List<Carta> aux, CalculadorTanto calculadorTanto) {
+    private Mano armarMano(List<Carta> aux) {
 
         List<Carta> cartasMano = new ArrayList<>();
         Random random = new Random();
@@ -86,7 +86,7 @@ public class Mazo {
 
         }
 
-        return new Mano(cartasMano, calculadorTanto);
+        return new Mano(cartasMano);
 
     }
 

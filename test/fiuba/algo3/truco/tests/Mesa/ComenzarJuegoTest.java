@@ -6,7 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import fiuba.algo3.truco.modelo.*;
-import fiuba.algo3.truco.modelo.Envido.JuegoSinFlor;
+import fiuba.algo3.truco.modelo.JuegoSinFlor;
 import fiuba.algo3.truco.modelo.Palo.Basto;
 import fiuba.algo3.truco.modelo.Palo.Espada;
 import fiuba.algo3.truco.modelo.Palo.Oro;
@@ -38,8 +38,6 @@ public class ComenzarJuegoTest {
 		
 		equipo1 = new Equipo("equipo1", jugadoresEquipo1);
 		equipo2 = new Equipo("equipo2", jugadoresEquipo2);
-
-		calculadorTanto = new JuegoSinFlor();
 
 		mesa = new Mesa(equipo1, equipo2, calculadorTanto);
 
@@ -87,8 +85,8 @@ public class ComenzarJuegoTest {
 		Carta carta5 = new Carta(3,new Basto());
 		Carta carta6 = new Carta(3,new Oro());
 		LinkedList<Carta> cartas2 = new LinkedList<>(Arrays.asList(carta4,carta5,carta6));
-		jugador1.setMano(new Mano(cartas1,calculadorTanto));
-		jugador2.setMano(new Mano(cartas2,calculadorTanto));
+		jugador1.setMano(new Mano(cartas1));
+		jugador2.setMano(new Mano(cartas2));
 
 		mesa.hacerJugada(carta1);
 		mesa.hacerJugada(carta4);
@@ -110,8 +108,6 @@ public class ComenzarJuegoTest {
 		equipo1 = new Equipo("equipo1", jugadoresEquipo1);
 		equipo2 = new Equipo("equipo2", jugadoresEquipo2);
 
-		calculadorTanto = new JuegoSinFlor();
-
 		mesa = new Mesa(equipo1, equipo2, calculadorTanto);
 
 		Carta carta1 = new Carta(7,new Espada());
@@ -130,10 +126,10 @@ public class ComenzarJuegoTest {
 		Carta carta11 = new Carta(1,new Basto());
 		Carta carta12 = new Carta(1,new Oro());
 		LinkedList<Carta> cartas4 = new LinkedList<>(Arrays.asList(carta10,carta11,carta12));
-		jugador1.setMano(new Mano(cartas1,calculadorTanto));
-		jugador2.setMano(new Mano(cartas2,calculadorTanto));
-		jugador3.setMano(new Mano(cartas3,calculadorTanto));
-		jugador4.setMano(new Mano(cartas4,calculadorTanto));
+		jugador1.setMano(new Mano(cartas1));
+		jugador2.setMano(new Mano(cartas2));
+		jugador3.setMano(new Mano(cartas3));
+		jugador4.setMano(new Mano(cartas4));
 
 		mesa.hacerJugada(carta1);
 		mesa.hacerJugada(carta4);
@@ -158,8 +154,6 @@ public class ComenzarJuegoTest {
 
 		equipo1 = new Equipo("equipo1", jugadoresEquipo1);
 		equipo2 = new Equipo("equipo2", jugadoresEquipo2);
-
-		calculadorTanto = new JuegoSinFlor();
 
 		mesa = new Mesa(equipo1, equipo2, calculadorTanto);
 
@@ -187,12 +181,12 @@ public class ComenzarJuegoTest {
 		Carta carta17 = new Carta(5,new Basto());
 		Carta carta18 = new Carta(5,new Oro());
 		LinkedList<Carta> cartas6 = new LinkedList<>(Arrays.asList(carta10,carta11,carta12));
-		jugador1.setMano(new Mano(cartas1,calculadorTanto));
-		jugador2.setMano(new Mano(cartas2,calculadorTanto));
-		jugador3.setMano(new Mano(cartas3,calculadorTanto));
-		jugador4.setMano(new Mano(cartas4,calculadorTanto));
-		jugador5.setMano(new Mano(cartas5,calculadorTanto));
-		jugador6.setMano(new Mano(cartas6,calculadorTanto));
+		jugador1.setMano(new Mano(cartas1));
+		jugador2.setMano(new Mano(cartas2));
+		jugador3.setMano(new Mano(cartas3));
+		jugador4.setMano(new Mano(cartas4));
+		jugador5.setMano(new Mano(cartas5));
+		jugador6.setMano(new Mano(cartas6));
 
 		mesa.hacerJugada(carta1);
 		mesa.hacerJugada(carta4);

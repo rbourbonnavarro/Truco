@@ -29,7 +29,7 @@ public class MazoTest {
     @Test
     public void mazoReparteCartasYSonTodasDiferentes() {
 
-        this.mazo.repartir(this.jugadores, new JuegoConFlor());
+        this.mazo.repartir(this.jugadores);
 
         for(Carta cartaJ1 : this.jugadores.get(0).obtenerCartas()) {
 
