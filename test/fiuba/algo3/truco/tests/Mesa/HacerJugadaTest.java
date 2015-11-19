@@ -47,7 +47,7 @@ public class HacerJugadaTest {
 		rojos = new Equipo("equipo2", jugadoresEquipo2);
 		
 		mesa = new Mesa(azules, rojos, calculadorTanto);
-		mesa.comenzarJuego();
+		//mesa.comenzarJuego();
 	}
 	
 	@Test(expected = JugadorNoPieNoPuedeCantarEnvido.class)

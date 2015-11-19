@@ -85,5 +85,11 @@ public class Equipo {
 
     }
 
+    public String getNombre() {
+
+        return this.nombre;
+
+    }
+
 
 }
