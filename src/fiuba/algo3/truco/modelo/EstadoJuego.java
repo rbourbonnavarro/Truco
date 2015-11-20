@@ -18,5 +18,11 @@ public interface EstadoJuego {
 
     EstadoJuego faltaEnvido(Puntaje puntos);
 
+    EstadoJuego flor();
+
+    EstadoJuego contraFlorAlResto(Puntaje puntos);
+
+    EstadoJuego contraFlorAlPartido();
+
 
 }

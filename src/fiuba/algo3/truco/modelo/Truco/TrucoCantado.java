@@ -57,6 +57,21 @@ public class TrucoCantado implements EstadoJuego {
     }
 
     @Override
+    public EstadoJuego flor() {
+        return null;
+    }
+
+    @Override
+    public EstadoJuego contraFlorAlResto(Puntaje puntos) {
+        return null;
+    }
+
+    @Override
+    public EstadoJuego contraFlorAlPartido() {
+        return null;
+    }
+
+    @Override
     public boolean equals (Object estado){
         return estado instanceof TrucoCantado;
     }

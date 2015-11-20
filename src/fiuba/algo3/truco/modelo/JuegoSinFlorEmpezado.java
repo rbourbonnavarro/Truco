@@ -4,6 +4,8 @@ import fiuba.algo3.truco.modelo.Envido.EnvidoCantado;
 import fiuba.algo3.truco.modelo.Envido.FaltaEnvidoCantado;
 import fiuba.algo3.truco.modelo.Envido.NoSePuedeCantarEnvidoEnvido;
 import fiuba.algo3.truco.modelo.Envido.RealEnvidoCantado;
+import fiuba.algo3.truco.modelo.EstadoFlor.JuegoSinFlorException;
+import fiuba.algo3.truco.modelo.EstadoFlor.NoSePuedeCantarContraFlorException;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 import fiuba.algo3.truco.modelo.Truco.NoSePuedeCantarRetrucoException;
 import fiuba.algo3.truco.modelo.Truco.NoSePuedeCantarValeCuatroException;
@@ -63,6 +65,23 @@ public class JuegoSinFlorEmpezado implements EstadoJuego {
         return new FaltaEnvidoCantado(puntos);
     }
 
+    @Override
+    public EstadoJuego flor() {
+
+        throw new JuegoSinFlorException();
+
+    }
+
+    @Override
+    public EstadoJuego contraFlorAlResto(Puntaje puntos) {
+        throw new NoSePuedeCantarContraFlorException();
+    }
+
+    @Override
+    public EstadoJuego contraFlorAlPartido() {
+        throw new NoSePuedeCantarContraFlorException();
+    }
+    
     @Override
     public boolean equals (Object estado){
         return estado instanceof JuegoSinFlorEmpezado;

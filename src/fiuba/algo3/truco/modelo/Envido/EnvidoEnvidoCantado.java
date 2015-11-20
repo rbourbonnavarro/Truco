@@ -2,6 +2,9 @@ package fiuba.algo3.truco.modelo.Envido;
 
 import fiuba.algo3.truco.modelo.EstadoJuego;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
+import fiuba.algo3.truco.modelo.Truco.NoSePuedeCantarRetrucoException;
+import fiuba.algo3.truco.modelo.Truco.NoSePuedeCantarTrucoException;
+import fiuba.algo3.truco.modelo.Truco.NoSePuedeCantarValeCuatroException;
 
 public class EnvidoEnvidoCantado implements EstadoJuego {
 
@@ -19,17 +22,21 @@ public class EnvidoEnvidoCantado implements EstadoJuego {
 
     @Override
     public EstadoJuego truco() {
-        return null;
+
+        throw new NoSePuedeCantarTrucoException();
+
     }
 
     @Override
     public EstadoJuego reTruco() {
-        return null;
+        throw new NoSePuedeCantarRetrucoException();
+
     }
 
     @Override
     public EstadoJuego valeCuatro() {
-        return null;
+        throw new NoSePuedeCantarValeCuatroException();
+
     }
 
     @Override
