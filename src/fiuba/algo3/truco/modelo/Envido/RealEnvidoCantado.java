@@ -1,12 +1,8 @@
 package fiuba.algo3.truco.modelo.Envido;
 
-import fiuba.algo3.truco.modelo.EstadoJuego;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
-import fiuba.algo3.truco.modelo.Truco.NoSePuedeCantarRetrucoException;
-import fiuba.algo3.truco.modelo.Truco.NoSePuedeCantarTrucoException;
-import fiuba.algo3.truco.modelo.Truco.NoSePuedeCantarValeCuatroException;
 
-public class RealEnvidoCantado implements EstadoJuego {
+public class RealEnvidoCantado implements EstadoEnvido {
 
     private final int puntosRealEnvido = 3;
 
@@ -25,12 +21,14 @@ public class RealEnvidoCantado implements EstadoJuego {
         this.puntosNoQuerido = 1;
     }
 
+    @Override
     public int puntos() {
 
         return this.puntos;
 
     }
 
+    @Override
     public int noQuerido() {
 
         return this.puntosNoQuerido;
@@ -38,41 +36,22 @@ public class RealEnvidoCantado implements EstadoJuego {
     }
 
     @Override
-    public EstadoJuego truco() {
-
-        throw new NoSePuedeCantarTrucoException();
-
-    }
-
-    @Override
-    public EstadoJuego reTruco() {
-        throw new NoSePuedeCantarRetrucoException();
-
-    }
-
-    @Override
-    public EstadoJuego valeCuatro() {
-        throw new NoSePuedeCantarValeCuatroException();
-
-    }
-
-    @Override
-    public EstadoJuego envido() {
+    public EstadoEnvido envido() {
         throw new NoSePuedeCantarEnvido();
     }
 
     @Override
-    public EstadoJuego envidoEnvido() {
+    public EstadoEnvido envidoEnvido() {
         throw new NoSePuedeCantarEnvidoEnvido();
     }
 
     @Override
-    public EstadoJuego realEnvido() {
+    public EstadoEnvido realEnvido() {
         throw new NoSePuedeCantarRealEnvido();
     }
 
     @Override
-    public EstadoJuego faltaEnvido(Puntaje puntos) {
+    public EstadoEnvido faltaEnvido(Puntaje puntos) {
         return new FaltaEnvidoCantado(puntos,this.puntos());
     }
     @Override

@@ -6,7 +6,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class JuegoSinFlorEmpezadoTest {
+public class JuegoEmpezadoSinFlorEmpezadoTest {
     EstadoTruco truco;
     @Before
     public void setUp(){

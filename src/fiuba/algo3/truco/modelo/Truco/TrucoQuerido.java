@@ -34,28 +34,28 @@ public class TrucoQuerido implements EstadoJuego {
     }
 
     @Override
-    public EstadoJuego envido() {
+    public void envido() {
 
         throw new NoSePuedeCantarEnvido();
 
     }
 
     @Override
-    public EstadoJuego envidoEnvido() {
+    public void envidoEnvido() {
 
         throw new NoSePuedeCantarEnvidoEnvido();
 
     }
 
     @Override
-    public EstadoJuego realEnvido() {
+    public void realEnvido() {
 
         throw new NoSePuedeCantarRealEnvido();
 
     }
 
     @Override
-    public EstadoJuego faltaEnvido(Puntaje puntos) {
+    public void faltaEnvido(Puntaje puntos) {
 
         throw new NoSePuedeCantarFaltaEnvido();
 

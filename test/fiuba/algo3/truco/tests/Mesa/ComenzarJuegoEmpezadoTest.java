@@ -16,7 +16,7 @@ import org.junit.Test;
 
 import fiuba.algo3.truco.modelo.Envido.CalculadorTanto;
 
-public class ComenzarJuegoTest {
+public class ComenzarJuegoEmpezadoTest {
 	
 	Mesa mesa;
 	Jugador jugador1;

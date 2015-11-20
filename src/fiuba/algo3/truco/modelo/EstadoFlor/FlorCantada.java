@@ -4,6 +4,7 @@ import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 
 
 public class FlorCantada implements EstadoFlor {
+
     @Override
     public int puntos() {
         return 3;
@@ -32,5 +33,6 @@ public class FlorCantada implements EstadoFlor {
     public boolean equals(Object estado) {
         return estado instanceof FlorCantada;
     }
+
 
 }

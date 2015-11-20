@@ -10,19 +10,19 @@ public interface EstadoJuego {
 
     EstadoJuego valeCuatro();
 
-    EstadoJuego envido();
+    void envido();
 
-    EstadoJuego envidoEnvido();
+    void envidoEnvido();
 
-    EstadoJuego realEnvido();
+    void realEnvido();
 
-    EstadoJuego faltaEnvido(Puntaje puntos);
+    void faltaEnvido(Puntaje puntos);
 
-    EstadoJuego flor();
+    void flor();
 
-    EstadoJuego contraFlorAlResto(Puntaje puntos);
+    void contraFlorAlResto(Puntaje puntos);
 
-    EstadoJuego contraFlorAlPartido();
+    void contraFlorAlPartido();
 
 
 }

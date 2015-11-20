@@ -5,18 +5,15 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
-import fiuba.algo3.truco.modelo.Envido.CalculadorTanto;
-import fiuba.algo3.truco.modelo.Envido.EnvidoNoCantado;
 import fiuba.algo3.truco.modelo.Envido.EstadoEnvido;
 import fiuba.algo3.truco.modelo.Envido.JugadorNoPuedeCantarTantoNoEsPrimeraRonda;
 import fiuba.algo3.truco.modelo.EstadoFlor.EstadoFlor;
-import fiuba.algo3.truco.modelo.EstadoFlor.FlorNoCantada;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 import fiuba.algo3.truco.modelo.Truco.*;
 
 public class Mesa {
 
-    private CalculadorTanto calculadorTanto;
+    private EstadoJuego estadoJuego;
     private ValoresTruco valoresTruco;
     private Equipo equipo1;
     private Equipo equipo2;
@@ -31,9 +28,9 @@ public class Mesa {
     private EstadoFlor estadoFlor;
     private Mazo mazo;
 
-    public Mesa(Equipo equipo1, Equipo equipo2, CalculadorTanto calculadorTanto) {
+    public Mesa(Equipo equipo1, Equipo equipo2, EstadoFlor estadoFlor) {
 
-        this.calculadorTanto = calculadorTanto;
+        this.estadoJuego = new JuegoEmpezado(estadoFlor);
         this.valoresTruco = new ValoresTruco();
         this.cartasEnMesa = new ArrayDeque<>();
 
@@ -41,10 +38,6 @@ public class Mesa {
         this.equipo2 = equipo2;
 
         this.ronda= new Ronda();
-
-        this.estadoTruco = new JuegoSinFlorEmpezado();
-        this.estadoEnvido = new EnvidoNoCantado();
-        this.estadoFlor = new FlorNoCantada();
 
         this.mazo = new Mazo();
 

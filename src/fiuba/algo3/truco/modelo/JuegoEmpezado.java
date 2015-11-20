@@ -1,23 +1,26 @@
-package fiuba.algo3.truco.modelo.Truco;
+package fiuba.algo3.truco.modelo;
 
 import fiuba.algo3.truco.modelo.Envido.*;
 import fiuba.algo3.truco.modelo.EstadoFlor.EstadoFlor;
-import fiuba.algo3.truco.modelo.EstadoJuego;
+import fiuba.algo3.truco.modelo.EstadoFlor.NoSePuedeCantarContraFlorException;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
+import fiuba.algo3.truco.modelo.Truco.NoSePuedeCantarRetrucoException;
+import fiuba.algo3.truco.modelo.Truco.NoSePuedeCantarValeCuatroException;
+import fiuba.algo3.truco.modelo.Truco.TrucoCantado;
 
-public class TrucoCantado implements EstadoJuego {
+public class JuegoEmpezado implements EstadoJuego {
 
     private EstadoEnvido estadoEnvido;
     private EstadoFlor estadoFlor;
 
-    public TrucoCantado(EstadoEnvido estadoEnvido, EstadoFlor estadoFlor) {
+    public JuegoEmpezado(EstadoFlor estadoFlor) {
 
-        this.estadoEnvido = estadoEnvido;
+        this.estadoEnvido = new EnvidoNoCantado();
         this.estadoFlor = estadoFlor;
 
     }
 
-    public int noQuerido() {
+    public int puntos() {
 
         return 1;
 
@@ -26,14 +29,13 @@ public class TrucoCantado implements EstadoJuego {
     @Override
     public EstadoJuego truco() {
 
-        throw new NoSePuedeCantarTrucoException();
-
+        return new TrucoCantado(this.estadoEnvido, this.estadoFlor);
     }
 
     @Override
     public EstadoJuego reTruco() {
 
-        return new RetrucoCantado();
+        throw new NoSePuedeCantarRetrucoException();
 
     }
 
@@ -96,7 +98,7 @@ public class TrucoCantado implements EstadoJuego {
     @Override
     public boolean equals (Object estado){
 
-        return estado instanceof TrucoCantado;
+        return estado instanceof JuegoEmpezado;
 
     }
 
