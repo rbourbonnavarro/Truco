@@ -1,15 +1,16 @@
 package fiuba.algo3.truco.tests.Truco;
 
 import fiuba.algo3.truco.modelo.Truco.*;
+//import fiuba.algo3.truco.modelo.JuegoSinFlorEmpezado;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class TrucoNoCantadoTest {
+public class JuegoEmpezadoSinFlorEmpezadoTest {
     EstadoTruco truco;
     @Before
     public void setUp(){
-        truco = new TrucoNoCantado();
+        truco = new JuegoSinFlorEmpezado();
     }
     @Test
     public void test1PuntosDevuelve1(){
@@ -33,6 +34,6 @@ public class TrucoNoCantadoTest {
     }
     @Test
     public void test6ProbandoEquals() {
-        Assert.assertEquals(truco,new TrucoNoCantado());
+        Assert.assertEquals(truco,new JuegoSinFlorEmpezado());
     }
 }
