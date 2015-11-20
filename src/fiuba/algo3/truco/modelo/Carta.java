@@ -1,5 +1,7 @@
 package fiuba.algo3.truco.modelo;
 
+import fiuba.algo3.truco.modelo.Palo.Palo;
+
 public class Carta {
 
     private int valor;
@@ -18,11 +20,58 @@ public class Carta {
 
     }
 
-    public int envido() {
+    public int getTanto() {
 
         return this.valor;
 
     }
+
+    public int getValor() {
+
+        return valor;
+
+    }
+
+    public String toString() {
+
+        return this.valor + this.palo.toString();
+
+    }
+
+    public int sumarParaEnvido(Carta carta) {
+
+        return this.getTanto() + palo.getTanto(carta);
+
+    }
+
+    public int tantoOro() {
+
+        return palo.tantoOro(this.getTanto());
+
+    }
+
+    public int tantoBasto() {
+
+        return palo.tantoBasto(this.getTanto());
+
+    }
+
+    public int tantoEspada() {
+
+        return palo.tantoEspada(this.getTanto());
+
+    }
+
+    public int tantoCopa() {
+
+        return palo.tantoCopa(this.getTanto());
+
+    }
+    @Override
+    public boolean equals(Object objeto) {
+        Carta carta = (Carta) objeto;
+        return this.valor == carta.getValor() && this.palo.equals(carta.palo);
+   }
 
 
 }

@@ -1,30 +1,51 @@
 package fiuba.algo3.truco.modelo;
 
+import java.util.LinkedList;
+import java.util.List;
+
+import fiuba.algo3.truco.modelo.Envido.CalculadorTanto;
+import fiuba.algo3.truco.modelo.Envido.CantasteEnvidoCuandoTenesFlorException;
+import fiuba.algo3.truco.modelo.EstadoFlor.JuegoSinFlorException;
+import fiuba.algo3.truco.modelo.Envido.JugadorNoPuedeCantarTantoNoEsPrimeraRonda;
+
 public class Mano {
 
-    private Carta carta1;
-    private Carta carta2;
-    private Carta carta3;
-    private EstadoFlor estadoFlor;
+    private List<Carta> cartasEnMano;
+    private CalculadorTanto calculadorTanto;
 
-    public Mano(Carta carta1, Carta carta2, Carta carta3, EstadoFlor estadoFlor) {
+    public Mano(List<Carta> cartas) {
 
-        this.carta1 = carta1;
-        this.carta2 = carta2;
-        this.carta3 = carta3;
-        this.estadoFlor = estadoFlor;
+        this.cartasEnMano = new LinkedList<>(cartas);
+        this.calculadorTanto = new CalculadorTanto();
 
     }
 
-    public int flor() {
 
-        return this.estadoFlor.flor(this.carta1, this.carta2, this.carta3);
+    public int flor() throws JuegoSinFlorException {
+
+        if(this.cartasEnMano.size() < 3) throw new JugadorNoPuedeCantarTantoNoEsPrimeraRonda();
+
+        return this.calculadorTanto.flor(this.cartasEnMano);
 
     }
 
-    public int envido() {
+    public int envido() throws CantasteEnvidoCuandoTenesFlorException {
 
-        return this.estadoFlor.envido(this.carta1, this.carta2, this.carta3);
+        if(this.cartasEnMano.size() < 3) throw new JugadorNoPuedeCantarTantoNoEsPrimeraRonda();
+
+        return this.calculadorTanto.envido(this.cartasEnMano);
+
+    }
+
+    public List<Carta> getCartas() {
+
+        return this.cartasEnMano;
+
+    }
+
+    public void jugar(Carta carta) {
+
+        this.cartasEnMano.remove(carta);
 
     }
 

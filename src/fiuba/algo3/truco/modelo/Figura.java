@@ -1,5 +1,7 @@
 package fiuba.algo3.truco.modelo;
 
+import fiuba.algo3.truco.modelo.Palo.Palo;
+
 public class Figura extends Carta {
 
     public Figura(int valor, Palo palo) {
@@ -8,9 +10,9 @@ public class Figura extends Carta {
 
     }
 
-    public int envido() {
+    public int getTanto() {
 
-        return 20;
+        return 0;
 
     }
 
