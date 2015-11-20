@@ -1,10 +1,8 @@
 package fiuba.algo3.truco.tests;
 
 import fiuba.algo3.truco.modelo.*;
-import fiuba.algo3.truco.modelo.Envido.EnvidoCantado;
 import fiuba.algo3.truco.modelo.Palo.Espada;
-import fiuba.algo3.truco.modelo.Truco.GanadorVuelta;
-import fiuba.algo3.truco.modelo.Truco.RetrucoCantado;
+import fiuba.algo3.truco.modelo.Jugada.Truco.GanadorVuelta;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

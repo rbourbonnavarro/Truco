@@ -1,20 +1,10 @@
-package fiuba.algo3.truco.modelo;
+package fiuba.algo3.truco.modelo.Jugada.EstadoFlor;
 
 import fiuba.algo3.truco.modelo.Jugada.Envido.EstadoEnvido;
-import fiuba.algo3.truco.modelo.Jugada.EstadoFlor.EstadoFlor;
-import fiuba.algo3.truco.modelo.Jugada.EstadoFlor.JuegoSinFlorException;
-import fiuba.algo3.truco.modelo.Jugada.EstadoFlor.NoSePuedeCantarContraFlorException;
+import fiuba.algo3.truco.modelo.Jugada.Envido.NoSePuedeCantarEnvidoEnvido;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 
-import java.util.List;
-
-public class JuegoSinFlor implements EstadoFlor {
-
-    public int flor(List<Carta> cartas) throws JuegoSinFlorException {
-
-        throw new JuegoSinFlorException();
-
-    }
+public class FlorNoCantada implements EstadoFlor {
 
     @Override
     public int puntos() {
@@ -28,9 +18,7 @@ public class JuegoSinFlor implements EstadoFlor {
 
     @Override
     public EstadoFlor flor() {
-
-        throw new JuegoSinFlorException();
-
+        return new FlorCantada();
     }
 
     @Override
@@ -47,9 +35,8 @@ public class JuegoSinFlor implements EstadoFlor {
     public EstadoEnvido envido(EstadoEnvido estado) {
         return estado.envido();
     }
-
     @Override
-    public EstadoEnvido envidoEnvido(EstadoEnvido estado) {
+    public EstadoEnvido envidoEnvido(EstadoEnvido estado){
         return estado.envidoEnvido();
     }
 
@@ -63,6 +50,10 @@ public class JuegoSinFlor implements EstadoFlor {
         return estado.faltaEnvido(puntos);
     }
 
+    @Override
+    public boolean equals(Object estado) {
+        return estado instanceof FlorNoCantada;
+    }
 
 
 }

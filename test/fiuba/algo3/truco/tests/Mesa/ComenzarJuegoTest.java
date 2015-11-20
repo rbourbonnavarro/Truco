@@ -14,7 +14,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import fiuba.algo3.truco.modelo.Envido.CalculadorTanto;
+import fiuba.algo3.truco.modelo.Jugada.Envido.CalculadorTanto;
 
 public class ComenzarJuegoTest {
 	

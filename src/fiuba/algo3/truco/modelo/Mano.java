@@ -3,10 +3,10 @@ package fiuba.algo3.truco.modelo;
 import java.util.LinkedList;
 import java.util.List;
 
-import fiuba.algo3.truco.modelo.Envido.CalculadorTanto;
-import fiuba.algo3.truco.modelo.Envido.CantasteEnvidoCuandoTenesFlorException;
-import fiuba.algo3.truco.modelo.EstadoFlor.JuegoSinFlorException;
-import fiuba.algo3.truco.modelo.Envido.JugadorNoPuedeCantarTantoNoEsPrimeraRonda;
+import fiuba.algo3.truco.modelo.Jugada.Envido.CalculadorTanto;
+import fiuba.algo3.truco.modelo.Jugada.Envido.CantasteEnvidoCuandoTenesFlorException;
+import fiuba.algo3.truco.modelo.Jugada.EstadoFlor.JuegoSinFlorException;
+import fiuba.algo3.truco.modelo.Jugada.Envido.JugadorNoPuedeCantarTantoNoEsPrimeraRonda;
 
 public class Mano {
 

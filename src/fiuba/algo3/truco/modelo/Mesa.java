@@ -5,15 +5,15 @@ import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 
-import fiuba.algo3.truco.modelo.Envido.CalculadorTanto;
-import fiuba.algo3.truco.modelo.Envido.EnvidoNoCantado;
-import fiuba.algo3.truco.modelo.Envido.EstadoEnvido;
-import fiuba.algo3.truco.modelo.Envido.JugadorNoPuedeCantarTantoNoEsPrimeraRonda;
-import fiuba.algo3.truco.modelo.EstadoFlor.EstadoFlor;
-import fiuba.algo3.truco.modelo.EstadoFlor.FlorNoCantada;
+import fiuba.algo3.truco.modelo.Jugada.Envido.CalculadorTanto;
+import fiuba.algo3.truco.modelo.Jugada.Envido.EnvidoNoCantado;
+import fiuba.algo3.truco.modelo.Jugada.Envido.JugadorNoPuedeCantarTantoNoEsPrimeraRonda;
+import fiuba.algo3.truco.modelo.Jugada.EstadoFlor.FlorNoCantada;
+import fiuba.algo3.truco.modelo.Jugada.EstadoVuelta;
+import fiuba.algo3.truco.modelo.Jugada.PrimeraVuelta;
 import fiuba.algo3.truco.modelo.Mazo.Mazo;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
-import fiuba.algo3.truco.modelo.Truco.*;
+import fiuba.algo3.truco.modelo.Jugada.Truco.*;
 
 public class Mesa {
 
@@ -27,9 +27,7 @@ public class Mesa {
     private Jugador jugadorActual;
     private GanadorVuelta resultadoGanadorVuelta;
     private Ronda ronda;
-    private EstadoEnvido estadoEnvido;
-    private EstadoTruco estadoTruco;
-    private EstadoFlor estadoFlor;
+    private EstadoVuelta estadoVuelta;
     private Mazo mazo;
 
     public Mesa(Equipo equipo1, Equipo equipo2, CalculadorTanto calculadorTanto) {
@@ -43,9 +41,10 @@ public class Mesa {
 
         this.ronda= new Ronda();
 
-        this.estadoTruco = new TrucoNoCantado();
-        this.estadoEnvido = new EnvidoNoCantado();
-        this.estadoFlor = new FlorNoCantada();
+        this.estadoVuelta = new PrimeraVuelta();
+//        this.estadoTruco = new TrucoNoCantado();
+//       this.estadoEnvido = new EnvidoNoCantado();
+//        this.estadoFlor = new FlorNoCantada();
 
         this.mazo = new Mazo();
 
@@ -117,7 +116,7 @@ public class Mesa {
     	
         if(!this.jugadorActual.jugadorPie()) throw new JugadorNoPieNoPuedeCantarEnvido();
 
-        this.estadoEnvido = this.estadoEnvido.envido();
+        this.estadoVuelta.envido();
 
         this.intercambiarEquipos();
 
@@ -125,43 +124,38 @@ public class Mesa {
 
     public void envidoEnvido() {
 
-        this.estadoEnvido =this.estadoEnvido.envidoEnvido();
-
+        this.estadoVuelta.envidoEnvido();
         this.intercambiarEquipos();
 
     }
 
     public void realEnvido() {
-
-        this.estadoEnvido = this.estadoEnvido.realEnvido();
-
+        this.estadoVuelta.realEnvido();
         this.intercambiarEquipos();
 
     }
 
     public void faltaEnvido() {
         Puntaje puntosEnJuego = this.obtenerMayorPuntaje();
-        this.estadoEnvido = this.estadoEnvido.faltaEnvido(puntosEnJuego);
+        this.estadoVuelta.faltaEnvido(puntosEnJuego);
         this.intercambiarEquipos();
 
     }
 
     public void truco() {
-
-        this.estadoTruco = estadoTruco.truco();
+        this.estadoVuelta.truco();
         this.intercambiarEquipos();
 
     }
     public void flor() {
-
-    	this.estadoFlor = estadoFlor.flor();
+        this.estadoVuelta.flor();
         this.intercambiarEquipos();
 
     }
 
     public void contraFlorAlResto(){
         Puntaje puntosEnJuego = this.obtenerMayorPuntaje();
-        this.estadoFlor = estadoFlor.contraFlorAlResto(puntosEnJuego);
+        this.estadoVuelta.contraFlorAlResto(puntosEnJuego);
         this.intercambiarEquipos();
     }
 
@@ -171,20 +165,19 @@ public class Mesa {
     }
 
     public void contraFlorAlPartido(){
-    	this.estadoFlor = estadoFlor.contraFlorAlPartido();
+        this.estadoVuelta.contraFlorAlPartido();
         this.intercambiarEquipos();
     }
 
     public void retruco() {
-
-    	this.estadoTruco = this.estadoTruco.reTruco();
+        this.estadoVuelta.reTruco();
         this.intercambiarEquipos();
 
     }
 
     public void valeCuatro() {
 
-    	this.estadoTruco = this.estadoTruco.valeCuatro();
+        this.estadoVuelta.valeCuatro();
         this.intercambiarEquipos();
 
     }
@@ -193,7 +186,7 @@ public class Mesa {
 
         if(!quiero) {
 
-            this.ronda.agregarPuntosRonda(this.estadoTruco.noQuerido());
+            this.ronda.agregarPuntosRonda(this.estadoVuelta.trucoNoQuerido());
 
             this.ronda.setEquipoGanador(this.equipoContrario);
 
@@ -209,12 +202,12 @@ public class Mesa {
 
         if(!quiero) {
 
-            this.equipoContrario.sumarPuntos(this.estadoEnvido.noQuerido());
+            this.equipoContrario.sumarPuntos(this.estadoVuelta.envidoNoQuerido());
 
         }
         else{
 
-            this.obtenerGanadorEnvido().sumarPuntos(this.estadoEnvido.puntos());
+            this.obtenerGanadorEnvido().sumarPuntos(this.estadoVuelta.envidoQuerido());
 
         }
     }
@@ -247,7 +240,7 @@ public class Mesa {
 
         this.ronda.setGanadorVuelta(this.resultadoGanadorVuelta);
 
-        this.ronda.agregarPuntosRonda(this.estadoTruco.puntos());
+        this.ronda.agregarPuntosRonda(this.estadoVuelta.TrucoQuerido());
 
         try {
 

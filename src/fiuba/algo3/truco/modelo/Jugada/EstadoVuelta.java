@@ -1,0 +1,29 @@
+package fiuba.algo3.truco.modelo.Jugada;
+
+import fiuba.algo3.truco.modelo.Puntos.Puntaje;
+
+/**
+ * Created by fedemgp on 20/11/15.
+ */
+public interface EstadoVuelta {
+    void truco();
+    void reTruco();
+    void valeCuatro();
+
+    void envido();
+    void envidoEnvido();
+    void realEnvido();
+    void faltaEnvido(Puntaje puntos);
+
+    void flor();
+    void contraFlorAlResto(Puntaje puntos);
+    void contraFlorAlPartido();
+
+    int trucoNoQuerido();
+
+    int envidoNoQuerido();
+
+    int envidoQuerido();
+
+    int TrucoQuerido();
+}
