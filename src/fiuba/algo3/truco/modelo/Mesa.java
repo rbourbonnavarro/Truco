@@ -11,6 +11,7 @@ import fiuba.algo3.truco.modelo.Envido.EstadoEnvido;
 import fiuba.algo3.truco.modelo.Envido.JugadorNoPuedeCantarTantoNoEsPrimeraRonda;
 import fiuba.algo3.truco.modelo.EstadoFlor.EstadoFlor;
 import fiuba.algo3.truco.modelo.EstadoFlor.FlorNoCantada;
+import fiuba.algo3.truco.modelo.Mazo.Mazo;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 import fiuba.algo3.truco.modelo.Truco.*;
 

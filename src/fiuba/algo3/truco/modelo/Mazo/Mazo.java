@@ -1,6 +1,10 @@
-package fiuba.algo3.truco.modelo;
+package fiuba.algo3.truco.modelo.Mazo;
 
+import fiuba.algo3.truco.modelo.Carta;
 import fiuba.algo3.truco.modelo.Envido.CalculadorTanto;
+import fiuba.algo3.truco.modelo.Figura;
+import fiuba.algo3.truco.modelo.Jugador;
+import fiuba.algo3.truco.modelo.Mano;
 import fiuba.algo3.truco.modelo.Palo.Basto;
 import fiuba.algo3.truco.modelo.Palo.Copa;
 import fiuba.algo3.truco.modelo.Palo.Espada;
@@ -12,7 +16,6 @@ import java.util.List;
 import java.util.Random;
 
 public class Mazo {
-
     private static final List<Carta> CARTAS = new ArrayList<>(
             Arrays.asList(
                     new Carta(1, new Espada()),
@@ -67,11 +70,8 @@ public class Mazo {
             jugador.setMano(this.armarMano(aux));
 
         }
-
     }
-
-    private Mano armarMano(List<Carta> aux) {
-
+    protected Mano armarMano(List<Carta> aux) {
         List<Carta> cartasMano = new ArrayList<>();
         Random random = new Random();
         int limite = aux.size();
@@ -85,9 +85,7 @@ public class Mazo {
             limite -= 1;
 
         }
-
         return new Mano(cartasMano);
-
     }
 
 

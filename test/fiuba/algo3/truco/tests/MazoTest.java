@@ -1,9 +1,8 @@
 package fiuba.algo3.truco.tests;
 
 import fiuba.algo3.truco.modelo.Carta;
-import fiuba.algo3.truco.modelo.EstadoFlor.JuegoConFlor;
 import fiuba.algo3.truco.modelo.Jugador;
-import fiuba.algo3.truco.modelo.Mazo;
+import fiuba.algo3.truco.modelo.Mazo.Mazo;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;

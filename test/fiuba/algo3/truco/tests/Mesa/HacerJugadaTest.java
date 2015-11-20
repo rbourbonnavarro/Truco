@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import fiuba.algo3.truco.modelo.Envido.NoSePuedeCantarEnvido;
+import fiuba.algo3.truco.modelo.EstadoFlor.JuegoConFlor;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -45,8 +47,10 @@ public class HacerJugadaTest {
 		
 		azules = new Equipo("equipo1", jugadoresEquipo1);
 		rojos = new Equipo("equipo2", jugadoresEquipo2);
+
+		calculadorTanto = new JuegoConFlor();
 		
-		mesa = new Mesa(azules, rojos, calculadorTanto);
+		mesa = new Mesa(rojos, azules, calculadorTanto);
 		//mesa.comenzarJuego();
 	}
 	
@@ -64,7 +68,7 @@ public class HacerJugadaTest {
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
 		mesa.envido();
 		mesa.quieroEnvido(false);
-		Assert.assertEquals(mesa.puntaje(azules), 1);
+		Assert.assertEquals(mesa.puntaje(rojos), 1);
 	}
 	
 	@Test
@@ -73,8 +77,8 @@ public class HacerJugadaTest {
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
 		mesa.truco();
 		mesa.quieroTruco(false);
-		Assert.assertEquals(mesa.puntaje(azules), 0);
-		Assert.assertEquals(mesa.puntaje(rojos), 1);
+		Assert.assertEquals(mesa.puntaje(rojos), 0);
+		Assert.assertEquals(mesa.puntaje(azules), 1);
 	}
 	
 	@Test(expected = JugadorNoPuedeCantarTantoNoEsPrimeraRonda.class)
@@ -87,6 +91,16 @@ public class HacerJugadaTest {
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
 		mesa.envido();
 	}
+	/*@Test(expected = NoSePuedeCantarEnvido.class)
+	public void noSePuedeCantarEnvidoLuegoQueSeCantoFlor () {
+		mesa.flor();
+		Assert.assertEquals(mesa.getJugadorActual().getNombre(),Juan.getNombre());
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		Assert.assertEquals(mesa.getJugadorActual().getNombre(),Martin.getNombre());
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		Assert.assertEquals(mesa.getJugadorActual().getNombre(),Pedro.getNombre());
+		mesa.envido();
+	}*/
 	
 
 }
