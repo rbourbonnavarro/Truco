@@ -1,16 +1,15 @@
 package fiuba.algo3.truco.modelo.Truco;
 
-import fiuba.algo3.truco.modelo.EstadoJuego;
-import fiuba.algo3.truco.modelo.Puntos.Puntaje;
+public class ValeCuatroCantado implements EstadoTruco {
 
-public class ValeCuatroCantado implements EstadoJuego {
-
+    @Override
     public int puntos() {
 
         return 4;
 
     }
 
+    @Override
     public int noQuerido() {
 
         return 3;
@@ -18,42 +17,22 @@ public class ValeCuatroCantado implements EstadoJuego {
     }
 
     @Override
-    public EstadoJuego truco() {
+    public EstadoTruco truco() {
 
         throw new NoSePuedeCantarTrucoException();
 
     }
 
     @Override
-    public EstadoJuego reTruco() {
+    public EstadoTruco reTruco() {
         throw new NoSePuedeCantarRetrucoException();
 
     }
 
     @Override
-    public EstadoJuego valeCuatro() {
+    public EstadoTruco valeCuatro() {
         throw new NoSePuedeCantarValeCuatroException();
 
-    }
-
-    @Override
-    public EstadoJuego envido() {
-        return null;
-    }
-
-    @Override
-    public EstadoJuego envidoEnvido() {
-        return null;
-    }
-
-    @Override
-    public EstadoJuego realEnvido() {
-        return null;
-    }
-
-    @Override
-    public EstadoJuego faltaEnvido(Puntaje puntos) {
-        return null;
     }
 
     @Override
