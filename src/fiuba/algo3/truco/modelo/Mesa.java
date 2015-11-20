@@ -42,7 +42,7 @@ public class Mesa {
 
         this.ronda= new Ronda();
 
-        this.estadoTruco = new TrucoNoCantado();
+        this.estadoTruco = new JuegoSinFlorEmpezado();
         this.estadoEnvido = new EnvidoNoCantado();
         this.estadoFlor = new FlorNoCantada();
 
