@@ -2,7 +2,6 @@ package fiuba.algo3.truco.tests;
 
 import fiuba.algo3.truco.modelo.*;
 import fiuba.algo3.truco.modelo.Envido.*;
-import fiuba.algo3.truco.modelo.EstadoFlor.JuegoConFlor;
 import fiuba.algo3.truco.modelo.EstadoFlor.JuegoSinFlorException;
 import fiuba.algo3.truco.modelo.Palo.*;
 import org.junit.Assert;
@@ -126,7 +125,7 @@ public class ManoTest {
 
     }*/
 
-    @Test(expected = JugadorNoPuedeCantarTantoNoEsPrimeraRonda.class)
+    @Test(expected = JugadorNoPuedeCantarTantoNoEsPrimeraVuelta.class)
     public void test15NoSePuedeCantarTantoNoEsPrimeraMano() throws JuegoSinFlorException {
 
         Carta carta1 = new Carta(7,new Espada());
@@ -140,7 +139,7 @@ public class ManoTest {
 
     }
 
-    @Test(expected = JugadorNoPuedeCantarTantoNoEsPrimeraRonda.class)
+    @Test(expected = JugadorNoPuedeCantarTantoNoEsPrimeraVuelta.class)
     public void test16NoSePuedeCantarEnvidoNoEsPrimeraMano() {
 
         Carta carta1 = new Carta(7,new Espada());

@@ -8,14 +8,14 @@ import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 
 public class RetrucoCantado implements EstadoJuego {
 
-
-
+    @Override
     public int puntos() {
 
         return 3;
 
     }
 
+    @Override
     public int noQuerido() {
 
         return 2;
@@ -44,28 +44,28 @@ public class RetrucoCantado implements EstadoJuego {
     }
 
     @Override
-    public void envido() {
+    public EstadoJuego envido() {
 
         throw new NoSePuedeCantarEnvido();
 
     }
 
     @Override
-    public void envidoEnvido() {
+    public EstadoJuego envidoEnvido() {
 
         throw new NoSePuedeCantarEnvidoEnvido();
 
     }
 
     @Override
-    public void realEnvido() {
+    public EstadoJuego realEnvido() {
 
         throw new NoSePuedeCantarRealEnvido();
 
     }
 
     @Override
-    public void faltaEnvido(Puntaje puntos) {
+    public EstadoJuego faltaEnvido(Puntaje puntos) {
 
         throw new NoSePuedeCantarFaltaEnvido();
 
@@ -89,6 +89,20 @@ public class RetrucoCantado implements EstadoJuego {
     public void contraFlorAlPartido() {
 
         throw new NoSePuedeCantarFlorException();
+
+    }
+
+    @Override
+    public EstadoJuego terminarTanto() {
+
+        return null;
+
+    }
+
+    @Override
+    public EstadoJuego quiero() {
+
+        return this;
 
     }
 

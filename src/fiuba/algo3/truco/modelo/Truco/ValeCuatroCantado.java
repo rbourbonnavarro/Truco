@@ -1,17 +1,20 @@
 package fiuba.algo3.truco.modelo.Truco;
 
 import fiuba.algo3.truco.modelo.Envido.*;
+import fiuba.algo3.truco.modelo.EstadoFlor.NoSePuedeCantarFlorException;
 import fiuba.algo3.truco.modelo.EstadoJuego;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 
 public class ValeCuatroCantado implements EstadoJuego {
 
+    @Override
     public int puntos() {
 
         return 4;
 
     }
 
+    @Override
     public int noQuerido() {
 
         return 3;
@@ -40,28 +43,28 @@ public class ValeCuatroCantado implements EstadoJuego {
     }
 
     @Override
-    public void envido() {
+    public EstadoJuego envido() {
 
         throw new NoSePuedeCantarEnvido();
 
     }
 
     @Override
-    public void envidoEnvido() {
+    public EstadoJuego envidoEnvido() {
 
         throw new NoSePuedeCantarEnvidoEnvido();
 
     }
 
     @Override
-    public void realEnvido() {
+    public EstadoJuego realEnvido() {
 
         throw new NoSePuedeCantarRealEnvido();
 
     }
 
     @Override
-    public void faltaEnvido(Puntaje puntos) {
+    public EstadoJuego faltaEnvido(Puntaje puntos) {
 
         throw new NoSePuedeCantarFaltaEnvido();
 
@@ -70,20 +73,44 @@ public class ValeCuatroCantado implements EstadoJuego {
     @Override
     public void flor() {
 
+        throw new NoSePuedeCantarFlorException();
+
     }
 
     @Override
     public void contraFlorAlResto(Puntaje puntos) {
+
+        throw new NoSePuedeCantarFlorException();
 
     }
 
     @Override
     public void contraFlorAlPartido() {
 
+        throw new NoSePuedeCantarFlorException();
+
+    }
+
+    @Override
+    public EstadoJuego terminarTanto() {
+
+        return null;
+
+    }
+
+    @Override
+    public EstadoJuego quiero() {
+
+        return this;
+
     }
 
     @Override
     public boolean equals (Object estado){
+
         return estado instanceof ValeCuatroCantado;
+
     }
+
+
 }

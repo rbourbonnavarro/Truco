@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import fiuba.algo3.truco.modelo.EstadoFlor.JuegoSinFlor;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -12,8 +13,7 @@ import fiuba.algo3.truco.modelo.Equipo;
 import fiuba.algo3.truco.modelo.Jugador;
 import fiuba.algo3.truco.modelo.JugadorNoPieNoPuedeCantarEnvido;
 import fiuba.algo3.truco.modelo.Mesa;
-import fiuba.algo3.truco.modelo.Envido.CalculadorTanto;
-import fiuba.algo3.truco.modelo.Envido.JugadorNoPuedeCantarTantoNoEsPrimeraRonda;
+import fiuba.algo3.truco.modelo.Envido.JugadorNoPuedeCantarTantoNoEsPrimeraVuelta;
 
 public class HacerJugadaTest {
 
@@ -30,8 +30,6 @@ public class HacerJugadaTest {
 	Equipo azules;
 	Equipo rojos;
 	
-	CalculadorTanto calculadorTanto;
-	
 	@Before
 	public void setUp(){
 		
@@ -46,8 +44,8 @@ public class HacerJugadaTest {
 		azules = new Equipo("equipo1", jugadoresEquipo1);
 		rojos = new Equipo("equipo2", jugadoresEquipo2);
 		
-		mesa = new Mesa(azules, rojos, calculadorTanto);
-		//mesa.comenzarJuego();
+		mesa = new Mesa(azules, rojos, new JuegoSinFlor());
+
 	}
 	
 	@Test(expected = JugadorNoPieNoPuedeCantarEnvido.class)
@@ -65,6 +63,7 @@ public class HacerJugadaTest {
 		mesa.envido();
 		mesa.quieroEnvido(false);
 		Assert.assertEquals(mesa.puntaje(azules), 1);
+
 	}
 	
 	@Test
@@ -75,9 +74,10 @@ public class HacerJugadaTest {
 		mesa.quieroTruco(false);
 		Assert.assertEquals(mesa.puntaje(azules), 0);
 		Assert.assertEquals(mesa.puntaje(rojos), 1);
+
 	}
 	
-	@Test(expected = JugadorNoPuedeCantarTantoNoEsPrimeraRonda.class)
+	@Test(expected = JugadorNoPuedeCantarTantoNoEsPrimeraVuelta.class)
 	public void noSePuedeCantarEnvidoDespuesDeLaPrimerRonda(){
 		
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
@@ -85,7 +85,9 @@ public class HacerJugadaTest {
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
 		mesa.envido();
+
 	}
 	
 

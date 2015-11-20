@@ -6,12 +6,16 @@ public class JuegoSinFlor implements EstadoFlor {
 
     @Override
     public int puntos() {
+
         return 0;
+
     }
 
     @Override
     public int noQuerido() {
+
         return 0;
+
     }
 
     @Override

@@ -1,8 +1,20 @@
 package fiuba.algo3.truco.modelo.Envido;
 
+import fiuba.algo3.truco.modelo.EstadoJuego;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
+import fiuba.algo3.truco.modelo.Truco.NoSePuedeCantarRetrucoException;
+import fiuba.algo3.truco.modelo.Truco.NoSePuedeCantarTrucoException;
+import fiuba.algo3.truco.modelo.Truco.NoSePuedeCantarValeCuatroException;
 
-public class EnvidoCantado implements EstadoEnvido {
+public class EnvidoCantado implements EstadoJuego {
+
+    private EstadoJuego estadoPrevio;
+
+    public EnvidoCantado(EstadoJuego estadoPrevio) {
+
+        this.estadoPrevio = estadoPrevio;
+
+    }
 
     @Override
     public int puntos() {
@@ -19,28 +31,88 @@ public class EnvidoCantado implements EstadoEnvido {
     }
 
     @Override
-    public EstadoEnvido envido() {
+    public EstadoJuego truco() {
+
+        throw new NoSePuedeCantarTrucoException();
+
+    }
+
+    @Override
+    public EstadoJuego reTruco() {
+
+        throw new NoSePuedeCantarRetrucoException();
+
+    }
+
+    @Override
+    public EstadoJuego valeCuatro() {
+
+        throw new NoSePuedeCantarValeCuatroException();
+
+    }
+
+    @Override
+    public EstadoJuego envido() {
+
         throw new NoSePuedeCantarEnvido();
+
     }
 
     @Override
-    public EstadoEnvido envidoEnvido() {
-        return new EnvidoEnvidoCantado();
+    public EstadoJuego envidoEnvido() {
+
+        return new EnvidoEnvidoCantado(this);
+
     }
 
     @Override
-    public EstadoEnvido realEnvido() {
-        return new RealEnvidoCantado(this.puntos());
+    public EstadoJuego realEnvido() {
+
+        return new RealEnvidoCantado(this, this.puntos());
+
     }
 
     @Override
-    public EstadoEnvido faltaEnvido(Puntaje puntos) {
-        return new FaltaEnvidoCantado(puntos,this.puntos());
+    public EstadoJuego faltaEnvido(Puntaje puntos) {
+
+        return new FaltaEnvidoCantado(this, puntos, this.puntos());
+
+    }
+
+    @Override
+    public void flor() {
+
+    }
+
+    @Override
+    public void contraFlorAlResto(Puntaje puntos) {
+
+    }
+
+    @Override
+    public void contraFlorAlPartido() {
+
+    }
+
+    @Override
+    public EstadoJuego terminarTanto() {
+
+        return this.estadoPrevio.terminarTanto();
+
+    }
+
+    @Override
+    public EstadoJuego quiero() {
+
+        return new EnvidoQuerido(this);
+
     }
 
     @Override
     public boolean equals(Object estado) {
+
         return estado instanceof EnvidoCantado;
+
     }
 
 

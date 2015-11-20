@@ -6,7 +6,7 @@ import java.util.List;
 import fiuba.algo3.truco.modelo.Envido.CalculadorTanto;
 import fiuba.algo3.truco.modelo.Envido.CantasteEnvidoCuandoTenesFlorException;
 import fiuba.algo3.truco.modelo.EstadoFlor.JuegoSinFlorException;
-import fiuba.algo3.truco.modelo.Envido.JugadorNoPuedeCantarTantoNoEsPrimeraRonda;
+import fiuba.algo3.truco.modelo.Envido.JugadorNoPuedeCantarTantoNoEsPrimeraVuelta;
 
 public class Mano {
 
@@ -23,7 +23,7 @@ public class Mano {
 
     public int flor() throws JuegoSinFlorException {
 
-        if(this.cartasEnMano.size() < 3) throw new JugadorNoPuedeCantarTantoNoEsPrimeraRonda();
+        if(this.cartasEnMano.size() < 3) throw new JugadorNoPuedeCantarTantoNoEsPrimeraVuelta();
 
         return this.calculadorTanto.flor(this.cartasEnMano);
 
@@ -31,7 +31,7 @@ public class Mano {
 
     public int envido() throws CantasteEnvidoCuandoTenesFlorException {
 
-        if(this.cartasEnMano.size() < 3) throw new JugadorNoPuedeCantarTantoNoEsPrimeraRonda();
+        if(this.cartasEnMano.size() < 3) throw new JugadorNoPuedeCantarTantoNoEsPrimeraVuelta();
 
         return this.calculadorTanto.envido(this.cartasEnMano);
 

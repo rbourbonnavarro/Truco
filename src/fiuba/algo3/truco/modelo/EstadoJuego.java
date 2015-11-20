@@ -4,25 +4,33 @@ import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 
 public interface EstadoJuego {
 
+    int puntos();
+
+    int noQuerido();
+
     EstadoJuego truco();
 
     EstadoJuego reTruco();
 
     EstadoJuego valeCuatro();
 
-    void envido();
+    EstadoJuego envido();
 
-    void envidoEnvido();
+    EstadoJuego envidoEnvido();
 
-    void realEnvido();
+    EstadoJuego realEnvido();
 
-    void faltaEnvido(Puntaje puntos);
+    EstadoJuego faltaEnvido(Puntaje puntos);
 
     void flor();
 
     void contraFlorAlResto(Puntaje puntos);
 
     void contraFlorAlPartido();
+
+    EstadoJuego terminarTanto();
+
+    EstadoJuego quiero();
 
 
 }
