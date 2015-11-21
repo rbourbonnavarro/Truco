@@ -3,12 +3,15 @@ package fiuba.algo3.truco.modelo.Jugadas;
 import fiuba.algo3.truco.modelo.Jugadas.Envido.*;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorCantada;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeCantarContraFlorException;
+import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeCantarFlorException;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.NoSePuedeCantarRetrucoException;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.NoSePuedeCantarValeCuatroException;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.TrucoCantado;
 
 public class NadaCantado implements EstadoJuego {
+
+    private boolean tantoCantado = false;
 
     @Override
     public int puntos() {
@@ -27,7 +30,7 @@ public class NadaCantado implements EstadoJuego {
     @Override
     public EstadoJuego truco() {
 
-        return new TrucoCantado();
+        return new TrucoCantado(this.tantoCantado);
     }
 
     @Override
@@ -47,6 +50,8 @@ public class NadaCantado implements EstadoJuego {
     @Override
     public EstadoJuego envido() {
 
+        if(this.tantoCantado) throw new NoSePuedeCantarEnvido();
+
         return new EnvidoCantado(this);
 
     }
@@ -61,6 +66,8 @@ public class NadaCantado implements EstadoJuego {
     @Override
     public EstadoJuego realEnvido() {
 
+        if(this.tantoCantado) throw new NoSePuedeCantarRealEnvido();
+
         return new RealEnvidoCantado(this);
 
     }
@@ -68,12 +75,16 @@ public class NadaCantado implements EstadoJuego {
     @Override
     public EstadoJuego faltaEnvido(Puntaje puntos) {
 
+        if(this.tantoCantado) throw new NoSePuedeCantarFaltaEnvido();
+
         return new FaltaEnvidoCantado(this, puntos);
 
     }
 
     @Override
     public EstadoJuego flor() {
+
+        if(this.tantoCantado) throw new NoSePuedeCantarFlorException();
 
         return new FlorCantada(this);
 
@@ -95,6 +106,8 @@ public class NadaCantado implements EstadoJuego {
 
     @Override
     public EstadoJuego terminarTanto() {
+
+        this.tantoCantado = true;
 
         return this;
 

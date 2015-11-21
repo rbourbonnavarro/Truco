@@ -89,7 +89,7 @@ public class PrimeraVuelta implements EstadoRonda {
 
         if(!this.seJuegaConFlor) throw new JuegoSinFlorException();
 
-        this.estadoJuego.flor();
+        this.estadoJuego = this.estadoJuego.flor();
 
     }
 

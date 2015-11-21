@@ -194,12 +194,16 @@ public class Mesa {
         this.obtenerGanadorEnvido().sumarPuntos(this.estadoRonda.puntos());
         this.estadoRonda.terminarTanto();
 
+        this.intercambiarEquipos();
+
     }
 
     public void noQuieroEnvido(){
 
         this.equipoContrario.sumarPuntos(this.estadoRonda.noQuerido());
         this.estadoRonda.terminarTanto();
+
+        this.intercambiarEquipos();
 
     }
 
@@ -218,6 +222,8 @@ public class Mesa {
         }
 
         this.estadoRonda.terminarTanto();
+
+        this.intercambiarEquipos();
 
     }
 

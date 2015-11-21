@@ -53,6 +53,7 @@ public class HacerJugadaConFlorTest {
 
         Assert.assertEquals(mesa.getJugadorActual().getNombre(), Juan.getNombre());
         mesa.flor();
+        mesa.quieroFlor();
         mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
         Assert.assertEquals(mesa.getJugadorActual().getNombre(),Martin.getNombre());
         mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
