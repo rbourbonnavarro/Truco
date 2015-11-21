@@ -2,7 +2,6 @@ package fiuba.algo3.truco.modelo;
 
 import java.util.*;
 
-import fiuba.algo3.truco.modelo.EstadoFlor.EstadoFlor;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 import fiuba.algo3.truco.modelo.Truco.*;
 
@@ -16,19 +15,16 @@ public class Mesa {
     private Equipo equipoActual;
     private Equipo equipoContrario;
     private Jugador jugadorActual;
-    private Ronda ronda;
     private Mazo mazo;
 
-    public Mesa(Equipo equipo1, Equipo equipo2, EstadoFlor estadoRonda) {
+    public Mesa(Equipo equipo1, Equipo equipo2, boolean seJuegaConFlor) {
 
-        this.estadoRonda = new PrimeraVuelta(estadoRonda);
+        this.estadoRonda = new PrimeraVuelta(seJuegaConFlor);
         this.valoresTruco = new ValoresTruco();
         this.cartasEnMesa = new ArrayDeque<>();
 
         this.equipo1 = equipo1;
         this.equipo2 = equipo2;
-
-        this.ronda= new Ronda();
 
         this.mazo = new Mazo();
 
@@ -230,35 +226,8 @@ public class Mesa {
 
         this.estadoRonda = this.estadoRonda.terminarVuelta();
 
-        try {
-
-            this.ronda.terminar();
-
-        } catch(LaRondaNoTerminoAunException laRondaNoTerminoAunException) {}
-
     }
 
-    /*private void terminarRonda() {
-
-        this.ronda.sumarPuntosEquipoGanador();
-
-        //if(this.ronda.getEquipoGanador().getPuntos() >= 30) this.terminarJuego();
-
-    }*/
-
-    private GanadorVuelta calcularGanadorJugada(Carta cartaEquipoActual, Carta cartaEquipoContrario) {
-
-        if(this.valoresTruco.rankingCarta(cartaEquipoActual) < this.valoresTruco.rankingCarta(cartaEquipoContrario))
-            return new GanadorVuelta(this.equipoActual, cartaEquipoActual);
-        else {
-            if (this.valoresTruco.rankingCarta(cartaEquipoActual) > this.valoresTruco.rankingCarta(cartaEquipoContrario))
-                return new GanadorVuelta(this.equipoContrario, cartaEquipoContrario);
-            else
-                return new Parda(cartaEquipoActual);
-
-        }
-
-    }
     public Equipo getGanadorVuelta() {
 
         return this.estadoRonda.getGanadorVuelta();

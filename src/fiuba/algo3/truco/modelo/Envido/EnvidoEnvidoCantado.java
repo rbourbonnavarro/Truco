@@ -1,5 +1,6 @@
 package fiuba.algo3.truco.modelo.Envido;
 
+import fiuba.algo3.truco.modelo.EstadoFlor.NoSePuedeCantarFlorException;
 import fiuba.algo3.truco.modelo.EstadoJuego;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 import fiuba.algo3.truco.modelo.Truco.NoSePuedeCantarRetrucoException;
@@ -80,17 +81,23 @@ public class EnvidoEnvidoCantado implements EstadoJuego {
     }
 
     @Override
-    public void flor() {
+    public EstadoJuego flor() {
+
+        throw new NoSePuedeCantarFlorException();
 
     }
 
     @Override
-    public void contraFlorAlResto(Puntaje puntos) {
+    public EstadoJuego contraFlorAlResto(Puntaje puntos) {
+
+        throw new NoSePuedeCantarFlorException();
 
     }
 
     @Override
-    public void contraFlorAlPartido() {
+    public EstadoJuego contraFlorAlPartido() {
+
+        throw new NoSePuedeCantarFlorException();
 
     }
 

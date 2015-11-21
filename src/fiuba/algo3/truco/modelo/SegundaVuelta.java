@@ -13,14 +13,14 @@ public class SegundaVuelta implements EstadoRonda {
     private List<Equipo> ganadoresVuelta;
     private Equipo ganadorSegunda;
     private Carta cartaGanadora;
-    private EstadoFlor estadoFlor;
+    private boolean seJuegaConFlor;
 
-    public SegundaVuelta(EstadoJuego estadoJuego, Equipo ganadorPrimera, EstadoFlor estadoFlor) {
+    public SegundaVuelta(EstadoJuego estadoJuego, Equipo ganadorPrimera, boolean seJuegaConFlor) {
 
         this.estadoJuego = estadoJuego;
         this.ganadoresVuelta = new ArrayList<>();
         this.ganadoresVuelta.add(ganadorPrimera);
-        this.estadoFlor = estadoFlor;
+        this.seJuegaConFlor = seJuegaConFlor;
 
     }
 
@@ -129,7 +129,7 @@ public class SegundaVuelta implements EstadoRonda {
 
                 this.ganadoresVuelta.get(0).sumarPuntos(this.estadoJuego.puntos());
 
-                return new PrimeraVuelta(this.estadoFlor);
+                return new PrimeraVuelta(this.seJuegaConFlor);
 
             }
 
@@ -137,7 +137,7 @@ public class SegundaVuelta implements EstadoRonda {
 
         this.ganadoresVuelta.add(ganadorSegunda);
 
-        return new TerceraVuelta(this.estadoJuego, this.ganadoresVuelta, this.estadoFlor);
+        return new TerceraVuelta(this.estadoJuego, this.ganadoresVuelta, this.seJuegaConFlor);
 
     }
 
@@ -178,7 +178,7 @@ public class SegundaVuelta implements EstadoRonda {
 
         equipoGanador.sumarPuntos(puntos);
 
-        return new PrimeraVuelta(this.estadoFlor);
+        return new PrimeraVuelta(this.seJuegaConFlor);
 
     }
 

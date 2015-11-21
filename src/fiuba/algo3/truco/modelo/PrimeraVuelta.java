@@ -1,6 +1,6 @@
 package fiuba.algo3.truco.modelo;
 
-import fiuba.algo3.truco.modelo.EstadoFlor.EstadoFlor;
+import fiuba.algo3.truco.modelo.EstadoFlor.JuegoSinFlorException;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 import fiuba.algo3.truco.modelo.Truco.TrucoCantado;
 
@@ -9,12 +9,12 @@ public class PrimeraVuelta implements EstadoRonda {
     private EstadoJuego estadoJuego;
     private Equipo ganadorPrimera;
     private Carta cartaGanadora;
-    private EstadoFlor estadoFlor;
+    private boolean seJuegaConFlor;
 
-    public PrimeraVuelta(EstadoFlor estadoFlor) {
+    public PrimeraVuelta(boolean seJuegaConFlor) {
 
-        this.estadoJuego = new NadaCantado(estadoFlor);
-        this.estadoFlor = estadoFlor;
+        this.estadoJuego = new NadaCantado();
+        this.seJuegaConFlor = seJuegaConFlor;
 
     }
 
@@ -84,6 +84,8 @@ public class PrimeraVuelta implements EstadoRonda {
     @Override
     public void flor() {
 
+        if(!this.seJuegaConFlor) throw new JuegoSinFlorException();
+
         this.estadoJuego.flor();
 
     }
@@ -91,12 +93,16 @@ public class PrimeraVuelta implements EstadoRonda {
     @Override
     public void contraFlorAlResto(Puntaje puntos) {
 
+        if(!this.seJuegaConFlor) throw new JuegoSinFlorException();
+
         this.estadoJuego.contraFlorAlResto(puntos);
 
     }
 
     @Override
     public void contraFlorAlPartido() {
+
+        if(!this.seJuegaConFlor) throw new JuegoSinFlorException();
 
         this.estadoJuego.contraFlorAlPartido();
 
@@ -133,7 +139,7 @@ public class PrimeraVuelta implements EstadoRonda {
     @Override
     public EstadoRonda terminarVuelta() {
 
-        return new SegundaVuelta(this.estadoJuego, this.ganadorPrimera, this.estadoFlor);
+        return new SegundaVuelta(this.estadoJuego, this.ganadorPrimera, this.seJuegaConFlor);
 
     }
 
@@ -174,7 +180,7 @@ public class PrimeraVuelta implements EstadoRonda {
 
         equipoGanador.sumarPuntos(puntos);
 
-        return new PrimeraVuelta(this.estadoFlor);
+        return new PrimeraVuelta(this.seJuegaConFlor);
 
     }
 

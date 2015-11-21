@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import fiuba.algo3.truco.modelo.Envido.NoSePuedeCantarEnvido;
-import fiuba.algo3.truco.modelo.EstadoFlor.JuegoSinFlor;
 import fiuba.algo3.truco.modelo.EstadoFlor.JuegoSinFlorException;
 import org.junit.Assert;
 import org.junit.Before;
@@ -45,8 +43,10 @@ public class HacerJugadaTest {
 		
 		azules = new Equipo("equipo1", jugadoresEquipo1);
 		rojos = new Equipo("equipo2", jugadoresEquipo2);
+
+		boolean seJuegaConFlor = false;
 		
-		mesa = new Mesa(azules, rojos, new JuegoSinFlor());
+		mesa = new Mesa(azules, rojos, seJuegaConFlor);
 
 	}
 	

@@ -6,7 +6,6 @@ import java.util.LinkedList;
 import java.util.List;
 
 import fiuba.algo3.truco.modelo.*;
-import fiuba.algo3.truco.modelo.EstadoFlor.JuegoSinFlor;
 import fiuba.algo3.truco.modelo.Palo.Basto;
 import fiuba.algo3.truco.modelo.Palo.Espada;
 import fiuba.algo3.truco.modelo.Palo.Oro;
@@ -36,7 +35,9 @@ public class ComenzarNadaCantadoTest {
 		equipo1 = new Equipo("equipo1", jugadoresEquipo1);
 		equipo2 = new Equipo("equipo2", jugadoresEquipo2);
 
-		mesa = new Mesa(equipo1, equipo2, new JuegoSinFlor());
+		boolean seJuegaConFlor = false;
+
+		mesa = new Mesa(equipo1, equipo2, seJuegaConFlor);
 
 	}
 	
@@ -105,7 +106,9 @@ public class ComenzarNadaCantadoTest {
 		equipo1 = new Equipo("equipo1", jugadoresEquipo1);
 		equipo2 = new Equipo("equipo2", jugadoresEquipo2);
 
-		mesa = new Mesa(equipo1, equipo2, new JuegoSinFlor());
+		boolean seJuegaConFlor = false;
+
+		mesa = new Mesa(equipo1, equipo2, seJuegaConFlor);
 
 		Carta carta1 = new Carta(7,new Espada());
 		Carta carta2 = new Carta(7,new Basto());
@@ -152,7 +155,9 @@ public class ComenzarNadaCantadoTest {
 		equipo1 = new Equipo("equipo1", jugadoresEquipo1);
 		equipo2 = new Equipo("equipo2", jugadoresEquipo2);
 
-		mesa = new Mesa(equipo1, equipo2, new JuegoSinFlor());
+		boolean seJuegaConFlor = false;
+
+		mesa = new Mesa(equipo1, equipo2, seJuegaConFlor);
 
 		Carta carta1 = new Carta(7,new Espada());
 		Carta carta2 = new Carta(7,new Basto());

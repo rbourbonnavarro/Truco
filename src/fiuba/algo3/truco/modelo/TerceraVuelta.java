@@ -13,13 +13,13 @@ public class TerceraVuelta implements EstadoRonda {
     private List<Equipo> ganadoresVuelta;
     private Equipo ganadorTercera;
     private Carta cartaGanadora;
-    private EstadoFlor estadoFlor;
+    private boolean seJuegaConFlor;
 
-    public TerceraVuelta(EstadoJuego estadoJuego, List<Equipo> ganadoresVuelta, EstadoFlor estadoFlor) {
+    public TerceraVuelta(EstadoJuego estadoJuego, List<Equipo> ganadoresVuelta, boolean seJuegaConFlor) {
 
         this.estadoJuego = estadoJuego;
         this.ganadoresVuelta = new ArrayList<>(ganadoresVuelta);
-        this.estadoFlor = estadoFlor;
+        this.seJuegaConFlor = seJuegaConFlor;
 
     }
 
@@ -122,7 +122,7 @@ public class TerceraVuelta implements EstadoRonda {
 
             this.ganadoresVuelta.get(2).sumarPuntos(this.estadoJuego.puntos());
 
-            return new PrimeraVuelta(this.estadoFlor);
+            return new PrimeraVuelta(this.seJuegaConFlor);
 
 
         } catch(NullPointerException nullPointerException) {
@@ -131,11 +131,11 @@ public class TerceraVuelta implements EstadoRonda {
 
                 this.ganadoresVuelta.get(0).sumarPuntos(this.estadoJuego.puntos());
 
-                return new PrimeraVuelta(this.estadoFlor);
+                return new PrimeraVuelta(this.seJuegaConFlor);
 
             } catch(NullPointerException e) {
 
-                return new PrimeraVuelta(this.estadoFlor);
+                return new PrimeraVuelta(this.seJuegaConFlor);
 
             }
 
@@ -180,7 +180,7 @@ public class TerceraVuelta implements EstadoRonda {
 
         equipoGanador.sumarPuntos(puntos);
 
-        return new PrimeraVuelta(this.estadoFlor);
+        return new PrimeraVuelta(this.seJuegaConFlor);
 
     }
 

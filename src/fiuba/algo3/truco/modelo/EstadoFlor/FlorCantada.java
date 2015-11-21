@@ -94,14 +94,14 @@ public class FlorCantada implements EstadoJuego {
     @Override
     public EstadoJuego contraFlorAlResto(Puntaje puntos) {
 
-        throw new NoSePuedeCantarContraFlorException();
+        return new ContraFlorAlRestoCantada(this, puntos, this.puntos());
 
     }
 
     @Override
     public EstadoJuego contraFlorAlPartido() {
 
-        throw new NoSePuedeCantarContraFlorException();
+        return new ContraFlorAlPartidoCantado(this);
 
     }
 
