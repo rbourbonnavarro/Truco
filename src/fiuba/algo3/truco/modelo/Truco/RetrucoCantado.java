@@ -1,7 +1,6 @@
 package fiuba.algo3.truco.modelo.Truco;
 
 import fiuba.algo3.truco.modelo.Envido.*;
-import fiuba.algo3.truco.modelo.EstadoFlor.EstadoFlor;
 import fiuba.algo3.truco.modelo.EstadoFlor.NoSePuedeCantarFlorException;
 import fiuba.algo3.truco.modelo.EstadoJuego;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
