@@ -178,5 +178,4 @@ public class HacerJugadaTest {
 				mesa.puntaje(rojos) == 30 && mesa.puntaje(azules) == 0);
 	}
 	
-	
 }
