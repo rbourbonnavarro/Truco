@@ -164,6 +164,19 @@ public class HacerJugadaTest {
 		Assert.assertEquals(mesa.puntaje(azules), 1);
 		Assert.assertEquals(mesa.puntaje(rojos), 0);
 	}
+	 
+	@Test
+	public void faltaEnvidoQueridaTerminaElJuego(){
+		
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		mesa.faltaEnvido();
+		mesa.quieroEnvido(true);
+		Assert.assertTrue(
+				mesa.puntaje(rojos) == 0 && mesa.puntaje(azules) == 30
+				||
+				mesa.puntaje(rojos) == 30 && mesa.puntaje(azules) == 0);
+	}
 	
 	
 }
