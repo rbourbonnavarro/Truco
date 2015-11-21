@@ -1,7 +1,7 @@
 package fiuba.algo3.truco.modelo;
 
 import fiuba.algo3.truco.modelo.Palo.Palo;
-import fiuba.algo3.truco.modelo.Truco.ValoresTruco;
+import fiuba.algo3.truco.modelo.Jugadas.Truco.ValoresTruco;
 
 public class Carta {
 

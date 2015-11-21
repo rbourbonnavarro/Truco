@@ -2,7 +2,7 @@ package fiuba.algo3.truco.modelo;
 
 import java.util.List;
 
-import fiuba.algo3.truco.modelo.Envido.CantasteEnvidoCuandoTenesFlorException;
+import fiuba.algo3.truco.modelo.Jugadas.Envido.CantasteEnvidoCuandoTenesFlorException;
 
 public class Jugador {
 

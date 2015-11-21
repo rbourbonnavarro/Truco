@@ -1,6 +1,6 @@
 package fiuba.algo3.truco.tests.Mesa;
 
-import fiuba.algo3.truco.modelo.Envido.NoSePuedeCantarEnvido;
+import fiuba.algo3.truco.modelo.Jugadas.Envido.NoSePuedeCantarEnvido;
 import fiuba.algo3.truco.modelo.Equipo;
 import fiuba.algo3.truco.modelo.Jugador;
 import fiuba.algo3.truco.modelo.Mesa;

@@ -1,15 +1,13 @@
 package fiuba.algo3.truco.tests;
 
 import fiuba.algo3.truco.modelo.*;
-import fiuba.algo3.truco.modelo.Envido.*;
-import fiuba.algo3.truco.modelo.EstadoFlor.JuegoSinFlorException;
+import fiuba.algo3.truco.modelo.Jugadas.Envido.*;
+import fiuba.algo3.truco.modelo.Jugadas.Flor.JuegoSinFlorException;
 import fiuba.algo3.truco.modelo.Palo.*;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Arrays;
-import java.util.List;
 
 
 public class ManoTest {

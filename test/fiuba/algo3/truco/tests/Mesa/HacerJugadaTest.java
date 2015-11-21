@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import fiuba.algo3.truco.modelo.EstadoFlor.JuegoSinFlorException;
+import fiuba.algo3.truco.modelo.Jugadas.Flor.JuegoSinFlorException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -13,7 +13,7 @@ import fiuba.algo3.truco.modelo.Equipo;
 import fiuba.algo3.truco.modelo.Jugador;
 import fiuba.algo3.truco.modelo.JugadorNoPieNoPuedeCantarEnvido;
 import fiuba.algo3.truco.modelo.Mesa;
-import fiuba.algo3.truco.modelo.Envido.JugadorNoPuedeCantarTantoNoEsPrimeraVuelta;
+import fiuba.algo3.truco.modelo.Jugadas.Envido.JugadorNoPuedeCantarTantoNoEsPrimeraVuelta;
 
 public class HacerJugadaTest {
 

@@ -2,9 +2,11 @@ package fiuba.algo3.truco.modelo;
 
 import java.util.*;
 
-import fiuba.algo3.truco.modelo.EstadoFlor.LaFlorNoPuedeQuererseException;
+import fiuba.algo3.truco.modelo.Jugadas.Flor.LaFlorNoPuedeQuererseException;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
-import fiuba.algo3.truco.modelo.Truco.*;
+import fiuba.algo3.truco.modelo.Ronda.EstadoRonda;
+import fiuba.algo3.truco.modelo.Ronda.PrimeraVuelta;
+import fiuba.algo3.truco.modelo.Jugadas.Truco.*;
 
 public class Mesa {
 
