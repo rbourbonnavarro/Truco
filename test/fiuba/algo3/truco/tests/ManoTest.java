@@ -58,17 +58,6 @@ public class ManoTest {
 
     }
 
-    @Test (expected = CantasteEnvidoCuandoTenesFlorException.class)
-    public void Test9TengoFlorSeJuegaConFlorYCantoEnvidoLanzaExcepcion() throws CantasteEnvidoCuandoTenesFlorException {
-
-        Carta carta1 = new Figura(12, new Espada());
-        Carta carta2 = new Carta (7, new Espada());
-        Carta carta3 = new Carta (3, new Espada());
-        mano = new Mano(Arrays.asList(carta1 , carta2, carta3));
-        mano.envido();
-
-    }
-
     @Test
     public void Test10NoTengoFlorSeJuegaConFlorEntoncesEnvidoDevuelveElTanto() throws CantasteEnvidoCuandoTenesFlorException {
 
@@ -110,17 +99,6 @@ public class ManoTest {
         Carta carta3 = new Figura (10, new Espada());
         mano = new Mano(Arrays.asList(carta1 , carta2, carta3));
         Assert.assertEquals(mano.flor(),20);
-
-    }
-
-    @Test(expected = JuegoSinFlorException.class)
-    public void Test14FlorLanzaExcepcionSiSeJuegaSinFlor() throws JuegoSinFlorException {
-
-        Carta carta1 = new Figura(12, new Espada());
-        Carta carta2 = new Figura (11, new Espada());
-        Carta carta3 = new Figura (10, new Espada());
-        mano = new Mano(Arrays.asList(carta1 , carta2, carta3));
-        mano.flor();
 
     }
 
