@@ -130,7 +130,6 @@ public class Mesa {
     public void flor() {
 
         this.equipoActual.flor();
-
     	this.estadoRonda.flor();
         this.intercambiarEquipos();
 
