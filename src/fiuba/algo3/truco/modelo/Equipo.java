@@ -107,9 +107,25 @@ public class Equipo {
 
     public void flor() {
 
+        int noTienenFlor = 0;
+
         for(Jugador jugador : this.integrantes) {
 
-            jugador.flor();
+            try {
+
+                jugador.flor();
+
+            } catch(JugadorNoTieneFlorException jugadorNoTieneFlorException) {
+
+                noTienenFlor++;
+
+            }
+
+        }
+
+        if(noTienenFlor == 3) {
+
+            throw new JugadorNoTieneFlorException();
 
         }
 
