@@ -1,5 +1,6 @@
 package fiuba.algo3.truco.modelo.Jugada;
 
+import fiuba.algo3.truco.modelo.Jugada.Truco.GanadorVuelta;
 import fiuba.algo3.truco.modelo.Jugador;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 
@@ -21,10 +22,7 @@ public interface EstadoVuelta {
     void contraFlorAlPartido();
 
     int trucoNoQuerido();
-
+    int trucoQuerido();
     int envidoNoQuerido();
-
     int envidoQuerido();
-
-    int TrucoQuerido();
 }

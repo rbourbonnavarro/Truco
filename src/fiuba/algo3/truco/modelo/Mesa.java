@@ -6,9 +6,7 @@ import java.util.Deque;
 import java.util.List;
 
 import fiuba.algo3.truco.modelo.Jugada.Envido.CalculadorTanto;
-import fiuba.algo3.truco.modelo.Jugada.Envido.EnvidoNoCantado;
 import fiuba.algo3.truco.modelo.Jugada.Envido.JugadorNoPuedeCantarTantoNoEsPrimeraRonda;
-import fiuba.algo3.truco.modelo.Jugada.EstadoFlor.FlorNoCantada;
 import fiuba.algo3.truco.modelo.Jugada.EstadoVuelta;
 import fiuba.algo3.truco.modelo.Jugada.PrimeraVuelta;
 import fiuba.algo3.truco.modelo.Mazo.Mazo;
@@ -238,7 +236,7 @@ public class Mesa {
 
         this.ronda.setGanadorVuelta(this.resultadoGanadorVuelta);
 
-        this.ronda.agregarPuntosRonda(this.estadoVuelta.TrucoQuerido());
+        this.ronda.agregarPuntosRonda(this.estadoVuelta.trucoQuerido());
 
         try {
 

@@ -96,7 +96,7 @@ public class PrimeraVuelta implements EstadoVuelta {
     }
 
     @Override
-    public int TrucoQuerido() {
+    public int trucoQuerido() {
         return this.truco.puntos();
     }
 }
