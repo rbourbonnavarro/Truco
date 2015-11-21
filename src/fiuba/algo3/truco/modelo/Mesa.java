@@ -2,7 +2,7 @@ package fiuba.algo3.truco.modelo;
 
 import java.util.*;
 
-import fiuba.algo3.truco.modelo.Jugadas.Flor.LaFlorNoPuedeQuererseException;
+import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeQuererFlorException;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 import fiuba.algo3.truco.modelo.Ronda.EstadoRonda;
 import fiuba.algo3.truco.modelo.Ronda.PrimeraVuelta;
@@ -214,7 +214,7 @@ public class Mesa {
 
             this.obtenerGanadorFlor().sumarPuntos(this.estadoRonda.puntos());
 
-        } catch(LaFlorNoPuedeQuererseException laFlorNoPuedeQuererseException) {
+        } catch(NoSePuedeQuererFlorException noSePuedeQuererFlorException) {
 
             this.equipoContrario.sumarPuntos(this.estadoRonda.puntos());
 
