@@ -1,18 +1,25 @@
 package fiuba.algo3.truco.modelo;
 
+import fiuba.algo3.truco.modelo.Envido.*;
 import fiuba.algo3.truco.modelo.EstadoFlor.EstadoFlor;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 
-public class PrimeraVuelta implements EstadoRonda {
+import java.util.ArrayList;
+import java.util.List;
+
+public class SegundaVuelta implements EstadoRonda {
 
     private EstadoJuego estadoJuego;
-    private Equipo ganadorPrimera;
+    private List<Equipo> ganadoresVuelta;
+    private Equipo ganadorSegunda;
     private Carta cartaGanadora;
     private EstadoFlor estadoFlor;
 
-    public PrimeraVuelta(EstadoFlor estadoFlor) {
+    public SegundaVuelta(EstadoJuego estadoJuego, Equipo ganadorPrimera, EstadoFlor estadoFlor) {
 
-        this.estadoJuego = new NadaCantado(estadoFlor);
+        this.estadoJuego = estadoJuego;
+        this.ganadoresVuelta = new ArrayList<>();
+        this.ganadoresVuelta.add(ganadorPrimera);
         this.estadoFlor = estadoFlor;
 
     }
@@ -41,56 +48,54 @@ public class PrimeraVuelta implements EstadoRonda {
     @Override
     public void envido() {
 
-        this.estadoJuego = this.estadoJuego.envido();
+        throw new JugadorNoPuedeCantarTantoNoEsPrimeraVuelta();
 
     }
 
     @Override
     public void envidoEnvido() {
 
-        this.estadoJuego = this.estadoJuego.envidoEnvido();
+        throw new JugadorNoPuedeCantarTantoNoEsPrimeraVuelta();
 
     }
 
     @Override
     public void realEnvido() {
 
-        this.estadoJuego = this.estadoJuego.realEnvido();
+        throw new JugadorNoPuedeCantarTantoNoEsPrimeraVuelta();
 
     }
 
     @Override
     public void faltaEnvido(Puntaje puntos) {
 
-        this.estadoJuego = this.estadoJuego.faltaEnvido(puntos);
+        throw new JugadorNoPuedeCantarTantoNoEsPrimeraVuelta();
 
     }
 
     @Override
     public void flor() {
 
-        this.estadoJuego.flor();
+        throw new JugadorNoPuedeCantarTantoNoEsPrimeraVuelta();
 
     }
 
     @Override
     public void contraFlorAlResto(Puntaje puntos) {
 
-        this.estadoJuego.contraFlorAlResto(puntos);
+        throw new JugadorNoPuedeCantarTantoNoEsPrimeraVuelta();
 
     }
 
     @Override
     public void contraFlorAlPartido() {
 
-        this.estadoJuego.contraFlorAlPartido();
+        throw new JugadorNoPuedeCantarTantoNoEsPrimeraVuelta();
 
     }
 
     @Override
     public void terminarTanto() {
-
-        this.estadoJuego = this.estadoJuego.terminarTanto();
 
     }
 
@@ -118,7 +123,21 @@ public class PrimeraVuelta implements EstadoRonda {
     @Override
     public EstadoRonda terminarVuelta() {
 
-        return new SegundaVuelta(this.estadoJuego, this.ganadorPrimera, this.estadoFlor);
+        try {
+
+            if (ganadoresVuelta.get(0) == ganadoresVuelta.get(1)) {
+
+                this.ganadoresVuelta.get(0).sumarPuntos(this.estadoJuego.puntos());
+
+                return new PrimeraVuelta(this.estadoFlor);
+
+            }
+
+        } catch(NullPointerException nullPointerException) {}
+
+        this.ganadoresVuelta.add(ganadorSegunda);
+
+        return new TerceraVuelta(this.estadoJuego, this.ganadoresVuelta, this.estadoFlor);
 
     }
 
@@ -129,18 +148,18 @@ public class PrimeraVuelta implements EstadoRonda {
 
             if(this.cartaGanadora.truco(carta) < 0) {
 
-                this.ganadorPrimera = equipoActual;
+                this.ganadorSegunda = equipoActual;
                 this.cartaGanadora = carta;
 
             } else {
 
                 if(this.cartaGanadora.truco(carta) > 0) {
 
-                    this.ganadorPrimera = equipoContrario;
+                    this.ganadorSegunda = equipoContrario;
 
                 } else {
 
-                    this.ganadorPrimera = null;
+                    this.ganadorSegunda = null;
 
                 }
 
@@ -166,7 +185,7 @@ public class PrimeraVuelta implements EstadoRonda {
     @Override
     public Equipo getGanadorVuelta() {
 
-        return null;
+        return this.ganadoresVuelta.get(0);
 
     }
 

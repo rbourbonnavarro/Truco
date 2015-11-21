@@ -34,7 +34,11 @@ public interface EstadoRonda {
 
     EstadoRonda terminarVuelta();
 
-    void calcularGanadorJugada(Equipo equipo, Carta carta);
+    void calcularGanadorJugada(Equipo equipoActual, Equipo equipoContrario, Carta carta);
+
+    EstadoRonda terminar(Equipo equipoGanador, int puntos);
+
+    Equipo getGanadorVuelta();
 
 
 }

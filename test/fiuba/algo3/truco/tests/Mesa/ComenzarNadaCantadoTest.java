@@ -89,7 +89,7 @@ public class ComenzarNadaCantadoTest {
 
 		mesa.hacerJugada(carta1);
 		mesa.hacerJugada(carta4);
-		Assert.assertEquals("equipo1", mesa.getGanadorVuelta().getEquipoGanador().getNombre());
+		Assert.assertEquals("equipo1", mesa.getGanadorVuelta().getNombre());
 
 	}
 
@@ -134,7 +134,7 @@ public class ComenzarNadaCantadoTest {
 		mesa.hacerJugada(carta4);
 		mesa.hacerJugada(carta7);
 		mesa.hacerJugada(carta11);
-		Assert.assertEquals("equipo2", mesa.getGanadorVuelta().getEquipoGanador().getNombre());
+		Assert.assertEquals("equipo2", mesa.getGanadorVuelta().getNombre());
 
 	}
 
@@ -193,7 +193,7 @@ public class ComenzarNadaCantadoTest {
 		mesa.hacerJugada(carta11);
 		mesa.hacerJugada(carta13);
 		mesa.hacerJugada(carta18);
-		Assert.assertEquals("equipo1", mesa.getGanadorVuelta().getEquipoGanador().getNombre());
+		Assert.assertEquals("equipo1", mesa.getGanadorVuelta().getNombre());
 
 	}
 

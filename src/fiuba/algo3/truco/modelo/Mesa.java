@@ -16,7 +16,6 @@ public class Mesa {
     private Equipo equipoActual;
     private Equipo equipoContrario;
     private Jugador jugadorActual;
-    private GanadorVuelta resultadoGanadorVuelta;
     private Ronda ronda;
     private Mazo mazo;
 
@@ -72,7 +71,7 @@ public class Mesa {
             this.cartasEnMesa.add(carta);
             this.jugadorActual.jugar(carta);
 
-            this.estadoRonda.calcularGanadorJugada(this.equipoActual, carta);
+            this.estadoRonda.calcularGanadorJugada(this.equipoActual, this.equipoContrario, carta);
 
             this.terminarJugada();
 
@@ -176,11 +175,9 @@ public class Mesa {
 
         if(!quiero) {
 
-            this.ronda.agregarPuntosRonda(this.estadoRonda.noQuerido());
+            this.estadoRonda = this.estadoRonda.terminar(this.equipoContrario, this.estadoRonda.noQuerido());
 
-            this.ronda.setEquipoGanador(this.equipoContrario);
-
-            this.ronda.terminar();
+            return;
 
         }
 
@@ -202,6 +199,7 @@ public class Mesa {
             this.obtenerGanadorEnvido().sumarPuntos(this.estadoRonda.puntos());
 
         }
+
     }
 
     private Equipo obtenerGanadorEnvido() {
@@ -229,10 +227,6 @@ public class Mesa {
     }
 
     private void terminarVuelta() {
-
-        this.ronda.setGanadorVuelta(this.resultadoGanadorVuelta);
-
-        this.ronda.agregarPuntosRonda(this.estadoRonda.puntos());
 
         this.estadoRonda = this.estadoRonda.terminarVuelta();
 
@@ -265,8 +259,10 @@ public class Mesa {
         }
 
     }
-    public GanadorVuelta getGanadorVuelta (){
-        return resultadoGanadorVuelta;
+    public Equipo getGanadorVuelta() {
+
+        return this.estadoRonda.getGanadorVuelta();
+
     }
 
 

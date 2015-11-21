@@ -1,18 +1,24 @@
 package fiuba.algo3.truco.modelo;
 
+import fiuba.algo3.truco.modelo.Envido.JugadorNoPuedeCantarTantoNoEsPrimeraVuelta;
 import fiuba.algo3.truco.modelo.EstadoFlor.EstadoFlor;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 
-public class PrimeraVuelta implements EstadoRonda {
+import java.util.ArrayList;
+import java.util.List;
+
+public class TerceraVuelta implements EstadoRonda {
 
     private EstadoJuego estadoJuego;
-    private Equipo ganadorPrimera;
+    private List<Equipo> ganadoresVuelta;
+    private Equipo ganadorTercera;
     private Carta cartaGanadora;
     private EstadoFlor estadoFlor;
 
-    public PrimeraVuelta(EstadoFlor estadoFlor) {
+    public TerceraVuelta(EstadoJuego estadoJuego, List<Equipo> ganadoresVuelta, EstadoFlor estadoFlor) {
 
-        this.estadoJuego = new NadaCantado(estadoFlor);
+        this.estadoJuego = estadoJuego;
+        this.ganadoresVuelta = new ArrayList<>(ganadoresVuelta);
         this.estadoFlor = estadoFlor;
 
     }
@@ -41,56 +47,54 @@ public class PrimeraVuelta implements EstadoRonda {
     @Override
     public void envido() {
 
-        this.estadoJuego = this.estadoJuego.envido();
+        throw new JugadorNoPuedeCantarTantoNoEsPrimeraVuelta();
 
     }
 
     @Override
     public void envidoEnvido() {
 
-        this.estadoJuego = this.estadoJuego.envidoEnvido();
+        throw new JugadorNoPuedeCantarTantoNoEsPrimeraVuelta();
 
     }
 
     @Override
     public void realEnvido() {
 
-        this.estadoJuego = this.estadoJuego.realEnvido();
+        throw new JugadorNoPuedeCantarTantoNoEsPrimeraVuelta();
 
     }
 
     @Override
     public void faltaEnvido(Puntaje puntos) {
 
-        this.estadoJuego = this.estadoJuego.faltaEnvido(puntos);
+        throw new JugadorNoPuedeCantarTantoNoEsPrimeraVuelta();
 
     }
 
     @Override
     public void flor() {
 
-        this.estadoJuego.flor();
+        throw new JugadorNoPuedeCantarTantoNoEsPrimeraVuelta();
 
     }
 
     @Override
     public void contraFlorAlResto(Puntaje puntos) {
 
-        this.estadoJuego.contraFlorAlResto(puntos);
+        throw new JugadorNoPuedeCantarTantoNoEsPrimeraVuelta();
 
     }
 
     @Override
     public void contraFlorAlPartido() {
 
-        this.estadoJuego.contraFlorAlPartido();
+        throw new JugadorNoPuedeCantarTantoNoEsPrimeraVuelta();
 
     }
 
     @Override
     public void terminarTanto() {
-
-        this.estadoJuego = this.estadoJuego.terminarTanto();
 
     }
 
@@ -103,22 +107,39 @@ public class PrimeraVuelta implements EstadoRonda {
 
     @Override
     public int puntos() {
-
-        return this.estadoJuego.puntos();
-
+        return 0;
     }
 
     @Override
     public int noQuerido() {
-
-        return this.estadoJuego.noQuerido();
-
+        return 0;
     }
 
     @Override
     public EstadoRonda terminarVuelta() {
 
-        return new SegundaVuelta(this.estadoJuego, this.ganadorPrimera, this.estadoFlor);
+        try {
+
+            this.ganadoresVuelta.get(2).sumarPuntos(this.estadoJuego.puntos());
+
+            return new PrimeraVuelta(this.estadoFlor);
+
+
+        } catch(NullPointerException nullPointerException) {
+
+            try {
+
+                this.ganadoresVuelta.get(0).sumarPuntos(this.estadoJuego.puntos());
+
+                return new PrimeraVuelta(this.estadoFlor);
+
+            } catch(NullPointerException e) {
+
+                return new PrimeraVuelta(this.estadoFlor);
+
+            }
+
+        }
 
     }
 
@@ -129,18 +150,18 @@ public class PrimeraVuelta implements EstadoRonda {
 
             if(this.cartaGanadora.truco(carta) < 0) {
 
-                this.ganadorPrimera = equipoActual;
+                this.ganadorTercera = equipoActual;
                 this.cartaGanadora = carta;
 
             } else {
 
                 if(this.cartaGanadora.truco(carta) > 0) {
 
-                    this.ganadorPrimera = equipoContrario;
+                    this.ganadorTercera = equipoContrario;
 
                 } else {
 
-                    this.ganadorPrimera = null;
+                    this.ganadorTercera = null;
 
                 }
 
@@ -166,7 +187,7 @@ public class PrimeraVuelta implements EstadoRonda {
     @Override
     public Equipo getGanadorVuelta() {
 
-        return null;
+        return this.ganadoresVuelta.get(1);
 
     }
 

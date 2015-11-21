@@ -1,5 +1,6 @@
 package fiuba.algo3.truco.modelo;
 
+import fiuba.algo3.truco.modelo.EstadoFlor.EstadoFlor;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 
 public interface EstadoJuego {
