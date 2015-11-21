@@ -1,9 +1,6 @@
 package fiuba.algo3.truco.modelo;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.List;
+import java.util.*;
 
 import fiuba.algo3.truco.modelo.EstadoFlor.EstadoFlor;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
@@ -48,19 +45,13 @@ public class Mesa {
 
         this.mazo.repartir(jugadores);
 
-        this.resultadoGanadorVuelta = new GanadorVuelta(this.equipoActual, this.jugadorActual.obtenerCartas().get(0));
-
     }
 
     public List<Carta> getCartasDelJugadorActual(){
+
         return this.jugadorActual.obtenerCartas();
+
     }
-
-    /*public void comenzarJuego() {
-
-
-
-    }*/
 
     public Jugador getJugadorActual() {
 
@@ -69,7 +60,9 @@ public class Mesa {
     }
     
     public int puntaje(Equipo equipo){
+
     	return equipo.getPuntos();
+
     }
 
     public void hacerJugada(Carta carta) throws NoHayCartasParaJugar {
@@ -79,11 +72,7 @@ public class Mesa {
             this.cartasEnMesa.add(carta);
             this.jugadorActual.jugar(carta);
 
-            if (this.cartasEnMesa.size() > 0) {
-
-                this.resultadoGanadorVuelta = this.calcularGanadorJugada(carta, this.resultadoGanadorVuelta.getCarta());
-
-            }
+            this.estadoRonda.calcularGanadorJugada(this.equipoActual, carta);
 
             this.terminarJugada();
 

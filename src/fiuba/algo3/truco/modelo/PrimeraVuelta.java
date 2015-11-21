@@ -2,10 +2,16 @@ package fiuba.algo3.truco.modelo;
 
 import fiuba.algo3.truco.modelo.EstadoFlor.EstadoFlor;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
+import fiuba.algo3.truco.modelo.Truco.GanadorVuelta;
+import fiuba.algo3.truco.modelo.Truco.Parda;
+
+import java.util.List;
 
 public class PrimeraVuelta implements EstadoRonda {
 
     private EstadoJuego estadoJuego;
+    private List<Equipo> equipoGanadorRonda;
+    private Carta cartaGanadora;
 
     public PrimeraVuelta(EstadoFlor estadoFlor) {
 
@@ -115,6 +121,28 @@ public class PrimeraVuelta implements EstadoRonda {
     public EstadoRonda terminarVuelta() {
 
         return new SegundaTerceraVuelta(this.estadoJuego);
+
+    }
+
+    @Override
+    public void calcularGanadorJugada(Equipo equipo, Carta carta) {
+
+        if(this.cartaGanadora.truco(carta) > 0) {
+
+            this.equipoGanadorRonda.add(equipo);
+            this.cartaGanadora = carta;
+
+        } else {
+
+            if (this.valoresTruco.rankingCarta(carta) == this.valoresTruco.rankingCarta(this.cartaGanadora))
+                return new GanadorVuelta(this.equipoContrario, cartaEquipoContrario);
+            else
+                return new Parda(cartaEquipoActual);
+
+        }
+
+        this.equipoGanadorRonda.add(equipo);
+        this.cartaGanadora = carta;
 
     }
 
