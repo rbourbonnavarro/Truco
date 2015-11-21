@@ -71,7 +71,7 @@ public class Equipo {
 
         for(Jugador jugador : this.integrantes) {
 
-            envido = (jugador.envido() > envido) ? jugador.envido() : envido;
+            envido = Math.max(jugador.envido(), envido);
 
         }
 
@@ -85,7 +85,7 @@ public class Equipo {
 
         for(Jugador jugador : this.integrantes) {
 
-            flor = Math.max(jugador.calcularFlor(),flor);
+            flor = Math.max(jugador.calcularFlor(), flor);
 
         }
 
@@ -102,6 +102,16 @@ public class Equipo {
     public String getNombre() {
 
         return this.nombre;
+
+    }
+
+    public void flor() {
+
+        for(Jugador jugador : this.integrantes) {
+
+            jugador.flor();
+
+        }
 
     }
 

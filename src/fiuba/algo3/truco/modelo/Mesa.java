@@ -129,7 +129,7 @@ public class Mesa {
 
     public void flor() {
 
-        this.jugadorActual.flor();
+        this.equipoActual.flor();
 
     	this.estadoRonda.flor();
         this.intercambiarEquipos();
@@ -138,7 +138,7 @@ public class Mesa {
 
     public void contraFlorAlResto(){
 
-        this.jugadorActual.flor();
+        this.equipoActual.flor();
 
         Puntaje puntosEnJuego = this.obtenerMayorPuntaje();
         this.estadoRonda.contraFlorAlResto(puntosEnJuego);
@@ -148,7 +148,7 @@ public class Mesa {
 
     public void contraFlorAlPartido(){
 
-        this.jugadorActual.flor();
+        this.equipoActual.flor();
 
         this.estadoRonda.contraFlorAlPartido();
         this.intercambiarEquipos();
@@ -175,24 +175,30 @@ public class Mesa {
         this.intercambiarEquipos();
 
     }
-    public void noQuieroTruco() {
-        this.estadoRonda = this.estadoRonda.terminar(this.equipoContrario, this.estadoRonda.noQuerido());
-    }
 
     public void quieroTruco() {
 
         this.estadoRonda.quiero();
         this.intercambiarEquipos();
+
     }
 
-    public void noQuieroEnvido(){
-        this.equipoContrario.sumarPuntos(this.estadoRonda.noQuerido());
-        this.estadoRonda.terminarTanto();
+    public void noQuieroTruco() {
+
+        this.estadoRonda = this.estadoRonda.terminar(this.equipoContrario, this.estadoRonda.noQuerido());
+
     }
 
     public void quieroEnvido() {
 
         this.obtenerGanadorEnvido().sumarPuntos(this.estadoRonda.puntos());
+        this.estadoRonda.terminarTanto();
+
+    }
+
+    public void noQuieroEnvido(){
+
+        this.equipoContrario.sumarPuntos(this.estadoRonda.noQuerido());
         this.estadoRonda.terminarTanto();
 
     }
