@@ -108,7 +108,6 @@ public class HacerJugadaTest {
 		mesa.noQuieroEnvido();
 		Assert.assertEquals(mesa.puntaje(azules), 0);
 		Assert.assertEquals(mesa.puntaje(rojos), 2);
-
 	}
 
 	@Test

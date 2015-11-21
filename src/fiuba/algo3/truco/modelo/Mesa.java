@@ -172,7 +172,6 @@ public class Mesa {
 
         this.estadoRonda.quiero();
         this.intercambiarEquipos();
-
     }
 
     public void noQuieroEnvido(){
