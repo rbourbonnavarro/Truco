@@ -1,5 +1,6 @@
 package fiuba.algo3.truco.tests.Jugada.Truco;
 
+import fiuba.algo3.truco.modelo.Jugadas.Envido.NoSePuedeCantarEnvidoEnvido;
 import fiuba.algo3.truco.modelo.Jugadas.EstadoJuego;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.NoSePuedeCantarTrucoException;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.NoSePuedeCantarValeCuatroException;
@@ -53,6 +54,13 @@ public class TrucoCantadoTest {
     public void test5NoSePuedeCantarValeCuatro() {
 
         this.estadoJuego.valeCuatro();
+
+    }
+
+    @Test(expected = NoSePuedeCantarEnvidoEnvido.class)
+    public void TestNoSePuedeCantarEnvidoEnvido(){
+
+        this.estadoJuego.envidoEnvido();
 
     }
 

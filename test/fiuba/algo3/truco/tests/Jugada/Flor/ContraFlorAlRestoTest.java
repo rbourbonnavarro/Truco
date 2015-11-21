@@ -1,10 +1,17 @@
 package fiuba.algo3.truco.tests.Jugada.Flor;
 
+import fiuba.algo3.truco.modelo.Jugadas.Envido.NoSePuedeCantarEnvido;
+import fiuba.algo3.truco.modelo.Jugadas.Envido.NoSePuedeCantarEnvidoEnvido;
+import fiuba.algo3.truco.modelo.Jugadas.Envido.NoSePuedeCantarFaltaEnvido;
+import fiuba.algo3.truco.modelo.Jugadas.Envido.NoSePuedeCantarRealEnvido;
 import fiuba.algo3.truco.modelo.Jugadas.EstadoJuego;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.ContraFlorAlRestoCantada;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorCantada;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeCantarContraFlorException;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeCantarFlorException;
+import fiuba.algo3.truco.modelo.Jugadas.Truco.NoSePuedeCantarRetrucoException;
+import fiuba.algo3.truco.modelo.Jugadas.Truco.NoSePuedeCantarTrucoException;
+import fiuba.algo3.truco.modelo.Jugadas.Truco.NoSePuedeCantarValeCuatroException;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 import org.junit.Assert;
 import org.junit.Before;
@@ -66,6 +73,56 @@ public class ContraFlorAlRestoTest {
     public void test6ContraFlorAlPartidoCreaDichaInstancia(){
 
         this.estadoJuego.contraFlorAlPartido();
+
+    }
+
+    @Test(expected = NoSePuedeCantarTrucoException.class)
+    public void TestNoSePuedeCantarTruco(){
+
+        this.estadoJuego.truco();
+
+    }
+
+    @Test(expected = NoSePuedeCantarRetrucoException.class)
+    public void TestNoSePuedeCantarRetruco(){
+
+        this.estadoJuego.reTruco();
+
+    }
+
+    @Test(expected = NoSePuedeCantarValeCuatroException.class)
+    public void TestNoSePuedeCantarValeCuatro(){
+
+        this.estadoJuego.valeCuatro();
+
+    }
+
+    @Test(expected = NoSePuedeCantarEnvido.class)
+    public void TestNoSePuedeCantarEnvido(){
+
+        this.estadoJuego.envido();
+
+    }
+
+    @Test(expected = NoSePuedeCantarEnvidoEnvido.class)
+    public void TestNoSePuedeCantarEnvidoEnvido(){
+
+        this.estadoJuego.envidoEnvido();
+
+    }
+
+    @Test(expected = NoSePuedeCantarRealEnvido.class)
+    public void TestNoSePuedeCantarRealEnvido(){
+
+        this.estadoJuego.realEnvido();
+
+    }
+
+    @Test(expected = NoSePuedeCantarFaltaEnvido.class)
+    public void TestNoSePuedeCantarFaltaEnvido(){
+
+        Puntaje puntos = new Puntaje();
+        this.estadoJuego.faltaEnvido(puntos);
 
     }
 

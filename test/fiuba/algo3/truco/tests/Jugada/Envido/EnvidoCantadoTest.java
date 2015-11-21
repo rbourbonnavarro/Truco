@@ -3,6 +3,9 @@ package fiuba.algo3.truco.tests.Jugada.Envido;
 import fiuba.algo3.truco.modelo.Jugadas.Envido.*;
 import fiuba.algo3.truco.modelo.Jugadas.EstadoJuego;
 import fiuba.algo3.truco.modelo.Jugadas.NadaCantado;
+import fiuba.algo3.truco.modelo.Jugadas.Truco.NoSePuedeCantarRetrucoException;
+import fiuba.algo3.truco.modelo.Jugadas.Truco.NoSePuedeCantarTrucoException;
+import fiuba.algo3.truco.modelo.Jugadas.Truco.NoSePuedeCantarValeCuatroException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -31,6 +34,27 @@ public class EnvidoCantadoTest {
     public void Test2NoQueridoDevuelve1Punto(){
 
         Assert.assertEquals(this.estadoJuego.noQuerido(),1);
+
+    }
+
+    @Test(expected = NoSePuedeCantarTrucoException.class)
+    public void TestNoSePuedeCantarTruco(){
+
+        this.estadoJuego.truco();
+
+    }
+
+    @Test(expected = NoSePuedeCantarRetrucoException.class)
+    public void TestNoSePuedeCantarRetruco(){
+
+        this.estadoJuego.reTruco();
+
+    }
+
+    @Test(expected = NoSePuedeCantarValeCuatroException.class)
+    public void TestNoSePuedeCantarValeCuatro(){
+
+        this.estadoJuego.valeCuatro();
 
     }
 
