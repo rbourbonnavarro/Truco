@@ -85,7 +85,7 @@ public class Equipo {
 
         for(Jugador jugador : this.integrantes) {
 
-            flor = (jugador.calcularFlor() > flor) ? jugador.calcularFlor() : flor;
+            flor = Math.max(jugador.calcularFlor(),flor);
 
         }
 
