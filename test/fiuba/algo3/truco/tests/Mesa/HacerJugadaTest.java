@@ -6,8 +6,10 @@ import java.util.List;
 
 import fiuba.algo3.truco.modelo.Jugada.Envido.NoSePuedeCantarEnvido;
 import fiuba.algo3.truco.modelo.Jugada.EstadoFlor.JuegoConFlor;
+
 import org.junit.Assert;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import fiuba.algo3.truco.modelo.Equipo;
@@ -131,5 +133,15 @@ public class HacerJugadaTest {
 		mesa.quieroTruco(false);
 		Assert.assertEquals(mesa.puntaje(azules), 0);
 		Assert.assertEquals(mesa.puntaje(rojos), 3);
+	}
+	
+	@Ignore
+	@Test
+	public void envidoVaAntesQueTruco(){
+		mesa.truco();
+		mesa.envido();
+		mesa.quieroEnvido(false);
+		Assert.assertEquals(mesa.puntaje(azules), 1);
+		Assert.assertEquals(mesa.puntaje(rojos), 0);
 	}
 }
