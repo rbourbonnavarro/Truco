@@ -164,36 +164,25 @@ public class Mesa {
         this.intercambiarEquipos();
 
     }
+    public void noQuieroTruco() {
+        this.estadoRonda = this.estadoRonda.terminar(this.equipoContrario, this.estadoRonda.noQuerido());
+    }
 
-    public void quieroTruco(boolean quiero) {
-
-        if(!quiero) {
-
-            this.estadoRonda = this.estadoRonda.terminar(this.equipoContrario, this.estadoRonda.noQuerido());
-
-            return;
-
-        }
+    public void quieroTruco() {
 
         this.estadoRonda.quiero();
-
         this.intercambiarEquipos();
 
     }
 
-    public void quieroEnvido(boolean quiero) {
+    public void noQuieroEnvido(){
+        this.equipoContrario.sumarPuntos(this.estadoRonda.noQuerido());
+        this.estadoRonda.terminarTanto();
+    }
 
-        if(!quiero) {
+    public void quieroEnvido() {
 
-            this.equipoContrario.sumarPuntos(this.estadoRonda.noQuerido());
-
-        }
-        else{
-
-            this.obtenerGanadorEnvido().sumarPuntos(this.estadoRonda.puntos());
-
-        }
-
+        this.obtenerGanadorEnvido().sumarPuntos(this.estadoRonda.puntos());
         this.estadoRonda.terminarTanto();
 
     }

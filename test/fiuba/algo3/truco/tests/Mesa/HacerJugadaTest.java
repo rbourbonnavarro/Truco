@@ -63,7 +63,7 @@ public class HacerJugadaTest {
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
 		mesa.envido();
-		mesa.quieroEnvido(false);
+		mesa.noQuieroEnvido();
 		Assert.assertEquals(mesa.puntaje(azules), 1);
 
 	}
@@ -73,7 +73,7 @@ public class HacerJugadaTest {
 		
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
 		mesa.truco();
-		mesa.quieroTruco(false);
+		mesa.noQuieroTruco();
 		Assert.assertEquals(mesa.puntaje(azules), 0);
 		Assert.assertEquals(mesa.puntaje(rojos), 1);
 
@@ -105,7 +105,7 @@ public class HacerJugadaTest {
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
 		mesa.envido();
 		mesa.envidoEnvido();
-		mesa.quieroEnvido(false);
+		mesa.noQuieroEnvido();
 		Assert.assertEquals(mesa.puntaje(azules), 0);
 		Assert.assertEquals(mesa.puntaje(rojos), 2);
 
@@ -115,7 +115,7 @@ public class HacerJugadaTest {
 	public void retrucoNoQueridoFuncionaCorrectamente(){
 		mesa.truco();
 		mesa.retruco();
-		mesa.quieroTruco(false);
+		mesa.noQuieroTruco();
 		Assert.assertTrue(mesa.puntaje(azules) == 0);
 		Assert.assertTrue(mesa.puntaje(rojos) == 2);
 	}
@@ -125,7 +125,7 @@ public class HacerJugadaTest {
 		mesa.truco();
 		mesa.retruco();
 		mesa.valeCuatro();
-		mesa.quieroTruco(false);
+		mesa.noQuieroTruco();
 		Assert.assertEquals(mesa.puntaje(azules), 3);
 		Assert.assertEquals(mesa.puntaje(rojos), 0);
 	}
@@ -134,7 +134,7 @@ public class HacerJugadaTest {
 	public void envidoVaAntesQueTruco(){
 		mesa.truco();
 		mesa.envido();
-		mesa.quieroEnvido(false);
+		mesa.noQuieroEnvido();
 		Assert.assertEquals(mesa.puntaje(azules), 0);
 		Assert.assertEquals(mesa.puntaje(rojos), 1);
 	}
