@@ -122,4 +122,14 @@ public class HacerJugadaTest {
 		Assert.assertTrue(mesa.puntaje(azules) == 2);
 		Assert.assertTrue(mesa.puntaje(rojos) == 0);
 	}
+	
+	@Test
+	public void vale4NoQueridoFuncionaCorrectamente(){
+		mesa.truco();
+		mesa.retruco();
+		mesa.valeCuatro();
+		mesa.quieroTruco(false);
+		Assert.assertEquals(mesa.puntaje(azules), 0);
+		Assert.assertEquals(mesa.puntaje(rojos), 3);
+	}
 }
