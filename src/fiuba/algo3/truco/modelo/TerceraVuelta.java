@@ -45,7 +45,7 @@ public class TerceraVuelta implements EstadoRonda {
     }
 
     @Override
-    public void envido() {
+    public void envido(Jugador jugadorActual) {
 
         throw new JugadorNoPuedeCantarTantoNoEsPrimeraVuelta();
 
@@ -59,14 +59,14 @@ public class TerceraVuelta implements EstadoRonda {
     }
 
     @Override
-    public void realEnvido() {
+    public void realEnvido(Jugador jugadorActual) {
 
         throw new JugadorNoPuedeCantarTantoNoEsPrimeraVuelta();
 
     }
 
     @Override
-    public void faltaEnvido(Puntaje puntos) {
+    public void faltaEnvido(Jugador jugadorActual, Puntaje puntos) {
 
         throw new JugadorNoPuedeCantarTantoNoEsPrimeraVuelta();
 

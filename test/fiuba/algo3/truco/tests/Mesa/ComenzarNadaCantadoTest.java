@@ -14,8 +14,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import fiuba.algo3.truco.modelo.Envido.CalculadorTanto;
-
 public class ComenzarNadaCantadoTest {
 	
 	Mesa mesa;

@@ -2,6 +2,7 @@ package fiuba.algo3.truco.modelo;
 
 import fiuba.algo3.truco.modelo.EstadoFlor.EstadoFlor;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
+import fiuba.algo3.truco.modelo.Truco.TrucoCantado;
 
 public class PrimeraVuelta implements EstadoRonda {
 
@@ -39,7 +40,17 @@ public class PrimeraVuelta implements EstadoRonda {
     }
 
     @Override
-    public void envido() {
+    public void envido(Jugador jugadorActual) {
+
+        if(!jugadorActual.jugadorPie()) {
+
+            if(!(this.estadoJuego instanceof TrucoCantado)) {
+
+                throw new JugadorNoPieNoPuedeCantarEnvido();
+
+            }
+
+        }
 
         this.estadoJuego = this.estadoJuego.envido();
 
@@ -53,14 +64,18 @@ public class PrimeraVuelta implements EstadoRonda {
     }
 
     @Override
-    public void realEnvido() {
+    public void realEnvido(Jugador jugadorActual) {
+
+        if(!jugadorActual.jugadorPie()) throw new JugadorNoPieNoPuedeCantarEnvido();
 
         this.estadoJuego = this.estadoJuego.realEnvido();
 
     }
 
     @Override
-    public void faltaEnvido(Puntaje puntos) {
+    public void faltaEnvido(Jugador jugadorActual, Puntaje puntos) {
+
+        if(!jugadorActual.jugadorPie()) throw new JugadorNoPieNoPuedeCantarEnvido();
 
         this.estadoJuego = this.estadoJuego.faltaEnvido(puntos);
 

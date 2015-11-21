@@ -95,21 +95,21 @@ public class RealEnvidoCantado implements EstadoJuego {
     }
 
     @Override
-    public void flor() {
+    public EstadoJuego flor() {
 
         throw new NoSePuedeCantarFlorException();
 
     }
 
     @Override
-    public void contraFlorAlResto(Puntaje puntos) {
+    public EstadoJuego contraFlorAlResto(Puntaje puntos) {
 
         throw new NoSePuedeCantarFlorException();
 
     }
 
     @Override
-    public void contraFlorAlPartido() {
+    public EstadoJuego contraFlorAlPartido() {
 
         throw new NoSePuedeCantarFlorException();
 

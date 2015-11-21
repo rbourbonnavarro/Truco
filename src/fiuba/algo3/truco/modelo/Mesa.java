@@ -90,10 +90,8 @@ public class Mesa {
     }
 
     public void envido() {
-    	
-        if(!this.jugadorActual.jugadorPie()) throw new JugadorNoPieNoPuedeCantarEnvido();
 
-        this.estadoRonda.envido();
+        this.estadoRonda.envido(this.jugadorActual);
 
         this.intercambiarEquipos();
 
@@ -109,7 +107,7 @@ public class Mesa {
 
     public void realEnvido() {
 
-        this.estadoRonda.realEnvido();
+        this.estadoRonda.realEnvido(this.jugadorActual);
 
         this.intercambiarEquipos();
 
@@ -118,20 +116,20 @@ public class Mesa {
     public void faltaEnvido() {
 
         Puntaje puntosEnJuego = this.obtenerMayorPuntaje();
-        this.estadoRonda.faltaEnvido(puntosEnJuego);
+        this.estadoRonda.faltaEnvido(this.jugadorActual, puntosEnJuego);
         this.intercambiarEquipos();
 
     }
 
     public void truco() {
 
-        estadoRonda.truco();
+        this.estadoRonda.truco();
         this.intercambiarEquipos();
 
     }
     public void flor() {
 
-    	estadoRonda.flor();
+    	this.estadoRonda.flor();
         this.intercambiarEquipos();
 
     }
@@ -199,6 +197,8 @@ public class Mesa {
             this.obtenerGanadorEnvido().sumarPuntos(this.estadoRonda.puntos());
 
         }
+
+        this.estadoRonda.terminarTanto();
 
     }
 

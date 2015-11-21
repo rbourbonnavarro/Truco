@@ -2,6 +2,8 @@ package fiuba.algo3.truco.modelo;
 
 import fiuba.algo3.truco.modelo.Envido.*;
 import fiuba.algo3.truco.modelo.EstadoFlor.EstadoFlor;
+import fiuba.algo3.truco.modelo.EstadoFlor.FlorCantada;
+import fiuba.algo3.truco.modelo.EstadoFlor.NoSePuedeCantarContraFlorException;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 import fiuba.algo3.truco.modelo.Truco.NoSePuedeCantarRetrucoException;
 import fiuba.algo3.truco.modelo.Truco.NoSePuedeCantarValeCuatroException;
@@ -80,23 +82,23 @@ public class NadaCantado implements EstadoJuego {
     }
 
     @Override
-    public void flor() {
+    public EstadoJuego flor() {
 
-        this.estadoFlor = this.estadoFlor.flor();
-
-    }
-
-    @Override
-    public void contraFlorAlResto(Puntaje puntos) {
-
-        this.estadoFlor = this.estadoFlor.flor();
+        return new FlorCantada(this);
 
     }
 
     @Override
-    public void contraFlorAlPartido() {
+    public EstadoJuego contraFlorAlResto(Puntaje puntos) {
 
-        this.estadoFlor = this.estadoFlor.flor();
+        throw new NoSePuedeCantarContraFlorException();
+
+    }
+
+    @Override
+    public EstadoJuego contraFlorAlPartido() {
+
+        throw new NoSePuedeCantarContraFlorException();
 
     }
 

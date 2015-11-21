@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
+import fiuba.algo3.truco.modelo.Envido.NoSePuedeCantarEnvido;
 import fiuba.algo3.truco.modelo.EstadoFlor.JuegoSinFlor;
+import fiuba.algo3.truco.modelo.EstadoFlor.JuegoSinFlorException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -88,6 +90,53 @@ public class HacerJugadaTest {
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
 		mesa.envido();
 
+	}
+
+	@Test(expected = JuegoSinFlorException.class)
+	public void noSePuedeCantarFlorCuandoSeJuegaSinFlor() {
+
+		mesa.flor();
+
+	}
+
+	@Test
+	public void envidoEnvidoNoQueridoFuncionaCorrectamente(){
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		mesa.envido();
+		mesa.envidoEnvido();
+		mesa.quieroEnvido(false);
+		Assert.assertEquals(mesa.puntaje(azules), 0);
+		Assert.assertEquals(mesa.puntaje(rojos), 2);
+
+	}
+
+	@Test
+	public void retrucoNoQueridoFuncionaCorrectamente(){
+		mesa.truco();
+		mesa.retruco();
+		mesa.quieroTruco(false);
+		Assert.assertTrue(mesa.puntaje(azules) == 0);
+		Assert.assertTrue(mesa.puntaje(rojos) == 2);
+	}
+
+	@Test
+	public void vale4NoQueridoFuncionaCorrectamente(){
+		mesa.truco();
+		mesa.retruco();
+		mesa.valeCuatro();
+		mesa.quieroTruco(false);
+		Assert.assertEquals(mesa.puntaje(azules), 3);
+		Assert.assertEquals(mesa.puntaje(rojos), 0);
+	}
+
+	@Test
+	public void envidoVaAntesQueTruco(){
+		mesa.truco();
+		mesa.envido();
+		mesa.quieroEnvido(false);
+		Assert.assertEquals(mesa.puntaje(azules), 0);
+		Assert.assertEquals(mesa.puntaje(rojos), 1);
 	}
 	
 

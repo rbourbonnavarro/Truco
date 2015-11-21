@@ -1,8 +1,9 @@
 package fiuba.algo3.truco.modelo.EstadoFlor;
 
+import fiuba.algo3.truco.modelo.EstadoJuego;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 
-public class FlorNoCantada implements EstadoFlor {
+public class FlorNoCantada implements EstadoJuego {
 
     @Override
     public int puntos() {
@@ -16,6 +17,47 @@ public class FlorNoCantada implements EstadoFlor {
 
         return 0;
 
+    }
+
+    @Override
+    public EstadoJuego truco() {
+
+
+
+    }
+
+    @Override
+    public EstadoJuego reTruco() {
+
+
+
+    }
+
+    @Override
+    public EstadoJuego valeCuatro() {
+
+
+
+    }
+
+    @Override
+    public EstadoJuego envido() {
+        return null;
+    }
+
+    @Override
+    public EstadoJuego envidoEnvido() {
+        return null;
+    }
+
+    @Override
+    public EstadoJuego realEnvido() {
+        return null;
+    }
+
+    @Override
+    public EstadoJuego faltaEnvido(Puntaje puntos) {
+        return null;
     }
 
     @Override
@@ -37,6 +79,16 @@ public class FlorNoCantada implements EstadoFlor {
 
         throw new NoSePuedeCantarContraFlorException();
 
+    }
+
+    @Override
+    public EstadoJuego terminarTanto() {
+        return null;
+    }
+
+    @Override
+    public EstadoJuego quiero() {
+        return null;
     }
 
     @Override

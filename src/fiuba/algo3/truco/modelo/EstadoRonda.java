@@ -10,13 +10,13 @@ public interface EstadoRonda {
 
     void valeCuatro();
 
-    void envido();
+    void envido(Jugador jugadorActual);
 
     void envidoEnvido();
 
-    void realEnvido();
+    void realEnvido(Jugador jugadorActual);
 
-    void faltaEnvido(Puntaje puntos);
+    void faltaEnvido(Jugador jugadorActual, Puntaje puntos);
 
     void flor();
 

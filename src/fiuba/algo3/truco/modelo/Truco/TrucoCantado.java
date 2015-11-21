@@ -53,6 +53,8 @@ public class TrucoCantado implements EstadoJuego {
     @Override
     public EstadoJuego envido() {
 
+
+
         return new EnvidoCantado(this);
 
     }

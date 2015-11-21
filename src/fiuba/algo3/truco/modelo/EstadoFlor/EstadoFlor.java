@@ -11,6 +11,20 @@ public interface EstadoFlor {
 
     int noQuerido();
 
+    void truco();
+
+    void reTruco();
+
+    void valeCuatro();
+
+    void envido();
+
+    void envidoEnvido();
+
+    void realEnvido();
+
+    void faltaEnvido();
+
     EstadoFlor flor();
 
     EstadoFlor contraFlorAlResto(Puntaje puntos);

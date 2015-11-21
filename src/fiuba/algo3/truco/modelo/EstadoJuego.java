@@ -23,11 +23,11 @@ public interface EstadoJuego {
 
     EstadoJuego faltaEnvido(Puntaje puntos);
 
-    void flor();
+    EstadoJuego flor();
 
-    void contraFlorAlResto(Puntaje puntos);
+    EstadoJuego contraFlorAlResto(Puntaje puntos);
 
-    void contraFlorAlPartido();
+    EstadoJuego contraFlorAlPartido();
 
     EstadoJuego terminarTanto();
 
