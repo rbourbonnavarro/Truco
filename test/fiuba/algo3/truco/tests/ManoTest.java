@@ -5,6 +5,7 @@ import fiuba.algo3.truco.modelo.Envido.*;
 import fiuba.algo3.truco.modelo.EstadoFlor.JuegoSinFlorException;
 import fiuba.algo3.truco.modelo.Palo.*;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 import java.util.Arrays;
@@ -59,7 +60,7 @@ public class ManoTest {
 
     }
 
-    /*@Test (expected = CantasteEnvidoCuandoTenesFlorException.class)
+    @Test (expected = CantasteEnvidoCuandoTenesFlorException.class)
     public void Test9TengoFlorSeJuegaConFlorYCantoEnvidoLanzaExcepcion() throws CantasteEnvidoCuandoTenesFlorException {
 
         Carta carta1 = new Figura(12, new Espada());
@@ -68,7 +69,7 @@ public class ManoTest {
         mano = new Mano(Arrays.asList(carta1 , carta2, carta3));
         mano.envido();
 
-    }*/
+    }
 
     @Test
     public void Test10NoTengoFlorSeJuegaConFlorEntoncesEnvidoDevuelveElTanto() throws CantasteEnvidoCuandoTenesFlorException {
@@ -114,7 +115,7 @@ public class ManoTest {
 
     }
 
-    /*@Test(expected = JuegoSinFlorException.class)
+    @Test(expected = JuegoSinFlorException.class)
     public void Test14FlorLanzaExcepcionSiSeJuegaSinFlor() throws JuegoSinFlorException {
 
         Carta carta1 = new Figura(12, new Espada());
@@ -123,35 +124,6 @@ public class ManoTest {
         mano = new Mano(Arrays.asList(carta1 , carta2, carta3));
         mano.flor();
 
-    }*/
-
-    @Test(expected = JugadorNoPuedeCantarTantoNoEsPrimeraVuelta.class)
-    public void test15NoSePuedeCantarTantoNoEsPrimeraMano() throws JuegoSinFlorException {
-
-        Carta carta1 = new Carta(7,new Espada());
-        Carta carta2 = new Carta(3,new Basto());
-        Carta carta3 = new Carta (3,new Espada());
-        List<Carta> cartas =  Arrays.asList(carta1,carta2,carta3);
-        mano = new Mano(cartas);
-        mano.jugar(carta1);
-
-        mano.flor();
-
     }
-
-    @Test(expected = JugadorNoPuedeCantarTantoNoEsPrimeraVuelta.class)
-    public void test16NoSePuedeCantarEnvidoNoEsPrimeraMano() {
-
-        Carta carta1 = new Carta(7,new Espada());
-        Carta carta2 = new Carta(3,new Basto());
-        Carta carta3 = new Carta (3,new Espada());
-        List<Carta> cartas =  Arrays.asList(carta1,carta2,carta3);
-        mano = new Mano(cartas);
-        mano.jugar(carta1);
-
-        mano.envido();
-
-    }
-
 
 }

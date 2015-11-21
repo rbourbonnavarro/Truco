@@ -23,15 +23,11 @@ public class Mano {
 
     public int flor() throws JuegoSinFlorException {
 
-        if(this.cartasEnMano.size() < 3) throw new JugadorNoPuedeCantarTantoNoEsPrimeraVuelta();
-
         return this.calculadorTanto.flor(this.cartasEnMano);
 
     }
 
     public int envido() throws CantasteEnvidoCuandoTenesFlorException {
-
-        if(this.cartasEnMano.size() < 3) throw new JugadorNoPuedeCantarTantoNoEsPrimeraVuelta();
 
         return this.calculadorTanto.envido(this.cartasEnMano);
 
