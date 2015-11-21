@@ -29,7 +29,7 @@ public class HacerJugadaTest {
 	Equipo rojos;
 	
 	@Before
-	public void setUp(){
+	public void setUp() {
 		
 		Juan = new Jugador("Juan");
 		Pedro = new Jugador("Pedro");
@@ -49,14 +49,14 @@ public class HacerJugadaTest {
 	}
 	
 	@Test(expected = JugadorNoPieNoPuedeCantarEnvido.class)
-	public void siJugadorNoEsPieNoPuedeCantarEnvido(){
+	public void siJugadorNoEsPieNoPuedeCantarEnvido() {
 		
 		mesa.envido();
 		
 	}
 	
 	@Test
-	public void envidoNoQueridoEsUnPuntoParaElEquipoContrario(){
+	public void envidoNoQueridoEsUnPuntoParaElEquipoContrario() {
 
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
@@ -67,7 +67,7 @@ public class HacerJugadaTest {
 	}
 	
 	@Test
-	public void trucoNoQueridoEsUnPuntoParaElEquipoContrario(){
+	public void trucoNoQueridoEsUnPuntoParaElEquipoContrario() {
 		
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
 		mesa.truco();
@@ -78,7 +78,7 @@ public class HacerJugadaTest {
 	}
 	
 	@Test(expected = JugadorNoPuedeCantarTantoNoEsPrimeraVuelta.class)
-	public void noSePuedeCantarEnvidoDespuesDeLaPrimerRonda(){
+	public void noSePuedeCantarEnvidoDespuesDeLaPrimerRonda() {
 		
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
@@ -92,6 +92,7 @@ public class HacerJugadaTest {
 
 	@Test(expected = JuegoSinFlorException.class)
 	public void noSePuedeCantarFlorCuandoSeJuegaSinFlor() {
+
 		List<Carta> lista = new ArrayList<>(Arrays.asList(new Carta(7,new Espada()),new Carta(3,new Espada()),new Carta(2,new Espada())));
 		Juan.setMano(new Mano(lista));
 		Assert.assertEquals(Juan.getNombre(),mesa.getJugadorActual().getNombre());
@@ -100,7 +101,8 @@ public class HacerJugadaTest {
 	}
 
 	@Test
-	public void envidoEnvidoNoQueridoFuncionaCorrectamente(){
+	public void envidoEnvidoNoQueridoFuncionaCorrectamente() {
+
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
 		mesa.envido();
@@ -108,34 +110,55 @@ public class HacerJugadaTest {
 		mesa.noQuieroEnvido();
 		Assert.assertEquals(mesa.puntaje(azules), 0);
 		Assert.assertEquals(mesa.puntaje(rojos), 2);
+
 	}
 
 	@Test
-	public void retrucoNoQueridoFuncionaCorrectamente(){
+	public void retrucoNoQueridoFuncionaCorrectamente() {
+
 		mesa.truco();
 		mesa.retruco();
 		mesa.noQuieroTruco();
 		Assert.assertTrue(mesa.puntaje(azules) == 0);
 		Assert.assertTrue(mesa.puntaje(rojos) == 2);
+
 	}
 
 	@Test
-	public void vale4NoQueridoFuncionaCorrectamente(){
+	public void vale4NoQueridoFuncionaCorrectamente() {
+
 		mesa.truco();
 		mesa.retruco();
 		mesa.valeCuatro();
 		mesa.noQuieroTruco();
 		Assert.assertEquals(mesa.puntaje(azules), 3);
 		Assert.assertEquals(mesa.puntaje(rojos), 0);
+
 	}
 
 	@Test
-	public void envidoVaAntesQueTruco(){
+	public void envidoVaAntesQueTruco() {
+
 		mesa.truco();
 		mesa.envido();
 		mesa.noQuieroEnvido();
 		Assert.assertEquals(mesa.puntaje(azules), 0);
 		Assert.assertEquals(mesa.puntaje(rojos), 1);
+
+	}
+
+	@Test
+	public void faltaEnvidoQueridaTerminaElJuego() {
+
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		mesa.faltaEnvido();
+		mesa.quieroEnvido();
+		Assert.assertTrue(
+				mesa.puntaje(rojos) == 0 && mesa.puntaje(azules) == 30
+						||
+						mesa.puntaje(rojos) == 30 && mesa.puntaje(azules) == 0);
+
 	}
 	
 

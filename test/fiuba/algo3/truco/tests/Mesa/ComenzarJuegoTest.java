@@ -13,7 +13,7 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-public class ComenzarNadaCantadoTest {
+public class ComenzarJuegoTest {
 	
 	Mesa mesa;
 	Jugador jugador1;
@@ -44,11 +44,10 @@ public class ComenzarNadaCantadoTest {
 	
 	@Test
 	public void mesaSeInicioCorrectamente(){
-			
-		//mesa.comenzarJuego();
+
 		Assert.assertTrue(mesa.getJugadorActual() == jugador1);
 		Assert.assertEquals(mesa.getJugadorActual().obtenerCartas().size(), 3);
-		Assert.assertEquals(mesa.puntaje(equipo1),0);
+		Assert.assertEquals(mesa.puntaje(equipo1), 0);
 	}
 	
 	@Test(expected = NoHayCartasParaJugar.class)
@@ -60,7 +59,6 @@ public class ComenzarNadaCantadoTest {
 	@Test
 	public void test3JugarCartaTerminaElTurnoDelEquipo(){
 
-		//mesa.comenzarJuego();
 		List<Carta> cartas = mesa.getCartasDelJugadorActual();
 		Assert.assertEquals(mesa.getJugadorActual().getNombre(),"Juan");
 		mesa.hacerJugada(cartas.get(0));
