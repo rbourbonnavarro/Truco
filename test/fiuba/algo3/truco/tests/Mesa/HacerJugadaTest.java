@@ -114,5 +114,12 @@ public class HacerJugadaTest {
 		
 	}	
 	
-
+	@Test
+	public void retrucoNoQueridoFuncionaCorrectamente(){
+		mesa.truco();
+		mesa.retruco();
+		mesa.quieroTruco(false);
+		Assert.assertTrue(mesa.puntaje(azules) == 2);
+		Assert.assertTrue(mesa.puntaje(rojos) == 0);
+	}
 }
