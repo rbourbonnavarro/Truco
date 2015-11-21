@@ -4,12 +4,8 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import fiuba.algo3.truco.modelo.Jugada.Envido.NoSePuedeCantarEnvido;
-import fiuba.algo3.truco.modelo.Jugada.EstadoFlor.JuegoConFlor;
-
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import fiuba.algo3.truco.modelo.Equipo;
@@ -18,6 +14,8 @@ import fiuba.algo3.truco.modelo.JugadorNoPieNoPuedeCantarEnvido;
 import fiuba.algo3.truco.modelo.Mesa;
 import fiuba.algo3.truco.modelo.Jugada.Envido.CalculadorTanto;
 import fiuba.algo3.truco.modelo.Jugada.Envido.JugadorNoPuedeCantarTantoNoEsPrimeraRonda;
+import fiuba.algo3.truco.modelo.Jugada.Envido.NoSePuedeCantarEnvido;
+import fiuba.algo3.truco.modelo.Jugada.EstadoFlor.JuegoConFlor;
 
 public class HacerJugadaTest {
 
@@ -105,7 +103,7 @@ public class HacerJugadaTest {
 	}
 	
 	@Test
-	public void envidoEnvidoNoQueridoFuncionaCorrectamente(){
+	public void envidoEnvidoNoQueridoGana2PuntosElEquipoContrario(){
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
 		mesa.envido();
@@ -117,7 +115,30 @@ public class HacerJugadaTest {
 	}	
 	
 	@Test
-	public void retrucoNoQueridoFuncionaCorrectamente(){
+	public void envidoRealEnvidoNoQueridoGana2PuntosElEquipoContrario(){
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		mesa.envido();
+		mesa.realEnvido();
+		mesa.quieroEnvido(false);
+		Assert.assertEquals(mesa.puntaje(azules), 2);
+		Assert.assertEquals(mesa.puntaje(rojos), 0);
+	}
+	
+	@Test
+	public void envidoFaltaEnvidoNoQueridoGana2PuntosElEquipoContrario(){
+		
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		mesa.envido();
+		mesa.faltaEnvido();
+		mesa.quieroEnvido(false);
+		Assert.assertEquals(mesa.puntaje(azules), 2);
+		Assert.assertEquals(mesa.puntaje(rojos), 0);
+	}
+	
+	@Test
+	public void retrucoNoQueridoGana2PuntosElEquipoContrario(){
 		mesa.truco();
 		mesa.retruco();
 		mesa.quieroTruco(false);
@@ -126,7 +147,7 @@ public class HacerJugadaTest {
 	}
 	
 	@Test
-	public void vale4NoQueridoFuncionaCorrectamente(){
+	public void vale4NoQueridoGana3PuntosElEquipoContrario(){
 		mesa.truco();
 		mesa.retruco();
 		mesa.valeCuatro();
@@ -143,4 +164,6 @@ public class HacerJugadaTest {
 		Assert.assertEquals(mesa.puntaje(azules), 1);
 		Assert.assertEquals(mesa.puntaje(rojos), 0);
 	}
+	
+	
 }
