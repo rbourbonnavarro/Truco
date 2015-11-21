@@ -46,7 +46,7 @@ public class HacerJugadaConFlorTest {
 
     }
 
-    @Test//(expected = NoSePuedeCantarEnvido.class)
+    @Test(expected = NoSePuedeCantarEnvido.class)
     public void noSePuedeCantarEnvidoLuegoQueSeCantoFlor () {
         List<Carta> lista = new ArrayList<>(Arrays.asList(new Carta(7,new Espada()),new Carta(3,new Espada()),new Carta(2,new Espada())));
         Juan.setMano(new Mano(lista));

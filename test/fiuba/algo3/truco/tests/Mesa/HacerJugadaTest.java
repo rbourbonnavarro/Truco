@@ -94,7 +94,7 @@ public class HacerJugadaTest {
 	public void noSePuedeCantarFlorCuandoSeJuegaSinFlor() {
 		List<Carta> lista = new ArrayList<>(Arrays.asList(new Carta(7,new Espada()),new Carta(3,new Espada()),new Carta(2,new Espada())));
 		Juan.setMano(new Mano(lista));
-
+		Assert.assertEquals(Juan.getNombre(),mesa.getJugadorActual().getNombre());
 		mesa.flor();
 
 	}
