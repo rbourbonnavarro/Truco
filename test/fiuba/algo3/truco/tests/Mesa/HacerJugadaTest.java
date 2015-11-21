@@ -51,7 +51,6 @@ public class HacerJugadaTest {
 		calculadorTanto = new JuegoConFlor();
 		
 		mesa = new Mesa(rojos, azules, calculadorTanto);
-		//mesa.comenzarJuego();
 	}
 	
 	@Test(expected = JugadorNoPieNoPuedeCantarEnvido.class)
@@ -91,6 +90,7 @@ public class HacerJugadaTest {
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
 		mesa.envido();
 	}
+	
 	@Test(expected = NoSePuedeCantarEnvido.class)
 	public void noSePuedeCantarEnvidoLuegoQueSeCantoFlor () {
 		mesa.flor();
@@ -101,6 +101,18 @@ public class HacerJugadaTest {
 		Assert.assertEquals(mesa.getJugadorActual().getNombre(),Pedro.getNombre());
 		mesa.envido();
 	}
+	
+	@Test
+	public void envidoEnvidoNoQueridoFuncionaCorrectamente(){
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		mesa.envido();
+		mesa.envidoEnvido();
+		mesa.quieroEnvido(false);
+		Assert.assertEquals(mesa.puntaje(azules), 2);
+		Assert.assertEquals(mesa.puntaje(rojos), 0);
+		
+	}	
 	
 
 }
