@@ -117,7 +117,9 @@ public class ContraFlorAlRestoCantada implements EstadoJuego {
 
     @Override
     public EstadoJuego quiero() {
+
         return null;
+
     }
 
     @Override

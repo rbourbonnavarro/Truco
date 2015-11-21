@@ -79,6 +79,20 @@ public class Equipo {
 
     }
 
+    public int calcularFlor() {
+
+        int flor = 0;
+
+        for(Jugador jugador : this.integrantes) {
+
+            flor = (jugador.calcularFlor() > flor) ? jugador.calcularFlor() : flor;
+
+        }
+
+        return flor;
+
+    }
+
     public List<Jugador> getIntegrantes() {
 
         return this.integrantes;

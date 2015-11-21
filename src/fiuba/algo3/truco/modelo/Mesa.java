@@ -2,6 +2,7 @@ package fiuba.algo3.truco.modelo;
 
 import java.util.*;
 
+import fiuba.algo3.truco.modelo.EstadoFlor.LaFlorNoPuedeQuererseException;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 import fiuba.algo3.truco.modelo.Truco.*;
 
@@ -123,7 +124,10 @@ public class Mesa {
         this.intercambiarEquipos();
 
     }
+
     public void flor() {
+
+        this.jugadorActual.flor();
 
     	this.estadoRonda.flor();
         this.intercambiarEquipos();
@@ -132,22 +136,27 @@ public class Mesa {
 
     public void contraFlorAlResto(){
 
+        this.jugadorActual.flor();
+
         Puntaje puntosEnJuego = this.obtenerMayorPuntaje();
         this.estadoRonda.contraFlorAlResto(puntosEnJuego);
         this.intercambiarEquipos();
+
+    }
+
+    public void contraFlorAlPartido(){
+
+        this.jugadorActual.flor();
+
+        this.estadoRonda.contraFlorAlPartido();
+        this.intercambiarEquipos();
+
     }
 
     private Puntaje obtenerMayorPuntaje() {
 
         return (this.equipoActual.getPuntos()>this.equipoContrario.getPuntos())?
                 this.equipoActual.getPuntaje():this.equipoContrario.getPuntaje();
-
-    }
-
-    public void contraFlorAlPartido(){
-
-    	this.estadoRonda.contraFlorAlPartido();
-        this.intercambiarEquipos();
 
     }
 
@@ -186,9 +195,41 @@ public class Mesa {
 
     }
 
+    public void quieroFlor() {
+
+        try {
+
+            this.estadoRonda.quiero();
+
+            this.obtenerGanadorFlor().sumarPuntos(this.estadoRonda.puntos());
+
+        } catch(LaFlorNoPuedeQuererseException laFlorNoPuedeQuererseException) {
+
+            this.equipoContrario.sumarPuntos(this.estadoRonda.puntos());
+
+        }
+
+        this.estadoRonda.terminarTanto();
+
+    }
+
+    public void noQuieroFlor() {
+
+        this.equipoContrario.sumarPuntos(this.estadoRonda.noQuerido());
+
+        this.estadoRonda.terminarTanto();
+
+    }
+
     private Equipo obtenerGanadorEnvido() {
 
         return (this.equipoActual.calcularEnvido() > this.equipoContrario.calcularEnvido()) ? this.equipoActual : this.equipoContrario;
+
+    }
+
+    private Equipo obtenerGanadorFlor() {
+
+        return (this.equipoActual.calcularFlor() > this.equipoContrario.calcularFlor()) ? this.equipoActual : this.equipoContrario;
 
     }
 

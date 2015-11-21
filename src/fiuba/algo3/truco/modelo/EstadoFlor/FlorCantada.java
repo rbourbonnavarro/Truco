@@ -114,12 +114,16 @@ public class FlorCantada implements EstadoJuego {
 
     @Override
     public EstadoJuego quiero() {
-        return null;
+
+        throw new LaFlorNoPuedeQuererseException();
+
     }
 
     @Override
     public boolean equals(Object estado) {
+
         return estado instanceof FlorCantada;
+
     }
 
 

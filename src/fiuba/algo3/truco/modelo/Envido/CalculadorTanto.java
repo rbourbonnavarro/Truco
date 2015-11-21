@@ -19,7 +19,8 @@ public class CalculadorTanto {
 
     public int flor(List<Carta> cartas) {
 
-        this.hayFlor(cartas);
+        if(!this.hayFlor(cartas)) return 0;
+
         int flor = 0;
         for(Carta carta: cartas)
             flor += carta.getTanto();
@@ -27,11 +28,10 @@ public class CalculadorTanto {
 
     }
 
-    private void hayFlor(List<Carta> cartas) {
+    private boolean hayFlor(List<Carta> cartas) {
 
-        if(!(cartas.get(0).getPalo().equals(cartas.get(1).getPalo()) &&
-                cartas.get(2).getPalo().equals(cartas.get(1).getPalo())))
-            throw new NoHayFlorException();
+        return ((cartas.get(0).getPalo().equals(cartas.get(1).getPalo()) &&
+                cartas.get(2).getPalo().equals(cartas.get(1).getPalo())));
 
     }
 
