@@ -113,10 +113,8 @@ public class Mesa {
     public void envido() {
 
     	if(this.ronda.sePuedeCantarEnvido()) throw new JugadorNoPuedeCantarTantoNoEsPrimeraRonda();
-    	
-        if(!this.jugadorActual.jugadorPie()) throw new JugadorNoPieNoPuedeCantarEnvido();
 
-        this.estadoVuelta.envido();
+        this.estadoVuelta.envido(this.jugadorActual);
 
         this.intercambiarEquipos();
 

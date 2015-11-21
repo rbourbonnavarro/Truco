@@ -134,8 +134,7 @@ public class HacerJugadaTest {
 		Assert.assertEquals(mesa.puntaje(azules), 0);
 		Assert.assertEquals(mesa.puntaje(rojos), 3);
 	}
-	
-	@Ignore
+
 	@Test
 	public void envidoVaAntesQueTruco(){
 		mesa.truco();

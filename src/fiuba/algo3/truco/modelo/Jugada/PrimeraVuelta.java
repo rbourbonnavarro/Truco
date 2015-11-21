@@ -5,7 +5,10 @@ import fiuba.algo3.truco.modelo.Jugada.Envido.EstadoEnvido;
 import fiuba.algo3.truco.modelo.Jugada.EstadoFlor.EstadoFlor;
 import fiuba.algo3.truco.modelo.Jugada.EstadoFlor.FlorNoCantada;
 import fiuba.algo3.truco.modelo.Jugada.Truco.EstadoTruco;
+import fiuba.algo3.truco.modelo.Jugada.Truco.TrucoCantado;
 import fiuba.algo3.truco.modelo.Jugada.Truco.TrucoNoCantado;
+import fiuba.algo3.truco.modelo.Jugador;
+import fiuba.algo3.truco.modelo.JugadorNoPieNoPuedeCantarEnvido;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 
 /**
@@ -37,8 +40,15 @@ public class PrimeraVuelta implements EstadoVuelta {
     }
 
     @Override
-    public void envido() {
-        this.envido = this.flor.envido(this.envido);
+    public void envido(Jugador jugadorActual) {
+        if(!jugadorActual.jugadorPie())
+            if(this.truco instanceof TrucoCantado)
+                this.envido = this.flor.envido(this.envido);
+            else
+                throw new JugadorNoPieNoPuedeCantarEnvido();
+        else
+            this.envido = this.flor.envido(this.envido);
+
     }
     @Override
     public void envidoEnvido(){

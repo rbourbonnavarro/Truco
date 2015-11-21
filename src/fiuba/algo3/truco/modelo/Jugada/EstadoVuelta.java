@@ -1,5 +1,6 @@
 package fiuba.algo3.truco.modelo.Jugada;
 
+import fiuba.algo3.truco.modelo.Jugador;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 
 /**
@@ -10,7 +11,7 @@ public interface EstadoVuelta {
     void reTruco();
     void valeCuatro();
 
-    void envido();
+    void envido(Jugador jugadorActual);
     void envidoEnvido();
     void realEnvido();
     void faltaEnvido(Puntaje puntos);
