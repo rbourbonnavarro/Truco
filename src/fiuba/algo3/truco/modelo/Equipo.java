@@ -1,6 +1,7 @@
 package fiuba.algo3.truco.modelo;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
@@ -132,4 +133,11 @@ public class Equipo {
     }
 
 
+    public Collection<Carta> recuperarCartas() {
+        List<Carta> cartas = new ArrayList<>();
+        for (Jugador jugador : this.integrantes) {
+            cartas.addAll(jugador.obtenerCartas());
+        }
+        return cartas;
+    }
 }

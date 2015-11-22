@@ -88,6 +88,4 @@ public class Mazo {
         return new Mano(cartasMano);
 
     }
-
-
 }

@@ -1,14 +1,12 @@
 package fiuba.algo3.truco.modelo.Ronda;
 
-import fiuba.algo3.truco.modelo.Carta;
+import fiuba.algo3.truco.modelo.*;
 import fiuba.algo3.truco.modelo.Jugadas.Envido.JugadorNoPuedeCantarTantoNoEsPrimeraVuelta;
-import fiuba.algo3.truco.modelo.Equipo;
 import fiuba.algo3.truco.modelo.Jugadas.EstadoJuego;
-import fiuba.algo3.truco.modelo.Jugador;
-import fiuba.algo3.truco.modelo.Mazo;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
 
 public class TerceraVuelta implements EstadoRonda {
@@ -113,14 +111,11 @@ public class TerceraVuelta implements EstadoRonda {
     }
 
     @Override
-    public EstadoRonda terminarVuelta(Equipo equipo1, Equipo equipo2, Mazo mazo) {
+    public EstadoRonda terminarVuelta(Mesa mesa) {
 
         try {
 
             this.ganadorTercera.sumarPuntos(this.estadoJuego.puntos());
-
-            return new PrimeraVuelta(this.seJuegaConFlor,equipo1,equipo2, mazo);
-
 
         } catch(NullPointerException nullPointerException) {
 
@@ -128,15 +123,10 @@ public class TerceraVuelta implements EstadoRonda {
 
                 this.ganadoresVuelta.get(0).sumarPuntos(this.estadoJuego.puntos());
 
-                return new PrimeraVuelta(this.seJuegaConFlor, equipo1, equipo2, mazo);
-
-            } catch(NullPointerException e) {
-
-                return new PrimeraVuelta(this.seJuegaConFlor, equipo1, equipo2, mazo);
-
-            }
+            } catch(NullPointerException e) {}
 
         }
+        return mesa.terminarRonda();
 
     }
 
@@ -173,11 +163,11 @@ public class TerceraVuelta implements EstadoRonda {
     }
 
     @Override
-    public EstadoRonda terminar(Equipo equipoGanador, int puntos, Equipo equipo1, Equipo equipo2, Mazo mazo) {
+    public EstadoRonda terminar(Equipo equipoGanador, int puntos, Mesa mesa) {
 
         equipoGanador.sumarPuntos(puntos);
 
-        return new PrimeraVuelta(this.seJuegaConFlor, equipo1, equipo2, mazo);
+        return mesa.terminarRonda();
 
     }
 

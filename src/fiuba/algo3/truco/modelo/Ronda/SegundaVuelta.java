@@ -6,6 +6,7 @@ import fiuba.algo3.truco.modelo.Jugadas.EstadoJuego;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
 
 public class SegundaVuelta implements EstadoRonda {
@@ -116,16 +117,14 @@ public class SegundaVuelta implements EstadoRonda {
     }
 
     @Override
-    public EstadoRonda terminarVuelta(Equipo equipo1, Equipo equipo2, Mazo mazo) {
+    public EstadoRonda terminarVuelta(Mesa mesa) {
 
         try {
 
             if (ganadoresVuelta.get(0) == ganadorSegunda) {
 
                 this.ganadoresVuelta.get(0).sumarPuntos(this.estadoJuego.puntos());
-
-                return new PrimeraVuelta(this.seJuegaConFlor,equipo1,equipo2, mazo);
-
+                return mesa.terminarRonda();
             }
 
         } catch(NullPointerException ignored) {}
@@ -169,11 +168,11 @@ public class SegundaVuelta implements EstadoRonda {
     }
 
     @Override
-    public EstadoRonda terminar(Equipo equipoGanador, int puntos, Equipo equipo1, Equipo equipo2, Mazo mazo) {
+    public EstadoRonda terminar(Equipo equipoGanador, int puntos,Mesa mesa) {
 
         equipoGanador.sumarPuntos(puntos);
 
-        return new PrimeraVuelta(this.seJuegaConFlor, equipo1, equipo2, mazo);
+        return mesa.terminarRonda();
 
     }
 

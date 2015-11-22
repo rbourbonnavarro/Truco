@@ -8,6 +8,7 @@ import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.TrucoCantado;
 
 import java.util.ArrayList;
+import java.util.Deque;
 import java.util.List;
 
 public class PrimeraVuelta implements EstadoRonda {
@@ -123,7 +124,7 @@ public class PrimeraVuelta implements EstadoRonda {
     @Override
     public void quiero() {
 
-        this.estadoJuego = this.estadoJuego.quiero();
+         this.estadoJuego = this.estadoJuego.quiero();
 
     }
 
@@ -142,7 +143,7 @@ public class PrimeraVuelta implements EstadoRonda {
     }
 
     @Override
-    public EstadoRonda terminarVuelta(Equipo equipo1, Equipo equipo2, Mazo mazo) {
+    public EstadoRonda terminarVuelta(Mesa mesa) {
 
         return new SegundaVuelta(this.estadoJuego, this.ganadorPrimera, this.seJuegaConFlor);
 
@@ -181,11 +182,11 @@ public class PrimeraVuelta implements EstadoRonda {
     }
 
     @Override
-    public EstadoRonda terminar(Equipo equipoGanador, int puntos, Equipo equipo1, Equipo equipo2, Mazo mazo) {
+    public EstadoRonda terminar(Equipo equipoGanador, int puntos, Mesa mesa) {
 
         equipoGanador.sumarPuntos(puntos);
 
-        return new PrimeraVuelta(this.seJuegaConFlor, equipo1, equipo2, mazo);
+        return mesa.terminarRonda();
 
     }
 

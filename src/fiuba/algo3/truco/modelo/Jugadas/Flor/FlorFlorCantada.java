@@ -106,7 +106,7 @@ public class FlorFlorCantada implements EstadoJuego {
 
     @Override
     public EstadoJuego quiero() {
-        return null;
+        throw new NoSePuedeQuererFlorException();
     }
 
     @Override
