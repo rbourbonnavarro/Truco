@@ -65,5 +65,22 @@ public class HacerJugadaConFlorTest {
 
     }
 
+    @Test
+    public void trucoCantadoPermiteCantarEnvidoYVuelveATrucoCantadoAlFinalizarYSeSumanPuntosAEquipoGanador() {
+
+        List<Carta> lista = new ArrayList<>(Arrays.asList(new Carta(7,new Espada()),new Carta(3,new Espada()),new Carta(2,new Espada())));
+        Juan.setMano(new Mano(lista));
+
+        mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+        mesa.truco();
+        mesa.envido();
+        mesa.noQuieroEnvido();
+        mesa.noQuieroTruco();
+
+        Assert.assertTrue(mesa.puntaje(azules) == 1);
+        Assert.assertTrue(mesa.puntaje(rojos) == 1);
+
+    }
+
 
 }
