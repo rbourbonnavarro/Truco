@@ -16,7 +16,6 @@ public interface EstadoRonda {
 
     void envido(Jugador jugadorActual);
 
-    void envidoEnvido();
 
     void realEnvido(Jugador jugadorActual);
 

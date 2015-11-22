@@ -59,17 +59,11 @@ public class EnvidoEnvidoCantadoTests {
 
     }
 
-    @Test (expected = NoSePuedeCantarEnvido.class)
-    public void test3NoSePuedeCantarEnvido(){
-
-        this.estadoJuego.envido();
-
-    }
 
     @Test (expected = NoSePuedeCantarEnvidoEnvido.class)
     public void test4NoSePuedeCantarEnvidoEnvido(){
 
-        this.estadoJuego.envidoEnvido();
+        this.estadoJuego.envido();
 
     }
 

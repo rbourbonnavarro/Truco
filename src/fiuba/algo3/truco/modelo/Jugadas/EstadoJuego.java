@@ -16,8 +16,6 @@ public interface EstadoJuego {
 
     EstadoJuego envido();
 
-    EstadoJuego envidoEnvido();
-
     EstadoJuego realEnvido();
 
     EstadoJuego faltaEnvido(Puntaje puntos);

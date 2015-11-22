@@ -59,12 +59,6 @@ public class EnvidoQuerido implements EstadoJuego {
 
     }
 
-    @Override
-    public EstadoJuego envidoEnvido() {
-
-        return new EnvidoEnvidoCantado(this);
-
-    }
 
     @Override
     public EstadoJuego realEnvido() {

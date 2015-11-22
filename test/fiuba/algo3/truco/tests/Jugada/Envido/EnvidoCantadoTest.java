@@ -61,17 +61,10 @@ public class EnvidoCantadoTest {
 
     }
 
-    @Test(expected = NoSePuedeCantarEnvido.class)
-    public void Test3NoSePuedeCantarEnvido(){
-
-        this.estadoJuego.envido();
-
-    }
-
     @Test
     public void Test4SePuedeCantarEnvidoEnvido(){
 
-        this.estadoJuego = this.estadoJuego.envidoEnvido();
+        this.estadoJuego = this.estadoJuego.envido();
         Assert.assertEquals(this.estadoJuego, new EnvidoEnvidoCantado(this.estadoJuego));
 
     }

@@ -97,12 +97,6 @@ public class FlorCantadaTest {
 
     }
 
-    @Test(expected = NoSePuedeCantarEnvidoEnvido.class)
-    public void TestNoSePuedeCantarEnvidoEnvido(){
-
-        this.estadoJuego.envidoEnvido();
-
-    }
 
     @Test(expected = NoSePuedeCantarRealEnvido.class)
     public void TestNoSePuedeCantarRealEnvido(){

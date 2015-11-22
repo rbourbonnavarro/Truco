@@ -56,13 +56,6 @@ public class TerceraVuelta implements EstadoRonda {
     }
 
     @Override
-    public void envidoEnvido() {
-
-        throw new JugadorNoPuedeCantarTantoNoEsPrimeraVuelta();
-
-    }
-
-    @Override
     public void realEnvido(Jugador jugadorActual) {
 
         throw new JugadorNoPuedeCantarTantoNoEsPrimeraVuelta();

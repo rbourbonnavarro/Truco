@@ -109,7 +109,7 @@ public class FaltaEnvidoCantadoTest {
         puntos = new Puntaje();
         puntos.sumar(10);
         this.estadoJuego = new EnvidoCantado(this.estadoJuego);
-        this.estadoJuego = this.estadoJuego.envidoEnvido();
+        this.estadoJuego = this.estadoJuego.envido();
         this.estadoJuego = this.estadoJuego.faltaEnvido(puntos);
 
         Assert.assertEquals(this.estadoJuego.noQuerido(),4);
@@ -121,7 +121,7 @@ public class FaltaEnvidoCantadoTest {
         puntos = new Puntaje();
         puntos.sumar(10);
         this.estadoJuego = new EnvidoCantado(this.estadoJuego);
-        this.estadoJuego = this.estadoJuego.envidoEnvido();
+        this.estadoJuego = this.estadoJuego.envido();
         this.estadoJuego = this.estadoJuego.realEnvido();
         this.estadoJuego = this.estadoJuego.faltaEnvido(puntos);
 
@@ -149,15 +149,6 @@ public class FaltaEnvidoCantadoTest {
         this.estadoJuego = new FaltaEnvidoCantado(this.estadoJuego, puntos);
 
         this.estadoJuego.envido();
-
-    }
-
-    @Test(expected = NoSePuedeCantarEnvidoEnvido.class)
-    public void Test10NoSePuedeCantarEnvidoEnvido(){
-
-        puntos = new Puntaje();
-        this.estadoJuego = new FaltaEnvidoCantado(this.estadoJuego, puntos);
-        this.estadoJuego.envidoEnvido();
 
     }
 

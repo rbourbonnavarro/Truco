@@ -51,13 +51,6 @@ public class ValeCuatroCantado implements EstadoJuego {
     }
 
     @Override
-    public EstadoJuego envidoEnvido() {
-
-        throw new NoSePuedeCantarEnvidoEnvido();
-
-    }
-
-    @Override
     public EstadoJuego realEnvido() {
 
         throw new NoSePuedeCantarRealEnvido();

@@ -92,13 +92,6 @@ public class Mesa {
 
     }
 
-    public void envidoEnvido() {
-
-        this.estadoRonda.envidoEnvido();
-
-        this.intercambiarEquipos();
-
-    }
 
     public void realEnvido() {
 

@@ -106,7 +106,7 @@ public class HacerJugadaTest {
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
 		mesa.envido();
-		mesa.envidoEnvido();
+		mesa.envido();
 		mesa.noQuieroEnvido();
 		Assert.assertEquals(mesa.puntaje(azules), 0);
 		Assert.assertEquals(mesa.puntaje(rojos), 2);

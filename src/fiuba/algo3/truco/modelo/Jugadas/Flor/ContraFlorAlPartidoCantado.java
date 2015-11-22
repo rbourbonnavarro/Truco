@@ -62,12 +62,7 @@ public class ContraFlorAlPartidoCantado implements EstadoJuego {
 
     }
 
-    @Override
-    public EstadoJuego envidoEnvido() {
 
-        throw new NoSePuedeCantarEnvidoEnvido();
-
-    }
 
     @Override
     public EstadoJuego realEnvido() {

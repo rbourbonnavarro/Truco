@@ -1,9 +1,11 @@
 package fiuba.algo3.truco.tests.Jugada.Truco;
 
+import fiuba.algo3.truco.modelo.Jugadas.Envido.EnvidoCantado;
 import fiuba.algo3.truco.modelo.Jugadas.Envido.NoSePuedeCantarEnvidoEnvido;
 import fiuba.algo3.truco.modelo.Jugadas.EstadoJuego;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorCantada;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeCantarContraFlorException;
+import fiuba.algo3.truco.modelo.Jugadas.NadaCantado;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.NoSePuedeCantarTrucoException;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.NoSePuedeCantarValeCuatroException;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.RetrucoCantado;
@@ -19,9 +21,7 @@ public class TrucoCantadoTest {
 
     @Before
     public void setUp(){
-
-        boolean seJuegaConFlor = false;
-        this.estadoJuego = new TrucoCantado(seJuegaConFlor);
+        this.estadoJuego = new TrucoCantado(false);
 
     }
 
@@ -60,10 +60,11 @@ public class TrucoCantadoTest {
 
     }
 
-    @Test(expected = NoSePuedeCantarEnvidoEnvido.class)
-    public void TestNoSePuedeCantarEnvidoEnvido(){
+    @Test
+    public void TestSePuedeCantarEnvido(){
 
-        this.estadoJuego.envidoEnvido();
+        this.estadoJuego = this.estadoJuego.envido();
+        Assert.assertEquals(estadoJuego, new EnvidoCantado(new NadaCantado()));
 
     }
 

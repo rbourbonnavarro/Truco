@@ -57,16 +57,10 @@ public class EnvidoCantado implements EstadoJuego {
     @Override
     public EstadoJuego envido() {
 
-        throw new NoSePuedeCantarEnvido();
-
-    }
-
-    @Override
-    public EstadoJuego envidoEnvido() {
-
         return new EnvidoEnvidoCantado(this);
 
     }
+
 
     @Override
     public EstadoJuego realEnvido() {

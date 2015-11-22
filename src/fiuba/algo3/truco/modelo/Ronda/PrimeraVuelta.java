@@ -67,12 +67,6 @@ public class PrimeraVuelta implements EstadoRonda {
 
     }
 
-    @Override
-    public void envidoEnvido() {
-
-        this.estadoJuego = this.estadoJuego.envidoEnvido();
-
-    }
 
     @Override
     public void realEnvido(Jugador jugadorActual) {
