@@ -5,6 +5,7 @@ import fiuba.algo3.truco.modelo.Jugadas.Envido.JugadorNoPuedeCantarTantoNoEsPrim
 import fiuba.algo3.truco.modelo.Equipo;
 import fiuba.algo3.truco.modelo.Jugadas.EstadoJuego;
 import fiuba.algo3.truco.modelo.Jugador;
+import fiuba.algo3.truco.modelo.Mazo;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 
 import java.util.ArrayList;
@@ -119,13 +120,13 @@ public class TerceraVuelta implements EstadoRonda {
     }
 
     @Override
-    public EstadoRonda terminarVuelta() {
+    public EstadoRonda terminarVuelta(Equipo equipo1, Equipo equipo2, Mazo mazo) {
 
         try {
 
-            this.ganadoresVuelta.get(2).sumarPuntos(this.estadoJuego.puntos());
+            this.ganadorTercera.sumarPuntos(this.estadoJuego.puntos());
 
-            return new PrimeraVuelta(this.seJuegaConFlor);
+            return new PrimeraVuelta(this.seJuegaConFlor,equipo1,equipo2, mazo);
 
 
         } catch(NullPointerException nullPointerException) {
@@ -134,11 +135,11 @@ public class TerceraVuelta implements EstadoRonda {
 
                 this.ganadoresVuelta.get(0).sumarPuntos(this.estadoJuego.puntos());
 
-                return new PrimeraVuelta(this.seJuegaConFlor);
+                return new PrimeraVuelta(this.seJuegaConFlor, equipo1, equipo2, mazo);
 
             } catch(NullPointerException e) {
 
-                return new PrimeraVuelta(this.seJuegaConFlor);
+                return new PrimeraVuelta(this.seJuegaConFlor, equipo1, equipo2, mazo);
 
             }
 
@@ -179,11 +180,11 @@ public class TerceraVuelta implements EstadoRonda {
     }
 
     @Override
-    public EstadoRonda terminar(Equipo equipoGanador, int puntos) {
+    public EstadoRonda terminar(Equipo equipoGanador, int puntos, Equipo equipo1, Equipo equipo2, Mazo mazo) {
 
         equipoGanador.sumarPuntos(puntos);
 
-        return new PrimeraVuelta(this.seJuegaConFlor);
+        return new PrimeraVuelta(this.seJuegaConFlor, equipo1, equipo2, mazo);
 
     }
 
@@ -192,6 +193,11 @@ public class TerceraVuelta implements EstadoRonda {
 
         return this.ganadoresVuelta.get(1);
 
+    }
+
+    @Override
+    public int numeroVuelta() {
+        return 3;
     }
 
 

@@ -22,7 +22,6 @@ public class Mesa {
 
     public Mesa(Equipo equipo1, Equipo equipo2, boolean seJuegaConFlor) {
 
-        this.estadoRonda = new PrimeraVuelta(seJuegaConFlor);
         this.valoresTruco = new ValoresTruco();
         this.cartasEnMesa = new ArrayDeque<>();
 
@@ -38,10 +37,7 @@ public class Mesa {
         this.equipo1.setPie();
         this.equipo2.setPie();
 
-        List<Jugador> jugadores = new ArrayList<>(this.equipo1.getIntegrantes());
-        jugadores.addAll(this.equipo2.getIntegrantes());
-
-        this.mazo.repartir(jugadores);
+        this.estadoRonda = new PrimeraVuelta(seJuegaConFlor, equipo1, equipo2,this.mazo);
 
     }
 
@@ -74,7 +70,7 @@ public class Mesa {
 
             this.terminarJugada();
 
-            if (this.cartasEnMesa.size() == 2 * (this.equipoActual.getCantidadIntegrantes())) {
+            if (this.cartasEnMesa.size() == 2 * this.equipoActual.getCantidadIntegrantes() * this.estadoRonda.numeroVuelta()) {
 
                 this.terminarVuelta();
 
@@ -184,7 +180,7 @@ public class Mesa {
 
     public void noQuieroTruco() {
 
-        this.estadoRonda = this.estadoRonda.terminar(this.equipoContrario, this.estadoRonda.noQuerido());
+        this.estadoRonda = this.estadoRonda.terminar(this.equipoContrario, this.estadoRonda.noQuerido(),equipo1,equipo2,mazo);
 
     }
 
@@ -266,7 +262,7 @@ public class Mesa {
 
     private void terminarVuelta() {
 
-        this.estadoRonda = this.estadoRonda.terminarVuelta();
+        this.estadoRonda = this.estadoRonda.terminarVuelta(this.equipo1,this.equipo2,this.mazo);
 
     }
 

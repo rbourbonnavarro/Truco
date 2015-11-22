@@ -7,6 +7,9 @@ import fiuba.algo3.truco.modelo.Jugadas.NadaCantado;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.TrucoCantado;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class PrimeraVuelta implements EstadoRonda {
 
     private EstadoJuego estadoJuego;
@@ -14,10 +17,15 @@ public class PrimeraVuelta implements EstadoRonda {
     private Carta cartaGanadora;
     private boolean seJuegaConFlor;
 
-    public PrimeraVuelta(boolean seJuegaConFlor) {
+    public PrimeraVuelta(boolean seJuegaConFlor, Equipo equipo1, Equipo equipo2, Mazo mazo) {
 
         this.estadoJuego = new NadaCantado();
         this.seJuegaConFlor = seJuegaConFlor;
+
+        List<Jugador> jugadores = new ArrayList<>(equipo1.getIntegrantes());
+        jugadores.addAll(equipo2.getIntegrantes());
+
+        mazo.repartir(jugadores);
 
     }
 
@@ -140,7 +148,7 @@ public class PrimeraVuelta implements EstadoRonda {
     }
 
     @Override
-    public EstadoRonda terminarVuelta() {
+    public EstadoRonda terminarVuelta(Equipo equipo1, Equipo equipo2, Mazo mazo) {
 
         return new SegundaVuelta(this.estadoJuego, this.ganadorPrimera, this.seJuegaConFlor);
 
@@ -179,11 +187,11 @@ public class PrimeraVuelta implements EstadoRonda {
     }
 
     @Override
-    public EstadoRonda terminar(Equipo equipoGanador, int puntos) {
+    public EstadoRonda terminar(Equipo equipoGanador, int puntos, Equipo equipo1, Equipo equipo2, Mazo mazo) {
 
         equipoGanador.sumarPuntos(puntos);
 
-        return new PrimeraVuelta(this.seJuegaConFlor);
+        return new PrimeraVuelta(this.seJuegaConFlor, equipo1, equipo2, mazo);
 
     }
 
@@ -192,6 +200,11 @@ public class PrimeraVuelta implements EstadoRonda {
 
         return null;
 
+    }
+
+    @Override
+    public int numeroVuelta() {
+        return 1;
     }
 
 

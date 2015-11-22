@@ -122,19 +122,19 @@ public class SegundaVuelta implements EstadoRonda {
     }
 
     @Override
-    public EstadoRonda terminarVuelta() {
+    public EstadoRonda terminarVuelta(Equipo equipo1, Equipo equipo2, Mazo mazo) {
 
         try {
 
-            if (ganadoresVuelta.get(0) == ganadoresVuelta.get(1)) {
+            if (ganadoresVuelta.get(0) == ganadorSegunda) {
 
                 this.ganadoresVuelta.get(0).sumarPuntos(this.estadoJuego.puntos());
 
-                return new PrimeraVuelta(this.seJuegaConFlor);
+                return new PrimeraVuelta(this.seJuegaConFlor,equipo1,equipo2, mazo);
 
             }
 
-        } catch(NullPointerException nullPointerException) {}
+        } catch(NullPointerException ignored) {}
 
         this.ganadoresVuelta.add(ganadorSegunda);
 
@@ -175,11 +175,11 @@ public class SegundaVuelta implements EstadoRonda {
     }
 
     @Override
-    public EstadoRonda terminar(Equipo equipoGanador, int puntos) {
+    public EstadoRonda terminar(Equipo equipoGanador, int puntos, Equipo equipo1, Equipo equipo2, Mazo mazo) {
 
         equipoGanador.sumarPuntos(puntos);
 
-        return new PrimeraVuelta(this.seJuegaConFlor);
+        return new PrimeraVuelta(this.seJuegaConFlor, equipo1, equipo2, mazo);
 
     }
 
@@ -188,6 +188,11 @@ public class SegundaVuelta implements EstadoRonda {
 
         return this.ganadoresVuelta.get(0);
 
+    }
+
+    @Override
+    public int numeroVuelta() {
+        return 2;
     }
 
 

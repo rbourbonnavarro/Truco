@@ -70,7 +70,7 @@ Mesa mesa;
 	}
 	
 	@Test
-	public void jugadaUno() {
+	public void envidoQueridoOtorgaDosPuntosAlGanador() {
 
 		cartasJuan.add(carta1);
 		cartasJuan.add(carta4);
@@ -87,7 +87,33 @@ Mesa mesa;
 		mesa.quieroEnvido();
 		Assert.assertTrue(mesa.puntaje(equipoJuan) == 0);
 		Assert.assertTrue(mesa.puntaje(equipoPedro) == 2);
-		
+	}
+
+	@Test
+	public void test2FinDeRondaReparteNuevasCartasParaLosJugadores(){
+		cartasJuan.addAll(Arrays.asList(carta1, carta2, carta3));
+		cartasPedro.addAll(Arrays.asList(carta4,carta5,carta6));
+		Juan.setMano(new Mano(cartasJuan));
+		Pedro.setMano(new Mano(cartasPedro));
+
+		Assert.assertEquals("Juan",mesa.getJugadorActual().getNombre());
+		mesa.hacerJugada(carta1);
+		Assert.assertEquals("Pedro",mesa.getJugadorActual().getNombre());
+		mesa.envido();
+		Assert.assertEquals("Juan",mesa.getJugadorActual().getNombre());
+		mesa.noQuieroEnvido();
+		Assert.assertEquals("Pedro",mesa.getJugadorActual().getNombre());
+		mesa.hacerJugada(carta4);
+		Assert.assertEquals("Juan",mesa.getJugadorActual().getNombre());
+		mesa.truco();
+		Assert.assertEquals("Pedro",mesa.getJugadorActual().getNombre());
+		mesa.quieroTruco();
+		Assert.assertEquals("Juan",mesa.getJugadorActual().getNombre());
+		mesa.hacerJugada(carta3);
+		Assert.assertEquals("Pedro",mesa.getJugadorActual().getNombre());
+		mesa.hacerJugada(carta5);
+		Assert.assertEquals(2,equipoJuan.getPuntos());
+		Assert.assertEquals(1,equipoPedro.getPuntos());
 	}
 
 	
