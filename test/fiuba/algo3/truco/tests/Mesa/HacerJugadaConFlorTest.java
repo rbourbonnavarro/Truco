@@ -2,6 +2,7 @@ package fiuba.algo3.truco.tests.Mesa;
 
 import fiuba.algo3.truco.modelo.*;
 import fiuba.algo3.truco.modelo.Jugadas.Envido.NoSePuedeCantarEnvido;
+import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorNoAceptadaNoSePuedeJugarException;
 import fiuba.algo3.truco.modelo.Palo.Espada;
 import org.junit.Assert;
 import org.junit.Before;
@@ -79,6 +80,14 @@ public class HacerJugadaConFlorTest {
 
         Assert.assertTrue(mesa.puntaje(azules) == 1);
         Assert.assertTrue(mesa.puntaje(rojos) == 1);
+
+    }
+
+    @Test(expected = FlorNoAceptadaNoSePuedeJugarException.class)
+    public void noSePuedeHacerJugadaSiNoSeDecidioLaFlor() {
+
+        mesa.flor();
+        mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
 
     }
 

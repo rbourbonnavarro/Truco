@@ -9,10 +9,12 @@ import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 
 public class TrucoCantado implements EstadoJuego {
 
+    private boolean querido;
     private boolean tantoCantado;
 
     public TrucoCantado(boolean tantoCantado) {
 
+        this.querido = false;
         this.tantoCantado = tantoCantado;
 
     }
@@ -57,6 +59,8 @@ public class TrucoCantado implements EstadoJuego {
 
         if(this.tantoCantado) throw new NoSePuedeCantarEnvido();
 
+        this.tantoCantado = true;
+
         return new EnvidoCantado(this);
 
     }
@@ -65,6 +69,8 @@ public class TrucoCantado implements EstadoJuego {
     public EstadoJuego realEnvido() {
 
         if(this.tantoCantado) throw new NoSePuedeCantarRealEnvido();
+
+        this.tantoCantado = true;
 
         return new RealEnvidoCantado(this);
 
@@ -75,6 +81,8 @@ public class TrucoCantado implements EstadoJuego {
 
         if(this.tantoCantado) throw new NoSePuedeCantarFaltaEnvido();
 
+        this.tantoCantado = true;
+
         return new FaltaEnvidoCantado(this, puntos);
 
     }
@@ -83,6 +91,8 @@ public class TrucoCantado implements EstadoJuego {
     public EstadoJuego flor() {
 
         if(this.tantoCantado) throw new NoSePuedeCantarFlorException();
+
+        this.tantoCantado = true;
 
         return new FlorCantada(this);
 
@@ -112,7 +122,16 @@ public class TrucoCantado implements EstadoJuego {
     @Override
     public EstadoJuego quiero() {
 
+        this.querido = true;
+
         return this;
+
+    }
+
+    @Override
+    public void estadoValido() {
+
+        if(!this.querido) throw new TrucoNoQueridoNoSePuedeJugarException();
 
     }
 

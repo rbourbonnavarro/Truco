@@ -67,6 +67,7 @@ public class Jugador {
         if (!(this.mano.getCartas().get(0).getPalo().equals(this.mano.getCartas().get(1).getPalo()) &&
                 this.mano.getCartas().get(2).getPalo().equals(this.mano.getCartas().get(1).getPalo())))
             throw new JugadorNoTieneFlorException();
+
     }
 
 

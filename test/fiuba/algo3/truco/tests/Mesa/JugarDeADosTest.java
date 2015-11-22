@@ -20,7 +20,7 @@ import fiuba.algo3.truco.modelo.Palo.Oro;
 
 public class JugarDeADosTest {
 
-Mesa mesa;
+	Mesa mesa;
 	
 	Jugador Juan;
 	Jugador Pedro;
@@ -114,6 +114,7 @@ Mesa mesa;
 		mesa.hacerJugada(carta5);
 		Assert.assertEquals(2,equipoJuan.getPuntos());
 		Assert.assertEquals(1,equipoPedro.getPuntos());
+
 	}
 
 	

@@ -185,7 +185,16 @@ public class SegundaVuelta implements EstadoRonda {
 
     @Override
     public int numeroVuelta() {
+
         return 2;
+
+    }
+
+    @Override
+    public void estadoValido() {
+
+        this.estadoJuego.estadoValido();
+
     }
 
 

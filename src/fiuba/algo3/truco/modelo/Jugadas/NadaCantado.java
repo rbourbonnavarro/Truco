@@ -4,6 +4,7 @@ import fiuba.algo3.truco.modelo.Jugadas.Envido.*;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorCantada;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeCantarContraFlorException;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeCantarFlorException;
+import fiuba.algo3.truco.modelo.Jugadas.Truco.TrucoNoQueridoNoSePuedeJugarException;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.NoSePuedeCantarRetrucoException;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.NoSePuedeCantarValeCuatroException;
@@ -52,6 +53,8 @@ public class NadaCantado implements EstadoJuego {
 
         if(this.tantoCantado) throw new NoSePuedeCantarEnvido();
 
+        this.tantoCantado = true;
+
         return new EnvidoCantado(this);
 
     }
@@ -60,6 +63,8 @@ public class NadaCantado implements EstadoJuego {
     public EstadoJuego realEnvido() {
 
         if(this.tantoCantado) throw new NoSePuedeCantarRealEnvido();
+
+        this.tantoCantado = true;
 
         return new RealEnvidoCantado(this);
 
@@ -70,6 +75,8 @@ public class NadaCantado implements EstadoJuego {
 
         if(this.tantoCantado) throw new NoSePuedeCantarFaltaEnvido();
 
+        this.tantoCantado = true;
+
         return new FaltaEnvidoCantado(this, puntos);
 
     }
@@ -78,6 +85,8 @@ public class NadaCantado implements EstadoJuego {
     public EstadoJuego flor() {
 
         if(this.tantoCantado) throw new NoSePuedeCantarFlorException();
+
+        this.tantoCantado = true;
 
         return new FlorCantada(this);
 
@@ -109,9 +118,12 @@ public class NadaCantado implements EstadoJuego {
     @Override
     public EstadoJuego quiero() {
 
-        return null;
+        return this;
 
     }
+
+    @Override
+    public void estadoValido() {}
 
     @Override
     public boolean equals (Object estado){

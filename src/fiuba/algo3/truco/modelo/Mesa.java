@@ -1,12 +1,15 @@
 package fiuba.algo3.truco.modelo;
 
-import java.util.*;
-
 import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeQuererFlorException;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 import fiuba.algo3.truco.modelo.Ronda.EstadoRonda;
 import fiuba.algo3.truco.modelo.Ronda.PrimeraVuelta;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.*;
+
+import java.util.ArrayDeque;
+import java.util.Deque;
+import java.util.List;
+import java.util.Objects;
 
 public class Mesa {
 
@@ -43,7 +46,7 @@ public class Mesa {
 
         this.seJuegaConFlor = seJuegaConFlor;
 
-        this.estadoRonda = new PrimeraVuelta(seJuegaConFlor, equipo1, equipo2,this.mazo);
+        this.estadoRonda = new PrimeraVuelta(seJuegaConFlor, equipo1, equipo2, this.mazo);
 
     }
 
@@ -66,6 +69,8 @@ public class Mesa {
     }
 
     public void hacerJugada(Carta carta) throws NoHayCartasParaJugar {
+
+        this.estadoRonda.estadoValido();
 
         try {
 
@@ -91,6 +96,7 @@ public class Mesa {
     }
 
     public void envido() {
+
         this.guardarEquipoIniciadorEnvido();
         this.estadoRonda.envido(this.jugadorActual);
 
@@ -100,6 +106,7 @@ public class Mesa {
 
 
     public void realEnvido() {
+
         this.guardarEquipoIniciadorEnvido();
         this.estadoRonda.realEnvido(this.jugadorActual);
 
@@ -108,6 +115,7 @@ public class Mesa {
     }
 
     public void faltaEnvido() {
+
         this.guardarEquipoIniciadorEnvido();
         Puntaje puntosEnJuego = this.obtenerMayorPuntaje();
         this.estadoRonda.faltaEnvido(this.jugadorActual, puntosEnJuego);
@@ -116,6 +124,7 @@ public class Mesa {
     }
 
     public void truco() {
+
         this.guardarEquipoIniciadorTruco();
         this.estadoRonda.truco();
         this.intercambiarEquipos();
@@ -123,6 +132,7 @@ public class Mesa {
     }
 
     public void flor() {
+
         this.guardarEquipoIniciadorFlor();
         this.equipoActual.flor();
     	this.estadoRonda.flor();
@@ -180,9 +190,12 @@ public class Mesa {
     public void noQuieroTruco() {
 
         this.estadoRonda = this.estadoRonda.terminar(this.equipoContrario,estadoRonda.noQuerido(),this);
+
     }
 
     public void quieroEnvido() {
+
+        this.estadoRonda.quiero();
 
         this.obtenerGanadorEnvido().sumarPuntos(this.estadoRonda.puntos());
         this.estadoRonda.terminarTanto();
@@ -202,7 +215,17 @@ public class Mesa {
 
     public void quieroFlor() {
 
-        this.obtenerGanadorFlor().sumarPuntos(this.estadoRonda.puntos());
+        try {
+
+            this.estadoRonda.quiero();
+
+            this.obtenerGanadorFlor().sumarPuntos(this.estadoRonda.puntos());
+
+        } catch(NoSePuedeQuererFlorException noSePuedeQuererFlorException) {
+
+            this.equipoContrario.sumarPuntos(this.estadoRonda.puntos());
+
+        }
 
         this.estadoRonda.terminarTanto();
 
@@ -264,46 +287,68 @@ public class Mesa {
 
     private void recuperarEquipoActualTruco() {
 
-        if(Objects.equals(this.equipoIniciadorTruco.getNombre(), this.equipoContrario.getNombre())) {
+        if(Objects.equals(this.equipoIniciadorTruco, this.equipoContrario)) {
+
             this.intercambiarEquipos();
+
         }
+
         this.equipoIniciadorTruco = null;
+
     }
 
     private void guardarEquipoIniciadorTruco() {
+
         if(this.equipoIniciadorTruco == null)
             this.equipoIniciadorTruco = this.equipoActual;
+
     }
 
     private void recuperarEquipoActualEnvido() {
 
-        if(Objects.equals(this.equipoIniciadorEnvido.getNombre(), this.equipoContrario.getNombre())) {
+        if(Objects.equals(this.equipoIniciadorEnvido, this.equipoContrario)) {
+
             this.intercambiarEquipos();
+
         }
+
         this.equipoIniciadorEnvido = null;
+
     }
 
     private void guardarEquipoIniciadorEnvido() {
+
         if(this.equipoIniciadorEnvido == null)
             this.equipoIniciadorEnvido = this.equipoActual;
+
     }
 
     private void recuperarEquipoActualFlor() {
 
-        if(Objects.equals(this.equipoIniciadorFlor.getNombre(), this.equipoContrario.getNombre())) {
+        if(Objects.equals(this.equipoIniciadorFlor, this.equipoContrario)) {
+
             this.intercambiarEquipos();
+
         }
+
         this.equipoIniciadorFlor = null;
+
     }
 
     private void guardarEquipoIniciadorFlor() {
+
         if(this.equipoIniciadorFlor == null)
             this.equipoIniciadorFlor = this.equipoActual;
+
     }
 
     public EstadoRonda terminarRonda() {
+
         this.cartasEnMesa = new ArrayDeque<>();
         this.intercambiarEquipos();
-        return new PrimeraVuelta(this.seJuegaConFlor,this.equipo1,this.equipo2,this.mazo);
+        return new PrimeraVuelta(this.seJuegaConFlor, this.equipo1, this.equipo2, this.mazo);
+
     }
+
+
 }

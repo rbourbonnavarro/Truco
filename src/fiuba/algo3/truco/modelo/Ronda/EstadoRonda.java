@@ -15,7 +15,6 @@ public interface EstadoRonda {
 
     void envido(Jugador jugadorActual);
 
-
     void realEnvido(Jugador jugadorActual);
 
     void faltaEnvido(Jugador jugadorActual, Puntaje puntos);
@@ -40,9 +39,11 @@ public interface EstadoRonda {
 
     EstadoRonda terminar(Equipo equipoGanador, int puntos, Mesa mesa);
 
-
     Equipo getGanadorVuelta();
 
-
     int numeroVuelta();
+
+    void estadoValido();
+
+
 }

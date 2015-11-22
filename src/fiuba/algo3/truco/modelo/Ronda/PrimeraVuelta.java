@@ -1,6 +1,8 @@
 package fiuba.algo3.truco.modelo.Ronda;
 
 import fiuba.algo3.truco.modelo.*;
+import fiuba.algo3.truco.modelo.Jugadas.Envido.EnvidoCantado;
+import fiuba.algo3.truco.modelo.Jugadas.Envido.RealEnvidoCantado;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.JuegoSinFlorException;
 import fiuba.algo3.truco.modelo.Jugadas.EstadoJuego;
 import fiuba.algo3.truco.modelo.Jugadas.NadaCantado;
@@ -16,12 +18,19 @@ public class PrimeraVuelta implements EstadoRonda {
     private EstadoJuego estadoJuego;
     private Equipo ganadorPrimera;
     private Carta cartaGanadora;
+    private boolean trucoValido;
+    private boolean envidoValido;
+    private boolean florValida;
     private boolean seJuegaConFlor;
 
     public PrimeraVuelta(boolean seJuegaConFlor, Equipo equipo1, Equipo equipo2, Mazo mazo) {
 
         this.estadoJuego = new NadaCantado();
         this.seJuegaConFlor = seJuegaConFlor;
+
+        this.trucoValido = true;
+        this.envidoValido = true;
+        this.florValida = true;
 
         List<Jugador> jugadores = new ArrayList<>(equipo1.getIntegrantes());
         jugadores.addAll(equipo2.getIntegrantes());
@@ -56,7 +65,8 @@ public class PrimeraVuelta implements EstadoRonda {
 
         if(!jugadorActual.jugadorPie()) {
 
-            if(!(this.estadoJuego instanceof TrucoCantado)) {
+            if(!(this.estadoJuego instanceof TrucoCantado
+                    || this.estadoJuego instanceof EnvidoCantado)) {
 
                 throw new JugadorNoPieNoPuedeCantarEnvido();
 
@@ -72,7 +82,16 @@ public class PrimeraVuelta implements EstadoRonda {
     @Override
     public void realEnvido(Jugador jugadorActual) {
 
-        if(!jugadorActual.jugadorPie()) throw new JugadorNoPieNoPuedeCantarEnvido();
+        if(!jugadorActual.jugadorPie()) {
+
+            if(!(this.estadoJuego instanceof TrucoCantado
+                    || this.estadoJuego instanceof EnvidoCantado)) {
+
+                throw new JugadorNoPieNoPuedeCantarEnvido();
+
+            }
+
+        }
 
         this.estadoJuego = this.estadoJuego.realEnvido();
 
@@ -81,7 +100,17 @@ public class PrimeraVuelta implements EstadoRonda {
     @Override
     public void faltaEnvido(Jugador jugadorActual, Puntaje puntos) {
 
-        if(!jugadorActual.jugadorPie()) throw new JugadorNoPieNoPuedeCantarEnvido();
+        if(!jugadorActual.jugadorPie()) {
+
+            if(!(this.estadoJuego instanceof TrucoCantado
+                    || this.estadoJuego instanceof EnvidoCantado
+                    || this.estadoJuego instanceof RealEnvidoCantado)) {
+
+                throw new JugadorNoPieNoPuedeCantarEnvido();
+
+            }
+
+        }
 
         this.estadoJuego = this.estadoJuego.faltaEnvido(puntos);
 
@@ -199,7 +228,16 @@ public class PrimeraVuelta implements EstadoRonda {
 
     @Override
     public int numeroVuelta() {
+
         return 1;
+
+    }
+
+    @Override
+    public void estadoValido() {
+
+        this.estadoJuego.estadoValido();
+
     }
 
 

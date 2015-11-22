@@ -14,10 +14,8 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Created by GomezPeter on 21/11/2015.
- */
 public class PartidaCompletaTest {
+
     Mesa mesa;
 
     Jugador J1;
@@ -40,7 +38,7 @@ public class PartidaCompletaTest {
     Carta carta6;
 
     @Before
-    public void setUp(){
+    public void setUp() {
 
         J1 = new Jugador("J1");
         J2 = new Jugador("J2");
@@ -58,7 +56,8 @@ public class PartidaCompletaTest {
     }
 
     @Test
-    public void partidaCompleta(){
+    public void partidaCompleta1() {
+
         carta1 = new Carta(7,new Espada());
         carta2 = new Carta(3,new Espada());
         carta3 = new Carta(2, new Basto());
@@ -73,13 +72,13 @@ public class PartidaCompletaTest {
         J1.setMano(new Mano(cartasJ1));
         J2.setMano(new Mano(cartasJ2));
 
-        Assert.assertEquals(J1.getNombre(),mesa.getJugadorActual().getNombre());
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
         mesa.envido();
-        Assert.assertEquals(J2.getNombre(),mesa.getJugadorActual().getNombre());
+        Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
         mesa.envido();
-        Assert.assertEquals(J1.getNombre(),mesa.getJugadorActual().getNombre());
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
         mesa.realEnvido();
-        Assert.assertEquals(J2.getNombre(),mesa.getJugadorActual().getNombre());
+        Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
         mesa.quieroEnvido();
 
         Assert.assertEquals(equipo1.getPuntos(),7);
@@ -156,7 +155,7 @@ public class PartidaCompletaTest {
 
         carta1 = new Carta(7,new Espada());
         carta2 = new Carta(3,new Espada());
-        carta3 = new Carta(1, new Oro());
+        carta3 = new Carta(1,new Oro());
 
         carta4 = new Carta(7,new Oro());
         carta5 = new Carta(6,new Oro());
@@ -224,5 +223,8 @@ public class PartidaCompletaTest {
         Assert.assertEquals(equipo1.getPuntos(),30);
         Assert.assertEquals(equipo1.getPuntaje().getEstadoPuntaje(), new Buenas());
         Assert.assertEquals(equipo2.getPuntos(),10);
+
     }
+
+
 }

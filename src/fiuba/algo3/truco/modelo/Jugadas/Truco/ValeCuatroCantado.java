@@ -8,6 +8,8 @@ import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 
 public class ValeCuatroCantado implements EstadoJuego {
 
+    private boolean querido = false;
+
     @Override
     public int puntos() {
 
@@ -95,7 +97,16 @@ public class ValeCuatroCantado implements EstadoJuego {
     @Override
     public EstadoJuego quiero() {
 
+        this.querido = true;
+
         return this;
+
+    }
+
+    @Override
+    public void estadoValido() {
+
+        if(!this.querido) throw new ValeCuatroNoQueridoNoSePuedeJugarException();
 
     }
 

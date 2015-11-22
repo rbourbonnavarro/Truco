@@ -180,7 +180,16 @@ public class TerceraVuelta implements EstadoRonda {
 
     @Override
     public int numeroVuelta() {
+
         return 3;
+
+    }
+
+    @Override
+    public void estadoValido() {
+
+        this.estadoJuego.estadoValido();
+
     }
 
 

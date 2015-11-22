@@ -30,5 +30,7 @@ public interface EstadoJuego {
 
     EstadoJuego quiero();
 
+    void estadoValido();
+
 
 }
