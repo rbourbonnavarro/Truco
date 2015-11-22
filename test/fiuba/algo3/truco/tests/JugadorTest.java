@@ -1,7 +1,6 @@
 package fiuba.algo3.truco.tests;
 
 import fiuba.algo3.truco.modelo.Carta;
-import fiuba.algo3.truco.modelo.JuegoSinFlor;
 import fiuba.algo3.truco.modelo.Figura;
 import fiuba.algo3.truco.modelo.Jugador;
 import fiuba.algo3.truco.modelo.Mano;

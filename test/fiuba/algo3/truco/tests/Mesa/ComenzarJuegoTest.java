@@ -6,15 +6,12 @@ import java.util.LinkedList;
 import java.util.List;
 
 import fiuba.algo3.truco.modelo.*;
-//import fiuba.algo3.truco.modelo.JuegoSinFlor;
 import fiuba.algo3.truco.modelo.Palo.Basto;
 import fiuba.algo3.truco.modelo.Palo.Espada;
 import fiuba.algo3.truco.modelo.Palo.Oro;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-
-import fiuba.algo3.truco.modelo.Jugada.Envido.CalculadorTanto;
 
 public class ComenzarJuegoTest {
 	
@@ -25,7 +22,6 @@ public class ComenzarJuegoTest {
 	List<Jugador> jugadoresEquipo2;
 	Equipo equipo1;
 	Equipo equipo2;
-	CalculadorTanto calculadorTanto;
 	
 	@Before
 	public void setUp(){
@@ -39,18 +35,19 @@ public class ComenzarJuegoTest {
 		equipo1 = new Equipo("equipo1", jugadoresEquipo1);
 		equipo2 = new Equipo("equipo2", jugadoresEquipo2);
 
-		mesa = new Mesa(equipo1, equipo2, calculadorTanto);
+		boolean seJuegaConFlor = false;
+
+		mesa = new Mesa(equipo1, equipo2, seJuegaConFlor);
 
 	}
 	
 	
 	@Test
 	public void mesaSeInicioCorrectamente(){
-			
-		//mesa.comenzarJuego();
+
 		Assert.assertTrue(mesa.getJugadorActual() == jugador1);
 		Assert.assertEquals(mesa.getJugadorActual().obtenerCartas().size(), 3);
-		Assert.assertEquals(mesa.puntaje(equipo1),0);
+		Assert.assertEquals(mesa.puntaje(equipo1), 0);
 	}
 	
 	@Test(expected = NoHayCartasParaJugar.class)
@@ -62,7 +59,6 @@ public class ComenzarJuegoTest {
 	@Test
 	public void test3JugarCartaTerminaElTurnoDelEquipo(){
 
-		//mesa.comenzarJuego();
 		List<Carta> cartas = mesa.getCartasDelJugadorActual();
 		Assert.assertEquals(mesa.getJugadorActual().getNombre(),"Juan");
 		mesa.hacerJugada(cartas.get(0));
@@ -90,7 +86,7 @@ public class ComenzarJuegoTest {
 
 		mesa.hacerJugada(carta1);
 		mesa.hacerJugada(carta4);
-		Assert.assertEquals("equipo1", mesa.getGanadorVuelta().getEquipoGanador().getNombre());
+		Assert.assertEquals("equipo1", mesa.getGanadorVuelta().getNombre());
 
 	}
 
@@ -108,7 +104,9 @@ public class ComenzarJuegoTest {
 		equipo1 = new Equipo("equipo1", jugadoresEquipo1);
 		equipo2 = new Equipo("equipo2", jugadoresEquipo2);
 
-		mesa = new Mesa(equipo1, equipo2, calculadorTanto);
+		boolean seJuegaConFlor = false;
+
+		mesa = new Mesa(equipo1, equipo2, seJuegaConFlor);
 
 		Carta carta1 = new Carta(7,new Espada());
 		Carta carta2 = new Carta(7,new Basto());
@@ -135,7 +133,7 @@ public class ComenzarJuegoTest {
 		mesa.hacerJugada(carta4);
 		mesa.hacerJugada(carta7);
 		mesa.hacerJugada(carta11);
-		Assert.assertEquals("equipo2", mesa.getGanadorVuelta().getEquipoGanador().getNombre());
+		Assert.assertEquals("equipo2", mesa.getGanadorVuelta().getNombre());
 
 	}
 
@@ -155,7 +153,9 @@ public class ComenzarJuegoTest {
 		equipo1 = new Equipo("equipo1", jugadoresEquipo1);
 		equipo2 = new Equipo("equipo2", jugadoresEquipo2);
 
-		mesa = new Mesa(equipo1, equipo2, calculadorTanto);
+		boolean seJuegaConFlor = false;
+
+		mesa = new Mesa(equipo1, equipo2, seJuegaConFlor);
 
 		Carta carta1 = new Carta(7,new Espada());
 		Carta carta2 = new Carta(7,new Basto());
@@ -194,7 +194,7 @@ public class ComenzarJuegoTest {
 		mesa.hacerJugada(carta11);
 		mesa.hacerJugada(carta13);
 		mesa.hacerJugada(carta18);
-		Assert.assertEquals("equipo1", mesa.getGanadorVuelta().getEquipoGanador().getNombre());
+		Assert.assertEquals("equipo1", mesa.getGanadorVuelta().getNombre());
 
 	}
 

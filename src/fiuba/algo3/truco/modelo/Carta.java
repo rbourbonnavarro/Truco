@@ -1,16 +1,19 @@
 package fiuba.algo3.truco.modelo;
 
 import fiuba.algo3.truco.modelo.Palo.Palo;
+import fiuba.algo3.truco.modelo.Jugadas.Truco.ValoresTruco;
 
 public class Carta {
 
     private int valor;
     private Palo palo;
+    private ValoresTruco valoresTruco;
 
     public Carta(int valor, Palo palo) {
 
         this.valor = valor;
         this.palo = palo;
+        this.valoresTruco = new ValoresTruco();
 
     }
 
@@ -67,10 +70,27 @@ public class Carta {
         return palo.tantoCopa(this.getTanto());
 
     }
+
+    public int truco(Carta carta) {
+
+        if(this.valoresTruco.rankingCarta(this) < this.valoresTruco.rankingCarta(carta))
+            return 1;
+        else {
+
+            if(this.valoresTruco.rankingCarta(this) > this.valoresTruco.rankingCarta(carta))
+                return -1;
+            else return 0;
+
+        }
+
+    }
+
     @Override
     public boolean equals(Object objeto) {
+
         Carta carta = (Carta) objeto;
         return this.valor == carta.getValor() && this.palo.equals(carta.palo);
+
    }
 
 

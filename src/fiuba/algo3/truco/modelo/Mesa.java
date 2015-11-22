@@ -1,23 +1,16 @@
 package fiuba.algo3.truco.modelo;
 
-import java.util.ArrayDeque;
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.List;
+import java.util.*;
 
-import fiuba.algo3.truco.modelo.Jugada.Envido.CalculadorTanto;
-import fiuba.algo3.truco.modelo.Jugada.Envido.EnvidoNoCantado;
-import fiuba.algo3.truco.modelo.Jugada.Envido.JugadorNoPuedeCantarTantoNoEsPrimeraRonda;
-import fiuba.algo3.truco.modelo.Jugada.EstadoFlor.FlorNoCantada;
-import fiuba.algo3.truco.modelo.Jugada.EstadoVuelta;
-import fiuba.algo3.truco.modelo.Jugada.PrimeraVuelta;
-import fiuba.algo3.truco.modelo.Mazo.Mazo;
+import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeQuererFlorException;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
-import fiuba.algo3.truco.modelo.Jugada.Truco.*;
+import fiuba.algo3.truco.modelo.Ronda.EstadoRonda;
+import fiuba.algo3.truco.modelo.Ronda.PrimeraVuelta;
+import fiuba.algo3.truco.modelo.Jugadas.Truco.*;
 
 public class Mesa {
 
-    private CalculadorTanto calculadorTanto;
+    private EstadoRonda estadoRonda;
     private ValoresTruco valoresTruco;
     private Equipo equipo1;
     private Equipo equipo2;
@@ -25,26 +18,16 @@ public class Mesa {
     private Equipo equipoActual;
     private Equipo equipoContrario;
     private Jugador jugadorActual;
-    private GanadorVuelta resultadoGanadorVuelta;
-    private Ronda ronda;
-    private EstadoVuelta estadoVuelta;
     private Mazo mazo;
 
-    public Mesa(Equipo equipo1, Equipo equipo2, CalculadorTanto calculadorTanto) {
+    public Mesa(Equipo equipo1, Equipo equipo2, boolean seJuegaConFlor) {
 
-        this.calculadorTanto = calculadorTanto;
+        this.estadoRonda = new PrimeraVuelta(seJuegaConFlor);
         this.valoresTruco = new ValoresTruco();
         this.cartasEnMesa = new ArrayDeque<>();
 
         this.equipo1 = equipo1;
         this.equipo2 = equipo2;
-
-        this.ronda= new Ronda();
-
-        this.estadoVuelta = new PrimeraVuelta();
-//        this.estadoTruco = new TrucoNoCantado();
-//       this.estadoEnvido = new EnvidoNoCantado();
-//        this.estadoFlor = new FlorNoCantada();
 
         this.mazo = new Mazo();
 
@@ -60,16 +43,13 @@ public class Mesa {
 
         this.mazo.repartir(jugadores);
 
-        this.resultadoGanadorVuelta = new GanadorVuelta(this.equipoActual, this.jugadorActual.obtenerCartas().get(0));
-
     }
 
     public List<Carta> getCartasDelJugadorActual(){
-        return this.jugadorActual.obtenerCartas();
-    }
 
-    /*public void comenzarJuego() {
-    }*/
+        return this.jugadorActual.obtenerCartas();
+
+    }
 
     public Jugador getJugadorActual() {
 
@@ -78,7 +58,9 @@ public class Mesa {
     }
     
     public int puntaje(Equipo equipo){
+
     	return equipo.getPuntos();
+
     }
 
     public void hacerJugada(Carta carta) throws NoHayCartasParaJugar {
@@ -88,11 +70,7 @@ public class Mesa {
             this.cartasEnMesa.add(carta);
             this.jugadorActual.jugar(carta);
 
-            if (this.cartasEnMesa.size() > 0) {
-
-                this.resultadoGanadorVuelta = this.calcularGanadorJugada(carta, this.resultadoGanadorVuelta.getCarta());
-
-            }
+            this.estadoRonda.calcularGanadorJugada(this.equipoActual, this.equipoContrario, carta);
 
             this.terminarJugada();
 
@@ -112,11 +90,7 @@ public class Mesa {
 
     public void envido() {
 
-    	if(this.ronda.sePuedeCantarEnvido()) throw new JugadorNoPuedeCantarTantoNoEsPrimeraRonda();
-    	
-        if(!this.jugadorActual.jugadorPie()) throw new JugadorNoPieNoPuedeCantarEnvido();
-
-        this.estadoVuelta.envido();
+        this.estadoRonda.envido(this.jugadorActual);
 
         this.intercambiarEquipos();
 
@@ -124,97 +98,151 @@ public class Mesa {
 
     public void envidoEnvido() {
 
-        this.estadoVuelta.envidoEnvido();
+        this.estadoRonda.envidoEnvido();
+
         this.intercambiarEquipos();
 
     }
 
     public void realEnvido() {
-        this.estadoVuelta.realEnvido();
+
+        this.estadoRonda.realEnvido(this.jugadorActual);
+
         this.intercambiarEquipos();
 
     }
 
     public void faltaEnvido() {
+
         Puntaje puntosEnJuego = this.obtenerMayorPuntaje();
-        this.estadoVuelta.faltaEnvido(puntosEnJuego);
+        this.estadoRonda.faltaEnvido(this.jugadorActual, puntosEnJuego);
         this.intercambiarEquipos();
 
     }
 
     public void truco() {
-        this.estadoVuelta.truco();
+
+        this.estadoRonda.truco();
         this.intercambiarEquipos();
 
     }
+
     public void flor() {
-        this.estadoVuelta.flor();
+
+        this.equipoActual.flor();
+    	this.estadoRonda.flor();
         this.intercambiarEquipos();
 
     }
 
     public void contraFlorAlResto(){
-        Puntaje puntosEnJuego = this.obtenerMayorPuntaje();
-        this.estadoVuelta.contraFlorAlResto(puntosEnJuego);
-        this.intercambiarEquipos();
-    }
 
-    private Puntaje obtenerMayorPuntaje() {
-        return (this.equipoActual.getPuntos()>this.equipoContrario.getPuntos())?
-                this.equipoActual.getPuntaje():this.equipoContrario.getPuntaje();
+        this.equipoActual.flor();
+
+        Puntaje puntosEnJuego = this.obtenerMayorPuntaje();
+        this.estadoRonda.contraFlorAlResto(puntosEnJuego);
+        this.intercambiarEquipos();
+
     }
 
     public void contraFlorAlPartido(){
-        this.estadoVuelta.contraFlorAlPartido();
+
+        this.equipoActual.flor();
+
+        this.estadoRonda.contraFlorAlPartido();
         this.intercambiarEquipos();
+
+    }
+
+    private Puntaje obtenerMayorPuntaje() {
+
+        return (this.equipoActual.getPuntos()>this.equipoContrario.getPuntos())?
+                this.equipoActual.getPuntaje():this.equipoContrario.getPuntaje();
+
     }
 
     public void retruco() {
-        this.estadoVuelta.reTruco();
+
+    	this.estadoRonda.reTruco();
         this.intercambiarEquipos();
 
     }
 
     public void valeCuatro() {
 
-        this.estadoVuelta.valeCuatro();
+    	this.estadoRonda.valeCuatro();
         this.intercambiarEquipos();
 
     }
 
-    public void quieroTruco(boolean quiero) {
+    public void quieroTruco() {
 
-        if(!quiero) {
+        this.estadoRonda.quiero();
+        this.intercambiarEquipos();
 
-            this.ronda.agregarPuntosRonda(this.estadoVuelta.trucoNoQuerido());
+    }
 
-            this.ronda.setEquipoGanador(this.equipoContrario);
+    public void noQuieroTruco() {
 
-            this.ronda.terminar();
+        this.estadoRonda = this.estadoRonda.terminar(this.equipoContrario, this.estadoRonda.noQuerido());
 
-        }
+    }
+
+    public void quieroEnvido() {
+
+        this.obtenerGanadorEnvido().sumarPuntos(this.estadoRonda.puntos());
+        this.estadoRonda.terminarTanto();
 
         this.intercambiarEquipos();
 
     }
 
-    public void quieroEnvido(boolean quiero) {
+    public void noQuieroEnvido(){
 
-        if(!quiero) {
+        this.equipoContrario.sumarPuntos(this.estadoRonda.noQuerido());
+        this.estadoRonda.terminarTanto();
 
-            this.equipoContrario.sumarPuntos(this.estadoVuelta.envidoNoQuerido());
+        this.intercambiarEquipos();
+
+    }
+
+    public void quieroFlor() {
+
+        try {
+
+            this.estadoRonda.quiero();
+
+            this.obtenerGanadorFlor().sumarPuntos(this.estadoRonda.puntos());
+
+        } catch(NoSePuedeQuererFlorException noSePuedeQuererFlorException) {
+
+            this.equipoContrario.sumarPuntos(this.estadoRonda.puntos());
 
         }
-        else{
 
-            this.obtenerGanadorEnvido().sumarPuntos(this.estadoVuelta.envidoQuerido());
+        this.estadoRonda.terminarTanto();
 
-        }
+        this.intercambiarEquipos();
+
+    }
+
+    public void noQuieroFlor() {
+
+        this.equipoContrario.sumarPuntos(this.estadoRonda.noQuerido());
+
+        this.estadoRonda.terminarTanto();
+
     }
 
     private Equipo obtenerGanadorEnvido() {
 
         return (this.equipoActual.calcularEnvido() > this.equipoContrario.calcularEnvido()) ? this.equipoActual : this.equipoContrario;
+
+    }
+
+    private Equipo obtenerGanadorFlor() {
+
+        return (this.equipoActual.calcularFlor() > this.equipoContrario.calcularFlor()) ? this.equipoActual : this.equipoContrario;
 
     }
 
@@ -238,41 +266,14 @@ public class Mesa {
 
     private void terminarVuelta() {
 
-        this.ronda.setGanadorVuelta(this.resultadoGanadorVuelta);
-
-        this.ronda.agregarPuntosRonda(this.estadoVuelta.TrucoQuerido());
-
-        try {
-
-            this.ronda.terminar();
-
-        } catch(LaRondaNoTerminoAunException laRondaNoTerminoAunException) {}
+        this.estadoRonda = this.estadoRonda.terminarVuelta();
 
     }
 
-    /*private void terminarRonda() {
+    public Equipo getGanadorVuelta() {
 
-        this.ronda.sumarPuntosEquipoGanador();
+        return this.estadoRonda.getGanadorVuelta();
 
-        //if(this.ronda.getEquipoGanador().getPuntos() >= 30) this.terminarJuego();
-
-    }*/
-
-    private GanadorVuelta calcularGanadorJugada(Carta cartaEquipoActual, Carta cartaEquipoContrario) {
-
-        if(this.valoresTruco.rankingCarta(cartaEquipoActual) < this.valoresTruco.rankingCarta(cartaEquipoContrario))
-            return new GanadorVuelta(this.equipoActual, cartaEquipoActual);
-        else {
-            if (this.valoresTruco.rankingCarta(cartaEquipoActual) > this.valoresTruco.rankingCarta(cartaEquipoContrario))
-                return new GanadorVuelta(this.equipoContrario, cartaEquipoContrario);
-            else
-                return new Parda(cartaEquipoActual);
-
-        }
-
-    }
-    public GanadorVuelta getGanadorVuelta (){
-        return resultadoGanadorVuelta;
     }
 
 

@@ -1,59 +1,124 @@
 package fiuba.algo3.truco.tests.Jugada.Envido;
 
+import fiuba.algo3.truco.modelo.Jugadas.Envido.*;
+import fiuba.algo3.truco.modelo.Jugadas.EstadoJuego;
+import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorCantada;
+import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeCantarContraFlorException;
+import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeCantarFlorException;
+import fiuba.algo3.truco.modelo.Jugadas.NadaCantado;
+import fiuba.algo3.truco.modelo.Jugadas.Truco.NoSePuedeCantarRetrucoException;
+import fiuba.algo3.truco.modelo.Jugadas.Truco.NoSePuedeCantarTrucoException;
+import fiuba.algo3.truco.modelo.Jugadas.Truco.NoSePuedeCantarValeCuatroException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import fiuba.algo3.truco.modelo.Jugada.Envido.EnvidoCantado;
-import fiuba.algo3.truco.modelo.Jugada.Envido.EnvidoEnvidoCantado;
-import fiuba.algo3.truco.modelo.Jugada.Envido.EstadoEnvido;
-import fiuba.algo3.truco.modelo.Jugada.Envido.FaltaEnvidoCantado;
-import fiuba.algo3.truco.modelo.Jugada.Envido.NoSePuedeCantarEnvido;
-import fiuba.algo3.truco.modelo.Jugada.Envido.RealEnvidoCantado;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 
 public class EnvidoCantadoTest {
 
-    EstadoEnvido envido;
+    EstadoJuego estadoJuego;
 
     @Before
-    public void setUp(){
-        envido = new EnvidoCantado();
+    public void setUp() {
+
+        this.estadoJuego = new EnvidoCantado(new NadaCantado());
+
     }
 
     @Test
     public void Test1PuntosDevuelve2(){
-        Assert.assertEquals(envido.puntos(),2);
+
+        Assert.assertEquals(this.estadoJuego.puntos(), 2);
+
     }
 
     @Test
     public void Test2NoQueridoDevuelve1Punto(){
-        Assert.assertEquals(envido.noQuerido(),1);
+
+        Assert.assertEquals(this.estadoJuego.noQuerido(),1);
+
+    }
+
+    @Test(expected = NoSePuedeCantarTrucoException.class)
+    public void TestNoSePuedeCantarTruco(){
+
+        this.estadoJuego.truco();
+
+    }
+
+    @Test(expected = NoSePuedeCantarRetrucoException.class)
+    public void TestNoSePuedeCantarRetruco(){
+
+        this.estadoJuego.reTruco();
+
+    }
+
+    @Test(expected = NoSePuedeCantarValeCuatroException.class)
+    public void TestNoSePuedeCantarValeCuatro(){
+
+        this.estadoJuego.valeCuatro();
+
     }
 
     @Test(expected = NoSePuedeCantarEnvido.class)
     public void Test3NoSePuedeCantarEnvido(){
-      envido.envido();
+
+        this.estadoJuego.envido();
+
     }
 
     @Test
     public void Test4SePuedeCantarEnvidoEnvido(){
-        envido.envidoEnvido();
-        Assert.assertEquals(envido.envidoEnvido(),new EnvidoEnvidoCantado());
+
+        this.estadoJuego = this.estadoJuego.envidoEnvido();
+        Assert.assertEquals(this.estadoJuego, new EnvidoEnvidoCantado(this.estadoJuego));
+
     }
 
     @Test
     public void Test5SePuedeCantarRealEnvido(){
-        envido.realEnvido();
-        Assert.assertEquals(envido.realEnvido(),new RealEnvidoCantado());
+
+        this.estadoJuego = this.estadoJuego.realEnvido();
+        Assert.assertEquals(this.estadoJuego, new RealEnvidoCantado(this.estadoJuego));
+
     }
 
     @Test
     public void Test6SePuedeCantarFaltaEnvido(){
+
         Puntaje puntos = new Puntaje();
         puntos.sumar(3);
-        envido.faltaEnvido(puntos);
-        Assert.assertEquals(envido.faltaEnvido(puntos),new FaltaEnvidoCantado(puntos));
+        this.estadoJuego = this.estadoJuego.faltaEnvido(puntos);
+
+        Assert.assertEquals(this.estadoJuego, new FaltaEnvidoCantado(this.estadoJuego, puntos));
+
+    }
+
+    @Test
+    public void testSePuedeCantarFlor() {
+
+        this.estadoJuego = this.estadoJuego.flor();
+
+        Assert.assertEquals(this.estadoJuego, new FlorCantada(this.estadoJuego));
+
+    }
+
+    @Test(expected = NoSePuedeCantarContraFlorException.class)
+    public void testNoSePuedeCantarContraFlorAlResto() {
+
+        Puntaje puntos = new Puntaje();
+        puntos.sumar(20);
+
+        this.estadoJuego.contraFlorAlResto(puntos);
+
+    }
+
+    @Test(expected = NoSePuedeCantarContraFlorException.class)
+    public void testNoSePuedeCantarContraFlorAlPartido() {
+
+        this.estadoJuego.contraFlorAlPartido();
+
     }
 
 

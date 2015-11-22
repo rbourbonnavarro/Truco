@@ -2,7 +2,7 @@ package fiuba.algo3.truco.modelo;
 
 import java.util.List;
 
-import fiuba.algo3.truco.modelo.Jugada.Envido.CantasteEnvidoCuandoTenesFlorException;
+import fiuba.algo3.truco.modelo.Jugadas.Envido.CantasteEnvidoCuandoTenesFlorException;
 
 public class Jugador {
 
@@ -44,6 +44,12 @@ public class Jugador {
 
     }
 
+    public int calcularFlor() {
+
+        return this.mano.flor();
+
+    }
+
     public void jugar(Carta carta) {
 
         this.mano.jugar(carta);
@@ -54,6 +60,13 @@ public class Jugador {
 
         return this.jugadorPie;
 
+    }
+
+    public void flor() {
+
+        if (!(this.mano.getCartas().get(0).getPalo().equals(this.mano.getCartas().get(1).getPalo()) &&
+                this.mano.getCartas().get(2).getPalo().equals(this.mano.getCartas().get(1).getPalo())))
+            throw new JugadorNoTieneFlorException();
     }
 
 

@@ -1,14 +1,13 @@
 package fiuba.algo3.truco.tests;
 
 import fiuba.algo3.truco.modelo.*;
-import fiuba.algo3.truco.modelo.Jugada.Envido.*;
-import fiuba.algo3.truco.modelo.Jugada.EstadoFlor.JuegoSinFlorException;
+import fiuba.algo3.truco.modelo.Jugadas.Envido.*;
+import fiuba.algo3.truco.modelo.Jugadas.Flor.JuegoSinFlorException;
 import fiuba.algo3.truco.modelo.Palo.*;
 import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
-import java.util.List;
 
 
 public class ManoTest {
@@ -59,17 +58,6 @@ public class ManoTest {
 
     }
 
-    /*@Test (expected = CantasteEnvidoCuandoTenesFlorException.class)
-    public void Test9TengoFlorSeJuegaConFlorYCantoEnvidoLanzaExcepcion() throws CantasteEnvidoCuandoTenesFlorException {
-
-        Carta carta1 = new Figura(12, new Espada());
-        Carta carta2 = new Carta (7, new Espada());
-        Carta carta3 = new Carta (3, new Espada());
-        mano = new Mano(Arrays.asList(carta1 , carta2, carta3));
-        mano.envido();
-
-    }*/
-
     @Test
     public void Test10NoTengoFlorSeJuegaConFlorEntoncesEnvidoDevuelveElTanto() throws CantasteEnvidoCuandoTenesFlorException {
 
@@ -113,45 +101,5 @@ public class ManoTest {
         Assert.assertEquals(mano.flor(),20);
 
     }
-
-    /*@Test(expected = JuegoSinFlorException.class)
-    public void Test14FlorLanzaExcepcionSiSeJuegaSinFlor() throws JuegoSinFlorException {
-
-        Carta carta1 = new Figura(12, new Espada());
-        Carta carta2 = new Figura (11, new Espada());
-        Carta carta3 = new Figura (10, new Espada());
-        mano = new Mano(Arrays.asList(carta1 , carta2, carta3));
-        mano.flor();
-
-    }*/
-
-    @Test(expected = JugadorNoPuedeCantarTantoNoEsPrimeraRonda.class)
-    public void test15NoSePuedeCantarTantoNoEsPrimeraMano() throws JuegoSinFlorException {
-
-        Carta carta1 = new Carta(7,new Espada());
-        Carta carta2 = new Carta(3,new Basto());
-        Carta carta3 = new Carta (3,new Espada());
-        List<Carta> cartas =  Arrays.asList(carta1,carta2,carta3);
-        mano = new Mano(cartas);
-        mano.jugar(carta1);
-
-        mano.flor();
-
-    }
-
-    @Test(expected = JugadorNoPuedeCantarTantoNoEsPrimeraRonda.class)
-    public void test16NoSePuedeCantarEnvidoNoEsPrimeraMano() {
-
-        Carta carta1 = new Carta(7,new Espada());
-        Carta carta2 = new Carta(3,new Basto());
-        Carta carta3 = new Carta (3,new Espada());
-        List<Carta> cartas =  Arrays.asList(carta1,carta2,carta3);
-        mano = new Mano(cartas);
-        mano.jugar(carta1);
-
-        mano.envido();
-
-    }
-
 
 }

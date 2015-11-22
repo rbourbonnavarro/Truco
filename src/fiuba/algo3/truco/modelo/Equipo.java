@@ -71,11 +71,25 @@ public class Equipo {
 
         for(Jugador jugador : this.integrantes) {
 
-            envido = (jugador.envido() > envido) ? jugador.envido() : envido;
+            envido = Math.max(jugador.envido(), envido);
 
         }
 
         return envido;
+
+    }
+
+    public int calcularFlor() {
+
+        int flor = 0;
+
+        for(Jugador jugador : this.integrantes) {
+
+            flor = Math.max(jugador.calcularFlor(), flor);
+
+        }
+
+        return flor;
 
     }
 
@@ -88,6 +102,32 @@ public class Equipo {
     public String getNombre() {
 
         return this.nombre;
+
+    }
+
+    public void flor() {
+
+        int noTienenFlor = 0;
+
+        for(Jugador jugador : this.integrantes) {
+
+            try {
+
+                jugador.flor();
+
+            } catch(JugadorNoTieneFlorException jugadorNoTieneFlorException) {
+
+                noTienenFlor++;
+
+            }
+
+        }
+
+        if(noTienenFlor == 3) {
+
+            throw new JugadorNoTieneFlorException();
+
+        }
 
     }
 

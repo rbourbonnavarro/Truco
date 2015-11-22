@@ -1,8 +1,8 @@
 package fiuba.algo3.truco.tests.Jugada.Truco;
 
 import fiuba.algo3.truco.modelo.Carta;
+import fiuba.algo3.truco.modelo.Jugadas.Truco.ValoresTruco;
 import fiuba.algo3.truco.modelo.Palo.Espada;
-import fiuba.algo3.truco.modelo.Jugada.Truco.ValoresTruco;
 import org.junit.Assert;
 import org.junit.Test;
 
