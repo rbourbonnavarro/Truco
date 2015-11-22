@@ -3,6 +3,7 @@ package fiuba.algo3.truco.modelo.Jugadas.Envido;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorCantada;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeCantarContraFlorException;
 import fiuba.algo3.truco.modelo.Jugadas.EstadoJuego;
+import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeCantarFlorException;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.NoSePuedeCantarRetrucoException;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.NoSePuedeCantarTrucoException;
@@ -112,7 +113,7 @@ public class EnvidoCantado implements EstadoJuego {
     @Override
     public EstadoJuego quiero() {
 
-        return new EnvidoQuerido(this);
+        return this;
 
     }
 

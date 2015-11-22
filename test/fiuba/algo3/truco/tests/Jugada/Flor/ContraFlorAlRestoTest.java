@@ -55,13 +55,13 @@ public class ContraFlorAlRestoTest {
     }
 
     @Test(expected = NoSePuedeCantarFlorException.class)
-    public void test4NoSePuedeCantarFlor() {
+    public void testNoSePuedeCantarFlor() {
 
         this.estadoJuego.flor();
 
     }
     @Test(expected = NoSePuedeCantarContraFlorException.class)
-    public void test5NoSePuedeCantarContraFlorAlResto(){
+    public void testNoSePuedeCantarContraFlorAlResto() {
 
         Puntaje puntos = new Puntaje();
         puntos.sumar(20);
@@ -70,14 +70,14 @@ public class ContraFlorAlRestoTest {
     }
 
     @Test(expected = NoSePuedeCantarContraFlorException.class)
-    public void test6ContraFlorAlPartidoCreaDichaInstancia(){
+    public void testNoSePuedeCantarContraFlorAlPartido() {
 
         this.estadoJuego.contraFlorAlPartido();
 
     }
 
     @Test(expected = NoSePuedeCantarTrucoException.class)
-    public void TestNoSePuedeCantarTruco(){
+    public void TestNoSePuedeCantarTruco() {
 
         this.estadoJuego.truco();
 

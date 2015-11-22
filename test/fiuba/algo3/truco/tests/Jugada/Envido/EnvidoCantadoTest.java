@@ -2,6 +2,9 @@ package fiuba.algo3.truco.tests.Jugada.Envido;
 
 import fiuba.algo3.truco.modelo.Jugadas.Envido.*;
 import fiuba.algo3.truco.modelo.Jugadas.EstadoJuego;
+import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorCantada;
+import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeCantarContraFlorException;
+import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeCantarFlorException;
 import fiuba.algo3.truco.modelo.Jugadas.NadaCantado;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.NoSePuedeCantarRetrucoException;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.NoSePuedeCantarTrucoException;
@@ -89,6 +92,32 @@ public class EnvidoCantadoTest {
         this.estadoJuego = this.estadoJuego.faltaEnvido(puntos);
 
         Assert.assertEquals(this.estadoJuego, new FaltaEnvidoCantado(this.estadoJuego, puntos));
+
+    }
+
+    @Test
+    public void testSePuedeCantarFlor() {
+
+        this.estadoJuego = this.estadoJuego.flor();
+
+        Assert.assertEquals(this.estadoJuego, new FlorCantada(this.estadoJuego));
+
+    }
+
+    @Test(expected = NoSePuedeCantarContraFlorException.class)
+    public void testNoSePuedeCantarContraFlorAlResto() {
+
+        Puntaje puntos = new Puntaje();
+        puntos.sumar(20);
+
+        this.estadoJuego.contraFlorAlResto(puntos);
+
+    }
+
+    @Test(expected = NoSePuedeCantarContraFlorException.class)
+    public void testNoSePuedeCantarContraFlorAlPartido() {
+
+        this.estadoJuego.contraFlorAlPartido();
 
     }
 
