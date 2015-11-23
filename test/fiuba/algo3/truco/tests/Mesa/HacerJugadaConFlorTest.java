@@ -3,6 +3,7 @@ package fiuba.algo3.truco.tests.Mesa;
 import fiuba.algo3.truco.modelo.*;
 import fiuba.algo3.truco.modelo.Jugadas.Envido.NoSePuedeCantarEnvido;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorNoAceptadaNoSePuedeJugarException;
+import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeCantarFlorException;
 import fiuba.algo3.truco.modelo.Palo.Espada;
 import org.junit.Assert;
 import org.junit.Before;
@@ -88,6 +89,44 @@ public class HacerJugadaConFlorTest {
 
         mesa.flor();
         mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+
+    }
+
+    @Test(expected = NoSePuedeCantarFlorException.class)
+    public void seCantaFlorSeDecideYSeIntentaCantarFlorDeNuevoLanzaExcepcion() {
+
+        List<Carta> lista = new ArrayList<>(Arrays.asList(new Carta(7,new Espada()),new Carta(3,new Espada()),new Carta(2,new Espada())));
+        Juan.setMano(new Mano(lista));
+
+        mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+        mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+        mesa.flor();
+        mesa.quieroFlor();
+        mesa.flor();
+
+    }
+
+    @Test(expected = NoSePuedeCantarEnvido.class)
+    public void seCantaFlorSeDecideYSeCantaTrucoSeIntentaCantarEnvidoDeNuevoLanzaExcepcion() {
+
+        mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+        mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+        mesa.flor();
+        mesa.quieroFlor();
+        mesa.truco();
+        mesa.envido();
+
+    }
+
+    @Test(expected = NoSePuedeCantarEnvido.class)
+    public void seCantaFlorSeDecideYSeCantaTrucoSeIntentaCantarFlorDeNuevoLanzaExcepcion() {
+
+        mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+        mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+        mesa.flor();
+        mesa.quieroFlor();
+        mesa.truco();
+        mesa.envido();
 
     }
 

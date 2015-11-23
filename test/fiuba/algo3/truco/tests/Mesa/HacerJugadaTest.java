@@ -246,7 +246,6 @@ public class HacerJugadaTest {
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
 		mesa.envido();
 		mesa.quieroEnvido();
-		mesa.envido();
 		mesa.truco();
 		mesa.envido();
 

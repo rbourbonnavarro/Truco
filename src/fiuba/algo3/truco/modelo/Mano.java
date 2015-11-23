@@ -36,6 +36,12 @@ public class Mano {
 
     public List<Carta> getCartas() {
 
+        return this.cartasIniciales;
+
+    }
+
+    public List<Carta> getCartasEnMano() {
+
         return this.cartasEnMano;
 
     }

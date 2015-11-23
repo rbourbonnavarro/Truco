@@ -37,8 +37,8 @@ public class JugadorTest {
     @Test
     public void test2JugarCartaEliminaCartaDeLaManoDelJugador(){
         jugador.jugar(carta1);
-        Assert.assertEquals(jugador.obtenerCartas().size(),2);
-        Assert.assertFalse(jugador.obtenerCartas().contains(carta1));
+        Assert.assertEquals(jugador.obtenerCartasEnMano().size(),2);
+        Assert.assertFalse(jugador.obtenerCartasEnMano().contains(carta1));
     }
 
 

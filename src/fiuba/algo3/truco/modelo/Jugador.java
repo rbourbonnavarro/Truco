@@ -1,5 +1,6 @@
 package fiuba.algo3.truco.modelo;
 
+import java.awt.*;
 import java.util.List;
 
 import fiuba.algo3.truco.modelo.Jugadas.Envido.CantasteEnvidoCuandoTenesFlorException;
@@ -35,6 +36,12 @@ public class Jugador {
     public List<Carta> obtenerCartas() {
 
         return this.mano.getCartas();
+
+    }
+
+    public List<Carta> obtenerCartasEnMano() {
+
+        return this.mano.getCartasEnMano();
 
     }
 

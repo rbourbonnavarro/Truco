@@ -63,7 +63,7 @@ public class ComenzarJuegoTest {
 		Assert.assertEquals(mesa.getJugadorActual().getNombre(),"Juan");
 		mesa.hacerJugada(cartas.get(0));
 		Assert.assertEquals(mesa.getJugadorActual().getNombre(),"Pedro");
-		Assert.assertEquals(2,jugador1.obtenerCartas().size());
+		Assert.assertEquals(2,jugador1.obtenerCartasEnMano().size());
 		cartas = mesa.getCartasDelJugadorActual();
 		mesa.hacerJugada(cartas.get(0));
 		Assert.assertEquals(mesa.getJugadorActual().getNombre(),"Juan");
