@@ -120,6 +120,17 @@ public class PartidoCompletoDeACuatroTest {
 		
 		Assert.assertTrue(mesa.puntaje(equipoJuanRoberto) == 2);
 		Assert.assertTrue(mesa.puntaje(equipoPedroIgnacio) == 0);
+		
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		
+		mesa.truco();
+		mesa.retruco();
+		mesa.noQuieroTruco();
+		
+		Assert.assertTrue(mesa.puntaje(equipoJuanRoberto) == 2);
+		Assert.assertTrue(mesa.puntaje(equipoPedroIgnacio) == 2);
+		
 	}
 
 	
