@@ -24,12 +24,14 @@ public class PartidoCompletoDeACuatroTest {
 	
 	Jugador Juan;
 	Jugador Pedro;
+	Jugador Roberto;
+	Jugador Ignacio;
 	
 	List<Jugador> jugadoresEquipo1;
 	List<Jugador> jugadoresEquipo2;
 	
-	Equipo equipoJuan;
-	Equipo equipoPedro;
+	Equipo equipoJuanRoberto;
+	Equipo equipoPedroIgnacio;
 	
 	Carta carta1;
 	Carta carta2;
@@ -37,25 +39,35 @@ public class PartidoCompletoDeACuatroTest {
 	Carta carta4;
 	Carta carta5;
 	Carta carta6;
+	Carta carta7;
+	Carta carta8;
+	Carta carta9;
+	Carta carta10;
+	Carta carta11;
+	Carta carta12;
 	
 	LinkedList<Carta> cartasJuan;
 	LinkedList<Carta> cartasPedro; 
+	LinkedList<Carta> cartasRoberto;
+	LinkedList<Carta> cartasIgnacio; 
 	
 	@Before
 	public void setUp(){
 		
 		Juan = new Jugador("Juan");
 		Pedro = new Jugador("Pedro");
+		Roberto = new Jugador("Roberto");
+		Ignacio = new Jugador("Ignacio");
 		
-		jugadoresEquipo1 = new ArrayList<>(Arrays.asList(Juan));
-		jugadoresEquipo2 = new ArrayList<>(Arrays.asList(Pedro));
+		jugadoresEquipo1 = new ArrayList<>(Arrays.asList(Juan, Roberto));
+		jugadoresEquipo2 = new ArrayList<>(Arrays.asList(Pedro, Ignacio));
 		
-		equipoJuan = new Equipo("Juan", jugadoresEquipo1);
-		equipoPedro = new Equipo("Pedro", jugadoresEquipo2);
+		equipoJuanRoberto = new Equipo("JuanRoberto", jugadoresEquipo1);
+		equipoPedroIgnacio = new Equipo("PedroIgnacio", jugadoresEquipo2);
 
 		boolean seJuegaConFlor = true;
 		
-		mesa = new Mesa(equipoJuan, equipoPedro, seJuegaConFlor);
+		mesa = new Mesa(equipoJuanRoberto, equipoPedroIgnacio, seJuegaConFlor);
 		
 		carta1 = new Carta(7,new Espada());
 		carta2 = new Carta(7,new Basto());
@@ -63,9 +75,17 @@ public class PartidoCompletoDeACuatroTest {
 		carta4 = new Carta(3,new Espada());
 		carta5 = new Carta(3,new Basto());
 		carta6 = new Carta(3,new Oro());
+		carta7 = new Carta(4,new Espada());
+		carta8 = new Carta(4,new Basto());
+		carta9 = new Carta(4,new Oro());
+		carta10 = new Carta(12,new Espada());
+		carta11 = new Carta(11,new Basto());
+		carta12 = new Carta(10,new Oro());
 		
-		cartasJuan = new LinkedList<>();
-		cartasPedro = new LinkedList<>();
+		cartasJuan = new LinkedList<Carta>();
+		cartasPedro = new LinkedList<Carta>();
+		cartasRoberto = new LinkedList<Carta>();
+		cartasIgnacio = new LinkedList<Carta>();
 
 	}
 	
@@ -78,43 +98,28 @@ public class PartidoCompletoDeACuatroTest {
 		cartasPedro.add(carta2);
 		cartasPedro.add(carta3);
 		cartasPedro.add(carta6);
+		cartasRoberto.add(carta7);
+		cartasRoberto.add(carta10);
+		cartasRoberto.add(carta11);
+		cartasIgnacio.add(carta8);
+		cartasIgnacio.add(carta9);
+		cartasIgnacio.add(carta12);
 		
 		Juan.setMano(new Mano(cartasJuan));
 		Pedro.setMano(new Mano(cartasPedro));
+		Roberto.setMano(new Mano(cartasRoberto));
+		Ignacio.setMano(new Mano(cartasIgnacio));
 		
+		Assert.assertTrue(mesa.puntaje(equipoJuanRoberto) == 0);
+		Assert.assertTrue(mesa.puntaje(equipoPedroIgnacio) == 0);
+		
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
 		mesa.envido();
 		mesa.quieroEnvido();
-		Assert.assertTrue(mesa.puntaje(equipoJuan) == 0);
-		Assert.assertTrue(mesa.puntaje(equipoPedro) == 2);
-	}
-
-	@Test
-	public void test2FinDeRondaReparteNuevasCartasParaLosJugadores(){
-		cartasJuan.addAll(Arrays.asList(carta1, carta2, carta3));
-		cartasPedro.addAll(Arrays.asList(carta4,carta5,carta6));
-		Juan.setMano(new Mano(cartasJuan));
-		Pedro.setMano(new Mano(cartasPedro));
-
-		Assert.assertEquals("Juan",mesa.getJugadorActual().getNombre());
-		mesa.hacerJugada(carta1);
-		Assert.assertEquals("Pedro",mesa.getJugadorActual().getNombre());
-		mesa.envido();
-		Assert.assertEquals("Juan",mesa.getJugadorActual().getNombre());
-		mesa.noQuieroEnvido();
-		Assert.assertEquals("Pedro",mesa.getJugadorActual().getNombre());
-		mesa.hacerJugada(carta4);
-		Assert.assertEquals("Juan",mesa.getJugadorActual().getNombre());
-		mesa.truco();
-		Assert.assertEquals("Pedro",mesa.getJugadorActual().getNombre());
-		mesa.quieroTruco();
-		Assert.assertEquals("Juan",mesa.getJugadorActual().getNombre());
-		mesa.hacerJugada(carta3);
-		Assert.assertEquals("Pedro",mesa.getJugadorActual().getNombre());
-		mesa.hacerJugada(carta5);
-		Assert.assertEquals(2,equipoJuan.getPuntos());
-		Assert.assertEquals(1,equipoPedro.getPuntos());
-
+		
+		Assert.assertTrue(mesa.puntaje(equipoJuanRoberto) == 2);
+		Assert.assertTrue(mesa.puntaje(equipoPedroIgnacio) == 0);
 	}
 
 	
