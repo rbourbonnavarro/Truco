@@ -18,7 +18,7 @@ import fiuba.algo3.truco.modelo.Palo.Basto;
 import fiuba.algo3.truco.modelo.Palo.Espada;
 import fiuba.algo3.truco.modelo.Palo.Oro;
 
-public class JugarDeADosTest {
+public class PartidoCompletoDeACuatroTest {
 
 	Mesa mesa;
 	
