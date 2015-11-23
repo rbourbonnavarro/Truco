@@ -2,9 +2,9 @@ package fiuba.algo3.truco.modelo;
 
 import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeQuererFlorException;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
-import fiuba.algo3.truco.modelo.Ronda.EstadoRonda;
 import fiuba.algo3.truco.modelo.Ronda.PrimeraVuelta;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.*;
+import fiuba.algo3.truco.modelo.Ronda.Vuelta;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -13,7 +13,7 @@ import java.util.Objects;
 
 public class Mesa {
 
-    private EstadoRonda estadoRonda;
+    private Vuelta estadoVuelta;
     private ValoresTruco valoresTruco;
     private Equipo equipo1;
     private Equipo equipo2;
@@ -46,7 +46,7 @@ public class Mesa {
 
         this.seJuegaConFlor = seJuegaConFlor;
 
-        this.estadoRonda = new PrimeraVuelta(seJuegaConFlor, equipo1, equipo2, this.mazo);
+        this.estadoVuelta = new PrimeraVuelta(seJuegaConFlor, equipo1, equipo2, this.mazo);
 
     }
 
@@ -70,18 +70,18 @@ public class Mesa {
 
     public void hacerJugada(Carta carta) throws NoHayCartasParaJugar {
 
-        this.estadoRonda.estadoValido();
+        this.estadoVuelta.estadoValido();
 
         try {
 
             this.cartasEnMesa.add(carta);
             this.jugadorActual.jugar(carta);
 
-            this.estadoRonda.calcularGanadorJugada(this.equipoActual, this.equipoContrario, carta);
+            this.estadoVuelta.calcularGanadorJugada(this.equipoActual, this.equipoContrario, carta);
 
             this.terminarJugada();
 
-            if (this.cartasEnMesa.size() == 2 * this.equipoActual.getCantidadIntegrantes() * this.estadoRonda.numeroVuelta()) {
+            if (this.cartasEnMesa.size() == 2 * this.equipoActual.getCantidadIntegrantes() * this.estadoVuelta.numeroVuelta()) {
 
                 this.terminarVuelta();
 
@@ -98,7 +98,7 @@ public class Mesa {
     public void envido() {
 
         this.guardarEquipoIniciadorEnvido();
-        this.estadoRonda.envido(this.jugadorActual);
+        this.estadoVuelta.envido(this.jugadorActual);
 
         this.intercambiarEquipos();
 
@@ -108,7 +108,7 @@ public class Mesa {
     public void realEnvido() {
 
         this.guardarEquipoIniciadorEnvido();
-        this.estadoRonda.realEnvido(this.jugadorActual);
+        this.estadoVuelta.realEnvido(this.jugadorActual);
 
         this.intercambiarEquipos();
 
@@ -118,7 +118,7 @@ public class Mesa {
 
         this.guardarEquipoIniciadorEnvido();
         Puntaje puntosEnJuego = this.obtenerMayorPuntaje();
-        this.estadoRonda.faltaEnvido(this.jugadorActual, puntosEnJuego);
+        this.estadoVuelta.faltaEnvido(this.jugadorActual, puntosEnJuego);
         this.intercambiarEquipos();
 
     }
@@ -126,7 +126,7 @@ public class Mesa {
     public void truco() {
 
         this.guardarEquipoIniciadorTruco();
-        this.estadoRonda.truco();
+        this.estadoVuelta.truco();
         this.intercambiarEquipos();
 
     }
@@ -135,7 +135,7 @@ public class Mesa {
 
         this.guardarEquipoIniciadorFlor();
         this.equipoActual.flor();
-    	this.estadoRonda.flor();
+    	this.estadoVuelta.flor();
         this.intercambiarEquipos();
 
     }
@@ -145,7 +145,7 @@ public class Mesa {
         this.equipoActual.flor();
 
         Puntaje puntosEnJuego = this.obtenerMayorPuntaje();
-        this.estadoRonda.contraFlorAlResto(puntosEnJuego);
+        this.estadoVuelta.contraFlorAlResto(puntosEnJuego);
         this.intercambiarEquipos();
 
     }
@@ -154,7 +154,7 @@ public class Mesa {
 
         this.equipoActual.flor();
 
-        this.estadoRonda.contraFlorAlPartido();
+        this.estadoVuelta.contraFlorAlPartido();
         this.intercambiarEquipos();
 
     }
@@ -168,37 +168,37 @@ public class Mesa {
 
     public void retruco() {
 
-    	this.estadoRonda.reTruco();
+    	this.estadoVuelta.reTruco();
         this.intercambiarEquipos();
 
     }
 
     public void valeCuatro() {
 
-    	this.estadoRonda.valeCuatro();
+    	this.estadoVuelta.valeCuatro();
         this.intercambiarEquipos();
 
     }
 
     public void quieroTruco() {
 
-        this.estadoRonda.quiero();
+        this.estadoVuelta.quiero();
         this.recuperarEquipoActualTruco();
 
     }
 
     public void noQuieroTruco() {
 
-        this.estadoRonda = this.estadoRonda.terminar(this.equipoContrario,estadoRonda.noQuerido(),this);
+        this.estadoVuelta = this.estadoVuelta.terminar(this.equipoContrario, estadoVuelta.noQuerido(),this);
 
     }
 
     public void quieroEnvido() {
 
-        this.estadoRonda.quiero();
+        this.estadoVuelta.quiero();
 
-        this.obtenerGanadorEnvido().sumarPuntos(this.estadoRonda.puntos());
-        this.estadoRonda.terminarTanto();
+        this.obtenerGanadorEnvido().sumarPuntos(this.estadoVuelta.puntos());
+        this.estadoVuelta.terminarTanto();
 
         this.recuperarEquipoActualEnvido();
 
@@ -206,8 +206,8 @@ public class Mesa {
 
     public void noQuieroEnvido(){
 
-        this.equipoContrario.sumarPuntos(this.estadoRonda.noQuerido());
-        this.estadoRonda.terminarTanto();
+        this.equipoContrario.sumarPuntos(this.estadoVuelta.noQuerido());
+        this.estadoVuelta.terminarTanto();
 
         this.recuperarEquipoActualEnvido();
 
@@ -217,17 +217,17 @@ public class Mesa {
 
         try {
 
-            this.estadoRonda.quiero();
+            this.estadoVuelta.quiero();
 
-            this.obtenerGanadorFlor().sumarPuntos(this.estadoRonda.puntos());
+            this.obtenerGanadorFlor().sumarPuntos(this.estadoVuelta.puntos());
 
         } catch(NoSePuedeQuererFlorException noSePuedeQuererFlorException) {
 
-            this.equipoContrario.sumarPuntos(this.estadoRonda.puntos());
+            this.equipoContrario.sumarPuntos(this.estadoVuelta.puntos());
 
         }
 
-        this.estadoRonda.terminarTanto();
+        this.estadoVuelta.terminarTanto();
 
         this.recuperarEquipoActualFlor();
 
@@ -235,9 +235,9 @@ public class Mesa {
 
     public void noQuieroFlor() {
 
-        this.equipoContrario.sumarPuntos(this.estadoRonda.noQuerido());
+        this.equipoContrario.sumarPuntos(this.estadoVuelta.noQuerido());
 
-        this.estadoRonda.terminarTanto();
+        this.estadoVuelta.terminarTanto();
 
         this.recuperarEquipoActualFlor();
 
@@ -275,13 +275,13 @@ public class Mesa {
 
     private void terminarVuelta() {
 
-        this.estadoRonda = this.estadoRonda.terminarVuelta(this);
+        this.estadoVuelta = this.estadoVuelta.terminarVuelta(this);
 
     }
 
     public Equipo getGanadorVuelta() {
 
-        return this.estadoRonda.getGanadorVuelta();
+        return this.estadoVuelta.getGanadorVuelta();
 
     }
 
@@ -342,7 +342,7 @@ public class Mesa {
 
     }
 
-    public EstadoRonda terminarRonda() {
+    public Vuelta terminarRonda() {
 
         this.cartasEnMesa = new ArrayDeque<>();
         this.intercambiarEquipos();

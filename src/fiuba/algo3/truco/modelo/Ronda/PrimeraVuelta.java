@@ -4,59 +4,25 @@ import fiuba.algo3.truco.modelo.*;
 import fiuba.algo3.truco.modelo.Jugadas.Envido.EnvidoCantado;
 import fiuba.algo3.truco.modelo.Jugadas.Envido.RealEnvidoCantado;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.JuegoSinFlorException;
-import fiuba.algo3.truco.modelo.Jugadas.EstadoJuego;
 import fiuba.algo3.truco.modelo.Jugadas.NadaCantado;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.TrucoCantado;
 
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.List;
 
-public class PrimeraVuelta implements EstadoRonda {
-
-    private EstadoJuego estadoJuego;
-    private Equipo ganadorPrimera;
-    private Carta cartaGanadora;
-    private boolean trucoValido;
-    private boolean envidoValido;
-    private boolean florValida;
-    private boolean seJuegaConFlor;
+public class PrimeraVuelta extends Vuelta {
 
     public PrimeraVuelta(boolean seJuegaConFlor, Equipo equipo1, Equipo equipo2, Mazo mazo) {
 
+        super(seJuegaConFlor);
+        
         this.estadoJuego = new NadaCantado();
-        this.seJuegaConFlor = seJuegaConFlor;
-
-        this.trucoValido = true;
-        this.envidoValido = true;
-        this.florValida = true;
 
         List<Jugador> jugadores = new ArrayList<>(equipo1.getIntegrantes());
         jugadores.addAll(equipo2.getIntegrantes());
 
         mazo.repartir(jugadores);
-
-    }
-
-    @Override
-    public void truco() {
-
-        this.estadoJuego = this.estadoJuego.truco();
-
-    }
-
-    @Override
-    public void reTruco() {
-
-        this.estadoJuego = this.estadoJuego.reTruco();
-
-    }
-
-    @Override
-    public void valeCuatro() {
-
-        this.estadoJuego = this.estadoJuego.valeCuatro();
 
     }
 
@@ -144,78 +110,9 @@ public class PrimeraVuelta implements EstadoRonda {
     }
 
     @Override
-    public void terminarTanto() {
+    public Vuelta terminarVuelta(Mesa mesa) {
 
-        this.estadoJuego = this.estadoJuego.terminarTanto();
-
-    }
-
-    @Override
-    public void quiero() {
-
-         this.estadoJuego = this.estadoJuego.quiero();
-
-    }
-
-    @Override
-    public int puntos() {
-
-        return this.estadoJuego.puntos();
-
-    }
-
-    @Override
-    public int noQuerido() {
-
-        return this.estadoJuego.noQuerido();
-
-    }
-
-    @Override
-    public EstadoRonda terminarVuelta(Mesa mesa) {
-
-        return new SegundaVuelta(this.estadoJuego, this.ganadorPrimera, this.seJuegaConFlor);
-
-    }
-
-    @Override
-    public void calcularGanadorJugada(Equipo equipoActual, Equipo equipoContrario, Carta carta) {
-
-        try {
-
-            if(this.cartaGanadora.truco(carta) < 0) {
-
-                this.ganadorPrimera = equipoActual;
-                this.cartaGanadora = carta;
-
-            } else {
-
-                if(this.cartaGanadora.truco(carta) > 0) {
-
-                    this.ganadorPrimera = equipoContrario;
-
-                } else {
-
-                    this.ganadorPrimera = null;
-
-                }
-
-            }
-
-        } catch(NullPointerException nullPointerException) {
-
-            this.cartaGanadora = carta;
-
-        }
-
-    }
-
-    @Override
-    public EstadoRonda terminar(Equipo equipoGanador, int puntos, Mesa mesa) {
-
-        equipoGanador.sumarPuntos(puntos);
-
-        return mesa.terminarRonda();
+        return new SegundaVuelta(this.estadoJuego, this.ganadorVuelta, this.seJuegaConFlor);
 
     }
 
@@ -230,13 +127,6 @@ public class PrimeraVuelta implements EstadoRonda {
     public int numeroVuelta() {
 
         return 1;
-
-    }
-
-    @Override
-    public void estadoValido() {
-
-        this.estadoJuego.estadoValido();
 
     }
 

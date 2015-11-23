@@ -6,44 +6,19 @@ import fiuba.algo3.truco.modelo.Jugadas.EstadoJuego;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 
 import java.util.ArrayList;
-import java.util.Deque;
 import java.util.List;
 
-public class SegundaVuelta implements EstadoRonda {
+public class SegundaVuelta extends Vuelta {
 
-    private EstadoJuego estadoJuego;
     private List<Equipo> ganadoresVuelta;
-    private Equipo ganadorSegunda;
-    private Carta cartaGanadora;
-    private boolean seJuegaConFlor;
 
     public SegundaVuelta(EstadoJuego estadoJuego, Equipo ganadorPrimera, boolean seJuegaConFlor) {
+
+        super(seJuegaConFlor);
 
         this.estadoJuego = estadoJuego;
         this.ganadoresVuelta = new ArrayList<>();
         this.ganadoresVuelta.add(ganadorPrimera);
-        this.seJuegaConFlor = seJuegaConFlor;
-
-    }
-
-    @Override
-    public void truco() {
-
-        this.estadoJuego = this.estadoJuego.truco();
-
-    }
-
-    @Override
-    public void reTruco() {
-
-        this.estadoJuego = this.estadoJuego.reTruco();
-
-    }
-
-    @Override
-    public void valeCuatro() {
-
-        this.estadoJuego = this.estadoJuego.valeCuatro();
 
     }
 
@@ -117,62 +92,23 @@ public class SegundaVuelta implements EstadoRonda {
     }
 
     @Override
-    public EstadoRonda terminarVuelta(Mesa mesa) {
+    public Vuelta terminarVuelta(Mesa mesa) {
 
         try {
 
-            if (ganadoresVuelta.get(0) == ganadorSegunda) {
+            if (ganadoresVuelta.get(0) == ganadorVuelta) {
 
                 this.ganadoresVuelta.get(0).sumarPuntos(this.estadoJuego.puntos());
+
                 return mesa.terminarRonda();
+
             }
 
         } catch(NullPointerException ignored) {}
 
-        this.ganadoresVuelta.add(ganadorSegunda);
+        this.ganadoresVuelta.add(ganadorVuelta);
 
         return new TerceraVuelta(this.estadoJuego, this.ganadoresVuelta, this.seJuegaConFlor);
-
-    }
-
-    @Override
-    public void calcularGanadorJugada(Equipo equipoActual, Equipo equipoContrario, Carta carta) {
-
-        try {
-
-            if(this.cartaGanadora.truco(carta) < 0) {
-
-                this.ganadorSegunda = equipoActual;
-                this.cartaGanadora = carta;
-
-            } else {
-
-                if(this.cartaGanadora.truco(carta) > 0) {
-
-                    this.ganadorSegunda = equipoContrario;
-
-                } else {
-
-                    this.ganadorSegunda = null;
-
-                }
-
-            }
-
-        } catch(NullPointerException nullPointerException) {
-
-            this.cartaGanadora = carta;
-
-        }
-
-    }
-
-    @Override
-    public EstadoRonda terminar(Equipo equipoGanador, int puntos,Mesa mesa) {
-
-        equipoGanador.sumarPuntos(puntos);
-
-        return mesa.terminarRonda();
 
     }
 
@@ -187,13 +123,6 @@ public class SegundaVuelta implements EstadoRonda {
     public int numeroVuelta() {
 
         return 2;
-
-    }
-
-    @Override
-    public void estadoValido() {
-
-        this.estadoJuego.estadoValido();
 
     }
 
