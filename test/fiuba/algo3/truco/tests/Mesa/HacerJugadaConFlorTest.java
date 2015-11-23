@@ -1,6 +1,7 @@
 package fiuba.algo3.truco.tests.Mesa;
 
 import fiuba.algo3.truco.modelo.*;
+import fiuba.algo3.truco.modelo.Jugadas.Envido.JugadorNoPuedeCantarTantoNoEsPrimeraVuelta;
 import fiuba.algo3.truco.modelo.Jugadas.Envido.NoSePuedeCantarEnvido;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorNoAceptadaNoSePuedeJugarException;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeCantarFlorException;
@@ -118,7 +119,7 @@ public class HacerJugadaConFlorTest {
 
     }
 
-    @Test(expected = NoSePuedeCantarEnvido.class)
+    @Test(expected = NoSePuedeCantarFlorException.class)
     public void seCantaFlorSeDecideYSeCantaTrucoSeIntentaCantarFlorDeNuevoLanzaExcepcion() {
 
         mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
@@ -126,7 +127,18 @@ public class HacerJugadaConFlorTest {
         mesa.flor();
         mesa.quieroFlor();
         mesa.truco();
-        mesa.envido();
+        mesa.flor();
+
+    }
+
+    @Test(expected = JugadorNoPuedeCantarTantoNoEsPrimeraVuelta.class)
+    public void noSePuedeCantarFlorDespuesDePrimeraVuelta() {
+
+        mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+        mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+        mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+        mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+        mesa.flor();
 
     }
 

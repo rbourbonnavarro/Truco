@@ -14,8 +14,10 @@ public class Equipo {
     private int indiceJugador;
 
     public Equipo(String nombre, List<Jugador> jugadores) {
+
         if(jugadores.size() == 0)
             throw new EquipoSinIntegrantesException();
+
     	this.nombre = nombre;
     	
         this.integrantes = new ArrayList<>(jugadores);
@@ -23,6 +25,18 @@ public class Equipo {
         this.puntaje = new Puntaje();
 
         this.indiceJugador = 0;
+
+    }
+
+    public void setOrdenMesa(int ordenMesa) {
+
+        for(Jugador jugador : this.integrantes) {
+
+            jugador.setOrdenMesa(ordenMesa);
+
+            ordenMesa += 2;
+
+        }
 
     }
 
@@ -66,17 +80,20 @@ public class Equipo {
 
     }
 
-    public int calcularEnvido() {
+    public Jugador jugadorEnvidoMasAlto() {
 
         int envido = 0;
+        Jugador envidoMasAlto = this.integrantes.get(0);
 
         for(Jugador jugador : this.integrantes) {
+
+            if(jugador.envido() > envido) envidoMasAlto = jugador;
 
             envido = Math.max(jugador.envido(), envido);
 
         }
 
-        return envido;
+        return envidoMasAlto;
 
     }
 
@@ -132,7 +149,6 @@ public class Equipo {
 
     }
 
-
     public Collection<Carta> recuperarCartas() {
         List<Carta> cartas = new ArrayList<>();
         for (Jugador jugador : this.integrantes) {
@@ -140,4 +156,6 @@ public class Equipo {
         }
         return cartas;
     }
+
+
 }

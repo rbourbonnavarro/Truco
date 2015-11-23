@@ -91,7 +91,7 @@ public class EquipoTest {
         jugador1.setMano(new Mano(cartas1));
         jugador2.setMano(new Mano(cartas2));
 
-        Assert.assertEquals(33,this.equipo.calcularEnvido());
+        Assert.assertEquals(33,this.equipo.jugadorEnvidoMasAlto());
     }
 
 }

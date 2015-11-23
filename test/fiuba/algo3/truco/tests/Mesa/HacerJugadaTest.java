@@ -250,6 +250,34 @@ public class HacerJugadaTest {
 		mesa.envido();
 
 	}
+
+	@Test(expected = JugadorNoPuedeCantarTantoNoEsPrimeraVuelta.class)
+	public void noSePuedeCantarEnvidoDespuesDePrimeraVuelta() {
+
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		mesa.envido();
+
+	}
+
+	@Test
+	public void cuandoDosJugadoresTienenElMismoTantoGanaElQueVaAntesEnLaRonda() {
+
+		Juan.setMano(new Mano(Arrays.asList(new Carta(1,new Espada()), new Carta(3,new Espada()), new Carta(5, new Basto()))));
+		Pedro.setMano(new Mano(Arrays.asList(new Carta(4, new Espada()), new Carta(2, new Espada()), new Carta(1, new Basto()))));
+		Martin.setMano(new Mano(Arrays.asList(new Carta(4, new Basto()), new Carta(2, new Basto()), new Carta(2, new Oro()))));
+		Ignacio.setMano(new Mano(Arrays.asList(new Carta(4,new Oro()), new Carta(3,new Copa()), new Carta(6, new Basto()))));
+
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		mesa.envido();
+		mesa.quieroEnvido();
+
+		Assert.assertEquals(2, mesa.puntaje(rojos));
+
+	}
 	
 
 }

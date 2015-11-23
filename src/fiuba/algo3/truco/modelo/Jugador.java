@@ -1,6 +1,5 @@
 package fiuba.algo3.truco.modelo;
 
-import java.awt.*;
 import java.util.List;
 
 import fiuba.algo3.truco.modelo.Jugadas.Envido.CantasteEnvidoCuandoTenesFlorException;
@@ -10,6 +9,7 @@ public class Jugador {
     private String nombre;
     private Mano mano;
     private boolean jugadorPie;
+    private int ordenMesa;
 
     public Jugador(String nombre) {
 
@@ -74,6 +74,18 @@ public class Jugador {
         if (!(this.mano.getCartas().get(0).getPalo().equals(this.mano.getCartas().get(1).getPalo()) &&
                 this.mano.getCartas().get(2).getPalo().equals(this.mano.getCartas().get(1).getPalo())))
             throw new JugadorNoTieneFlorException();
+
+    }
+
+    public void setOrdenMesa(int ordenMesa) {
+
+        this.ordenMesa = ordenMesa;
+
+    }
+
+    public int getOrdenMesa() {
+
+        return this.ordenMesa;
 
     }
 

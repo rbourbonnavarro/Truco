@@ -35,6 +35,9 @@ public class Mesa {
         this.equipo1 = equipo1;
         this.equipo2 = equipo2;
 
+        this.equipo1.setOrdenMesa(1);
+        this.equipo2.setOrdenMesa(2);
+
         this.mazo = new Mazo();
 
         this.equipoActual = this.equipo1;
@@ -245,7 +248,16 @@ public class Mesa {
 
     private Equipo obtenerGanadorEnvido() {
 
-        return (this.equipoActual.calcularEnvido() > this.equipoContrario.calcularEnvido()) ? this.equipoActual : this.equipoContrario;
+        if(this.equipoActual.jugadorEnvidoMasAlto().envido() > this.equipoContrario.jugadorEnvidoMasAlto().envido())
+            return this.equipoActual;
+        else {
+
+            if(this.equipoActual.jugadorEnvidoMasAlto().envido() < this.equipoContrario.jugadorEnvidoMasAlto().envido())
+                return this.equipoContrario;
+
+        }
+
+        return (this.equipoActual.jugadorEnvidoMasAlto().getOrdenMesa() < this.equipoContrario.jugadorEnvidoMasAlto().getOrdenMesa()) ? this.equipoActual : this.equipoContrario;
 
     }
 
