@@ -263,7 +263,16 @@ public class Mesa {
 
     private Equipo obtenerGanadorFlor() {
 
-        return (this.equipoActual.calcularFlor() > this.equipoContrario.calcularFlor()) ? this.equipoActual : this.equipoContrario;
+        if(this.equipoActual.jugadorFlorMasAlta().calcularFlor() > this.equipoContrario.jugadorEnvidoMasAlto().calcularFlor())
+            return this.equipoActual;
+        else {
+
+            if(this.equipoActual.jugadorEnvidoMasAlto().calcularFlor() < this.equipoContrario.jugadorEnvidoMasAlto().calcularFlor())
+                return this.equipoContrario;
+
+        }
+
+        return (this.equipoActual.jugadorEnvidoMasAlto().getOrdenMesa() < this.equipoContrario.jugadorEnvidoMasAlto().getOrdenMesa()) ? this.equipoActual : this.equipoContrario;
 
     }
 

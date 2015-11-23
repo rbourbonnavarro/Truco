@@ -5,7 +5,10 @@ import fiuba.algo3.truco.modelo.Jugadas.Envido.JugadorNoPuedeCantarTantoNoEsPrim
 import fiuba.algo3.truco.modelo.Jugadas.Envido.NoSePuedeCantarEnvido;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorNoAceptadaNoSePuedeJugarException;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeCantarFlorException;
+import fiuba.algo3.truco.modelo.Palo.Basto;
+import fiuba.algo3.truco.modelo.Palo.Copa;
 import fiuba.algo3.truco.modelo.Palo.Espada;
+import fiuba.algo3.truco.modelo.Palo.Oro;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -139,6 +142,23 @@ public class HacerJugadaConFlorTest {
         mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
         mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
         mesa.flor();
+
+    }
+
+    @Test
+    public void cuandoDosJugadoresTienenElMismoTantoGanaElQueVaAntesEnLaRonda() {
+
+        Juan.setMano(new Mano(Arrays.asList(new Carta(1, new Espada()), new Carta(3, new Espada()), new Carta(5, new Basto()))));
+        Pedro.setMano(new Mano(Arrays.asList(new Carta(4, new Oro()), new Carta(3, new Oro()), new Carta(6, new Oro()))));
+        Martin.setMano(new Mano(Arrays.asList(new Carta(4, new Basto()), new Carta(2, new Basto()), new Carta(2, new Oro()))));
+        Ignacio.setMano(new Mano(Arrays.asList(new Carta(4, new Espada()), new Carta(2, new Espada()), new Figura(12, new Espada()))));
+
+        mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+        mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+        mesa.flor();
+        mesa.quieroFlor();
+
+        Assert.assertEquals(3, mesa.puntaje(azules));
 
     }
 

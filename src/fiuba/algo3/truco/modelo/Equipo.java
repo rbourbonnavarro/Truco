@@ -97,17 +97,20 @@ public class Equipo {
 
     }
 
-    public int calcularFlor() {
+    public Jugador jugadorFlorMasAlta() {
 
         int flor = 0;
+        Jugador florMasAlta = this.integrantes.get(0);
 
         for(Jugador jugador : this.integrantes) {
 
-            flor = Math.max(jugador.calcularFlor(), flor);
+            if(jugador.calcularFlor() > flor) florMasAlta = jugador;
+
+            flor = Math.max(jugador.envido(), flor);
 
         }
 
-        return flor;
+        return florMasAlta;
 
     }
 
