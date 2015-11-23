@@ -104,14 +104,6 @@ public abstract class Vuelta {
 
     }
 
-    public Vuelta terminar(Equipo equipoGanador, int puntos, Mesa mesa) {
-
-        equipoGanador.sumarPuntos(puntos);
-
-        return mesa.terminarRonda();
-
-    }
-
     public abstract Equipo getGanadorVuelta();
 
     public abstract int numeroVuelta();

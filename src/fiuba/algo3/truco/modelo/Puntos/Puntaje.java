@@ -23,6 +23,8 @@ public class Puntaje {
 
         }
 
+        if(this.puntos >= 30) throw new JuegoTerminadoException();
+
     }
 
     public int faltaEnvido() {
@@ -36,11 +38,17 @@ public class Puntaje {
         return this.puntos;
 
     }
+
     public EstadoPuntaje getEstadoPuntaje(){
+
         return this.estadoPuntaje;
+
     }
+
     public int flor(){
+
         return this.estadoPuntaje.flor(puntos);
+
     }
 
 

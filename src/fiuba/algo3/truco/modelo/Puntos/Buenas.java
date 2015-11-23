@@ -19,7 +19,9 @@ public class Buenas extends EstadoPuntaje {
 
     @Override
     public boolean equals(Object puntaje) {
+
         return puntaje instanceof Buenas;
+
     }
 
 

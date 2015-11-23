@@ -1,9 +1,9 @@
 package fiuba.algo3.truco.modelo;
 
 import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeQuererFlorException;
+import fiuba.algo3.truco.modelo.Puntos.JuegoTerminadoException;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 import fiuba.algo3.truco.modelo.Ronda.PrimeraVuelta;
-import fiuba.algo3.truco.modelo.Jugadas.Truco.*;
 import fiuba.algo3.truco.modelo.Ronda.Vuelta;
 
 import java.util.ArrayDeque;
@@ -14,7 +14,6 @@ import java.util.Objects;
 public class Mesa {
 
     private Vuelta estadoVuelta;
-    private ValoresTruco valoresTruco;
     private Equipo equipo1;
     private Equipo equipo2;
     private Deque<Carta> cartasEnMesa;
@@ -24,12 +23,12 @@ public class Mesa {
     private Equipo equipoIniciadorTruco;
     private Equipo equipoIniciadorEnvido;
     private Equipo equipoIniciadorFlor;
+    private Equipo equipoGanador;
     private Mazo mazo;
     private boolean seJuegaConFlor;
 
     public Mesa(Equipo equipo1, Equipo equipo2, boolean seJuegaConFlor) {
 
-        this.valoresTruco = new ValoresTruco();
         this.cartasEnMesa = new ArrayDeque<>();
 
         this.equipo1 = equipo1;
@@ -192,7 +191,17 @@ public class Mesa {
 
     public void noQuieroTruco() {
 
-        this.estadoVuelta = this.estadoVuelta.terminar(this.equipoContrario, estadoVuelta.noQuerido(),this);
+        try {
+
+            this.equipoContrario.sumarPuntos(this.estadoVuelta.noQuerido());
+
+        } catch(JuegoTerminadoException juegoTerminadoException) {
+
+            this.equipoGanador = this.equipoContrario;
+
+        }
+
+        this.terminarRonda();
 
     }
 
@@ -200,7 +209,16 @@ public class Mesa {
 
         this.estadoVuelta.quiero();
 
-        this.obtenerGanadorEnvido().sumarPuntos(this.estadoVuelta.puntos());
+        try {
+
+            this.obtenerGanadorEnvido().sumarPuntos(this.estadoVuelta.puntos());
+
+        } catch(JuegoTerminadoException juegoTerminadoException) {
+
+            this.equipoGanador = this.obtenerGanadorEnvido();
+
+        }
+
         this.estadoVuelta.terminarTanto();
 
         this.recuperarEquipoActualEnvido();
@@ -209,7 +227,16 @@ public class Mesa {
 
     public void noQuieroEnvido(){
 
-        this.equipoContrario.sumarPuntos(this.estadoVuelta.noQuerido());
+        try {
+
+            this.equipoContrario.sumarPuntos(this.estadoVuelta.noQuerido());
+
+        } catch(JuegoTerminadoException juegoTerminadoException) {
+
+            this.equipoGanador = this.equipoContrario;
+
+        }
+
         this.estadoVuelta.terminarTanto();
 
         this.recuperarEquipoActualEnvido();
@@ -222,11 +249,27 @@ public class Mesa {
 
             this.estadoVuelta.quiero();
 
-            this.obtenerGanadorFlor().sumarPuntos(this.estadoVuelta.puntos());
+            try {
+
+                this.obtenerGanadorFlor().sumarPuntos(this.estadoVuelta.puntos());
+
+            } catch(JuegoTerminadoException juegoTerminadoException) {
+
+                this.equipoGanador = this.obtenerGanadorFlor();
+
+            }
 
         } catch(NoSePuedeQuererFlorException noSePuedeQuererFlorException) {
 
-            this.equipoContrario.sumarPuntos(this.estadoVuelta.puntos());
+            try {
+
+                this.equipoContrario.sumarPuntos(this.estadoVuelta.puntos());
+
+            } catch(JuegoTerminadoException juegoTerminadoException) {
+
+                this.equipoGanador = this.equipoContrario;
+
+            }
 
         }
 
@@ -238,7 +281,15 @@ public class Mesa {
 
     public void noQuieroFlor() {
 
-        this.equipoContrario.sumarPuntos(this.estadoVuelta.noQuerido());
+        try {
+
+            this.equipoContrario.sumarPuntos(this.estadoVuelta.noQuerido());
+
+        } catch(JuegoTerminadoException juegoTerminadoException) {
+
+            this.equipoGanador = this.equipoContrario;
+
+        }
 
         this.estadoVuelta.terminarTanto();
 
@@ -368,6 +419,12 @@ public class Mesa {
         this.cartasEnMesa = new ArrayDeque<>();
         this.intercambiarEquipos();
         return new PrimeraVuelta(this.seJuegaConFlor, this.equipo1, this.equipo2, this.mazo);
+
+    }
+
+    public Equipo getEquipoGanador() {
+
+        return this.equipoGanador;
 
     }
 
