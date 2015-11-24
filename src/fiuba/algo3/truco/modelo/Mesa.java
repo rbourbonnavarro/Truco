@@ -6,10 +6,7 @@ import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 import fiuba.algo3.truco.modelo.Ronda.PrimeraVuelta;
 import fiuba.algo3.truco.modelo.Ronda.Vuelta;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Mesa {
 
@@ -27,7 +24,6 @@ public class Mesa {
     private boolean seJuegaConFlor;
 
     public Mesa(Equipo equipo1, Equipo equipo2, boolean seJuegaConFlor) {
-
         this.cartasEnMesa = new ArrayDeque<>();
 
         this.equipoMano = equipo1;
@@ -36,11 +32,11 @@ public class Mesa {
 
         this.equipoActual = equipo1;
         this.equipoContrario = equipo2;
-
         this.equipoActual.setOrdenMesa(1);
         this.equipoContrario.setOrdenMesa(2);
 
         this.jugadorActual = this.equipoActual.getJugadorActual();
+
 
         this.equipoActual.setPie();
         this.equipoContrario.setPie();
@@ -199,7 +195,6 @@ public class Mesa {
             this.equipoGanador = this.equipoContrario;
 
         }
-        this.equipoActual.terminarJugada();
         this.estadoVuelta = this.terminarRonda();
 
     }
@@ -417,6 +412,7 @@ public class Mesa {
 
         this.cartasEnMesa = new ArrayDeque<>();
         if (this.equipoMano.equals(this.equipoActual)) {
+            this.equipoActual.terminarJugada();
             this.equipoMano = this.equipoContrario;
             this.intercambiarEquipos();
         }
@@ -427,7 +423,6 @@ public class Mesa {
         return new PrimeraVuelta(this.seJuegaConFlor, this.equipoActual, this.equipoContrario, this.mazo);
 
     }
-
     public Equipo getEquipoGanador() {
 
         return this.equipoGanador;
