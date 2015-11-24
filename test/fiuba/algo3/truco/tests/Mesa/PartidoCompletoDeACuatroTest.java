@@ -82,10 +82,10 @@ public class PartidoCompletoDeACuatroTest {
 		carta11 = new Carta(11,new Basto());
 		carta12 = new Carta(10,new Oro());
 		
-		cartasJuan = new LinkedList<Carta>();
-		cartasPedro = new LinkedList<Carta>();
-		cartasRoberto = new LinkedList<Carta>();
-		cartasIgnacio = new LinkedList<Carta>();
+		cartasJuan = new LinkedList<>();
+		cartasPedro = new LinkedList<>();
+		cartasRoberto = new LinkedList<>();
+		cartasIgnacio = new LinkedList<>();
 
 	}
 	
