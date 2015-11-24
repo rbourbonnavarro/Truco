@@ -39,10 +39,10 @@ public class HacerJugadaTest {
 	@Before
 	public void setUp() {
 		
-		Juan = new Jugador("Juan");
-		Pedro = new Jugador("Pedro");
+		Juan = new Jugador("J1");
+		Pedro = new Jugador("J2");
 		Martin = new Jugador("Martin");
-		Ignacio = new Jugador("Ignacio");
+		Ignacio = new Jugador("J4");
 		
 		jugadoresEquipo1 = new ArrayList<>(Arrays.asList(Juan, Pedro));
 		jugadoresEquipo2 = new ArrayList<>(Arrays.asList(Martin, Ignacio));

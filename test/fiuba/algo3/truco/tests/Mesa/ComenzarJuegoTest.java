@@ -26,8 +26,8 @@ public class ComenzarJuegoTest {
 	@Before
 	public void setUp(){
 		
-		jugador1 = new Jugador("Juan");
-		jugador2 = new Jugador("Pedro");
+		jugador1 = new Jugador("J1");
+		jugador2 = new Jugador("J2");
 		
 		jugadoresEquipo1 = new ArrayList<>(Arrays.asList(jugador1));
 		jugadoresEquipo2 = new ArrayList<>(Arrays.asList(jugador2));
@@ -60,13 +60,13 @@ public class ComenzarJuegoTest {
 	public void test3JugarCartaTerminaElTurnoDelEquipo(){
 
 		List<Carta> cartas = mesa.getCartasDelJugadorActual();
-		Assert.assertEquals(mesa.getJugadorActual().getNombre(),"Juan");
+		Assert.assertEquals(mesa.getJugadorActual().getNombre(),"J1");
 		mesa.hacerJugada(cartas.get(0));
-		Assert.assertEquals(mesa.getJugadorActual().getNombre(),"Pedro");
+		Assert.assertEquals(mesa.getJugadorActual().getNombre(),"J2");
 		Assert.assertEquals(2,jugador1.obtenerCartasEnMano().size());
 		cartas = mesa.getCartasDelJugadorActual();
 		mesa.hacerJugada(cartas.get(0));
-		Assert.assertEquals(mesa.getJugadorActual().getNombre(),"Juan");
+		Assert.assertEquals(mesa.getJugadorActual().getNombre(),"J1");
 
 	}
 
@@ -93,8 +93,8 @@ public class ComenzarJuegoTest {
 	@Test
 	public void test4AlJugarCartasSeDeterminaGanadorDeVueltaEnJuegoDeCuatro(){
 
-		jugador1 = new Jugador("Juan");
-		jugador2 = new Jugador("Pedro");
+		jugador1 = new Jugador("J1");
+		jugador2 = new Jugador("J2");
 		Jugador jugador3 = new Jugador("Raul");
 		Jugador jugador4 = new Jugador("Antonio");
 
@@ -140,8 +140,8 @@ public class ComenzarJuegoTest {
 	@Test
 	public void test4AlJugarCartasSeDeterminaGanadorDeVueltaEnJuegoDeSeis(){
 
-		jugador1 = new Jugador("Juan");
-		jugador2 = new Jugador("Pedro");
+		jugador1 = new Jugador("J1");
+		jugador2 = new Jugador("J2");
 		Jugador jugador3 = new Jugador("Raul");
 		Jugador jugador4 = new Jugador("Antonio");
 		Jugador jugador5 = new Jugador("Jorge");

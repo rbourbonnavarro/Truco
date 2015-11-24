@@ -160,5 +160,10 @@ public class Equipo {
         return cartas;
     }
 
+    @Override
+    public boolean equals (Object object) {
+        Equipo equipo = (Equipo) object;
+        return this.getNombre().equals(equipo.getNombre());
+    }
 
 }

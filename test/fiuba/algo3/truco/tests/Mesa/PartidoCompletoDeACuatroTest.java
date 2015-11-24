@@ -5,15 +5,11 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
+import fiuba.algo3.truco.modelo.*;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import fiuba.algo3.truco.modelo.Carta;
-import fiuba.algo3.truco.modelo.Equipo;
-import fiuba.algo3.truco.modelo.Jugador;
-import fiuba.algo3.truco.modelo.Mano;
-import fiuba.algo3.truco.modelo.Mesa;
 import fiuba.algo3.truco.modelo.Palo.Basto;
 import fiuba.algo3.truco.modelo.Palo.Espada;
 import fiuba.algo3.truco.modelo.Palo.Oro;
@@ -22,16 +18,16 @@ public class PartidoCompletoDeACuatroTest {
 
 	Mesa mesa;
 	
-	Jugador Juan;
-	Jugador Pedro;
-	Jugador Roberto;
-	Jugador Ignacio;
+	Jugador J1;
+	Jugador J2;
+	Jugador J3;
+	Jugador J4;
 	
 	List<Jugador> jugadoresEquipo1;
 	List<Jugador> jugadoresEquipo2;
 	
-	Equipo equipoJuanRoberto;
-	Equipo equipoPedroIgnacio;
+	Equipo equipoPar;
+	Equipo equipoImpar;
 	
 	Carta carta1;
 	Carta carta2;
@@ -46,29 +42,34 @@ public class PartidoCompletoDeACuatroTest {
 	Carta carta11;
 	Carta carta12;
 	
-	LinkedList<Carta> cartasJuan;
-	LinkedList<Carta> cartasPedro; 
-	LinkedList<Carta> cartasRoberto;
-	LinkedList<Carta> cartasIgnacio; 
+	LinkedList<Carta> cartasJ1;
+	LinkedList<Carta> cartasJ2;
+	LinkedList<Carta> cartasJ3;
+	LinkedList<Carta> cartasJ4;
 	
 	@Before
 	public void setUp(){
 		
-		Juan = new Jugador("Juan");
-		Pedro = new Jugador("Pedro");
-		Roberto = new Jugador("Roberto");
-		Ignacio = new Jugador("Ignacio");
+		J1 = new Jugador("J1");
+		J2 = new Jugador("J2");
+		J3 = new Jugador("J3");
+		J4 = new Jugador("J4");
 		
-		jugadoresEquipo1 = new ArrayList<>(Arrays.asList(Juan, Roberto));
-		jugadoresEquipo2 = new ArrayList<>(Arrays.asList(Pedro, Ignacio));
+		jugadoresEquipo1 = new ArrayList<>(Arrays.asList(J1, J3));
+		jugadoresEquipo2 = new ArrayList<>(Arrays.asList(J2, J4));
 		
-		equipoJuanRoberto = new Equipo("JuanRoberto", jugadoresEquipo1);
-		equipoPedroIgnacio = new Equipo("PedroIgnacio", jugadoresEquipo2);
+		equipoPar = new Equipo("Equipo Par", jugadoresEquipo2);
+		equipoImpar = new Equipo("Equipo Impar", jugadoresEquipo1);
 
 		boolean seJuegaConFlor = true;
 		
-		mesa = new Mesa(equipoJuanRoberto, equipoPedroIgnacio, seJuegaConFlor);
-		
+		mesa = new Mesa(equipoImpar, equipoPar, seJuegaConFlor);
+
+
+	}
+	
+	@Test
+	public void partidaCompletaDeACuatro() {
 		carta1 = new Carta(7,new Espada());
 		carta2 = new Carta(7,new Basto());
 		carta3 = new Carta(7,new Oro());
@@ -78,59 +79,175 @@ public class PartidoCompletoDeACuatroTest {
 		carta7 = new Carta(4,new Espada());
 		carta8 = new Carta(4,new Basto());
 		carta9 = new Carta(4,new Oro());
-		carta10 = new Carta(12,new Espada());
-		carta11 = new Carta(11,new Basto());
-		carta12 = new Carta(10,new Oro());
-		
-		cartasJuan = new LinkedList<>();
-		cartasPedro = new LinkedList<>();
-		cartasRoberto = new LinkedList<>();
-		cartasIgnacio = new LinkedList<>();
+		carta10 = new Figura(12,new Espada());
+		carta11 = new Figura(11,new Basto());
+		carta12 = new Figura(10,new Oro());
 
-	}
-	
-	@Test
-	public void envidoQueridoOtorgaDosPuntosAlGanador() {
+		cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
+		cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
+		cartasJ3 = new LinkedList<>(Arrays.asList(carta7, carta8, carta9));
+		cartasJ4 = new LinkedList<>(Arrays.asList(carta10, carta11, carta12));
 
-		cartasJuan.add(carta1);
-		cartasJuan.add(carta4);
-		cartasJuan.add(carta5);
-		cartasPedro.add(carta2);
-		cartasPedro.add(carta3);
-		cartasPedro.add(carta6);
-		cartasRoberto.add(carta7);
-		cartasRoberto.add(carta10);
-		cartasRoberto.add(carta11);
-		cartasIgnacio.add(carta8);
-		cartasIgnacio.add(carta9);
-		cartasIgnacio.add(carta12);
 		
-		Juan.setMano(new Mano(cartasJuan));
-		Pedro.setMano(new Mano(cartasPedro));
-		Roberto.setMano(new Mano(cartasRoberto));
-		Ignacio.setMano(new Mano(cartasIgnacio));
+		J1.setMano(new Mano(cartasJ1));
+		J2.setMano(new Mano(cartasJ2));
+		J3.setMano(new Mano(cartasJ3));
+		J4.setMano(new Mano(cartasJ4));
 		
-		Assert.assertTrue(mesa.puntaje(equipoJuanRoberto) == 0);
-		Assert.assertTrue(mesa.puntaje(equipoPedroIgnacio) == 0);
-		
-		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
-		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		Assert.assertTrue(mesa.puntaje(equipoPar) == 0);
+		Assert.assertTrue(mesa.puntaje(equipoImpar) == 0);
+
+		Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.hacerJugada(carta1);
+		Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.hacerJugada(carta4);
+		Assert.assertEquals(J3.getNombre(), mesa.getJugadorActual().getNombre());
 		mesa.envido();
+		Assert.assertEquals(J4.getNombre(), mesa.getJugadorActual().getNombre());
 		mesa.quieroEnvido();
 		
-		Assert.assertTrue(mesa.puntaje(equipoJuanRoberto) == 2);
-		Assert.assertTrue(mesa.puntaje(equipoPedroIgnacio) == 0);
+		Assert.assertTrue(mesa.puntaje(equipoImpar) == 2);
+		Assert.assertTrue(mesa.puntaje(equipoPar) == 0);
 		
-		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
-		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
-		
+		mesa.hacerJugada(carta7);
+		mesa.hacerJugada(carta10);
+
+		Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
 		mesa.truco();
+		Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
 		mesa.retruco();
+		Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
 		mesa.noQuieroTruco();
 		
-		Assert.assertTrue(mesa.puntaje(equipoJuanRoberto) == 2);
-		Assert.assertTrue(mesa.puntaje(equipoPedroIgnacio) == 2);
+		Assert.assertTrue(mesa.puntaje(equipoPar) == 2);
+		Assert.assertTrue(mesa.puntaje(equipoImpar) == 2);
+
+		Assert.assertEquals(J1.obtenerCartas().size(),3);
+
+		carta1 = new Carta(7,new Oro());
+		carta2 = new Carta(3,new Oro());
+		carta3 = new Carta(4,new Oro());
+		carta4 = new Carta(7,new Espada());
+		carta5 = new Carta(5,new Espada());
+		carta6 = new Carta(6,new Espada());
+		carta7 = new Figura(12,new Espada());
+		carta8 = new Figura(11,new Basto());
+		carta9 = new Figura(10,new Oro());
+		carta10 = new Carta(4,new Espada());
+		carta11 = new Carta(4,new Basto());
+		carta12 = new Carta(4,new Oro());
+
+
+		cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
+		cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
+		cartasJ3 = new LinkedList<>(Arrays.asList(carta7, carta8, carta9));
+		cartasJ4 = new LinkedList<>(Arrays.asList(carta10, carta11, carta12));
+
+		J1.setMano(new Mano(cartasJ1));
+		J2.setMano(new Mano(cartasJ2));
+		J3.setMano(new Mano(cartasJ3));
+		J4.setMano(new Mano(cartasJ4));
+
+		Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.flor();
+		Assert.assertEquals(J3.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.contraFlorAlPartido();
+		mesa.quieroFlor();
+
+		Assert.assertTrue(mesa.puntaje(equipoPar) >= 30);
+		Assert.assertTrue(mesa.puntaje(equipoImpar) == 2);
 		
+	}
+	@Test
+	public void partidaCompletaDeACuatro2() {
+		carta1 = new Carta(7,new Espada());
+		carta2 = new Carta(7,new Basto());
+		carta3 = new Carta(7,new Oro());
+		carta4 = new Carta(3,new Espada());
+		carta5 = new Carta(3,new Basto());
+		carta6 = new Carta(3,new Oro());
+		carta7 = new Carta(4,new Espada());
+		carta8 = new Carta(4,new Basto());
+		carta9 = new Carta(4,new Oro());
+		carta10 = new Figura(12,new Espada());
+		carta11 = new Figura(11,new Basto());
+		carta12 = new Figura(10,new Oro());
+
+		cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
+		cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
+		cartasJ3 = new LinkedList<>(Arrays.asList(carta7, carta8, carta9));
+		cartasJ4 = new LinkedList<>(Arrays.asList(carta10, carta11, carta12));
+
+
+		J1.setMano(new Mano(cartasJ1));
+		J2.setMano(new Mano(cartasJ2));
+		J3.setMano(new Mano(cartasJ3));
+		J4.setMano(new Mano(cartasJ4));
+
+		Assert.assertTrue(mesa.puntaje(equipoPar) == 0);
+		Assert.assertTrue(mesa.puntaje(equipoImpar) == 0);
+
+		Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.hacerJugada(carta1);
+		Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.hacerJugada(carta4);
+		Assert.assertEquals(J3.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.envido();
+		Assert.assertEquals(J4.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.noQuieroEnvido();
+
+		Assert.assertTrue(mesa.puntaje(equipoImpar) == 1);
+		Assert.assertTrue(mesa.puntaje(equipoPar) == 0);
+
+		mesa.hacerJugada(carta7);
+		mesa.hacerJugada(carta10);
+
+		Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.truco();
+		Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.noQuieroTruco();
+
+		Assert.assertTrue(mesa.puntaje(equipoPar) == 0);
+		Assert.assertTrue(mesa.puntaje(equipoImpar) == 2);
+
+		Assert.assertEquals(J1.obtenerCartas().size(),3);
+
+		carta1 = new Carta(7,new Oro());
+		carta2 = new Carta(3,new Oro());
+		carta3 = new Carta(4,new Oro());
+		carta4 = new Carta(7,new Espada());
+		carta5 = new Carta(5,new Espada());
+		carta6 = new Carta(6,new Espada());
+		carta7 = new Figura(12,new Espada());
+		carta8 = new Figura(11,new Basto());
+		carta9 = new Figura(10,new Oro());
+		carta10 = new Carta(4,new Espada());
+		carta11 = new Carta(4,new Basto());
+		carta12 = new Carta(4,new Oro());
+
+
+		cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
+		cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
+		cartasJ3 = new LinkedList<>(Arrays.asList(carta7, carta8, carta9));
+		cartasJ4 = new LinkedList<>(Arrays.asList(carta10, carta11, carta12));
+
+		J1.setMano(new Mano(cartasJ1));
+		J2.setMano(new Mano(cartasJ2));
+		J3.setMano(new Mano(cartasJ3));
+		J4.setMano(new Mano(cartasJ4));
+
+		Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.flor();
+		Assert.assertEquals(J3.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.quieroFlor();
+	//	Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
+		//mesa.noQuieroFlor();
+
+//		Assert.assertTrue(mesa.puntaje(equipoPar) == 0);
+	//	Assert.assertTrue(mesa.puntaje(equipoImpar) == 5);
+
+
+
 	}
 
 	

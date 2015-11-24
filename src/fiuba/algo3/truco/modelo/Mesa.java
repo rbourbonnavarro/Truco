@@ -14,8 +14,7 @@ import java.util.Objects;
 public class Mesa {
 
     private Vuelta estadoVuelta;
-    private Equipo equipo1;
-    private Equipo equipo2;
+    private Equipo equipoMano;
     private Deque<Carta> cartasEnMesa;
     private Equipo equipoActual;
     private Equipo equipoContrario;
@@ -31,20 +30,20 @@ public class Mesa {
 
         this.cartasEnMesa = new ArrayDeque<>();
 
-        this.equipo1 = equipo1;
-        this.equipo2 = equipo2;
-
-        this.equipo1.setOrdenMesa(1);
-        this.equipo2.setOrdenMesa(2);
+        this.equipoMano = equipo1;
 
         this.mazo = new Mazo();
 
-        this.equipoActual = this.equipo1;
-        this.equipoContrario = this.equipo2;
+        this.equipoActual = equipo1;
+        this.equipoContrario = equipo2;
+
+        this.equipoActual.setOrdenMesa(1);
+        this.equipoContrario.setOrdenMesa(2);
+
         this.jugadorActual = this.equipoActual.getJugadorActual();
 
-        this.equipo1.setPie();
-        this.equipo2.setPie();
+        this.equipoActual.setPie();
+        this.equipoContrario.setPie();
 
         this.seJuegaConFlor = seJuegaConFlor;
 
@@ -200,8 +199,8 @@ public class Mesa {
             this.equipoGanador = this.equipoContrario;
 
         }
-
-        this.terminarRonda();
+        this.equipoActual.terminarJugada();
+        this.estadoVuelta = this.terminarRonda();
 
     }
 
@@ -417,8 +416,15 @@ public class Mesa {
     public Vuelta terminarRonda() {
 
         this.cartasEnMesa = new ArrayDeque<>();
-        this.intercambiarEquipos();
-        return new PrimeraVuelta(this.seJuegaConFlor, this.equipo1, this.equipo2, this.mazo);
+        if (this.equipoMano.equals(this.equipoActual)) {
+            this.equipoMano = this.equipoContrario;
+            this.intercambiarEquipos();
+        }
+        else {
+            this.equipoContrario.terminarJugada();
+            this.equipoMano =this.equipoActual;
+        }
+        return new PrimeraVuelta(this.seJuegaConFlor, this.equipoActual, this.equipoContrario, this.mazo);
 
     }
 
