@@ -240,6 +240,7 @@ public class PartidoCompletoDeACuatroTest {
 		mesa.flor();
 		Assert.assertEquals(J3.getNombre(), mesa.getJugadorActual().getNombre());
 		mesa.quieroFlor();
+		// ACA DEBERIA JUGAR J2 PERO EL JUGADOR ACTUAL ES J4 Y NO LOGRO ENTENDER PORQUE PASA ESTO ENTRE EN CRISIS MAL
 	//	Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
 		//mesa.noQuieroFlor();
 
