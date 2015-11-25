@@ -413,7 +413,7 @@ public class PartidoCompletoDeACuatroTest {
 		mesa.quieroFlor();
 
 
-		Assert.assertTrue(mesa.puntaje(equipoPar)>=30 );
+		Assert.assertTrue(mesa.puntaje(equipoPar) >= 30);
 		Assert.assertEquals(mesa.puntaje(equipoImpar), 13);
 
 	}
