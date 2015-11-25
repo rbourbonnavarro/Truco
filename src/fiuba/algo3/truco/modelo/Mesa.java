@@ -12,10 +12,18 @@ public class Mesa {
 
     private Vuelta estadoVuelta;
     private Equipo equipoMano;
+    private List<Jugador> rondaJugadores;
+    private int jugadorMano;
+    private int indiceJugadorActual;
     private Deque<Carta> cartasEnMesa;
     private Equipo equipoActual;
     private Equipo equipoContrario;
     private Jugador jugadorActual;
+
+    private int jugadorIniciadorTruco;
+    private int jugadorIniciadorEnvido;
+    private int jugadorIniciadorFlor;
+
     private Equipo equipoIniciadorTruco;
     private Equipo equipoIniciadorEnvido;
     private Equipo equipoIniciadorFlor;
@@ -35,7 +43,17 @@ public class Mesa {
         this.equipoActual.setOrdenMesa(1);
         this.equipoContrario.setOrdenMesa(2);
 
-        this.jugadorActual = this.equipoActual.getJugadorActual();
+        this.indiceJugadorActual = 0;
+        this.jugadorMano = 0;
+        for (int i=0; i<this.equipoActual.getCantidadIntegrantes();i++) {
+            this.rondaJugadores.add(equipo1.getIntegrantes().get(i));
+            this.rondaJugadores.add(equipo2.getIntegrantes().get(i));
+        }
+        this.jugadorIniciadorEnvido = -1;
+        this.jugadorIniciadorTruco = -1;
+        this.jugadorIniciadorFlor = -1;
+
+        this.jugadorActual = this.rondaJugadores.get(0);
 
 
         this.equipoActual.setPie();
@@ -323,20 +341,21 @@ public class Mesa {
 
     private void terminarJugada() {
 
-        this.equipoActual.terminarJugada();
+        this.indiceJugadorActual++;
+        this.jugadorActual = this.getNuevoJugadorActual();
 
-        this.intercambiarEquipos();
+    }
+    public Jugador getNuevoJugadorActual() {
+       return this.rondaJugadores.get(indiceJugadorActual%this.rondaJugadores.size());
+    }
 
+    private void setJugadorMano() {
+        this.jugadorActual = this.rondaJugadores.get(jugadorMano % this.rondaJugadores.size());
     }
 
     private void intercambiarEquipos() {
-
-        Equipo aux = this.equipoActual;
-        this.equipoActual = this.equipoContrario;
-        this.equipoContrario = aux;
-
-        this.jugadorActual = this.equipoActual.getJugadorActual();
-
+        this.indiceJugadorActual++;
+        this.getNuevoJugadorActual();
     }
 
     private void terminarVuelta() {
@@ -353,58 +372,46 @@ public class Mesa {
 
     private void recuperarEquipoActualTruco() {
 
-        if(Objects.equals(this.equipoIniciadorTruco, this.equipoContrario)) {
-
-            this.intercambiarEquipos();
-
-        }
-
-        this.equipoIniciadorTruco = null;
+        this.indiceJugadorActual = this.jugadorIniciadorTruco;
+        this.getNuevoJugadorActual();
+        this.jugadorIniciadorTruco = -1;
 
     }
 
     private void guardarEquipoIniciadorTruco() {
 
-        if(this.equipoIniciadorTruco == null)
-            this.equipoIniciadorTruco = this.equipoActual;
+        if(this.jugadorIniciadorTruco < 0)
+            this.jugadorIniciadorTruco = this.indiceJugadorActual;
 
     }
 
     private void recuperarEquipoActualEnvido() {
 
-        if(Objects.equals(this.equipoIniciadorEnvido, this.equipoContrario)) {
-
-            this.intercambiarEquipos();
-
-        }
-
-        this.equipoIniciadorEnvido = null;
+       this.indiceJugadorActual = this.jugadorIniciadorEnvido;
+        this.getNuevoJugadorActual();
+        this.jugadorIniciadorEnvido = -1;
 
     }
 
     private void guardarEquipoIniciadorEnvido() {
 
-        if(this.equipoIniciadorEnvido == null)
-            this.equipoIniciadorEnvido = this.equipoActual;
+        if(this.jugadorIniciadorEnvido <0)
+            this.jugadorIniciadorEnvido = this.indiceJugadorActual;
 
     }
 
     private void recuperarEquipoActualFlor() {
 
-        if(Objects.equals(this.equipoIniciadorFlor, this.equipoContrario)) {
-
-            this.intercambiarEquipos();
-
-        }
-
-        this.equipoIniciadorFlor = null;
+        this.indiceJugadorActual = this.jugadorIniciadorEnvido;
+        this.getNuevoJugadorActual();
+        this.jugadorIniciadorFlor = -1;
 
     }
 
     private void guardarEquipoIniciadorFlor() {
 
-        if(this.equipoIniciadorFlor == null)
-            this.equipoIniciadorFlor = this.equipoActual;
+        if(this.jugadorIniciadorFlor <0)
+            this.jugadorIniciadorFlor = this.indiceJugadorActual;
 
     }
 
@@ -428,6 +435,5 @@ public class Mesa {
         return this.equipoGanador;
 
     }
-
 
 }
