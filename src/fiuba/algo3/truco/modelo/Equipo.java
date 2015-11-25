@@ -12,6 +12,8 @@ public class Equipo {
     private List<Jugador> integrantes;
     private Puntaje puntaje;
     private int indiceJugador;
+    private int ordenMesa;
+    private boolean inicializacionOrdenMesa;
 
     public Equipo(String nombre, List<Jugador> jugadores) {
 
@@ -26,15 +28,41 @@ public class Equipo {
 
         this.indiceJugador = 0;
 
+        this.inicializacionOrdenMesa = false;
+
     }
 
     public void setOrdenMesa(int ordenMesa) {
 
-        for(Jugador jugador : this.integrantes) {
+        this.ordenMesa = ordenMesa;
+
+        this.indiceJugador = 0;
+
+        if(this.inicializacionOrdenMesa && this.ordenMesa == 1) {
+
+            this.reordenarJugadores();
+
+        }
+
+        for (Jugador jugador : this.integrantes) {
 
             jugador.setOrdenMesa(ordenMesa);
 
             ordenMesa += 2;
+
+        }
+
+        this.inicializacionOrdenMesa = true;
+
+    }
+
+    private void reordenarJugadores() {
+
+        for(int i = 0; i < (this.integrantes.size() - 1); i++) {
+
+            Jugador aux = this.integrantes.get(i);
+            this.integrantes.set(i, this.integrantes.get(i+1));
+            this.integrantes.set(i+1, aux);
 
         }
 
@@ -46,7 +74,9 @@ public class Equipo {
 
     }
     public void setPie(){
+
         this.integrantes.get((this.indiceJugador + 1) % this.integrantes.size()).setJugadorPie(true);
+
     }
 
     public int getCantidadIntegrantes() {
@@ -160,10 +190,31 @@ public class Equipo {
         return cartas;
     }
 
+    public int getOrdenMesa() {
+
+        return this.ordenMesa;
+
+    }
+
+    public boolean primeroEnRonda() {
+
+        return this.ordenMesa == 0;
+
+    }
+
     @Override
     public boolean equals (Object object) {
-        Equipo equipo = (Equipo) object;
-        return this.getNombre().equals(equipo.getNombre());
+
+        if(object instanceof Equipo) {
+
+            Equipo equipo = (Equipo) object;
+            return this.getNombre().equals(equipo.getNombre());
+
+        }
+
+        return false;
+
     }
+
 
 }

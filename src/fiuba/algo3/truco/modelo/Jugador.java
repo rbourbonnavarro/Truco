@@ -18,7 +18,9 @@ public class Jugador {
 
     }
     public String getNombre(){
+
         return nombre;
+
     }
 
     public void setMano(Mano mano) {
