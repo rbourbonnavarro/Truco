@@ -252,7 +252,53 @@ Mesa mesa;
 
 		Assert.assertTrue(mesa.puntaje(equipoImpar) == 8);
 		Assert.assertTrue(mesa.puntaje(equipoPar) == 4);
+		
+		
+		carta1 = new Figura(12,new Copa());
+		carta2 = new Figura(11,new Copa());
+		carta3 = new Figura(10,new Copa());
+		carta4 = new Carta(7,new Espada());
+		carta5 = new Carta(3,new Basto());
+		carta6 = new Carta(4,new Oro());
+		carta7 = new Carta(4,new Espada());
+		carta8 = new Carta(4,new Basto());
+		carta9 = new Carta(5,new Oro());
+		carta10 = new Carta(6,new Espada());
+		carta11 = new Carta(12,new Basto());
+		carta12 = new Carta(2,new Oro());
+		carta13 = new Figura(2,new Espada());
+		carta14 = new Figura(6,new Oro());
+		carta15 = new Figura(7,new Oro());
+		carta16 = new Carta(1,new Espada());
+		carta17 = new Carta(1,new Basto());
+		carta18 = new Carta(3,new Oro());
+		
+		
+		cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
+		cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
+		cartasJ3 = new LinkedList<>(Arrays.asList(carta7, carta8, carta9));
+		cartasJ4 = new LinkedList<>(Arrays.asList(carta10, carta11, carta12));
+		cartasJ5 = new LinkedList<>(Arrays.asList(carta13, carta14, carta15));
+		cartasJ6 = new LinkedList<>(Arrays.asList(carta16, carta17, carta18));
+		
+		J1.setMano(new Mano(cartasJ1));
+		J2.setMano(new Mano(cartasJ2));
+		J3.setMano(new Mano(cartasJ3));
+		J4.setMano(new Mano(cartasJ4));
+		J5.setMano(new Mano(cartasJ5));
+		J6.setMano(new Mano(cartasJ6));
+		
+		Assert.assertEquals(J3.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(2));
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		mesa.faltaEnvido();
+		mesa.quieroEnvido();
 
+		Assert.assertTrue(mesa.puntaje(equipoImpar) >= 30);
+		Assert.assertTrue(mesa.puntaje(equipoPar) == 4);
 
 	}
 
