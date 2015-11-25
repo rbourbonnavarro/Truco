@@ -39,8 +39,12 @@ public class Mesa {
 
         this.mazo = new Mazo();
 
-        this.equipoActual = this.equipo1;
-        this.equipoContrario = this.equipo2;
+        this.equipoActual = equipo1;
+        this.equipoContrario = equipo2;
+
+        this.equipoActual.setOrdenMesa(1);
+        this.equipoContrario.setOrdenMesa(2);
+
         this.jugadorActual = this.equipoActual.getJugadorActual();
 
         this.equipo1.setPie();
