@@ -214,7 +214,7 @@ Mesa mesa;
 		Assert.assertEquals(J5.getNombre(), mesa.getJugadorActual().getNombre());
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(1));
 		
-		/*Assert.assertEquals(J6.getNombre(), mesa.getJugadorActual().getNombre());
+		Assert.assertEquals(J6.getNombre(), mesa.getJugadorActual().getNombre());
 		mesa.envido();
 		Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
 		mesa.flor();
@@ -226,30 +226,32 @@ Mesa mesa;
 
 		Assert.assertEquals(J6.getNombre(), mesa.getJugadorActual().getNombre());
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(1));
-
-		Assert.assertEquals(J6.getNombre(), mesa.getJugadorActual().getNombre());
+		Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
 		mesa.truco();
 		mesa.retruco();
 		mesa.quieroTruco();
 		
-		Assert.assertEquals(J6.getNombre(), mesa.getJugadorActual().getNombre());
-		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(2));
 		Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(2));
+		Assert.assertEquals(J6.getNombre(), mesa.getJugadorActual().getNombre());
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(1));
+		Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(1));
-
+		Assert.assertEquals(J3.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(1));
 		Assert.assertEquals(J4.getNombre(), mesa.getJugadorActual().getNombre());
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(2));
-		
-		Assert.assertEquals(J5.getNombre(), mesa.getJugadorActual().getNombre());
-		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(2));
-		
 		Assert.assertEquals(J5.getNombre(), mesa.getJugadorActual().getNombre());
 		mesa.valeCuatro();
+		Assert.assertEquals(J6.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.quieroTruco();
+		Assert.assertEquals(J5.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(2));
 
-		Assert.assertEquals(J4.getNombre(), mesa.getJugadorActual().getNombre());
-		mesa.quieroTruco();*/
+		Assert.assertTrue(mesa.puntaje(equipoImpar) == 8);
+		Assert.assertTrue(mesa.puntaje(equipoPar) == 4);
 
 
 	}
