@@ -86,7 +86,7 @@ Mesa mesa;
 
 	}
 
-	
+
 	@Test
 	public void partidaCompletaDeASeis() {
 
@@ -163,7 +163,7 @@ Mesa mesa;
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(1));
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(2));
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(2));
-		
+
 		Assert.assertTrue(mesa.puntaje(equipoImpar) == 5);
 		Assert.assertTrue(mesa.puntaje(equipoPar) == 0);
 		
@@ -238,7 +238,7 @@ Mesa mesa;
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(1));
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(1));
-		
+
 		Assert.assertEquals(J4.getNombre(), mesa.getJugadorActual().getNombre());
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(2));
 		
@@ -247,11 +247,11 @@ Mesa mesa;
 		
 		Assert.assertEquals(J5.getNombre(), mesa.getJugadorActual().getNombre());
 		mesa.valeCuatro();
-		
+
 		Assert.assertEquals(J4.getNombre(), mesa.getJugadorActual().getNombre());
 		mesa.quieroTruco();*/
 
-		
+
 	}
 
 
