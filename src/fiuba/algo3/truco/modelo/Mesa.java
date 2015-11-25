@@ -42,6 +42,7 @@ public class Mesa {
         this.equipoActual = this.equipo1;
         this.equipoContrario = this.equipo2;
         this.jugadorActual = this.equipoActual.getJugadorActual();
+        this.jugadorActual.turno();
 
         this.equipo1.setPie();
         this.equipo2.setPie();
@@ -348,20 +349,34 @@ public class Mesa {
         this.equipoContrario = aux;
 
         this.jugadorActual = this.equipoActual.getJugadorActual();
+        this.jugadorActual.turno();
 
     }
 
     private void terminarVuelta() {
 
+        if(this.estadoVuelta.getEquipoGanadorVuelta() != null) {
+
+            if(this.equipoActual != this.estadoVuelta.getEquipoGanadorVuelta())
+                this.intercambiarEquipos();
+
+            this.jugadorActual = this.estadoVuelta.getJugadorGanadorVuelta();
+
+            this.equipoActual.setIndiceJugador(this.jugadorActual);
+            this.equipoContrario.setIndiceJugador(this.equipoActual.getIndiceJugador());
+
+        }
+
+
         this.estadoVuelta = this.estadoVuelta.terminarVuelta(this);
 
     }
 
-    public Equipo getGanadorVuelta() {
+    /*public Equipo getGanadorVuelta() {
 
-        return this.estadoVuelta.getGanadorVuelta();
+        return this.estadoVuelta.getEquipoGanadorVuelta();
 
-    }
+    }*/
 
     private void recuperarEquipoActualTruco() {
 
@@ -424,14 +439,19 @@ public class Mesa {
 
         this.cartasEnMesa = new ArrayDeque<>();
 
-        if(this.equipo1.primeroEnRonda()){
+        if(this.equipo1.primeroEnRonda()) {
+
             this.equipoActual = this.equipo2;
             this.equipoContrario = this.equipo1;
+
         }
         else {
+
             this.equipoActual = this.equipo1;
             this.equipoContrario = this.equipo2;
+
         }
+
         this.equipoActual.setOrdenMesa(0);
         this.equipoContrario.setOrdenMesa(1);
 
@@ -439,6 +459,7 @@ public class Mesa {
         this.equipo2.setPie();
 
         this.jugadorActual = this.equipoActual.getJugadorActual();
+        this.jugadorActual.turno();
 
         return new PrimeraVuelta(this.seJuegaConFlor, this.equipo1, this.equipo2, this.mazo);
 
@@ -447,6 +468,12 @@ public class Mesa {
     public Equipo getEquipoGanador() {
 
         return this.equipoGanador;
+
+    }
+
+    public Equipo getEquipoActual() {
+
+        return this.equipoActual;
 
     }
 

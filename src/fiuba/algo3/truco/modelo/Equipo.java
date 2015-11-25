@@ -73,6 +73,7 @@ public class Equipo {
         return this.integrantes.get(this.indiceJugador % this.integrantes.size());
 
     }
+
     public void setPie(){
 
         this.integrantes.get((this.indiceJugador) + (this.integrantes.size()) -1).setJugadorPie(true);
@@ -213,6 +214,24 @@ public class Equipo {
         }
 
         return false;
+
+    }
+
+    public void setIndiceJugador(Jugador jugadorActual) {
+
+        this.indiceJugador = this.integrantes.indexOf(jugadorActual);
+
+    }
+
+    public void setIndiceJugador(int indiceJugador) {
+
+        this.indiceJugador = indiceJugador;
+
+    }
+
+    public int getIndiceJugador() {
+
+        return this.indiceJugador;
 
     }
 

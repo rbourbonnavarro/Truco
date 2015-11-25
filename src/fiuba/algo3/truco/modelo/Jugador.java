@@ -91,5 +91,11 @@ public class Jugador {
 
     }
 
+    public void turno() {
+
+
+
+    }
+
 
 }

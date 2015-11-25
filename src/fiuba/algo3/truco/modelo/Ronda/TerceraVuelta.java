@@ -68,7 +68,7 @@ public class TerceraVuelta extends Vuelta {
 
         try {
 
-            this.ganadorVuelta.sumarPuntos(this.estadoJuego.puntos());
+            this.equipoGanadorVuelta.sumarPuntos(this.estadoJuego.puntos());
 
         } catch(NullPointerException nullPointerException) {
 
@@ -76,7 +76,11 @@ public class TerceraVuelta extends Vuelta {
 
                 this.ganadoresVuelta.get(0).sumarPuntos(this.estadoJuego.puntos());
 
-            } catch(NullPointerException e) {}
+            } catch(NullPointerException e) {
+
+                mesa.getEquipoActual().sumarPuntos(this.estadoJuego.puntos());
+
+            }
 
         }
 
@@ -85,7 +89,7 @@ public class TerceraVuelta extends Vuelta {
     }
 
     @Override
-    public Equipo getGanadorVuelta() {
+    public Equipo getEquipoGanadorVuelta() {
 
         return this.ganadoresVuelta.get(1);
 

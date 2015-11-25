@@ -112,14 +112,14 @@ public class PrimeraVuelta extends Vuelta {
     @Override
     public Vuelta terminarVuelta(Mesa mesa) {
 
-        return new SegundaVuelta(this.estadoJuego, this.ganadorVuelta, this.seJuegaConFlor);
+        return new SegundaVuelta(this.estadoJuego, this.equipoGanadorVuelta, this.seJuegaConFlor);
 
     }
 
     @Override
-    public Equipo getGanadorVuelta() {
+    public Equipo getEquipoGanadorVuelta() {
 
-        return null;
+        return this.equipoGanadorVuelta;
 
     }
 

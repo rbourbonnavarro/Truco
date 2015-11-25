@@ -7,13 +7,17 @@ import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 public abstract class Vuelta {
 
     protected EstadoJuego estadoJuego;
-    protected Equipo ganadorVuelta;
+    protected Equipo equipoGanadorVuelta;
     protected Carta cartaGanadora;
     protected boolean seJuegaConFlor;
+    protected Jugador jugadorGanadorVuelta;
+    protected boolean parda;
 
     public Vuelta(boolean seJuegaConFlor) {
 
         this.seJuegaConFlor = seJuegaConFlor;
+
+        this.parda = false;
 
     }
 
@@ -79,18 +83,23 @@ public abstract class Vuelta {
             int cartaDominante = this.cartaGanadora.truco(carta);
             if(cartaDominante < 0) {
 
-                this.ganadorVuelta = equipoActual;
+                this.equipoGanadorVuelta = equipoActual;
+                this.jugadorGanadorVuelta = this.equipoGanadorVuelta.getJugadorActual();
                 this.cartaGanadora = carta;
+
+                this.parda = false;
 
             } else {
 
                 if(cartaDominante > 0) {
 
-                    this.ganadorVuelta = equipoContrario;
+                    if(!this.parda) this.equipoGanadorVuelta = equipoContrario;
 
                 } else {
 
-                    this.ganadorVuelta = null;
+                    this.parda = true;
+                    this.equipoGanadorVuelta = null;
+                    this.jugadorGanadorVuelta = null;
 
                 }
 
@@ -99,18 +108,26 @@ public abstract class Vuelta {
         } catch(NullPointerException nullPointerException) {
 
             this.cartaGanadora = carta;
+            this.equipoGanadorVuelta = equipoActual;
+            this.jugadorGanadorVuelta = equipoActual.getJugadorActual();
 
         }
 
     }
 
-    public abstract Equipo getGanadorVuelta();
+    public abstract Equipo getEquipoGanadorVuelta();
 
     public abstract int numeroVuelta();
 
     public void estadoValido() {
 
         this.estadoJuego.estadoValido();
+
+    }
+
+    public Jugador getJugadorGanadorVuelta() {
+
+        return this.jugadorGanadorVuelta;
 
     }
 

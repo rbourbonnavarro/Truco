@@ -96,7 +96,23 @@ public class SegundaVuelta extends Vuelta {
 
         try {
 
-            if (ganadoresVuelta.get(0) == ganadorVuelta) {
+            if (ganadoresVuelta.get(0) == equipoGanadorVuelta) {
+
+                this.equipoGanadorVuelta.sumarPuntos(this.estadoJuego.puntos());
+
+                return mesa.terminarRonda();
+
+            }
+
+            if (ganadoresVuelta.get(0) == null && this.equipoGanadorVuelta != null) {
+
+                this.equipoGanadorVuelta.sumarPuntos(this.estadoJuego.puntos());
+
+                return mesa.terminarRonda();
+
+            }
+
+            if (ganadoresVuelta.get(0) != null && this.equipoGanadorVuelta == null) {
 
                 this.ganadoresVuelta.get(0).sumarPuntos(this.estadoJuego.puntos());
 
@@ -106,16 +122,16 @@ public class SegundaVuelta extends Vuelta {
 
         } catch(NullPointerException ignored) {}
 
-        this.ganadoresVuelta.add(ganadorVuelta);
+        this.ganadoresVuelta.add(this.equipoGanadorVuelta);
 
         return new TerceraVuelta(this.estadoJuego, this.ganadoresVuelta, this.seJuegaConFlor);
 
     }
 
     @Override
-    public Equipo getGanadorVuelta() {
+    public Equipo getEquipoGanadorVuelta() {
 
-        return this.ganadoresVuelta.get(0);
+        return this.equipoGanadorVuelta;
 
     }
 

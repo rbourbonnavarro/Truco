@@ -48,7 +48,11 @@ public class Mano {
 
     public void jugar(Carta carta) {
 
-        this.cartasEnMano.remove(carta);
+        if(!this.cartasEnMano.remove(carta)) {
+
+            throw new LaCartaNoSeEncuentraEnLaManoDelJugadorException();
+
+        }
 
     }
 

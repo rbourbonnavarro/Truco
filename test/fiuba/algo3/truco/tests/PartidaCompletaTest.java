@@ -101,10 +101,10 @@ public class PartidaCompletaTest {
             mesa.hacerJugada(carta1);
             Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
             mesa.hacerJugada(carta4);
-            Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
-            mesa.hacerJugada(carta3);
             Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
             mesa.hacerJugada(carta6);
+            Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+            mesa.hacerJugada(carta3);
 
             Assert.assertEquals(equipo1.getPuntos(), 10);
             Assert.assertEquals(equipo2.getPuntos(), 0);
@@ -146,11 +146,10 @@ public class PartidaCompletaTest {
             mesa.hacerJugada(carta4);
             Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
             mesa.hacerJugada(carta1);
-            Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
-            mesa.hacerJugada(carta5);
             Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
             mesa.hacerJugada(carta3);
-
+            Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
+            mesa.hacerJugada(carta5);
 
             Assert.assertEquals(equipo1.getPuntos(), 20);
             Assert.assertEquals(equipo1.getPuntaje().getEstadoPuntaje(), new Buenas());
@@ -195,10 +194,10 @@ public class PartidaCompletaTest {
             mesa.quieroTruco();
             Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
             mesa.hacerJugada(carta4);
-            Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
-            mesa.hacerJugada(carta1);
             Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
             mesa.hacerJugada(carta6);
+            Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+            mesa.hacerJugada(carta1);
 
             Assert.assertEquals(equipo1.getPuntos(), 24);
             Assert.assertEquals(equipo1.getPuntaje().getEstadoPuntaje(), new Buenas());
