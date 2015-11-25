@@ -356,6 +356,32 @@ public class PartidoCompletoDeACuatroTest {
 
 		Assert.assertEquals(mesa.puntaje(equipoPar), 7);
 		Assert.assertEquals(mesa.puntaje(equipoImpar), 13);
+
+		Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.hacerJugada(carta4);
+		Assert.assertEquals(J3.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.hacerJugada(carta7);
+		Assert.assertEquals(J4.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.hacerJugada(carta10);
+		Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.hacerJugada(carta3);
+		Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.hacerJugada(carta6);
+		Assert.assertEquals(J3.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.hacerJugada(carta8);
+		Assert.assertEquals(J4.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.hacerJugada(carta11);
+		Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.hacerJugada(carta2);
+		Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.hacerJugada(carta5);
+		Assert.assertEquals(J3.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.hacerJugada(carta9);
+	//	Assert.assertEquals(J4.getNombre(), mesa.getJugadorActual().getNombre());
+	//	mesa.hacerJugada(carta11);
+
+	//	Assert.assertEquals(mesa.puntaje(equipoPar), 8);
+	//	Assert.assertEquals(mesa.puntaje(equipoImpar), 13);
 	}
 
 	
