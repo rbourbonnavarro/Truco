@@ -420,9 +420,14 @@ public class Mesa {
 
         this.cartasEnMesa = new ArrayDeque<>();
 
-        this.equipoActual = (this.equipo1.primeroEnRonda()) ? this.equipo2 : this.equipo1;
-        this.equipoContrario = (!this.equipo1.primeroEnRonda()) ? this.equipo2 : this.equipo1;
-
+        if(this.equipo1.primeroEnRonda()){
+            this.equipoActual = this.equipo2;
+            this.equipoContrario = this.equipo1;
+        }
+        else {
+            this.equipoActual = this.equipo1;
+            this.equipoContrario = this.equipo2;
+        }
         this.equipoActual.setOrdenMesa(0);
         this.equipoContrario.setOrdenMesa(1);
 
