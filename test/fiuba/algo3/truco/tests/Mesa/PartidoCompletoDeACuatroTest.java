@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import fiuba.algo3.truco.modelo.*;
+import fiuba.algo3.truco.modelo.Palo.Copa;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -310,7 +311,46 @@ public class PartidoCompletoDeACuatroTest {
 		Assert.assertEquals(mesa.puntaje(equipoPar), 7);
 		Assert.assertEquals(mesa.puntaje(equipoImpar), 8);
 
+		Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.truco();
+		Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.noQuieroTruco();
 
+		Assert.assertEquals(mesa.puntaje(equipoPar), 7);
+		Assert.assertEquals(mesa.puntaje(equipoImpar), 9);
+
+		carta1 = new Carta(3,new Oro());
+		carta2 = new Carta(3,new Copa());
+		carta3 = new Carta(4,new Oro());
+		carta4 = new Carta(3,new Espada());
+		carta5 = new Carta(3,new Basto());
+		carta6 = new Carta(4,new Espada());
+		carta7 = new Figura(5,new Espada());
+		carta8 = new Figura(6,new Basto());
+		carta9 = new Figura(6,new Oro());
+		carta10 = new Carta(6,new Espada());
+		carta11 = new Carta(6,new Copa());
+		carta12 = new Carta(5,new Oro());
+
+
+		cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
+		cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
+		cartasJ3 = new LinkedList<>(Arrays.asList(carta7, carta8, carta9));
+		cartasJ4 = new LinkedList<>(Arrays.asList(carta10, carta11, carta12));
+
+		Assert.assertEquals(J4.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.hacerJugada(carta12);
+		Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.hacerJugada(carta1);
+		Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.envido();
+		Assert.assertEquals(J3.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.envido();
+		Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.quieroEnvido();
+
+		//Assert.assertEquals(mesa.puntaje(equipoPar), 11);
+		//Assert.assertEquals(mesa.puntaje(equipoImpar), 9);
 	}
 
 	
