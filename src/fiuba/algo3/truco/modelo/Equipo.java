@@ -75,7 +75,7 @@ public class Equipo {
     }
     public void setPie(){
 
-        this.integrantes.get((this.indiceJugador + 1) % this.integrantes.size()).setJugadorPie(true);
+        this.integrantes.get((this.indiceJugador) + (this.integrantes.size()) -1).setJugadorPie(true);
 
     }
 
