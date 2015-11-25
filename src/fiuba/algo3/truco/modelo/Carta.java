@@ -72,12 +72,14 @@ public class Carta {
     }
 
     public int truco(Carta carta) {
+        int posicionEstaCarta = this.valoresTruco.rankingCarta(this);
+        int posicionCartaContraria = this.valoresTruco.rankingCarta(carta);
 
-        if(this.valoresTruco.rankingCarta(this) < this.valoresTruco.rankingCarta(carta))
+        if(posicionEstaCarta < posicionCartaContraria)
             return 1;
         else {
 
-            if(this.valoresTruco.rankingCarta(this) > this.valoresTruco.rankingCarta(carta))
+            if(posicionEstaCarta > posicionCartaContraria)
                 return -1;
             else return 0;
 

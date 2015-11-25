@@ -116,10 +116,10 @@ public class Equipo {
         Jugador envidoMasAlto = this.integrantes.get(0);
 
         for(Jugador jugador : this.integrantes) {
+            int envidoDelJugador = jugador.envido();
+            if( envidoDelJugador > envido) envidoMasAlto = jugador;
 
-            if(jugador.envido() > envido) envidoMasAlto = jugador;
-
-            envido = Math.max(jugador.envido(), envido);
+            envido = Math.max(envidoDelJugador, envido);
 
         }
 

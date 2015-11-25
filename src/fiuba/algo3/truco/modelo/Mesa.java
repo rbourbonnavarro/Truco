@@ -300,17 +300,21 @@ public class Mesa {
     }
 
     private Equipo obtenerGanadorEnvido() {
+        Jugador jugadorConEnvidoMasAltoEquipo1 = this.equipoActual.jugadorEnvidoMasAlto();
+        Jugador jugadorConEnvidoMasAltoEquipo2 =this.equipoContrario.jugadorEnvidoMasAlto();
+        int envidoEquipo1 = jugadorConEnvidoMasAltoEquipo1.envido();
+        int envidoEquipo2 = jugadorConEnvidoMasAltoEquipo2.envido();
 
-        if(this.equipoActual.jugadorEnvidoMasAlto().envido() > this.equipoContrario.jugadorEnvidoMasAlto().envido())
+        if(envidoEquipo1 > envidoEquipo2)
             return this.equipoActual;
         else {
 
-            if(this.equipoActual.jugadorEnvidoMasAlto().envido() < this.equipoContrario.jugadorEnvidoMasAlto().envido())
+            if(envidoEquipo1 < envidoEquipo2)
                 return this.equipoContrario;
 
         }
 
-        return (this.equipoActual.jugadorEnvidoMasAlto().getOrdenMesa() < this.equipoContrario.jugadorEnvidoMasAlto().getOrdenMesa()) ? this.equipoActual : this.equipoContrario;
+        return (jugadorConEnvidoMasAltoEquipo1.getOrdenMesa() < jugadorConEnvidoMasAltoEquipo2.getOrdenMesa()) ? this.equipoActual : this.equipoContrario;
 
     }
 

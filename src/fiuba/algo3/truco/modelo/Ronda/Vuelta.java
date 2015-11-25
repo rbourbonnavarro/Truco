@@ -76,15 +76,15 @@ public abstract class Vuelta {
     public void calcularGanadorJugada(Equipo equipoActual, Equipo equipoContrario, Carta carta) {
 
         try {
-
-            if(this.cartaGanadora.truco(carta) < 0) {
+            int cartaDominante = this.cartaGanadora.truco(carta);
+            if(cartaDominante < 0) {
 
                 this.ganadorVuelta = equipoActual;
                 this.cartaGanadora = carta;
 
             } else {
 
-                if(this.cartaGanadora.truco(carta) > 0) {
+                if(cartaDominante > 0) {
 
                     this.ganadorVuelta = equipoContrario;
 
