@@ -338,6 +338,11 @@ public class PartidoCompletoDeACuatroTest {
 		cartasJ3 = new LinkedList<>(Arrays.asList(carta7, carta8, carta9));
 		cartasJ4 = new LinkedList<>(Arrays.asList(carta10, carta11, carta12));
 
+		J1.setMano(new Mano(cartasJ1));
+		J2.setMano(new Mano(cartasJ2));
+		J3.setMano(new Mano(cartasJ3));
+		J4.setMano(new Mano(cartasJ4));
+
 		Assert.assertEquals(J4.getNombre(), mesa.getJugadorActual().getNombre());
 		mesa.hacerJugada(carta12);
 		Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
@@ -349,8 +354,8 @@ public class PartidoCompletoDeACuatroTest {
 		Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
 		mesa.quieroEnvido();
 
-		//Assert.assertEquals(mesa.puntaje(equipoPar), 11);
-		//Assert.assertEquals(mesa.puntaje(equipoImpar), 9);
+		Assert.assertEquals(mesa.puntaje(equipoPar), 7);
+		Assert.assertEquals(mesa.puntaje(equipoImpar), 13);
 	}
 
 	
