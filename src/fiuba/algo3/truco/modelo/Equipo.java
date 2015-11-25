@@ -225,6 +225,14 @@ public class Equipo {
 
     public void setIndiceJugador(int indiceJugador) {
 
+        if(this.ordenMesa == 0) {
+
+            indiceJugador += 1;
+
+        }
+
+        // Creo que no hace falta if(indiceJugador > 2) indiceJugador = 0;
+
         this.indiceJugador = indiceJugador;
 
     }

@@ -93,7 +93,7 @@ public abstract class Vuelta {
 
                 if(cartaDominante > 0) {
 
-                    if(!this.parda) this.equipoGanadorVuelta = equipoContrario;
+                    //if(!this.parda) this.equipoGanadorVuelta = equipoContrario;
 
                 } else {
 
