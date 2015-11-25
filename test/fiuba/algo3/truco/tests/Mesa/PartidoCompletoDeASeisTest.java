@@ -135,5 +135,33 @@ Mesa mesa;
 		Assert.assertEquals(J6.getNombre(), mesa.getJugadorActual().getNombre());
 		mesa.quieroEnvido();
 		
+		Assert.assertTrue(mesa.puntaje(equipoImpar) == 2);
+		Assert.assertTrue(mesa.puntaje(equipoPar) == 0);
+		
+		Assert.assertEquals(J5.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.truco();
+		
+		Assert.assertEquals(J6.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.retruco();
+		
+		Assert.assertEquals(J5.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.quieroTruco();
+		
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		
+		Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(1));
+		
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(2));
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(1));
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(1));
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(2));
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(1));
+		
+		Assert.assertTrue(mesa.puntaje(equipoImpar) == 5);
+		Assert.assertTrue(mesa.puntaje(equipoPar) == 0);
+		
+		
 	}
 }
