@@ -174,10 +174,10 @@ Mesa mesa;
 		carta9 = new Carta(5,new Oro());
 		carta10 = new Carta(6,new Espada());
 		carta11 = new Carta(12,new Basto());
-		carta12 = new Carta(7,new Oro());
+		carta12 = new Carta(2,new Oro());
 		carta13 = new Figura(2,new Espada());
 		carta14 = new Figura(2,new Basto());
-		carta15 = new Figura(2,new Oro());
+		carta15 = new Figura(7,new Oro());
 		carta16 = new Carta(1,new Espada());
 		carta17 = new Carta(1,new Basto());
 		carta18 = new Carta(3,new Oro());
@@ -201,8 +201,8 @@ Mesa mesa;
 		Assert.assertTrue(mesa.puntaje(equipoPar) == 0);
 		
 		Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
-		Assert.assertEquals(7, mesa.getJugadorActual().obtenerCartas().get(0).getValor());
-		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		Assert.assertEquals(4, mesa.getJugadorActual().obtenerCartas().get(2).getValor());
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(2));
 		
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(2));
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(1));
@@ -220,6 +220,23 @@ Mesa mesa;
 		Assert.assertTrue(mesa.puntaje(equipoImpar) == 8);
 		Assert.assertTrue(mesa.puntaje(equipoPar) == 0);
 		
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(1));
+		
+		mesa.truco();
+		mesa.retruco();
+		mesa.quieroTruco();
+		
+		Assert.assertEquals(J6.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(2));
+		
+		Assert.assertEquals(J3.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(2));
+		
+		Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(2));
 		
 	}
 }
