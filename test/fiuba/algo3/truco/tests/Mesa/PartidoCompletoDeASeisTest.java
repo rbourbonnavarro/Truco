@@ -7,7 +7,6 @@ import java.util.List;
 
 import org.junit.Assert;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 
 import fiuba.algo3.truco.modelo.Carta;
@@ -87,7 +86,7 @@ Mesa mesa;
 
 	}
 
-	@Ignore
+	
 	@Test
 	public void partidaCompletaDeASeis() {
 
@@ -229,16 +228,28 @@ Mesa mesa;
 		mesa.quieroTruco();
 		
 		Assert.assertEquals(J6.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(1));
+		
+		Assert.assertEquals(J6.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(2));
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(1));
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(1));
+		
+		Assert.assertEquals(J4.getNombre(), mesa.getJugadorActual().getNombre());
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(2));
 		
-		Assert.assertEquals(J3.getNombre(), mesa.getJugadorActual().getNombre());
-		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
-		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
-		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+		Assert.assertEquals(J5.getNombre(), mesa.getJugadorActual().getNombre());
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(2));
 		
-		Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
-		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(2));
+		Assert.assertEquals(J5.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.valeCuatro();
+		
+		Assert.assertEquals(J4.getNombre(), mesa.getJugadorActual().getNombre());
+		mesa.quieroTruco();
+		
+		
+		
 		
 	}
 
