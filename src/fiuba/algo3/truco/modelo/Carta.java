@@ -90,10 +90,23 @@ public class Carta {
     @Override
     public boolean equals(Object objeto) {
 
-        Carta carta = (Carta) objeto;
-        return this.valor == carta.getValor() && this.palo.equals(carta.palo);
+        if(objeto != null && objeto instanceof Carta) {
+
+            Carta carta = (Carta) objeto;
+            return this.valor == carta.getValor() && this.palo.equals(carta.getPalo());
+
+        }
+
+        return false;
 
    }
+
+    @Override
+    public int hashCode() {
+
+        return this.valor + this.palo.hashCode();
+
+    }
 
 
 }

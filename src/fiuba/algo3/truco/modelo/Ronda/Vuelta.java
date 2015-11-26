@@ -11,13 +11,10 @@ public abstract class Vuelta {
     protected Carta cartaGanadora;
     protected boolean seJuegaConFlor;
     protected Jugador jugadorGanadorVuelta;
-    protected boolean parda;
 
     public Vuelta(boolean seJuegaConFlor) {
 
         this.seJuegaConFlor = seJuegaConFlor;
-
-        this.parda = false;
 
     }
 
@@ -80,28 +77,21 @@ public abstract class Vuelta {
     public void calcularGanadorJugada(Equipo equipoActual, Equipo equipoContrario, Carta carta) {
 
         try {
+
             int cartaDominante = this.cartaGanadora.truco(carta);
+
             if(cartaDominante < 0) {
 
                 this.equipoGanadorVuelta = equipoActual;
                 this.jugadorGanadorVuelta = this.equipoGanadorVuelta.getJugadorActual();
                 this.cartaGanadora = carta;
 
-                this.parda = false;
+            }
 
-            } else {
+            if(cartaDominante == 0) {
 
-                if(cartaDominante > 0) {
-
-                    //if(!this.parda) this.equipoGanadorVuelta = equipoContrario;
-
-                } else {
-
-                    this.parda = true;
-                    this.equipoGanadorVuelta = null;
-                    this.jugadorGanadorVuelta = null;
-
-                }
+                this.equipoGanadorVuelta = null;
+                this.jugadorGanadorVuelta = null;
 
             }
 
