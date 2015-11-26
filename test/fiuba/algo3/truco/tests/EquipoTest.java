@@ -25,7 +25,7 @@ public class EquipoTest {
     @Before
     public void setUp() {
         this.jugador1 = new Jugador("J1");
-        this.jugador2 = new Jugador("J2");
+        this.jugador2 = new Jugador("JIA");
         this.jugadores = new ArrayList<>(Arrays.asList(jugador1, jugador2));
 
         this.equipo = new Equipo("Equipo 1", this.jugadores);

@@ -121,5 +121,11 @@ public abstract class Vuelta {
 
     }
 
+    public EstadoJuego getEstadoJuego() {
+
+        return this.estadoJuego;
+
+    }
+
 
 }

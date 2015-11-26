@@ -25,6 +25,7 @@ public class Mesa {
     private Equipo equipoIniciadorFlor;
     private Equipo equipoGanador;
     private Mazo mazo;
+    private EstadoPicaPica estadoPicaPica;
     private boolean seJuegaConFlor;
 
     public Mesa(Equipo equipo1, Equipo equipo2, boolean seJuegaConFlor) {
@@ -42,7 +43,6 @@ public class Mesa {
         this.equipoActual = this.equipo1;
         this.equipoContrario = this.equipo2;
         this.jugadorActual = this.equipoActual.getJugadorActual();
-        this.jugadorActual.turno();
 
         this.equipo1.setPie();
         this.equipo2.setPie();
@@ -90,7 +90,7 @@ public class Mesa {
 
             }
 
-        } catch(NullPointerException nullPointerException) {
+        } catch (NullPointerException nullPointerException) {
 
             throw new NoHayCartasParaJugar();
 
@@ -222,6 +222,8 @@ public class Mesa {
 
             this.equipoGanador = this.obtenerGanadorEnvido();
 
+            throw new JuegoTerminadoException();
+
         }
 
         this.estadoVuelta.terminarTanto();
@@ -324,11 +326,11 @@ public class Mesa {
 
     private Equipo obtenerGanadorFlor() {
 
-        if(this.equipoActual.jugadorFlorMasAlta().calcularFlor() > this.equipoContrario.jugadorEnvidoMasAlto().calcularFlor())
+        if(this.equipoActual.jugadorFlorMasAlta().flor() > this.equipoContrario.jugadorEnvidoMasAlto().flor())
             return this.equipoActual;
         else {
 
-            if(this.equipoActual.jugadorEnvidoMasAlto().calcularFlor() < this.equipoContrario.jugadorEnvidoMasAlto().calcularFlor())
+            if(this.equipoActual.jugadorEnvidoMasAlto().flor() < this.equipoContrario.jugadorEnvidoMasAlto().flor())
                 return this.equipoContrario;
 
         }
@@ -352,7 +354,6 @@ public class Mesa {
         this.equipoContrario = aux;
 
         this.jugadorActual = this.equipoActual.getJugadorActual();
-        this.jugadorActual.turno();
 
     }
 
@@ -474,7 +475,6 @@ public class Mesa {
         this.equipo2.setPie();
 
         this.jugadorActual = this.equipoActual.getJugadorActual();
-        this.jugadorActual.turno();
 
         return new PrimeraVuelta(this.seJuegaConFlor, this.equipo1, this.equipo2, this.mazo);
 
@@ -489,6 +489,18 @@ public class Mesa {
     public Equipo getEquipoActual() {
 
         return this.equipoActual;
+
+    }
+
+    public Vuelta getEstadoVuelta() {
+
+        return this.estadoVuelta;
+
+    }
+
+    public Deque<Carta> getCartasEnMesa() {
+
+        return this.cartasEnMesa;
 
     }
 

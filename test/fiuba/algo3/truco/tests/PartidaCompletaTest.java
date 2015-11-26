@@ -42,7 +42,7 @@ public class PartidaCompletaTest {
     public void setUp() {
 
         J1 = new Jugador("J1");
-        J2 = new Jugador("J2");
+        J2 = new Jugador("JIA");
 
         jugadoresEquipo1 = new ArrayList<>(Arrays.asList(J1));
         jugadoresEquipo2 = new ArrayList<>(Arrays.asList(J2));

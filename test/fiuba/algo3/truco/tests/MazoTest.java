@@ -21,7 +21,7 @@ public class MazoTest {
         this.jugadores = new ArrayList<>();
 
         this.jugadores.add(new Jugador("J1"));
-        this.jugadores.add(new Jugador("J2"));
+        this.jugadores.add(new Jugador("JIA"));
 
     }
 

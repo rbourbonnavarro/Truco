@@ -135,7 +135,9 @@ public class Equipo {
 
         for(Jugador jugador : this.integrantes) {
 
-            if(jugador.calcularFlor() > flor) florMasAlta = jugador;
+            try {
+                if (jugador.flor() > flor) florMasAlta = jugador;
+            } catch(JugadorNoTieneFlorException jugadorNoTieneFlorException) {}
 
             flor = Math.max(jugador.envido(), flor);
 

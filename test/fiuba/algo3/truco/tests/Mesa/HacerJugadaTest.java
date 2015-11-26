@@ -15,6 +15,7 @@ import fiuba.algo3.truco.modelo.Palo.Basto;
 import fiuba.algo3.truco.modelo.Palo.Copa;
 import fiuba.algo3.truco.modelo.Palo.Espada;
 import fiuba.algo3.truco.modelo.Palo.Oro;
+import fiuba.algo3.truco.modelo.Puntos.JuegoTerminadoException;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -158,14 +159,21 @@ public class HacerJugadaTest {
 	@Test
 	public void faltaEnvidoQueridaTerminaElJuego() {
 
-		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartasEnMano().get(0));
-		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartasEnMano().get(0));
-		mesa.faltaEnvido();
-		mesa.quieroEnvido();
-		Assert.assertTrue(
-				mesa.puntaje(rojos) == 0 && mesa.puntaje(azules) == 30
-						||
-						mesa.puntaje(rojos) == 30 && mesa.puntaje(azules) == 0);
+		try {
+
+			mesa.hacerJugada(mesa.getJugadorActual().obtenerCartasEnMano().get(0));
+			mesa.hacerJugada(mesa.getJugadorActual().obtenerCartasEnMano().get(0));
+			mesa.faltaEnvido();
+			mesa.quieroEnvido();
+
+		} catch(JuegoTerminadoException juegoTerminadoException) {
+
+			Assert.assertTrue(
+					mesa.puntaje(rojos) == 0 && mesa.puntaje(azules) == 30
+							||
+							mesa.puntaje(rojos) == 30 && mesa.puntaje(azules) == 0);
+
+		}
 
 	}
 

@@ -118,7 +118,7 @@ public class FlorFlorCantada implements EstadoJuego {
     @Override
     public void estadoValido() {
 
-        if(!this.aceptado) throw new FlorNoAceptadaNoSePuedeJugarException();
+        if(!this.aceptado) throw new FlorFlorNoQueridaNoSePuedeJugarException();
 
     }
 

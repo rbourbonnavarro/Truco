@@ -6,10 +6,10 @@ import fiuba.algo3.truco.modelo.Jugadas.Envido.CantasteEnvidoCuandoTenesFlorExce
 
 public class Jugador {
 
-    private String nombre;
-    private Mano mano;
-    private boolean jugadorPie;
-    private int ordenMesa;
+    protected String nombre;
+    protected Mano mano;
+    protected boolean jugadorPie;
+    protected int ordenMesa;
 
     public Jugador(String nombre) {
 
@@ -53,7 +53,9 @@ public class Jugador {
 
     }
 
-    public int calcularFlor() {
+    public int flor() {
+
+        this.hayFlor();
 
         return this.mano.flor();
 
@@ -71,7 +73,7 @@ public class Jugador {
 
     }
 
-    public void flor() {
+    private void hayFlor() {
 
         if (!(this.mano.getCartas().get(0).getPalo().equals(this.mano.getCartas().get(1).getPalo()) &&
                 this.mano.getCartas().get(2).getPalo().equals(this.mano.getCartas().get(1).getPalo())))
@@ -88,12 +90,6 @@ public class Jugador {
     public int getOrdenMesa() {
 
         return this.ordenMesa;
-
-    }
-
-    public void turno() {
-
-
 
     }
 
