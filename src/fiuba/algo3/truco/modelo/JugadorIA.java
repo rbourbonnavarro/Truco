@@ -30,20 +30,21 @@ public class JugadorIA extends Jugador {
     public void turno() {
 
 
+        try {
 
-            if(this.mesa.getEstadoVuelta().getEstadoJuego() instanceof NadaCantado) {
+            if (this.mesa.getEstadoVuelta().getEstadoJuego() instanceof NadaCantado) {
 
                 try {
 
                     this.decisionTanto();
 
-                } catch(NoHayDecisionException e) {
+                } catch (NoHayDecisionException e) {
 
                     try {
 
                         this.decisionTruco();
 
-                    } catch(NoHayDecisionException a) {
+                    } catch (NoHayDecisionException a) {
 
                         this.mesa.hacerJugada(this.cartaMasAlta());
 
@@ -51,8 +52,31 @@ public class JugadorIA extends Jugador {
 
                 }
 
+            }
+            else {
+
+                this.mesa.hacerJugada(this.cartaMasAlta());
 
             }
+
+        } catch(FlorNoAceptadaNoSePuedeJugarException e) {
+
+            try {
+
+                int flor = this.flor();
+
+                if(flor > 35) this.mesa.contraFlorAlPartido();
+                if(flor > 32 && flor <= 35) this.mesa.contraFlorAlResto();
+                if(flor >= 25 && flor <= 32) this.mesa.flor();
+                if(flor < 25) this.mesa.quieroFlor();
+
+            } catch(JugadorNoTieneFlorException a) {
+
+                this.mesa.quieroFlor();
+
+            }
+
+        }
 
 
         /*try {

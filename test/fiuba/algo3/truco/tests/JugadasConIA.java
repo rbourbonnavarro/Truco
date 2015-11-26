@@ -207,5 +207,133 @@ public class JugadasConIA {
 
     }
 
+    @Test
+    public void jugadorIAAceptaFlorCuandoNoTiene() {
+
+        carta1 = new Carta(7, new Espada());
+        carta2 = new Carta(1, new Espada());
+        carta3 = new Carta(2, new Espada());
+
+        carta4 = new Carta(6, new Basto());
+        carta5 = new Carta(5, new Espada());
+        carta6 = new Figura(12, new Espada());
+
+        cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
+        cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
+
+        J1.setMano(new Mano(cartasJ1));
+        JIA.setMano(new Mano(cartasJ2));
+
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.flor();
+        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+        JIA.turno();
+
+        Assert.assertEquals(equipo1.getPuntos(), 3);
+        Assert.assertEquals(equipo2.getPuntos(), 0);
+
+    }
+
+    @Test
+    public void jugadorIARespondeFlorConFlorCantadaCuandoTiene31() {
+
+        carta1 = new Carta(7, new Espada());
+        carta2 = new Carta(1, new Espada());
+        carta3 = new Carta(2, new Espada());
+
+        carta4 = new Carta(6, new Espada());
+        carta5 = new Carta(5, new Espada());
+        carta6 = new Figura(12, new Espada());
+
+        cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
+        cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
+
+        J1.setMano(new Mano(cartasJ1));
+        JIA.setMano(new Mano(cartasJ2));
+
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.flor();
+        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+        JIA.turno();
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.quieroFlor();
+
+        Assert.assertEquals(equipo1.getPuntos(), 0);
+        Assert.assertEquals(equipo2.getPuntos(), 6);
+
+    }
+
+    @Test
+    public void jugadorIARespondeContraFlorAlRestoConFlorCantadaCuandoTiene33() {
+
+        try {
+
+            carta1 = new Carta(5, new Espada());
+            carta2 = new Carta(1, new Espada());
+            carta3 = new Carta(2, new Espada());
+
+            carta4 = new Carta(6, new Espada());
+            carta5 = new Carta(7, new Espada());
+            carta6 = new Figura(12, new Espada());
+
+            cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
+            cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
+
+            J1.setMano(new Mano(cartasJ1));
+            JIA.setMano(new Mano(cartasJ2));
+
+            Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+            mesa.flor();
+            Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+            JIA.turno();
+            Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+            mesa.quieroFlor();
+
+        } catch (JuegoTerminadoException juegoTerminadoException) {
+
+            Assert.assertEquals(equipo1.getPuntos(), 0);
+            Assert.assertEquals(equipo2.getPuntos(), 30);
+            Assert.assertEquals(equipo2, mesa.getEquipoGanador());
+
+        }
+
+    }
+
+    @Test
+    public void jugadorIARespondeContraFlorAlPartidoConFlorCantadaCuandoTiene36() {
+
+        try {
+
+            carta1 = new Carta(5, new Espada());
+            carta2 = new Carta(1, new Espada());
+            carta3 = new Carta(2, new Espada());
+
+            carta4 = new Carta(6, new Espada());
+            carta5 = new Carta(7, new Espada());
+            carta6 = new Figura(3, new Espada());
+
+            cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
+            cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
+
+            J1.setMano(new Mano(cartasJ1));
+            JIA.setMano(new Mano(cartasJ2));
+
+            Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+            mesa.flor();
+            Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+            JIA.turno();
+            Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+            mesa.quieroFlor();
+
+        } catch (JuegoTerminadoException juegoTerminadoException) {
+
+            Assert.assertEquals(equipo1.getPuntos(), 0);
+            Assert.assertEquals(equipo2.getPuntos(), 30);
+            Assert.assertEquals(equipo2, mesa.getEquipoGanador());
+
+        }
+
+    }
+
 
 }
