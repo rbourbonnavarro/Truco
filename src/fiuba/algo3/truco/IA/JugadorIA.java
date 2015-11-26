@@ -1,12 +1,14 @@
-package fiuba.algo3.truco.modelo;
+package fiuba.algo3.truco.IA;
 
+import fiuba.algo3.truco.modelo.*;
 import fiuba.algo3.truco.modelo.Jugadas.Envido.*;
-import fiuba.algo3.truco.modelo.Jugadas.Flor.ContraFlorAlPartidoNoQueridaNoSePuedeJugarException;
-import fiuba.algo3.truco.modelo.Jugadas.Flor.ContraFlorAlRestoNoQueridaNoSePuedeJugarException;
-import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorFlorNoQueridaNoSePuedeJugarException;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorNoAceptadaNoSePuedeJugarException;
 import fiuba.algo3.truco.modelo.Jugadas.NadaCantado;
-import fiuba.algo3.truco.modelo.Jugadas.Truco.ValoresTruco;
+import fiuba.algo3.truco.modelo.Jugadas.Truco.*;
+import fiuba.algo3.truco.modelo.Ronda.PrimeraVuelta;
+import fiuba.algo3.truco.modelo.Ronda.Vuelta;
+
+import java.util.ArrayList;
 
 public class JugadorIA extends Jugador {
 
@@ -54,8 +56,15 @@ public class JugadorIA extends Jugador {
 
             }
             else {
+                try {
 
-                this.mesa.hacerJugada(this.cartaMasAlta());
+                    this.decisionTruco();
+
+                } catch (NoHayDecisionException a) {
+
+                    this.mesa.hacerJugada(this.cartaMasAlta());
+
+                }
 
             }
 
@@ -114,20 +123,13 @@ public class JugadorIA extends Jugador {
 
         }/* catch(FlorFlorNoQueridaNoSePuedeJugarException e) {
 
-            int flor = this.flor();
-
-            if(flor > 35) this.mesa.contraFlorAlPartido();
-            if(flor > 32 && flor <= 35) this.mesa.contraFlorAlResto();
-            if(flor >= 25 && flor <= 32) this.mesa.quieroFlor();
-            if(flor < 25) this.mesa.noQuieroFlor();
+            this.mesa.quieroFlor();
 
         } catch(ContraFlorAlRestoNoQueridaNoSePuedeJugarException e) {
-
             int flor = this.flor();
-
-            if(flor > 35) this.mesa.contraFlorAlPartido();
-            if(flor > 32 && flor <= 35) this.mesa.quieroFlor();
             if(flor < 30) this.mesa.noQuieroFlor();
+            else
+                this.mesa.quieroFlor();
 
         } catch(ContraFlorAlPartidoNoQueridaNoSePuedeJugarException e) {
 
@@ -212,9 +214,28 @@ public class JugadorIA extends Jugador {
     }
 
     private void decisionTruco() {
-
-        throw new NoHayDecisionException();
-
+        Vuelta vuelta = mesa.getEstadoVuelta();
+        if( vuelta instanceof PrimeraVuelta)
+            throw new NoHayDecisionException();
+        int cartaMasAlta = this.valoresTruco.rankingCarta(this.cartaMasAlta());
+        if(cartaMasAlta >= 7)
+            throw new NoHayDecisionException();
+        try {
+            mesa.truco();
+        } catch (NoSePuedeCantarTrucoException e){
+            if(cartaMasAlta < 6)
+                try {
+                    mesa.retruco();
+                }
+                catch (NoSePuedeCantarRetrucoException e2){
+                    if(cartaMasAlta<4)
+                        mesa.retruco();
+                    else throw new NoHayDecisionException();
+                }
+            else {
+                throw new NoHayDecisionException();
+            }
+        }
     }
 
     private Carta cartaMasAlta() {
@@ -226,10 +247,10 @@ public class JugadorIA extends Jugador {
 
             int rankingCartaSiguiente = this.valoresTruco.rankingCarta(carta);
 
-            cartaMasAlta = (rankingCartaSiguiente < rankingCartaMasAlta) ? carta : cartaMasAlta;
-
-            rankingCartaMasAlta = (rankingCartaSiguiente < rankingCartaMasAlta) ? rankingCartaSiguiente : rankingCartaMasAlta;
-
+            if(rankingCartaSiguiente < rankingCartaMasAlta) {
+                cartaMasAlta = carta;
+                rankingCartaMasAlta = rankingCartaSiguiente;
+            }
         }
 
         return cartaMasAlta;

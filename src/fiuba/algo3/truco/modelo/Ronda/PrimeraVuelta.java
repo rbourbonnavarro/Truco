@@ -9,6 +9,8 @@ import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.TrucoCantado;
 
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class PrimeraVuelta extends Vuelta {
@@ -129,6 +131,7 @@ public class PrimeraVuelta extends Vuelta {
         return 1;
 
     }
+
 
 
 }

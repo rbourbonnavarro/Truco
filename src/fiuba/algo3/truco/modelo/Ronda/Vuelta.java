@@ -4,6 +4,8 @@ import fiuba.algo3.truco.modelo.*;
 import fiuba.algo3.truco.modelo.Jugadas.EstadoJuego;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 
+import java.util.List;
+
 public abstract class Vuelta {
 
     protected EstadoJuego estadoJuego;
@@ -126,6 +128,8 @@ public abstract class Vuelta {
         return this.estadoJuego;
 
     }
+
+
 
 
 }

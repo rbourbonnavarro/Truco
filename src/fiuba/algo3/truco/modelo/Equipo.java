@@ -214,7 +214,6 @@ public class Equipo {
             return this.getNombre().equals(equipo.getNombre());
 
         }
-
         return false;
 
     }

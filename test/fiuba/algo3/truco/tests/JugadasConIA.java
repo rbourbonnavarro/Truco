@@ -1,8 +1,10 @@
 package fiuba.algo3.truco.tests;
 
+import fiuba.algo3.truco.IA.JugadorIA;
 import fiuba.algo3.truco.modelo.*;
 import fiuba.algo3.truco.modelo.Palo.Basto;
 import fiuba.algo3.truco.modelo.Palo.Espada;
+import fiuba.algo3.truco.modelo.Palo.Oro;
 import fiuba.algo3.truco.modelo.Puntos.JuegoTerminadoException;
 import org.junit.Assert;
 import org.junit.Before;
@@ -579,6 +581,79 @@ public class JugadasConIA {
         }
 
     }
+    @Test
+         public void jugadorIACantaTrucoSiTieneMasDeUnFalsoEnSegunda(){
+        carta1 = new Carta(7, new Espada());
+        carta2 = new Carta(4, new Espada());
+        carta3 = new Carta(2, new Basto());
 
+        carta4 = new Carta(3, new Espada());
+        carta5 = new Carta(2, new Oro());
+        carta6 = new Figura(12, new Basto());
+
+        cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
+        cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
+
+        J1.setMano(new Mano(cartasJ1));
+        JIA.setMano(new Mano(cartasJ2));
+
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.hacerJugada(carta1);
+        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+        JIA.turno();
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.hacerJugada(carta2);
+        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+        JIA.turno();
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.quieroTruco();
+        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+        JIA.turno();
+        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+        JIA.turno();
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.hacerJugada(carta3);
+        Assert.assertEquals(equipo1.getPuntos(), 2);
+        Assert.assertEquals(equipo2.getPuntos(), 0);
+    }
+
+    @Test
+    public void jugadorIAReviraReTrucoSiTieneMasDeUn3EnSegunda(){
+        carta1 = new Carta(7, new Espada());
+        carta2 = new Carta(4, new Espada());
+        carta3 = new Carta(4, new Basto());
+
+        carta4 = new Carta(3, new Espada());
+        carta5 = new Carta(3, new Oro());
+        carta6 = new Figura(2, new Basto());
+
+        cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
+        cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
+
+        J1.setMano(new Mano(cartasJ1));
+        JIA.setMano(new Mano(cartasJ2));
+
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.hacerJugada(carta1);
+        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+        JIA.turno();
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.truco();
+        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+        JIA.turno();
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.quieroTruco();
+        mesa.hacerJugada(carta2);
+        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+        JIA.turno();
+        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+        JIA.turno();
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.hacerJugada(carta3);
+
+
+        Assert.assertEquals(equipo1.getPuntos(), 0);
+        Assert.assertEquals(equipo2.getPuntos(), 3);
+    }
 
 }
