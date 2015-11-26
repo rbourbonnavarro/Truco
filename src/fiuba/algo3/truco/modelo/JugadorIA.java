@@ -59,7 +59,43 @@ public class JugadorIA extends Jugador {
 
             }
 
-        } catch(FlorNoAceptadaNoSePuedeJugarException e) {
+        } catch(EnvidoNoQueridoNoSePuedeJugarException e) {
+
+            int envido = this.envido();
+
+            if(envido == 33) this.mesa.faltaEnvido();
+            if(envido >=30 && envido <= 32) this.mesa.realEnvido();
+            if(envido < 30 && envido >= 28) this.mesa.envido();
+            if(envido < 28 && envido >= 25) this.mesa.quieroEnvido();
+            if(envido < 25) this.mesa.noQuieroEnvido();
+
+        } /*catch(EnvidoEnvidoNoQueridoNoSePuedeJugarException e) {
+
+            int envido = this.envido();
+
+            if(envido == 33) this.mesa.faltaEnvido();
+            if(envido >=30 && envido <= 32) this.mesa.realEnvido();
+            if(envido < 30 && envido >= 27) this.mesa.quieroEnvido();
+            if(envido < 27) this.mesa.noQuieroEnvido();
+
+        } catch(RealEnvidoNoQueridoNoSePuedeJugarException e) {
+
+            int envido = this.envido();
+
+            if(envido > 32) this.mesa.faltaEnvido();
+            if(envido >=28 && envido < 32) this.mesa.quieroEnvido();
+            if(envido < 28) this.mesa.noQuieroEnvido();
+
+        } catch(FaltaEnvidoNoQueridoNoSePuedeJugarException e) {
+
+            int envido = this.envido();
+
+            if(envido > 32)
+                this.mesa.quieroEnvido();
+            else
+                this.mesa.noQuieroEnvido();
+
+        }*/ catch(FlorNoAceptadaNoSePuedeJugarException e) {
 
             try {
 
@@ -76,7 +112,33 @@ public class JugadorIA extends Jugador {
 
             }
 
-        }
+        }/* catch(FlorFlorNoQueridaNoSePuedeJugarException e) {
+
+            int flor = this.flor();
+
+            if(flor > 35) this.mesa.contraFlorAlPartido();
+            if(flor > 32 && flor <= 35) this.mesa.contraFlorAlResto();
+            if(flor >= 25 && flor <= 32) this.mesa.quieroFlor();
+            if(flor < 25) this.mesa.noQuieroFlor();
+
+        } catch(ContraFlorAlRestoNoQueridaNoSePuedeJugarException e) {
+
+            int flor = this.flor();
+
+            if(flor > 35) this.mesa.contraFlorAlPartido();
+            if(flor > 32 && flor <= 35) this.mesa.quieroFlor();
+            if(flor < 30) this.mesa.noQuieroFlor();
+
+        } catch(ContraFlorAlPartidoNoQueridaNoSePuedeJugarException e) {
+
+            int flor = this.flor();
+
+            if(flor > 35)
+                this.mesa.quieroFlor();
+            else
+                this.mesa.noQuieroFlor();
+
+        }*/
 
 
         /*try {
