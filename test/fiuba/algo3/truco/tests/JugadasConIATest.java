@@ -184,116 +184,6 @@ public class JugadasConIATest {
     }
 
     @Test
-    public void jugadorIAJuegaLaCartaMasBajaQueLePermitaGanar() {
-
-        carta1 = new Carta(2, new Espada());
-        carta2 = new Carta(1, new Espada());
-        carta3 = new Carta(2, new Basto());
-
-        carta4 = new Carta(3, new Espada());
-        carta5 = new Carta(1, new Basto());
-        carta6 = new Figura(12, new Basto());
-
-        cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
-        cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
-
-        J1.setMano(new Mano(cartasJ1));
-        JIA.setMano(new Mano(cartasJ2));
-
-        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
-        mesa.hacerJugada(carta1);
-        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
-        JIA.turno();
-
-        Assert.assertEquals(carta4, mesa.getCartasEnMesa().getLast());
-
-    }
-
-    @Test
-    public void jugadorIAJuegaLaCartaMasBajaSiNoPuedeGanar() {
-
-        carta1 = new Carta(7, new Espada());
-        carta2 = new Carta(1, new Espada());
-        carta3 = new Carta(2, new Basto());
-
-        carta4 = new Carta(2, new Espada());
-        carta5 = new Carta(4, new Basto());
-        carta6 = new Figura(12, new Basto());
-
-        cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
-        cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
-
-        J1.setMano(new Mano(cartasJ1));
-        JIA.setMano(new Mano(cartasJ2));
-
-        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
-        mesa.hacerJugada(carta1);
-        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
-        JIA.turno();
-
-        Assert.assertEquals(carta5, mesa.getCartasEnMesa().getLast());
-
-    }
-
-    @Test
-    public void jugadorIAPardaSiPuedeYNoPuedeGanar() {
-
-        carta1 = new Carta(7, new Espada());
-        carta2 = new Carta(1, new Espada());
-        carta3 = new Carta(2, new Basto());
-
-        carta4 = new Carta(2, new Espada());
-        carta5 = new Carta(4, new Basto());
-        carta6 = new Figura(12, new Basto());
-
-        cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
-        cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
-
-        J1.setMano(new Mano(cartasJ1));
-        JIA.setMano(new Mano(cartasJ2));
-
-        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
-        mesa.hacerJugada(carta3);
-        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
-        JIA.turno();
-
-        Assert.assertEquals(carta4, mesa.getCartasEnMesa().getLast());
-
-    }
-
-    @Test
-    public void jugadorIAJuegaLaCartaMasAltaSiEmpiezaLaVuelta() {
-
-        carta1 = new Carta(7, new Espada());
-        carta2 = new Carta(4, new Espada());
-        carta3 = new Carta(2, new Basto());
-
-        carta4 = new Carta(1, new Espada());
-        carta5 = new Carta(3, new Basto());
-        carta6 = new Figura(12, new Basto());
-
-        cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
-        cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
-
-        J1.setMano(new Mano(cartasJ1));
-        JIA.setMano(new Mano(cartasJ2));
-
-        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
-        mesa.hacerJugada(carta1);
-        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
-        JIA.turno();
-        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
-        JIA.turno();
-        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
-        mesa.quieroTruco();
-        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
-        JIA.turno();
-
-        Assert.assertEquals(carta5, mesa.getCartasEnMesa().getLast());
-
-    }
-
-    @Test
     public void jugadorIAAceptaFlorCuandoNoTiene() {
 
         carta1 = new Carta(7, new Espada());
@@ -422,6 +312,175 @@ public class JugadasConIATest {
     }
 
     @Test
+    public void jugadorIAQuiereFlorFlorCuandoTiene24() {
+
+        carta1 = new Carta(7, new Espada());
+        carta2 = new Carta(1, new Espada());
+        carta3 = new Carta(2, new Espada());
+
+        carta4 = new Figura(11, new Espada());
+        carta5 = new Carta(4, new Espada());
+        carta6 = new Figura(12, new Espada());
+
+        cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
+        cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
+
+        J1.setMano(new Mano(cartasJ1));
+        JIA.setMano(new Mano(cartasJ2));
+
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.hacerJugada(carta1);
+        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+        JIA.turno();
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.flor();
+        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+        JIA.turno();
+
+        Assert.assertEquals(equipo1.getPuntos(), 6);
+        Assert.assertEquals(equipo2.getPuntos(), 0);
+
+    }
+
+    @Test
+    public void jugadorIANoQuiereFlorFlorCuandoTiene23() {
+
+        carta1 = new Carta(7, new Espada());
+        carta2 = new Carta(1, new Espada());
+        carta3 = new Carta(2, new Espada());
+
+        carta4 = new Figura(11, new Espada());
+        carta5 = new Carta(3, new Espada());
+        carta6 = new Figura(12, new Espada());
+
+        cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
+        cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
+
+        J1.setMano(new Mano(cartasJ1));
+        JIA.setMano(new Mano(cartasJ2));
+
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.hacerJugada(carta1);
+        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+        JIA.turno();
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.flor();
+        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+        JIA.turno();
+
+        Assert.assertEquals(equipo1.getPuntos(), 3);
+        Assert.assertEquals(equipo2.getPuntos(), 0);
+
+    }
+
+    @Test
+    public void jugadorIAQuiereContraFlorAlRestoCuandoTiene32() {
+
+        try {
+
+            carta1 = new Carta(7, new Espada());
+            carta2 = new Carta(1, new Espada());
+            carta3 = new Carta(2, new Espada());
+
+            carta4 = new Carta(5, new Espada());
+            carta5 = new Carta(3, new Espada());
+            carta6 = new Carta(4, new Espada());
+
+            cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
+            cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
+
+            J1.setMano(new Mano(cartasJ1));
+            JIA.setMano(new Mano(cartasJ2));
+
+            Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+            mesa.hacerJugada(carta1);
+            Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+            JIA.turno();
+            Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+            mesa.contraFlorAlResto();
+            Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+            JIA.turno();
+
+        } catch (JuegoTerminadoException juegoTerminadoException) {
+
+            Assert.assertEquals(equipo1.getPuntos(), 0);
+            Assert.assertEquals(equipo2.getPuntos(), 30);
+            Assert.assertEquals(equipo2, mesa.getEquipoGanador());
+
+        }
+
+    }
+
+    @Test
+    public void jugadorIAQuiereContraFlorAlPartidoCuandoTiene36() {
+
+        try {
+
+            carta1 = new Carta(3, new Espada());
+            carta2 = new Carta(1, new Espada());
+            carta3 = new Carta(2, new Espada());
+
+            carta4 = new Carta(5, new Espada());
+            carta5 = new Carta(7, new Espada());
+            carta6 = new Carta(4, new Espada());
+
+            cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
+            cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
+
+            J1.setMano(new Mano(cartasJ1));
+            JIA.setMano(new Mano(cartasJ2));
+
+            Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+            mesa.hacerJugada(carta1);
+            Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+            JIA.turno();
+            Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+            mesa.contraFlorAlPartido();
+            Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+            JIA.turno();
+
+        } catch (JuegoTerminadoException juegoTerminadoException) {
+
+            Assert.assertEquals(equipo1.getPuntos(), 0);
+            Assert.assertEquals(equipo2.getPuntos(), 30);
+            Assert.assertEquals(equipo2, mesa.getEquipoGanador());
+
+        }
+
+    }
+
+    @Test
+    public void jugadorIANoQuiereContraFlorAlPartidoCuandoTiene33() {
+
+        carta1 = new Carta(7, new Espada());
+        carta2 = new Carta(1, new Espada());
+        carta3 = new Carta(2, new Espada());
+
+        carta4 = new Carta(6, new Espada());
+        carta5 = new Carta(3, new Espada());
+        carta6 = new Carta(4, new Espada());
+
+        cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
+        cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
+
+        J1.setMano(new Mano(cartasJ1));
+        JIA.setMano(new Mano(cartasJ2));
+
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.hacerJugada(carta1);
+        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+        JIA.turno();
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.contraFlorAlPartido();
+        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+        JIA.turno();
+
+        Assert.assertEquals(equipo1.getPuntos(), 3);
+        Assert.assertEquals(equipo2.getPuntos(), 0);
+
+    }
+
+    @Test
     public void jugadorIACantaEnvidoCuandoTiene25() {
 
         carta1 = new Carta(5, new Espada());
@@ -480,7 +539,7 @@ public class JugadasConIATest {
     }
 
     @Test
-    public void jugadorIACantaFaltaEnvidoConCuandoTiene33() {
+    public void jugadorIACantaFaltaEnvidoCuandoTiene33() {
 
         try {
 
@@ -546,6 +605,35 @@ public class JugadasConIATest {
     }
 
     @Test
+    public void jugadorIAResponeFlorAlEnvidoCantadoCuandTieneFlor() {
+
+        carta1 = new Carta(5, new Espada());
+        carta2 = new Carta(1, new Espada());
+        carta3 = new Carta(2, new Basto());
+
+        carta4 = new Carta(6, new Espada());
+        carta5 = new Carta(2, new Espada());
+        carta6 = new Carta(3, new Espada());
+
+        cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
+        cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
+
+        J1.setMano(new Mano(cartasJ1));
+        JIA.setMano(new Mano(cartasJ2));
+
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.envido();
+        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+        JIA.turno();
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.quieroFlor();
+
+        Assert.assertEquals(equipo1.getPuntos(), 0);
+        Assert.assertEquals(equipo2.getPuntos(), 3);
+
+    }
+
+    @Test
     public void jugadorIAQuiereEnvidoConEnvidoCantadoCuandoTiene25() {
 
         carta1 = new Carta(5, new Espada());
@@ -573,7 +661,7 @@ public class JugadasConIATest {
     }
 
     @Test
-    public void jugadorIARespondeEnvidoConEnvidoCantadoCuandoTiene28() {
+    public void jugadorIARespondeEnvidoConEnvidoCuandoTiene28() {
 
         carta1 = new Carta(5, new Espada());
         carta2 = new Carta(1, new Espada());
@@ -667,6 +755,351 @@ public class JugadasConIATest {
     }
 
     @Test
+    public void jugadorIANoQuiereEnvidoEnvidoCuandoTiene27() {
+
+        carta1 = new Carta(5, new Espada());
+        carta2 = new Carta(1, new Espada());
+        carta3 = new Carta(2, new Basto());
+
+        carta4 = new Carta(4, new Espada());
+        carta5 = new Carta(3, new Espada());
+        carta6 = new Carta(3, new Basto());
+
+        cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
+        cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
+
+        J1.setMano(new Mano(cartasJ1));
+        JIA.setMano(new Mano(cartasJ2));
+
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.hacerJugada(carta1);
+        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+        JIA.turno();
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.envido();
+        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+        JIA.turno();
+
+        Assert.assertEquals(equipo1.getPuntos(), 2);
+        Assert.assertEquals(equipo2.getPuntos(), 0);
+
+    }
+
+    @Test
+    public void jugadorIAQuiereEnvidoEnvidoCuandoTiene28() {
+
+        carta1 = new Carta(5, new Espada());
+        carta2 = new Carta(1, new Espada());
+        carta3 = new Carta(2, new Basto());
+
+        carta4 = new Carta(6, new Espada());
+        carta5 = new Carta(2, new Espada());
+        carta6 = new Carta(3, new Basto());
+
+        cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
+        cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
+
+        J1.setMano(new Mano(cartasJ1));
+        JIA.setMano(new Mano(cartasJ2));
+
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.hacerJugada(carta1);
+        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+        JIA.turno();
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.envido();
+        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+        JIA.turno();
+
+        Assert.assertEquals(equipo1.getPuntos(), 0);
+        Assert.assertEquals(equipo2.getPuntos(), 4);
+
+    }
+
+    @Test
+    public void jugadorIANoQuiereRealEnvidoCuandoTiene27() {
+
+        carta1 = new Carta(5, new Espada());
+        carta2 = new Carta(1, new Espada());
+        carta3 = new Carta(2, new Basto());
+
+        carta4 = new Carta(3, new Espada());
+        carta5 = new Carta(4, new Espada());
+        carta6 = new Carta(3, new Basto());
+
+        cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
+        cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
+
+        J1.setMano(new Mano(cartasJ1));
+        JIA.setMano(new Mano(cartasJ2));
+
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.realEnvido();
+        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+        JIA.turno();
+
+        Assert.assertEquals(equipo1.getPuntos(), 1);
+        Assert.assertEquals(equipo2.getPuntos(), 0);
+
+    }
+
+    @Test
+    public void jugadorIAQuiereRealEnvidoConRealEnvidoCantadoCuandoTiene28() {
+
+        carta1 = new Carta(5, new Espada());
+        carta2 = new Carta(1, new Espada());
+        carta3 = new Carta(2, new Basto());
+
+        carta4 = new Carta(6, new Espada());
+        carta5 = new Carta(2, new Espada());
+        carta6 = new Carta(3, new Basto());
+
+        cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
+        cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
+
+        J1.setMano(new Mano(cartasJ1));
+        JIA.setMano(new Mano(cartasJ2));
+
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.realEnvido();
+        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+        JIA.turno();
+
+        Assert.assertEquals(equipo1.getPuntos(), 0);
+        Assert.assertEquals(equipo2.getPuntos(), 3);
+
+    }
+
+    @Test
+    public void jugadorIACantaFaltaEnvidoConRealEnvidoCantadoCuandoTiene32() {
+
+        carta1 = new Carta(6, new Espada());
+        carta2 = new Carta(1, new Espada());
+        carta3 = new Carta(2, new Basto());
+
+        carta4 = new Carta(7, new Espada());
+        carta5 = new Carta(5, new Espada());
+        carta6 = new Carta(3, new Basto());
+
+        cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
+        cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
+
+        J1.setMano(new Mano(cartasJ1));
+        JIA.setMano(new Mano(cartasJ2));
+
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.realEnvido();
+        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+        JIA.turno();
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.noQuieroEnvido();
+
+        Assert.assertEquals(equipo1.getPuntos(), 0);
+        Assert.assertEquals(equipo2.getPuntos(), 3);
+
+    }
+
+    @Test
+    public void jugadorIANoQuiereFaltaEnvidoCuandoTiene32() {
+
+        carta1 = new Carta(6, new Espada());
+        carta2 = new Carta(1, new Espada());
+        carta3 = new Carta(2, new Basto());
+
+        carta4 = new Carta(7, new Espada());
+        carta5 = new Carta(5, new Espada());
+        carta6 = new Carta(3, new Basto());
+
+        cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
+        cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
+
+        J1.setMano(new Mano(cartasJ1));
+        JIA.setMano(new Mano(cartasJ2));
+
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.faltaEnvido();
+        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+        JIA.turno();
+
+        Assert.assertEquals(equipo1.getPuntos(), 1);
+        Assert.assertEquals(equipo2.getPuntos(), 0);
+
+    }
+
+    @Test
+    public void jugadorIAQuiereFaltaEnvidoCuandoTiene33() {
+
+        try {
+
+            carta1 = new Carta(7, new Basto());
+            carta2 = new Carta(1, new Espada());
+            carta3 = new Carta(6, new Basto());
+
+            carta4 = new Carta(7, new Espada());
+            carta5 = new Carta(6, new Espada());
+            carta6 = new Carta(3, new Basto());
+
+            cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
+            cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
+
+            J1.setMano(new Mano(cartasJ1));
+            JIA.setMano(new Mano(cartasJ2));
+
+            Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+            mesa.faltaEnvido();
+            Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+            JIA.turno();
+
+        } catch(JuegoTerminadoException juegoTerminadoException) {
+
+            Assert.assertEquals(equipo1.getPuntos(), 30);
+            Assert.assertEquals(equipo2.getPuntos(), 0);
+            Assert.assertEquals(equipo1, mesa.getEquipoGanador());
+
+        }
+
+
+    }
+
+    @Test
+    public void jugadorIAJuegaLaCartaMasBajaQueLePermitaGanar() {
+
+        carta1 = new Carta(2, new Espada());
+        carta2 = new Carta(1, new Espada());
+        carta3 = new Carta(2, new Basto());
+
+        carta4 = new Carta(3, new Espada());
+        carta5 = new Carta(1, new Basto());
+        carta6 = new Figura(12, new Basto());
+
+        cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
+        cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
+
+        J1.setMano(new Mano(cartasJ1));
+        JIA.setMano(new Mano(cartasJ2));
+
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.hacerJugada(carta1);
+        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+        JIA.turno();
+
+        Assert.assertEquals(carta4, mesa.getCartasEnMesa().getLast());
+
+    }
+
+    @Test
+    public void jugadorIAJuegaLaCartaMasBajaSiNoPuedeGanar() {
+
+        carta1 = new Carta(7, new Espada());
+        carta2 = new Carta(1, new Espada());
+        carta3 = new Carta(2, new Basto());
+
+        carta4 = new Carta(2, new Espada());
+        carta5 = new Carta(4, new Basto());
+        carta6 = new Figura(12, new Basto());
+
+        cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
+        cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
+
+        J1.setMano(new Mano(cartasJ1));
+        JIA.setMano(new Mano(cartasJ2));
+
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.hacerJugada(carta1);
+        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+        JIA.turno();
+
+        Assert.assertEquals(carta5, mesa.getCartasEnMesa().getLast());
+
+    }
+
+    @Test
+    public void jugadorIAPardaSiPuedeYNoPuedeGanar() {
+
+        carta1 = new Carta(7, new Espada());
+        carta2 = new Carta(1, new Espada());
+        carta3 = new Carta(2, new Basto());
+
+        carta4 = new Carta(2, new Espada());
+        carta5 = new Carta(4, new Basto());
+        carta6 = new Figura(12, new Basto());
+
+        cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
+        cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
+
+        J1.setMano(new Mano(cartasJ1));
+        JIA.setMano(new Mano(cartasJ2));
+
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.hacerJugada(carta3);
+        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+        JIA.turno();
+
+        Assert.assertEquals(carta4, mesa.getCartasEnMesa().getLast());
+
+    }
+
+    @Test
+    public void jugadorIAJuegaLaCartaMasAltaSiEmpiezaLaVuelta() {
+
+        carta1 = new Carta(7, new Espada());
+        carta2 = new Carta(4, new Espada());
+        carta3 = new Carta(2, new Basto());
+
+        carta4 = new Carta(1, new Espada());
+        carta5 = new Carta(3, new Basto());
+        carta6 = new Figura(12, new Basto());
+
+        cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
+        cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
+
+        J1.setMano(new Mano(cartasJ1));
+        JIA.setMano(new Mano(cartasJ2));
+
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.hacerJugada(carta1);
+        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+        JIA.turno();
+        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+        JIA.turno();
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.quieroTruco();
+        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+        JIA.turno();
+
+        Assert.assertEquals(carta5, mesa.getCartasEnMesa().getLast());
+
+    }
+
+    @Test
+    public void jugadorIAJuegaCartaMasAltaDespuesDeHaberGanadoVueltaYNoTenerDecision(){
+
+        carta1 = new Carta(2, new Espada());
+        carta2 = new Carta(4, new Espada());
+        carta3 = new Carta(4, new Basto());
+
+        carta4 = new Carta(3, new Espada());
+        carta5 = new Carta(1, new Oro());
+        carta6 = new Figura(12, new Basto());
+
+        cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
+        cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
+
+        J1.setMano(new Mano(cartasJ1));
+        JIA.setMano(new Mano(cartasJ2));
+
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.hacerJugada(carta1);
+        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+        JIA.turno();
+        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+        JIA.turno();
+
+        Assert.assertEquals(carta5, mesa.getCartasEnMesa().getLast());
+
+    }
+
+    @Test
     public void jugadorIACantaTrucoEnPrimeraSiTieneDosCartasDeLasCuatroMasAltas(){
 
         carta1 = new Carta(7, new Espada());
@@ -751,7 +1184,7 @@ public class JugadasConIATest {
 
         carta4 = new Carta(3, new Espada());
         carta5 = new Carta(3, new Oro());
-        carta6 = new Figura(2, new Basto());
+        carta6 = new Figura(12, new Basto());
 
         cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
         cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));

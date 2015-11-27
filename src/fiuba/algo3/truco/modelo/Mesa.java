@@ -200,6 +200,8 @@ public class Mesa {
 
             this.equipoGanador = this.equipoContrario;
 
+            throw new JuegoTerminadoException();
+
         }
 
         this.equipoActual.terminarJugada();
@@ -240,6 +242,8 @@ public class Mesa {
 
             this.equipoGanador = this.equipoContrario;
 
+            throw new JuegoTerminadoException();
+
         }
 
         this.estadoVuelta.terminarTanto();
@@ -262,6 +266,8 @@ public class Mesa {
 
                 this.equipoGanador = this.obtenerGanadorFlor();
 
+                throw new JuegoTerminadoException();
+
             }
 
         } catch(NoSePuedeQuererFlorException noSePuedeQuererFlorException) {
@@ -273,6 +279,8 @@ public class Mesa {
             } catch(JuegoTerminadoException juegoTerminadoException) {
 
                 this.equipoGanador = this.equipoContrario;
+
+                throw new JuegoTerminadoException();
 
             }
 
@@ -293,6 +301,8 @@ public class Mesa {
         } catch(JuegoTerminadoException juegoTerminadoException) {
 
             this.equipoGanador = this.equipoContrario;
+
+            throw new JuegoTerminadoException();
 
         }
 

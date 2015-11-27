@@ -2,6 +2,9 @@ package fiuba.algo3.truco.IA;
 
 import fiuba.algo3.truco.modelo.*;
 import fiuba.algo3.truco.modelo.Jugadas.Envido.*;
+import fiuba.algo3.truco.modelo.Jugadas.Flor.ContraFlorAlPartidoNoQueridaNoSePuedeJugarException;
+import fiuba.algo3.truco.modelo.Jugadas.Flor.ContraFlorAlRestoNoQueridaNoSePuedeJugarException;
+import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorFlorNoQueridaNoSePuedeJugarException;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorNoAceptadaNoSePuedeJugarException;
 import fiuba.algo3.truco.modelo.Jugadas.NadaCantado;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.*;
@@ -72,28 +75,34 @@ public class JugadorIA extends Jugador {
 
         } catch(EnvidoNoQueridoNoSePuedeJugarException e) {
 
+            try {
+
+                this.decisionFlor();
+
+            } catch(JugadorNoTieneFlorException jugadorNoTieneFlorException) {
+
+                int envido = this.envido();
+
+                if (envido == 33) this.mesa.faltaEnvido();
+                if (envido >= 30 && envido <= 32) this.mesa.realEnvido();
+                if (envido < 30 && envido >= 28) this.mesa.envido();
+                if (envido < 28 && envido >= 25) this.mesa.quieroEnvido();
+                if (envido < 25) this.mesa.noQuieroEnvido();
+
+            }
+
+        } catch(EnvidoEnvidoNoQueridoNoSePuedeJugarException e) {
+
             int envido = this.envido();
 
-            if(envido == 33) this.mesa.faltaEnvido();
-            if(envido >=30 && envido <= 32) this.mesa.realEnvido();
-            if(envido < 30 && envido >= 28) this.mesa.envido();
-            if(envido < 28 && envido >= 25) this.mesa.quieroEnvido();
-            if(envido < 25) this.mesa.noQuieroEnvido();
-
-        } /*catch(EnvidoEnvidoNoQueridoNoSePuedeJugarException e) {
-
-            int envido = this.envido();
-
-            if(envido == 33) this.mesa.faltaEnvido();
-            if(envido >=30 && envido <= 32) this.mesa.realEnvido();
-            if(envido < 30 && envido >= 27) this.mesa.quieroEnvido();
-            if(envido < 27) this.mesa.noQuieroEnvido();
+            if(envido < 30 && envido >= 28) this.mesa.quieroEnvido();
+            if(envido < 28) this.mesa.noQuieroEnvido();
 
         } catch(RealEnvidoNoQueridoNoSePuedeJugarException e) {
 
             int envido = this.envido();
 
-            if(envido > 32) this.mesa.faltaEnvido();
+            if(envido >= 32) this.mesa.faltaEnvido();
             if(envido >=28 && envido < 32) this.mesa.quieroEnvido();
             if(envido < 28) this.mesa.noQuieroEnvido();
 
@@ -101,12 +110,12 @@ public class JugadorIA extends Jugador {
 
             int envido = this.envido();
 
-            if(envido > 32)
+            if(envido == 33)
                 this.mesa.quieroEnvido();
             else
                 this.mesa.noQuieroEnvido();
 
-        }*/ catch(FlorNoAceptadaNoSePuedeJugarException e) {
+        } catch(FlorNoAceptadaNoSePuedeJugarException e) {
 
             try {
 
@@ -123,26 +132,29 @@ public class JugadorIA extends Jugador {
 
             }
 
-        }/* catch(FlorFlorNoQueridaNoSePuedeJugarException e) {
+        } catch(FlorFlorNoQueridaNoSePuedeJugarException e) {
 
-            this.mesa.quieroFlor();
+            if(this.flor() > 23) this.mesa.quieroFlor();
+
+            this.mesa.noQuieroFlor();
 
         } catch(ContraFlorAlRestoNoQueridaNoSePuedeJugarException e) {
+
             int flor = this.flor();
+
             if(flor < 30) this.mesa.noQuieroFlor();
-            else
-                this.mesa.quieroFlor();
+
+            this.mesa.quieroFlor();
 
         } catch(ContraFlorAlPartidoNoQueridaNoSePuedeJugarException e) {
 
             int flor = this.flor();
 
-            if(flor > 35)
-                this.mesa.quieroFlor();
-            else
-                this.mesa.noQuieroFlor();
+            if(flor > 33) this.mesa.quieroFlor();
 
-        }*/
+            this.mesa.noQuieroFlor();
+
+        }
 
 
         /*try {
