@@ -1,5 +1,6 @@
 package fiuba.algo3.truco.tests.Jugada.Envido;
 
+import fiuba.algo3.truco.modelo.Equipo;
 import fiuba.algo3.truco.modelo.Jugadas.Envido.*;
 import fiuba.algo3.truco.modelo.Jugadas.EstadoJuego;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeCantarContraFlorException;
@@ -7,10 +8,13 @@ import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeCantarFlorException;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.NoSePuedeCantarRetrucoException;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.NoSePuedeCantarTrucoException;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.NoSePuedeCantarValeCuatroException;
+import fiuba.algo3.truco.modelo.Jugador;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.Arrays;
 
 
 public class EnvidoEnvidoCantadoTests {
@@ -41,21 +45,21 @@ public class EnvidoEnvidoCantadoTests {
     @Test(expected = NoSePuedeCantarTrucoException.class)
     public void TestNoSePuedeCantarTruco(){
 
-        this.estadoJuego.truco();
+        this.estadoJuego.truco(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))));
 
     }
 
     @Test(expected = NoSePuedeCantarRetrucoException.class)
     public void TestNoSePuedeCantarRetruco(){
 
-        this.estadoJuego.reTruco();
+        this.estadoJuego.reTruco(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))));
 
     }
 
     @Test(expected = NoSePuedeCantarValeCuatroException.class)
     public void TestNoSePuedeCantarValeCuatro(){
 
-        this.estadoJuego.valeCuatro();
+        this.estadoJuego.valeCuatro(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))));
 
     }
 

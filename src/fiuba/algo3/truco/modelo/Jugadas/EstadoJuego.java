@@ -1,5 +1,6 @@
 package fiuba.algo3.truco.modelo.Jugadas;
 
+import fiuba.algo3.truco.modelo.Equipo;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 
 public interface EstadoJuego {
@@ -8,11 +9,11 @@ public interface EstadoJuego {
 
     int noQuerido();
 
-    EstadoJuego truco();
+    EstadoJuego truco(Equipo equipoIniciador);
 
-    EstadoJuego reTruco();
+    EstadoJuego reTruco(Equipo equipoIniciador);
 
-    EstadoJuego valeCuatro();
+    EstadoJuego valeCuatro(Equipo equipoIniciador);
 
     EstadoJuego envido();
 

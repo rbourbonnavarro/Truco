@@ -10,6 +10,8 @@ import fiuba.algo3.truco.modelo.Jugadas.Envido.EnvidoNoQueridoNoSePuedeJugarExce
 import fiuba.algo3.truco.modelo.Jugadas.Envido.NoSePuedeCantarEnvido;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorNoAceptadaNoSePuedeJugarException;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.JuegoSinFlorException;
+import fiuba.algo3.truco.modelo.Jugadas.Truco.EquipoQueCantoRetrucoNoPuedeCantarValeCuatroException;
+import fiuba.algo3.truco.modelo.Jugadas.Truco.EquipoQueCantoTrucoNoPuedeCantarRetrucoException;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.TrucoNoQueridoNoSePuedeJugarException;
 import fiuba.algo3.truco.modelo.Palo.Basto;
 import fiuba.algo3.truco.modelo.Palo.Copa;
@@ -284,6 +286,36 @@ public class HacerJugadaTest {
 		mesa.quieroEnvido();
 
 		Assert.assertEquals(2, mesa.puntaje(rojos));
+
+	}
+
+	@Test(expected = EquipoQueCantoTrucoNoPuedeCantarRetrucoException.class)
+	public void elEquipoQueCantoTrucoNoPuedeCantarRetruco() {
+
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartasEnMano().get(0));
+		mesa.truco();
+		mesa.quieroTruco();
+		mesa.retruco();
+
+	}
+
+	@Test(expected = EquipoQueCantoRetrucoNoPuedeCantarValeCuatroException.class)
+	public void elEquipoQueCantoRetrucoNoPuedeCantarValeCuatro() {
+
+		Juan.setMano(new Mano(Arrays.asList(new Carta(1, new Espada()), new Carta(3, new Espada()), new Carta(5, new Basto()))));
+		Pedro.setMano(new Mano(Arrays.asList(new Carta(4, new Espada()), new Carta(2, new Espada()), new Carta(1, new Basto()))));
+		Martin.setMano(new Mano(Arrays.asList(new Carta(4, new Basto()), new Carta(2, new Basto()), new Carta(2, new Oro()))));
+		Ignacio.setMano(new Mano(Arrays.asList(new Carta(4, new Oro()), new Carta(3, new Copa()), new Carta(6, new Basto()))));
+
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartasEnMano().get(0));
+		mesa.truco();
+		mesa.quieroTruco();
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartasEnMano().get(0));
+		mesa.retruco();
+		mesa.quieroTruco();
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartasEnMano().get(0));
+		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartasEnMano().get(0));
+		mesa.valeCuatro();
 
 	}
 	

@@ -1,21 +1,21 @@
 package fiuba.algo3.truco.tests.Jugada.Truco;
 
+import fiuba.algo3.truco.modelo.Equipo;
 import fiuba.algo3.truco.modelo.Jugadas.Envido.NoSePuedeCantarEnvido;
-import fiuba.algo3.truco.modelo.Jugadas.Envido.NoSePuedeCantarEnvidoEnvido;
 import fiuba.algo3.truco.modelo.Jugadas.Envido.NoSePuedeCantarFaltaEnvido;
 import fiuba.algo3.truco.modelo.Jugadas.Envido.NoSePuedeCantarRealEnvido;
 import fiuba.algo3.truco.modelo.Jugadas.EstadoJuego;
 
 import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeCantarContraFlorException;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeCantarFlorException;
-import fiuba.algo3.truco.modelo.Jugadas.Truco.NoSePuedeCantarRetrucoException;
-import fiuba.algo3.truco.modelo.Jugadas.Truco.NoSePuedeCantarTrucoException;
-import fiuba.algo3.truco.modelo.Jugadas.Truco.RetrucoCantado;
-import fiuba.algo3.truco.modelo.Jugadas.Truco.ValeCuatroCantado;
+import fiuba.algo3.truco.modelo.Jugadas.Truco.*;
+import fiuba.algo3.truco.modelo.Jugador;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.Arrays;
 
 public class ReTrucoCantadoTest {
     
@@ -24,14 +24,14 @@ public class ReTrucoCantadoTest {
     @Before
     public void setUp() {
 
-        this.estadoJuego = new RetrucoCantado();
+        this.estadoJuego = new RetrucoCantado(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))));
 
     }
 
-    @Test
-    public void test1PuntosDevuelve3(){
+    @Test(expected = RetrucoNoQueridoNoSePuedeJugarException.class)
+    public void test1PuntosLanzaExcepcionPorqueNoFueQuerido(){
 
-        Assert.assertEquals(this.estadoJuego.puntos(),3);
+        this.estadoJuego.puntos();
 
     }
 
@@ -45,20 +45,20 @@ public class ReTrucoCantadoTest {
     @Test(expected = NoSePuedeCantarTrucoException.class)
     public void test3NoSePuedeCantarTruco(){
 
-        this.estadoJuego.truco();
+        this.estadoJuego.truco(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))));
 
     }
     @Test(expected = NoSePuedeCantarRetrucoException.class)
     public void test4NoSePuedeCantarReTruco(){
 
-        this.estadoJuego.reTruco();
+        this.estadoJuego.reTruco(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))));
 
     }
 
     @Test
     public void test5SePuedeCantarValeCuatro(){
 
-        Assert.assertEquals(this.estadoJuego.valeCuatro(), new ValeCuatroCantado());
+        Assert.assertEquals(this.estadoJuego.valeCuatro(new Equipo("equipo", Arrays.asList(new Jugador("jugador")))), new ValeCuatroCantado());
 
     }
 

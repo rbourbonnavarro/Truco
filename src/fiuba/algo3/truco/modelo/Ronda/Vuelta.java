@@ -4,8 +4,6 @@ import fiuba.algo3.truco.modelo.*;
 import fiuba.algo3.truco.modelo.Jugadas.EstadoJuego;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 
-import java.util.List;
-
 public abstract class Vuelta {
 
     protected EstadoJuego estadoJuego;
@@ -20,21 +18,21 @@ public abstract class Vuelta {
 
     }
 
-    public void truco() {
+    public void truco(Equipo equipoIniciador) {
 
-        this.estadoJuego = this.estadoJuego.truco();
-
-    }
-
-    public void reTruco() {
-
-        this.estadoJuego = this.estadoJuego.reTruco();
+        this.estadoJuego = this.estadoJuego.truco(equipoIniciador);
 
     }
 
-    public void valeCuatro() {
+    public void reTruco(Equipo equipoIniciador) {
 
-        this.estadoJuego = this.estadoJuego.valeCuatro();
+        this.estadoJuego = this.estadoJuego.reTruco(equipoIniciador);
+
+    }
+
+    public void valeCuatro(Equipo equipoIniciador) {
+
+        this.estadoJuego = this.estadoJuego.valeCuatro(equipoIniciador);
 
     }
 

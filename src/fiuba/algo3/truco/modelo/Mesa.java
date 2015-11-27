@@ -100,9 +100,8 @@ public class Mesa {
 
     public void envido() {
 
-        this.guardarEquipoIniciadorEnvido();
         this.estadoVuelta.envido(this.jugadorActual);
-
+        this.guardarEquipoIniciadorEnvido();
         this.intercambiarEquipos();
 
     }
@@ -110,27 +109,26 @@ public class Mesa {
 
     public void realEnvido() {
 
-        this.guardarEquipoIniciadorEnvido();
         this.estadoVuelta.realEnvido(this.jugadorActual);
-
+        this.guardarEquipoIniciadorEnvido();
         this.intercambiarEquipos();
 
     }
 
     public void faltaEnvido() {
 
-        this.guardarEquipoIniciadorEnvido();
         Puntaje puntosEnJuego = this.obtenerMayorPuntaje();
         this.estadoVuelta.faltaEnvido(this.jugadorActual, puntosEnJuego);
+        this.guardarEquipoIniciadorEnvido();
         this.intercambiarEquipos();
 
     }
 
     public void flor() {
 
-        this.guardarEquipoIniciadorFlor();
         this.equipoActual.flor();
-    	this.estadoVuelta.flor();
+        this.estadoVuelta.flor();
+        this.guardarEquipoIniciadorFlor();
         this.intercambiarEquipos();
 
     }
@@ -163,24 +161,24 @@ public class Mesa {
 
     public void truco() {
 
+        this.estadoVuelta.truco(this.equipoActual);
         this.guardarEquipoIniciadorTruco();
-        this.estadoVuelta.truco();
         this.intercambiarEquipos();
 
     }
 
     public void retruco() {
 
+        this.estadoVuelta.reTruco(this.equipoActual);
         this.guardarEquipoIniciadorTruco();
-    	this.estadoVuelta.reTruco();
         this.intercambiarEquipos();
 
     }
 
     public void valeCuatro() {
 
+        this.estadoVuelta.valeCuatro(this.equipoActual);
         this.guardarEquipoIniciadorTruco();
-    	this.estadoVuelta.valeCuatro();
         this.intercambiarEquipos();
 
     }

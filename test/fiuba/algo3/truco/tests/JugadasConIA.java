@@ -609,12 +609,13 @@ public class JugadasConIA {
         JIA.turno();
         Assert.assertEquals(carta4, mesa.getCartasEnMesa().getLast());
         Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
-        /*JIA.turno();
+        JIA.turno();
+        Assert.assertEquals(carta5, mesa.getCartasEnMesa().getLast());
         Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
-        mesa.hacerJugada(carta1);
+        mesa.hacerJugada(carta2);
 
-        Assert.assertEquals(equipo1.getPuntos(), 2);
-        Assert.assertEquals(equipo2.getPuntos(), 0);*/
+        Assert.assertEquals(equipo1.getPuntos(), 0);
+        Assert.assertEquals(equipo2.getPuntos(), 2);
 
     }
 

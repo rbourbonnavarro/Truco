@@ -1,5 +1,6 @@
 package fiuba.algo3.truco.modelo.Jugadas.Truco;
 
+import fiuba.algo3.truco.modelo.Equipo;
 import fiuba.algo3.truco.modelo.Jugadas.Envido.*;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeCantarContraFlorException;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeCantarFlorException;
@@ -8,12 +9,10 @@ import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 
 public class ValeCuatroCantado implements EstadoJuego {
 
-    private boolean querido = false;
-
     @Override
     public int puntos() {
 
-        return 4;
+        throw new ValeCuatroNoQueridoNoSePuedeJugarException();
 
     }
 
@@ -25,21 +24,21 @@ public class ValeCuatroCantado implements EstadoJuego {
     }
 
     @Override
-    public EstadoJuego truco() {
+    public EstadoJuego truco(Equipo equipoIniciador) {
 
         throw new NoSePuedeCantarTrucoException();
 
     }
 
     @Override
-    public EstadoJuego reTruco() {
+    public EstadoJuego reTruco(Equipo equipoIniciador) {
 
         throw new NoSePuedeCantarRetrucoException();
 
     }
 
     @Override
-    public EstadoJuego valeCuatro() {
+    public EstadoJuego valeCuatro(Equipo equipoIniciador) {
 
         throw new NoSePuedeCantarValeCuatroException();
 
@@ -97,16 +96,14 @@ public class ValeCuatroCantado implements EstadoJuego {
     @Override
     public EstadoJuego quiero() {
 
-        this.querido = true;
-
-        return this;
+        return new ValeCuatroQuerido();
 
     }
 
     @Override
     public void estadoValido() {
 
-        if(!this.querido) throw new ValeCuatroNoQueridoNoSePuedeJugarException();
+        throw new ValeCuatroNoQueridoNoSePuedeJugarException();
 
     }
 

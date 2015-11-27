@@ -1,11 +1,10 @@
 package fiuba.algo3.truco.modelo.Jugadas.Flor;
 
+import fiuba.algo3.truco.modelo.Equipo;
 import fiuba.algo3.truco.modelo.Jugadas.Envido.NoSePuedeCantarEnvido;
-import fiuba.algo3.truco.modelo.Jugadas.Envido.NoSePuedeCantarEnvidoEnvido;
 import fiuba.algo3.truco.modelo.Jugadas.Envido.NoSePuedeCantarFaltaEnvido;
 import fiuba.algo3.truco.modelo.Jugadas.Envido.NoSePuedeCantarRealEnvido;
 import fiuba.algo3.truco.modelo.Jugadas.EstadoJuego;
-import fiuba.algo3.truco.modelo.Jugadas.Truco.TrucoNoQueridoNoSePuedeJugarException;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.NoSePuedeCantarRetrucoException;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.NoSePuedeCantarTrucoException;
@@ -42,21 +41,21 @@ public class ContraFlorAlRestoCantada implements EstadoJuego {
     }
 
     @Override
-    public EstadoJuego truco() {
+    public EstadoJuego truco(Equipo equipoIniciador) {
 
         throw new NoSePuedeCantarTrucoException();
 
     }
 
     @Override
-    public EstadoJuego reTruco() {
+    public EstadoJuego reTruco(Equipo equipoIniciador) {
 
         throw new NoSePuedeCantarRetrucoException();
 
     }
 
     @Override
-    public EstadoJuego valeCuatro() {
+    public EstadoJuego valeCuatro(Equipo equipoIniciador) {
 
         throw new NoSePuedeCantarValeCuatroException();
 

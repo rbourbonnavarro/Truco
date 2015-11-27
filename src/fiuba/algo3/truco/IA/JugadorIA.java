@@ -293,23 +293,34 @@ public class JugadorIA extends Jugador {
             throw new NoHayDecisionException();
 
         try {
-            mesa.truco();
-        } catch (NoSePuedeCantarTrucoException e){
 
-            if(cartaMasAlta < 6)
-                try {
-                    mesa.retruco();
-                }
-                catch (NoSePuedeCantarRetrucoException e2){
-                    if(cartaMasAlta<4)
+            try {
+                mesa.truco();
+            } catch (NoSePuedeCantarTrucoException e) {
+
+                if (cartaMasAlta < 6)
+                    try {
                         mesa.retruco();
-                    else throw new NoHayDecisionException();
-                }
-            else {
+                    } catch (NoSePuedeCantarRetrucoException e2) {
+                        if (cartaMasAlta < 4)
+                            mesa.retruco();
+                        else throw new NoHayDecisionException();
+                    }
+                else {
 
-                throw new NoHayDecisionException();
+                    throw new NoHayDecisionException();
+
+                }
 
             }
+
+        } catch(EquipoQueCantoTrucoNoPuedeCantarRetrucoException e) {
+
+            throw new NoHayDecisionException();
+
+        } catch(EquipoQueCantoRetrucoNoPuedeCantarValeCuatroException e) {
+
+            throw new NoHayDecisionException();
 
         }
 
