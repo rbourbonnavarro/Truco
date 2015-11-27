@@ -118,7 +118,7 @@ public class NadaCantado implements EstadoJuego {
     @Override
     public EstadoJuego quiero() {
 
-        return this;
+        throw new NadaCantadoException();
 
     }
 
