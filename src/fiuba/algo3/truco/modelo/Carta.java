@@ -72,6 +72,7 @@ public class Carta {
     }
 
     public int truco(Carta carta) {
+
         int posicionEstaCarta = this.valoresTruco.rankingCarta(this);
         int posicionCartaContraria = this.valoresTruco.rankingCarta(carta);
 

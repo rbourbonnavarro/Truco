@@ -9,6 +9,8 @@ import fiuba.algo3.truco.modelo.Ronda.PrimeraVuelta;
 import fiuba.algo3.truco.modelo.Ronda.Vuelta;
 
 import java.util.ArrayList;
+import java.util.Deque;
+import java.util.List;
 
 public class JugadorIA extends Jugador {
 
@@ -48,7 +50,7 @@ public class JugadorIA extends Jugador {
 
                     } catch (NoHayDecisionException a) {
 
-                        this.mesa.hacerJugada(this.cartaMasAlta());
+                        this.mesa.hacerJugada(this.decisionCarta());
 
                     }
 
@@ -156,6 +158,49 @@ public class JugadorIA extends Jugador {
 
     }
 
+    private Carta decisionCarta() {
+
+        Carta ultimaCarta = this.mesa.getCartasEnMesa().getLast();
+
+        if((this.mesa.getCartasEnMesa().size() % 2) == 0)
+            return this.cartaMasAlta();
+        else {
+
+            return this.cartaApropiada(ultimaCarta);
+
+        }
+
+
+    }
+
+    private Carta cartaApropiada(Carta ultimaCarta) {
+
+        Carta cartaQueGana = null;
+        Carta cartaQueParda = null;
+        Carta cartaMasBaja = this.obtenerCartasEnMano().get(0);
+
+        for(Carta carta : this.obtenerCartasEnMano()) {
+
+            if(carta.truco(ultimaCarta) > 0) {
+
+                if(cartaQueGana == null) cartaQueGana = carta;
+                if(cartaQueGana.truco(carta) > 0) cartaQueGana = carta;
+
+            }
+
+            if(carta.truco(ultimaCarta) == 0) cartaQueParda = carta;
+
+            if(cartaMasBaja.truco(carta) > 0) cartaMasBaja = carta;
+
+        }
+
+        if(cartaQueGana != null) return cartaQueGana;
+        if(cartaQueParda != null) return cartaQueParda;
+
+        return cartaMasBaja;
+
+    }
+
     /*private void evaluarCantos(Vuelta estadoVuelta) {
 
         if(estadoVuelta instanceof PrimeraVuelta) {
@@ -214,15 +259,43 @@ public class JugadorIA extends Jugador {
     }
 
     private void decisionTruco() {
+
         Vuelta vuelta = mesa.getEstadoVuelta();
-        if( vuelta instanceof PrimeraVuelta)
-            throw new NoHayDecisionException();
+
+        if (vuelta instanceof PrimeraVuelta) {
+
+            if(this.manoDeTruco()) {
+
+                try {
+
+                    this.mesa.truco();
+
+                    return;
+
+                } catch (NoSePuedeCantarTrucoException noSePuedeCantarTrucoException) {
+
+                    throw new NoHayDecisionException();
+
+                }
+
+            }
+            else {
+
+                throw new NoHayDecisionException();
+
+            }
+
+        }
+
         int cartaMasAlta = this.valoresTruco.rankingCarta(this.cartaMasAlta());
+
         if(cartaMasAlta >= 7)
             throw new NoHayDecisionException();
+
         try {
             mesa.truco();
         } catch (NoSePuedeCantarTrucoException e){
+
             if(cartaMasAlta < 6)
                 try {
                     mesa.retruco();
@@ -233,9 +306,30 @@ public class JugadorIA extends Jugador {
                     else throw new NoHayDecisionException();
                 }
             else {
+
                 throw new NoHayDecisionException();
+
             }
+
         }
+
+    }
+
+    private boolean manoDeTruco() {
+
+        int cartasAltas = 0;
+
+        for(Carta carta : this.obtenerCartas()) {
+
+            if(this.valoresTruco.rankingCarta(carta) <= 4)
+                cartasAltas++;
+
+        }
+
+        if(cartasAltas > 1) return true;
+
+        return false;
+
     }
 
     private Carta cartaMasAlta() {
