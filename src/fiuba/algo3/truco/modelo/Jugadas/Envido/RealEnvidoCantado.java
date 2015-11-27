@@ -72,7 +72,7 @@ public class RealEnvidoCantado implements EstadoJuego {
     }
 
     @Override
-    public EstadoJuego envido() {
+    public EstadoJuego envido(Equipo equipoIniciador) {
 
         throw new NoSePuedeCantarEnvido();
 
@@ -134,6 +134,11 @@ public class RealEnvidoCantado implements EstadoJuego {
 
         if(!this.querido) throw new RealEnvidoNoQueridoNoSePuedeJugarException();
 
+    }
+
+    @Override
+    public Equipo getEquipoIniciador() {
+        return null;
     }
 
     @Override

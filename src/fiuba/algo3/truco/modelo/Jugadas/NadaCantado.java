@@ -49,7 +49,7 @@ public class NadaCantado implements EstadoJuego {
     }
 
     @Override
-    public EstadoJuego envido() {
+    public EstadoJuego envido(Equipo equipoIniciador) {
 
         if(this.tantoCantado) throw new NoSePuedeCantarEnvido();
 
@@ -124,6 +124,11 @@ public class NadaCantado implements EstadoJuego {
 
     @Override
     public void estadoValido() {}
+
+    @Override
+    public Equipo getEquipoIniciador() {
+        return null;
+    }
 
     @Override
     public boolean equals (Object estado){

@@ -9,11 +9,20 @@ import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 
 public class RetrucoCantado implements EstadoJuego {
 
-    private Equipo equipoIniciador;
+    private Equipo equipoIniciadorJugada;
+    private Equipo equipoQueCantoUltimo;
 
     public RetrucoCantado(Equipo equipoIniciador) {
 
-        this.equipoIniciador = equipoIniciador;
+        this.equipoIniciadorJugada = equipoIniciador;
+        this.equipoQueCantoUltimo = equipoIniciador;
+
+    }
+
+    public RetrucoCantado(Equipo equipoIniciadorJugada, Equipo equipoQueCantoUltimo) {
+
+        this.equipoIniciadorJugada = equipoIniciadorJugada;
+        this.equipoQueCantoUltimo = equipoQueCantoUltimo;
 
     }
 
@@ -48,12 +57,12 @@ public class RetrucoCantado implements EstadoJuego {
     @Override
     public EstadoJuego valeCuatro(Equipo equipoIniciador) {
 
-        return new ValeCuatroCantado();
+        return new ValeCuatroCantado(this.equipoIniciadorJugada);
 
     }
 
     @Override
-    public EstadoJuego envido() {
+    public EstadoJuego envido(Equipo equipoIniciador) {
 
         throw new NoSePuedeCantarEnvido();
 
@@ -104,7 +113,7 @@ public class RetrucoCantado implements EstadoJuego {
     @Override
     public EstadoJuego quiero() {
 
-        return new RetrucoQuerido(this.equipoIniciador);
+        return new RetrucoQuerido(this.equipoIniciadorJugada, this.equipoQueCantoUltimo);
 
     }
 
@@ -112,6 +121,13 @@ public class RetrucoCantado implements EstadoJuego {
     public void estadoValido() {
 
         throw new RetrucoNoQueridoNoSePuedeJugarException();
+
+    }
+
+    @Override
+    public Equipo getEquipoIniciador() {
+
+        return this.equipoIniciadorJugada;
 
     }
 

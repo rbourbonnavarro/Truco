@@ -9,8 +9,6 @@ import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.TrucoCantado;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 public class PrimeraVuelta extends Vuelta {
@@ -29,9 +27,9 @@ public class PrimeraVuelta extends Vuelta {
     }
 
     @Override
-    public void envido(Jugador jugadorActual) {
+    public void envido(Equipo equipoIniciador) {
 
-        if(!jugadorActual.jugadorPie()) {
+        if(!equipoIniciador.getJugadorActual().jugadorPie()) {
 
             if(!(this.estadoJuego instanceof TrucoCantado
                     || this.estadoJuego instanceof EnvidoCantado)) {
@@ -42,7 +40,7 @@ public class PrimeraVuelta extends Vuelta {
 
         }
 
-        this.estadoJuego = this.estadoJuego.envido();
+        this.estadoJuego = this.estadoJuego.envido(equipoIniciador);
 
     }
 

@@ -58,7 +58,7 @@ public class FlorFlorCantada implements EstadoJuego {
     }
 
     @Override
-    public EstadoJuego envido() {
+    public EstadoJuego envido(Equipo equipoIniciador) {
 
         throw new NoSePuedeCantarEnvido();
 
@@ -120,6 +120,11 @@ public class FlorFlorCantada implements EstadoJuego {
 
         if(!this.aceptado) throw new FlorFlorNoQueridaNoSePuedeJugarException();
 
+    }
+
+    @Override
+    public Equipo getEquipoIniciador() {
+        return null;
     }
 
     @Override

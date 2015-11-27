@@ -58,7 +58,7 @@ public class ContraFlorAlPartidoCantado implements EstadoJuego {
     }
 
     @Override
-    public EstadoJuego envido() {
+    public EstadoJuego envido(Equipo equipoIniciador) {
 
         throw new NoSePuedeCantarEnvido();
 
@@ -122,6 +122,11 @@ public class ContraFlorAlPartidoCantado implements EstadoJuego {
 
         if(!this.querido) throw new ContraFlorAlPartidoNoQueridaNoSePuedeJugarException();
 
+    }
+
+    @Override
+    public Equipo getEquipoIniciador() {
+        return null;
     }
 
     @Override

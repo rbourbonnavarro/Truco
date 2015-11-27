@@ -58,14 +58,14 @@ public class ReTrucoCantadoTest {
     @Test
     public void test5SePuedeCantarValeCuatro(){
 
-        Assert.assertEquals(this.estadoJuego.valeCuatro(new Equipo("equipo", Arrays.asList(new Jugador("jugador")))), new ValeCuatroCantado());
+        Assert.assertEquals(this.estadoJuego.valeCuatro(new Equipo("equipo", Arrays.asList(new Jugador("jugador")))), new ValeCuatroCantado(new Equipo("equipo", Arrays.asList(new Jugador("jugador")))));
 
     }
 
     @Test(expected = NoSePuedeCantarEnvido.class)
     public void TestNoSePuedeCantarEnvido(){
 
-        this.estadoJuego.envido();
+        this.estadoJuego.envido(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))));
 
     }
 

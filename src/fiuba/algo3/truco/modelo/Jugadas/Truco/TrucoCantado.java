@@ -44,7 +44,7 @@ public class TrucoCantado implements EstadoJuego {
     @Override
     public EstadoJuego reTruco(Equipo equipoIniciador) {
 
-        return new RetrucoCantado(equipoIniciador);
+        return new RetrucoCantado(this.equipoIniciador, equipoIniciador);
 
     }
 
@@ -56,7 +56,7 @@ public class TrucoCantado implements EstadoJuego {
     }
 
     @Override
-    public EstadoJuego envido() {
+    public EstadoJuego envido(Equipo equipoIniciador) {
 
         if(this.tantoCantado) throw new NoSePuedeCantarEnvido();
 
@@ -131,6 +131,13 @@ public class TrucoCantado implements EstadoJuego {
     public void estadoValido() {
 
         throw new TrucoNoQueridoNoSePuedeJugarException();
+
+    }
+
+    @Override
+    public Equipo getEquipoIniciador() {
+
+        return this.equipoIniciador;
 
     }
 

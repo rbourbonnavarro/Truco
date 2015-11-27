@@ -23,7 +23,7 @@ public class SegundaVuelta extends Vuelta {
     }
 
     @Override
-    public void envido(Jugador jugadorActual) {
+    public void envido(Equipo equipoIniciador) {
 
         throw new JugadorNoPuedeCantarTantoNoEsPrimeraVuelta();
 

@@ -57,7 +57,7 @@ public class EnvidoCantado implements EstadoJuego {
     }
 
     @Override
-    public EstadoJuego envido() {
+    public EstadoJuego envido(Equipo equipoIniciador) {
 
         return new EnvidoEnvidoCantado(this);
 
@@ -120,6 +120,11 @@ public class EnvidoCantado implements EstadoJuego {
 
         if(!this.querido) throw new EnvidoNoQueridoNoSePuedeJugarException();
 
+    }
+
+    @Override
+    public Equipo getEquipoIniciador() {
+        return null;
     }
 
     @Override

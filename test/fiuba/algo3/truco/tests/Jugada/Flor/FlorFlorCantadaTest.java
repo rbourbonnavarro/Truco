@@ -90,7 +90,7 @@ public class FlorFlorCantadaTest {
     @Test(expected = NoSePuedeCantarEnvido.class)
     public void TestNoSePuedeCantarEnvido(){
 
-        this.estadoJuego.envido();
+        this.estadoJuego.envido(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))));
 
     }
 

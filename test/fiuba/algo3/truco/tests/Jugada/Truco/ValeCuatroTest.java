@@ -23,7 +23,7 @@ public class ValeCuatroTest {
     @Before
     public void setUp() {
 
-        this.estadoJuego = new ValeCuatroCantado();
+        this.estadoJuego = new ValeCuatroCantado(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))));
 
     }
 
@@ -65,7 +65,7 @@ public class ValeCuatroTest {
     @Test(expected = NoSePuedeCantarEnvido.class)
     public void TestNoSePuedeCantarEnvido(){
 
-        this.estadoJuego.envido();
+        this.estadoJuego.envido(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))));
 
     }
 

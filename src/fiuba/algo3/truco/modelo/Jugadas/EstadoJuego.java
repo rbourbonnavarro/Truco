@@ -15,7 +15,7 @@ public interface EstadoJuego {
 
     EstadoJuego valeCuatro(Equipo equipoIniciador);
 
-    EstadoJuego envido();
+    EstadoJuego envido(Equipo equipoIniciador);
 
     EstadoJuego realEnvido();
 
@@ -32,6 +32,8 @@ public interface EstadoJuego {
     EstadoJuego quiero();
 
     void estadoValido();
+
+    Equipo getEquipoIniciador();
 
 
 }

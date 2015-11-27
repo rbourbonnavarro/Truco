@@ -81,7 +81,7 @@ public class RealEnvidoCantadoTest {
     public void Test5PuntosDevuelve7SiSeCantoEnvidoEnvidoRealEnvido(){
 
         this.estadoJuego = new EnvidoCantado(this.estadoJuego);
-        this.estadoJuego = this.estadoJuego.envido();
+        this.estadoJuego = this.estadoJuego.envido(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))));
         this.estadoJuego = this.estadoJuego.realEnvido();
         Assert.assertEquals(this.estadoJuego.puntos(), 7);
 
@@ -91,7 +91,7 @@ public class RealEnvidoCantadoTest {
     public void Test6NoQueridoDevuelve4PuntoSiSeCantoEnvidoEnvidoRealEnvido(){
 
         this.estadoJuego = new EnvidoCantado(this.estadoJuego);
-        this.estadoJuego = this.estadoJuego.envido();
+        this.estadoJuego = this.estadoJuego.envido(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))));
         this.estadoJuego = this.estadoJuego.realEnvido();
         Assert.assertEquals(this.estadoJuego.noQuerido(),4);
 
@@ -101,7 +101,7 @@ public class RealEnvidoCantadoTest {
     public void Test7NoSePuedeCantarEnvido(){
 
         this.estadoJuego = new RealEnvidoCantado(this.estadoJuego);
-        this.estadoJuego.envido();
+        this.estadoJuego.envido(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))));
 
     }
 

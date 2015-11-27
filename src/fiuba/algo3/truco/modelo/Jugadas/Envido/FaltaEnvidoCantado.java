@@ -70,7 +70,7 @@ public class FaltaEnvidoCantado implements EstadoJuego {
     }
 
     @Override
-    public EstadoJuego envido() {
+    public EstadoJuego envido(Equipo equipoIniciador) {
 
         throw new NoSePuedeCantarEnvido();
 
@@ -132,6 +132,11 @@ public class FaltaEnvidoCantado implements EstadoJuego {
 
         if(!this.querido) throw new FaltaEnvidoNoQueridoNoSePuedeJugarException();
 
+    }
+
+    @Override
+    public Equipo getEquipoIniciador() {
+        return null;
     }
 
     @Override

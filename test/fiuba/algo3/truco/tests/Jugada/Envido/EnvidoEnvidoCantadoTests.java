@@ -67,7 +67,7 @@ public class EnvidoEnvidoCantadoTests {
     @Test (expected = NoSePuedeCantarEnvidoEnvido.class)
     public void test4NoSePuedeCantarEnvidoEnvido(){
 
-        this.estadoJuego.envido();
+        this.estadoJuego.envido(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))));
 
     }
 

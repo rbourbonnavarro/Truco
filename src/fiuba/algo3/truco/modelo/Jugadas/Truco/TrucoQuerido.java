@@ -55,7 +55,7 @@ public class TrucoQuerido implements EstadoJuego {
     }
 
     @Override
-    public EstadoJuego envido() {
+    public EstadoJuego envido(Equipo equipoIniciador) {
 
         throw new NoSePuedeCantarEnvido();
 
@@ -112,6 +112,13 @@ public class TrucoQuerido implements EstadoJuego {
 
     @Override
     public void estadoValido() {
+
+    }
+
+    @Override
+    public Equipo getEquipoIniciador() {
+
+        return this.equipoIniciador;
 
     }
 

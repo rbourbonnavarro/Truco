@@ -11,6 +11,14 @@ import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 
 public class ValeCuatroQuerido implements EstadoJuego {
 
+    private Equipo equipoIniciador;
+
+    public ValeCuatroQuerido(Equipo equipoIniciador) {
+
+        this.equipoIniciador = equipoIniciador;
+
+    }
+
     @Override
     public int puntos() {
 
@@ -47,7 +55,7 @@ public class ValeCuatroQuerido implements EstadoJuego {
     }
 
     @Override
-    public EstadoJuego envido() {
+    public EstadoJuego envido(Equipo equipoIniciador) {
 
         throw new NoSePuedeCantarEnvido();
 
@@ -105,6 +113,13 @@ public class ValeCuatroQuerido implements EstadoJuego {
     @Override
     public void estadoValido() {
 
+
+    }
+
+    @Override
+    public Equipo getEquipoIniciador() {
+
+        return this.equipoIniciador;
 
     }
 

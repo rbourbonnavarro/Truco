@@ -36,7 +36,7 @@ public abstract class Vuelta {
 
     }
 
-    public abstract void envido(Jugador jugadorActual);
+    public abstract void envido(Equipo jugadorActual);
 
     public abstract void realEnvido(Jugador jugadorActual);
 
@@ -127,7 +127,11 @@ public abstract class Vuelta {
 
     }
 
+    public Equipo getEquipoIniciador() {
 
+        return this.estadoJuego.getEquipoIniciador();
+
+    }
 
 
 }

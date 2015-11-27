@@ -100,7 +100,7 @@ public class Mesa {
 
     public void envido() {
 
-        this.estadoVuelta.envido(this.jugadorActual);
+        this.estadoVuelta.envido(this.equipoActual);
         this.guardarEquipoIniciadorEnvido();
         this.intercambiarEquipos();
 
@@ -162,7 +162,6 @@ public class Mesa {
     public void truco() {
 
         this.estadoVuelta.truco(this.equipoActual);
-        this.guardarEquipoIniciadorTruco();
         this.intercambiarEquipos();
 
     }
@@ -170,7 +169,6 @@ public class Mesa {
     public void retruco() {
 
         this.estadoVuelta.reTruco(this.equipoActual);
-        this.guardarEquipoIniciadorTruco();
         this.intercambiarEquipos();
 
     }
@@ -178,7 +176,6 @@ public class Mesa {
     public void valeCuatro() {
 
         this.estadoVuelta.valeCuatro(this.equipoActual);
-        this.guardarEquipoIniciadorTruco();
         this.intercambiarEquipos();
 
     }
@@ -392,13 +389,11 @@ public class Mesa {
 
     private void recuperarEquipoActualTruco() {
 
-        if(Objects.equals(this.equipoIniciadorTruco, this.equipoContrario)) {
+        if(Objects.equals(this.estadoVuelta.getEquipoIniciador(), this.equipoContrario)) {
 
             this.intercambiarEquipos();
 
         }
-
-        this.equipoIniciadorTruco = null;
 
     }
 
