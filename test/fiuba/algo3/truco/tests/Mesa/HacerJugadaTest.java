@@ -2,13 +2,11 @@ package fiuba.algo3.truco.tests.Mesa;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 import fiuba.algo3.truco.modelo.*;
 import fiuba.algo3.truco.modelo.Jugadas.Envido.EnvidoNoQueridoNoSePuedeJugarException;
 import fiuba.algo3.truco.modelo.Jugadas.Envido.NoSePuedeCantarEnvido;
-import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorNoAceptadaNoSePuedeJugarException;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.JuegoSinFlorException;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.EquipoQueCantoRetrucoNoPuedeCantarValeCuatroException;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.EquipoQueCantoTrucoNoPuedeCantarRetrucoException;
@@ -72,7 +70,7 @@ public class HacerJugadaTest {
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartasEnMano().get(0));
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartasEnMano().get(0));
 		mesa.envido();
-		mesa.noQuieroEnvido();
+		mesa.noQuieroTanto();
 		Assert.assertEquals(mesa.puntaje(azules), 1);
 
 	}
@@ -118,7 +116,7 @@ public class HacerJugadaTest {
 		mesa.hacerJugada(mesa.getJugadorActual().obtenerCartasEnMano().get(0));
 		mesa.envido();
 		mesa.envido();
-		mesa.noQuieroEnvido();
+		mesa.noQuieroTanto();
 		Assert.assertEquals(mesa.puntaje(azules), 0);
 		Assert.assertEquals(mesa.puntaje(rojos), 2);
 
@@ -152,7 +150,7 @@ public class HacerJugadaTest {
 
 		mesa.truco();
 		mesa.envido();
-		mesa.noQuieroEnvido();
+		mesa.noQuieroTanto();
 		Assert.assertEquals(mesa.puntaje(azules), 0);
 		Assert.assertEquals(mesa.puntaje(rojos), 1);
 

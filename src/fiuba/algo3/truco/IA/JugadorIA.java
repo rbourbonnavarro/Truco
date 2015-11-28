@@ -11,10 +11,6 @@ import fiuba.algo3.truco.modelo.Jugadas.Truco.*;
 import fiuba.algo3.truco.modelo.Ronda.PrimeraVuelta;
 import fiuba.algo3.truco.modelo.Ronda.Vuelta;
 
-import java.util.ArrayList;
-import java.util.Deque;
-import java.util.List;
-
 public class JugadorIA extends Jugador {
 
     private Mesa mesa;
@@ -87,7 +83,7 @@ public class JugadorIA extends Jugador {
                 if (envido >= 30 && envido <= 32) this.mesa.realEnvido();
                 if (envido < 30 && envido >= 28) this.mesa.envido();
                 if (envido < 28 && envido >= 25) this.mesa.quieroEnvido();
-                if (envido < 25) this.mesa.noQuieroEnvido();
+                if (envido < 25) this.mesa.noQuieroTanto();
 
             }
 
@@ -96,7 +92,7 @@ public class JugadorIA extends Jugador {
             int envido = this.envido();
 
             if(envido < 30 && envido >= 28) this.mesa.quieroEnvido();
-            if(envido < 28) this.mesa.noQuieroEnvido();
+            if(envido < 28) this.mesa.noQuieroTanto();
 
         } catch(RealEnvidoNoQueridoNoSePuedeJugarException e) {
 
@@ -104,7 +100,7 @@ public class JugadorIA extends Jugador {
 
             if(envido >= 32) this.mesa.faltaEnvido();
             if(envido >=28 && envido < 32) this.mesa.quieroEnvido();
-            if(envido < 28) this.mesa.noQuieroEnvido();
+            if(envido < 28) this.mesa.noQuieroTanto();
 
         } catch(FaltaEnvidoNoQueridoNoSePuedeJugarException e) {
 
@@ -113,7 +109,7 @@ public class JugadorIA extends Jugador {
             if(envido == 33)
                 this.mesa.quieroEnvido();
             else
-                this.mesa.noQuieroEnvido();
+                this.mesa.noQuieroTanto();
 
         } catch(FlorNoAceptadaNoSePuedeJugarException e) {
 
@@ -136,13 +132,13 @@ public class JugadorIA extends Jugador {
 
             if(this.flor() > 23) this.mesa.quieroFlor();
 
-            this.mesa.noQuieroFlor();
+            this.mesa.noQuieroTanto();
 
         } catch(ContraFlorAlRestoNoQueridaNoSePuedeJugarException e) {
 
             int flor = this.flor();
 
-            if(flor < 30) this.mesa.noQuieroFlor();
+            if(flor < 30) this.mesa.noQuieroTanto();
 
             this.mesa.quieroFlor();
 
@@ -152,7 +148,7 @@ public class JugadorIA extends Jugador {
 
             if(flor > 33) this.mesa.quieroFlor();
 
-            this.mesa.noQuieroFlor();
+            this.mesa.noQuieroTanto();
 
         }
 

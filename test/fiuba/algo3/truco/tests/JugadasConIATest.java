@@ -892,7 +892,7 @@ public class JugadasConIATest {
         Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
         JIA.turno();
         Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
-        mesa.noQuieroEnvido();
+        mesa.noQuieroTanto();
 
         Assert.assertEquals(equipo1.getPuntos(), 0);
         Assert.assertEquals(equipo2.getPuntos(), 3);

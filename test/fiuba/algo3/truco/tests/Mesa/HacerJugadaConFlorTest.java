@@ -6,7 +6,6 @@ import fiuba.algo3.truco.modelo.Jugadas.Envido.NoSePuedeCantarEnvido;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorNoAceptadaNoSePuedeJugarException;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeCantarFlorException;
 import fiuba.algo3.truco.modelo.Palo.Basto;
-import fiuba.algo3.truco.modelo.Palo.Copa;
 import fiuba.algo3.truco.modelo.Palo.Espada;
 import fiuba.algo3.truco.modelo.Palo.Oro;
 import org.junit.Assert;
@@ -80,7 +79,7 @@ public class HacerJugadaConFlorTest {
         mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
         mesa.truco();
         mesa.envido();
-        mesa.noQuieroEnvido();
+        mesa.noQuieroTanto();
         mesa.noQuieroTruco();
 
         Assert.assertTrue(mesa.puntaje(azules) == 1);

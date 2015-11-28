@@ -208,7 +208,7 @@ public class PartidoCompletoDeACuatroTest {
 			Assert.assertEquals(J3.getNombre(), mesa.getJugadorActual().getNombre());
 			mesa.envido();
 			Assert.assertEquals(J4.getNombre(), mesa.getJugadorActual().getNombre());
-			mesa.noQuieroEnvido();
+			mesa.noQuieroTanto();
 
 			Assert.assertTrue(mesa.puntaje(equipoImpar) == 1);
 			Assert.assertTrue(mesa.puntaje(equipoPar) == 0);
@@ -255,7 +255,7 @@ public class PartidoCompletoDeACuatroTest {
 			Assert.assertEquals(J3.getNombre(), mesa.getJugadorActual().getNombre());
 			mesa.contraFlorAlResto();
 			Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
-			mesa.noQuieroFlor();
+			mesa.noQuieroTanto();
 
 			Assert.assertEquals(mesa.puntaje(equipoPar), 0);
 			Assert.assertEquals(mesa.puntaje(equipoImpar), 5);
@@ -315,7 +315,7 @@ public class PartidoCompletoDeACuatroTest {
 			Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
 			mesa.faltaEnvido();
 			Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
-			mesa.noQuieroEnvido();
+			mesa.noQuieroTanto();
 
 			Assert.assertEquals(mesa.puntaje(equipoPar), 7);
 			Assert.assertEquals(mesa.puntaje(equipoImpar), 8);

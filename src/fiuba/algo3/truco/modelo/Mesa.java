@@ -222,26 +222,6 @@ public class Mesa {
 
     }
 
-    public void noQuieroEnvido(){
-
-        try {
-
-            this.equipoContrario.sumarPuntos(this.estadoVuelta.noQuerido());
-
-        } catch(JuegoTerminadoException juegoTerminadoException) {
-
-            this.equipoGanador = this.equipoContrario;
-
-            throw new JuegoTerminadoException();
-
-        }
-
-        this.estadoVuelta.terminarTanto();
-
-        this.recuperarEquipoIniciadorJugada();
-
-    }
-
     public void quieroFlor() {
 
         try {
@@ -282,7 +262,7 @@ public class Mesa {
 
     }
 
-    public void noQuieroFlor() {
+    public void noQuieroTanto() {
 
         try {
 
