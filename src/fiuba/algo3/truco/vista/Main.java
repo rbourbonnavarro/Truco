@@ -41,8 +41,8 @@ public class Main extends Application {
 
             diseñoRaiz.setCenter(partidaDeADos);
 
-     //       ControladorVentanaJuego controlador =loader.getController();
-       //     controlador.setMain(this,this.mesa,equipo1,equipo2);
+            VentanaJuegoController controlador = loader.getController();
+            controlador.setMain(this,this.mesa,equipo1,equipo2);
 
         } catch (IOException e) {
             e.printStackTrace();

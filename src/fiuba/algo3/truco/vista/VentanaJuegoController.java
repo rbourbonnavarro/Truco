@@ -1,0 +1,85 @@
+package fiuba.algo3.truco.vista;
+
+import com.sun.javafx.collections.ImmutableObservableList;
+import fiuba.algo3.truco.modelo.Carta;
+import fiuba.algo3.truco.modelo.Equipo;
+import fiuba.algo3.truco.modelo.Mesa;
+import javafx.beans.property.SimpleListProperty;
+import javafx.collections.ObservableList;
+import javafx.collections.transformation.FilteredList;
+import javafx.fxml.FXML;
+import javafx.scene.control.Label;
+
+import java.util.LinkedList;
+import java.util.List;
+
+/**
+ * Created by GomezPeter on 28/11/2015.
+ */
+public class VentanaJuegoController {
+
+    @FXML
+    private Label turno;
+    @FXML
+    private Label puntajeEquipo1;
+    @FXML
+    private Label puntajeEquipo2;
+    @FXML
+    private Label carta1;
+    @FXML
+    private Label carta2;
+    @FXML
+    private Label carta3;
+    @FXML
+    private List<Label> cartas;
+
+    private Mesa mesa;
+    private Main main;
+    private Equipo equipo1;
+    private Equipo equipo2;
+    private List<Carta> cartasJugadorActual;
+
+    public VentanaJuegoController(){
+    }
+
+    public void setMain(Main main, Mesa mesa,Equipo equipo1, Equipo equipo2) {
+        this.main = main;
+        this.mesa = mesa;
+        this.equipo1 = equipo1;
+        this.equipo2 = equipo2;
+        cartas.add(carta1);
+        cartas.add(carta2);
+        cartas.add(carta3);
+        mostrarPuntos();
+        mostrarJugadorActual();
+        mostrarCartasJugadorActual();
+    }
+
+    private void mostrarCartasJugadorActual() {
+        cartasJugadorActual = mesa.getCartasDelJugadorActual();
+       for (int i=0; i<cartasJugadorActual.size();i++) {
+           cartas.get(i).setText(this.toString(cartasJugadorActual.get(i)));
+       }
+        for (int i=cartasJugadorActual.size(); i<3;i++) {
+            cartas.get(i).setText("");
+        }
+    }
+
+    private String toString(Carta carta) {
+        return Integer.toString(carta.getValor()) +" de "+ carta.getPalo().getClass().getSimpleName();
+    }
+
+    @FXML
+    private void initialize(){
+        this.cartas = new LinkedList<>();
+    }
+
+    private void mostrarPuntos(){
+        this.puntajeEquipo1.setText(Integer.toString(mesa.puntaje(equipo1)));
+        this.puntajeEquipo2.setText(Integer.toString(mesa.puntaje(equipo1)));
+    }
+    private void mostrarJugadorActual(){
+        this.turno.setText(mesa.getJugadorActual().getNombre());
+    }
+
+}
