@@ -11,13 +11,10 @@ import fiuba.algo3.truco.modelo.Jugadas.Truco.NoSePuedeCantarValeCuatroException
 
 public class EnvidoCantado implements EstadoJuego {
 
-    private boolean querido;
     private EstadoJuego estadoPrevio;
-    private Equipo equipoIniciador;
 
     public EnvidoCantado(EstadoJuego estadoPrevio) {
 
-        this.querido = false;
         this.estadoPrevio = estadoPrevio;
 
     }
@@ -110,8 +107,6 @@ public class EnvidoCantado implements EstadoJuego {
     @Override
     public EstadoJuego quiero() {
 
-        this.querido = true;
-
         return this;
 
     }
@@ -119,13 +114,15 @@ public class EnvidoCantado implements EstadoJuego {
     @Override
     public void estadoValido() {
 
-        if(!this.querido) throw new EnvidoNoQueridoNoSePuedeJugarException();
+        throw new EnvidoNoQueridoNoSePuedeJugarException();
 
     }
 
     @Override
     public Equipo getEquipoIniciador() {
+
         return null;
+
     }
 
     @Override
