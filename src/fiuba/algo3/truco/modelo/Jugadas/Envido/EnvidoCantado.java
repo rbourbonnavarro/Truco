@@ -13,6 +13,7 @@ public class EnvidoCantado implements EstadoJuego {
 
     private boolean querido;
     private EstadoJuego estadoPrevio;
+    private Equipo equipoIniciador;
 
     public EnvidoCantado(EstadoJuego estadoPrevio) {
 
@@ -65,21 +66,21 @@ public class EnvidoCantado implements EstadoJuego {
 
 
     @Override
-    public EstadoJuego realEnvido() {
+    public EstadoJuego realEnvido(Equipo equipoIniciador) {
 
         return new RealEnvidoCantado(this, this.puntos());
 
     }
 
     @Override
-    public EstadoJuego faltaEnvido(Puntaje puntos) {
+    public EstadoJuego faltaEnvido(Equipo equipoIniciador, Puntaje puntos) {
 
         return new FaltaEnvidoCantado(this, puntos, this.puntos());
 
     }
 
     @Override
-    public EstadoJuego flor() {
+    public EstadoJuego flor(Equipo equipoIniciador) {
 
         return new FlorCantada(this.estadoPrevio);
 

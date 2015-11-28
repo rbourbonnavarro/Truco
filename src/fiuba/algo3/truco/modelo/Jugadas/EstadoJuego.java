@@ -17,11 +17,11 @@ public interface EstadoJuego {
 
     EstadoJuego envido(Equipo equipoIniciador);
 
-    EstadoJuego realEnvido();
+    EstadoJuego realEnvido(Equipo equipoIniciador);
 
-    EstadoJuego faltaEnvido(Puntaje puntos);
+    EstadoJuego faltaEnvido(Equipo equipoIniciador, Puntaje puntos);
 
-    EstadoJuego flor();
+    EstadoJuego flor(Equipo equipoIniciador);
 
     EstadoJuego contraFlorAlResto(Puntaje puntos);
 

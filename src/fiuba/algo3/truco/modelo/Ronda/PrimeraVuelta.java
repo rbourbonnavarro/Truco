@@ -46,9 +46,9 @@ public class PrimeraVuelta extends Vuelta {
 
 
     @Override
-    public void realEnvido(Jugador jugadorActual) {
+    public void realEnvido(Equipo equipoIniciador) {
 
-        if(!jugadorActual.jugadorPie()) {
+        if(!equipoIniciador.getJugadorActual().jugadorPie()) {
 
             if(!(this.estadoJuego instanceof TrucoCantado
                     || this.estadoJuego instanceof EnvidoCantado)) {
@@ -59,14 +59,14 @@ public class PrimeraVuelta extends Vuelta {
 
         }
 
-        this.estadoJuego = this.estadoJuego.realEnvido();
+        this.estadoJuego = this.estadoJuego.realEnvido(equipoIniciador);
 
     }
 
     @Override
-    public void faltaEnvido(Jugador jugadorActual, Puntaje puntos) {
+    public void faltaEnvido(Equipo equipoIniciador, Puntaje puntos) {
 
-        if(!jugadorActual.jugadorPie()) {
+        if(!equipoIniciador.getJugadorActual().jugadorPie()) {
 
             if(!(this.estadoJuego instanceof TrucoCantado
                     || this.estadoJuego instanceof EnvidoCantado
@@ -78,16 +78,16 @@ public class PrimeraVuelta extends Vuelta {
 
         }
 
-        this.estadoJuego = this.estadoJuego.faltaEnvido(puntos);
+        this.estadoJuego = this.estadoJuego.faltaEnvido(equipoIniciador, puntos);
 
     }
 
     @Override
-    public void flor() {
+    public void flor(Equipo equipoIniciador) {
 
         if(!this.seJuegaConFlor) throw new JuegoSinFlorException();
 
-        this.estadoJuego = this.estadoJuego.flor();
+        this.estadoJuego = this.estadoJuego.flor(equipoIniciador);
 
     }
 

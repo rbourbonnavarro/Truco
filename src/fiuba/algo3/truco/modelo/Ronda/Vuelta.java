@@ -38,11 +38,11 @@ public abstract class Vuelta {
 
     public abstract void envido(Equipo jugadorActual);
 
-    public abstract void realEnvido(Jugador jugadorActual);
+    public abstract void realEnvido(Equipo jugadorActual);
 
-    public abstract void faltaEnvido(Jugador jugadorActual, Puntaje puntos);
+    public abstract void faltaEnvido(Equipo jugadorActual, Puntaje puntos);
 
-    public abstract void flor();
+    public abstract void flor(Equipo equipoActual);
 
     public abstract void contraFlorAlResto(Puntaje puntos);
 

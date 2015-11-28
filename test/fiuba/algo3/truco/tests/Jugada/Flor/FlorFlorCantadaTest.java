@@ -47,7 +47,7 @@ public class FlorFlorCantadaTest {
     @Test(expected = NoSePuedeCantarFlorException.class)
     public void test3NoSePuedeCantarFlor() {
 
-        this.estadoJuego.flor();
+        this.estadoJuego.flor(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))));
     }
 
     @Test(expected = NoSePuedeCantarContraFlorException.class)
@@ -97,7 +97,7 @@ public class FlorFlorCantadaTest {
     @Test(expected = NoSePuedeCantarRealEnvido.class)
     public void TestNoSePuedeCantarRealEnvido(){
 
-        this.estadoJuego.realEnvido();
+        this.estadoJuego.realEnvido(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))));
 
     }
 
@@ -105,7 +105,7 @@ public class FlorFlorCantadaTest {
     public void TestNoSePuedeCantarFaltaEnvido(){
 
         Puntaje puntos = new Puntaje();
-        this.estadoJuego.faltaEnvido(puntos);
+        this.estadoJuego.faltaEnvido(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))), puntos);
 
     }
 

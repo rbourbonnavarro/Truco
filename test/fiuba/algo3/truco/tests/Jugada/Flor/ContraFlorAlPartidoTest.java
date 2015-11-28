@@ -48,7 +48,7 @@ public class ContraFlorAlPartidoTest {
     @Test(expected = NoSePuedeCantarFlorException.class)
     public void test3NoSePuedeCantarFlor() {
 
-        this.estadoJuego.flor();
+        this.estadoJuego.flor(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))));
 
     }
 
@@ -99,7 +99,7 @@ public class ContraFlorAlPartidoTest {
     @Test(expected = NoSePuedeCantarRealEnvido.class)
     public void TestNoSePuedeCantarRealEnvido(){
 
-        this.estadoJuego.realEnvido();
+        this.estadoJuego.realEnvido(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))));
 
     }
 
@@ -107,7 +107,7 @@ public class ContraFlorAlPartidoTest {
     public void TestNoSePuedeCantarFaltaEnvido(){
 
         Puntaje puntos = new Puntaje();
-        this.estadoJuego.faltaEnvido(puntos);
+        this.estadoJuego.faltaEnvido(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))), puntos);
 
     }
 

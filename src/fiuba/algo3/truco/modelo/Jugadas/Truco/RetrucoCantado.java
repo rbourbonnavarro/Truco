@@ -69,21 +69,21 @@ public class RetrucoCantado implements EstadoJuego {
     }
 
     @Override
-    public EstadoJuego realEnvido() {
+    public EstadoJuego realEnvido(Equipo equipoIniciador) {
 
         throw new NoSePuedeCantarRealEnvido();
 
     }
 
     @Override
-    public EstadoJuego faltaEnvido(Puntaje puntos) {
+    public EstadoJuego faltaEnvido(Equipo equipoIniciador, Puntaje puntos) {
 
         throw new NoSePuedeCantarFaltaEnvido();
 
     }
 
     @Override
-    public EstadoJuego flor() {
+    public EstadoJuego flor(Equipo equipoIniciador) {
 
         throw new NoSePuedeCantarFlorException();
 

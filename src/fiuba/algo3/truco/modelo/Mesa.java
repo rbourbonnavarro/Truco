@@ -20,9 +20,6 @@ public class Mesa {
     private Equipo equipoActual;
     private Equipo equipoContrario;
     private Jugador jugadorActual;
-    private Equipo equipoIniciadorTruco;
-    private Equipo equipoIniciadorEnvido;
-    private Equipo equipoIniciadorFlor;
     private Equipo equipoGanador;
     private Mazo mazo;
     private EstadoPicaPica estadoPicaPica;
@@ -101,7 +98,6 @@ public class Mesa {
     public void envido() {
 
         this.estadoVuelta.envido(this.equipoActual);
-        this.guardarEquipoIniciadorEnvido();
         this.intercambiarEquipos();
 
     }
@@ -109,8 +105,7 @@ public class Mesa {
 
     public void realEnvido() {
 
-        this.estadoVuelta.realEnvido(this.jugadorActual);
-        this.guardarEquipoIniciadorEnvido();
+        this.estadoVuelta.realEnvido(this.equipoActual);
         this.intercambiarEquipos();
 
     }
@@ -118,8 +113,7 @@ public class Mesa {
     public void faltaEnvido() {
 
         Puntaje puntosEnJuego = this.obtenerMayorPuntaje();
-        this.estadoVuelta.faltaEnvido(this.jugadorActual, puntosEnJuego);
-        this.guardarEquipoIniciadorEnvido();
+        this.estadoVuelta.faltaEnvido(this.equipoActual, puntosEnJuego);
         this.intercambiarEquipos();
 
     }
@@ -127,8 +121,7 @@ public class Mesa {
     public void flor() {
 
         this.equipoActual.flor();
-        this.estadoVuelta.flor();
-        this.guardarEquipoIniciadorFlor();
+        this.estadoVuelta.flor(this.equipoActual);
         this.intercambiarEquipos();
 
     }
@@ -183,7 +176,7 @@ public class Mesa {
     public void quieroTruco() {
 
         this.estadoVuelta.quiero();
-        this.recuperarEquipoActualTruco();
+        this.recuperarEquipoIniciadorJugada();
 
     }
 
@@ -225,7 +218,7 @@ public class Mesa {
 
         this.estadoVuelta.terminarTanto();
 
-        this.recuperarEquipoActualEnvido();
+        this.recuperarEquipoIniciadorJugada();
 
     }
 
@@ -245,7 +238,7 @@ public class Mesa {
 
         this.estadoVuelta.terminarTanto();
 
-        this.recuperarEquipoActualEnvido();
+        this.recuperarEquipoIniciadorJugada();
 
     }
 
@@ -285,7 +278,7 @@ public class Mesa {
 
         this.estadoVuelta.terminarTanto();
 
-        this.recuperarEquipoActualFlor();
+        this.recuperarEquipoIniciadorJugada();
 
     }
 
@@ -305,7 +298,7 @@ public class Mesa {
 
         this.estadoVuelta.terminarTanto();
 
-        this.recuperarEquipoActualFlor();
+        this.recuperarEquipoIniciadorJugada();
 
     }
 
@@ -387,68 +380,11 @@ public class Mesa {
 
     }*/
 
-    private void recuperarEquipoActualTruco() {
+    private void recuperarEquipoIniciadorJugada() {
 
         if(Objects.equals(this.estadoVuelta.getEquipoIniciador(), this.equipoContrario)) {
 
             this.intercambiarEquipos();
-
-        }
-
-    }
-
-    private void guardarEquipoIniciadorTruco() {
-
-        if(this.equipoIniciadorTruco == null)
-            this.equipoIniciadorTruco = this.equipoActual;
-
-    }
-
-    private void recuperarEquipoActualEnvido() {
-
-        if(Objects.equals(this.equipoIniciadorEnvido, this.equipoContrario)) {
-
-            this.intercambiarEquipos();
-
-        }
-
-        this.equipoIniciadorEnvido = null;
-
-    }
-
-    private void guardarEquipoIniciadorEnvido() {
-
-        if(this.equipoIniciadorEnvido == null)
-            this.equipoIniciadorEnvido = this.equipoActual;
-
-    }
-
-    private void recuperarEquipoActualFlor() {
-
-        if(Objects.equals(this.equipoIniciadorFlor, this.equipoContrario)) {
-
-            this.intercambiarEquipos();
-
-        }
-
-        this.equipoIniciadorFlor = null;
-
-    }
-
-    private void guardarEquipoIniciadorFlor() {
-
-        if(this.equipoIniciadorFlor == null) {
-
-            if(this.equipoIniciadorEnvido == null) {
-
-                this.equipoIniciadorFlor = this.equipoActual;
-
-            }
-            else {
-
-                this.equipoIniciadorFlor = this.equipoContrario;
-
-            }
 
         }
 

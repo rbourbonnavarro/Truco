@@ -13,6 +13,7 @@ import fiuba.algo3.truco.modelo.Jugadas.Truco.TrucoCantado;
 public class NadaCantado implements EstadoJuego {
 
     private boolean tantoCantado = false;
+    private Equipo equipoIniciadorTanto = null;
 
     @Override
     public int puntos() {
@@ -55,38 +56,46 @@ public class NadaCantado implements EstadoJuego {
 
         this.tantoCantado = true;
 
+        this.equipoIniciadorTanto = equipoIniciador;
+
         return new EnvidoCantado(this);
 
     }
 
     @Override
-    public EstadoJuego realEnvido() {
+    public EstadoJuego realEnvido(Equipo equipoIniciador) {
 
         if(this.tantoCantado) throw new NoSePuedeCantarRealEnvido();
 
         this.tantoCantado = true;
+
+        this.equipoIniciadorTanto = equipoIniciador;
 
         return new RealEnvidoCantado(this);
 
     }
 
     @Override
-    public EstadoJuego faltaEnvido(Puntaje puntos) {
+    public EstadoJuego faltaEnvido(Equipo equipoIniciador, Puntaje puntos) {
 
         if(this.tantoCantado) throw new NoSePuedeCantarFaltaEnvido();
 
         this.tantoCantado = true;
+
+        this.equipoIniciadorTanto = equipoIniciador;
 
         return new FaltaEnvidoCantado(this, puntos);
 
     }
 
     @Override
-    public EstadoJuego flor() {
+    public EstadoJuego flor(Equipo equipoIniciador) {
 
         if(this.tantoCantado) throw new NoSePuedeCantarFlorException();
 
         this.tantoCantado = true;
+
+        this.equipoIniciadorTanto = equipoIniciador;
 
         return new FlorCantada(this);
 
@@ -127,7 +136,9 @@ public class NadaCantado implements EstadoJuego {
 
     @Override
     public Equipo getEquipoIniciador() {
-        return null;
+
+        return this.equipoIniciadorTanto;
+
     }
 
     @Override

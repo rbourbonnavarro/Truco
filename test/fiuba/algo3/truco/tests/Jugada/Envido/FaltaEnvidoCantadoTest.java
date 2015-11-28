@@ -102,7 +102,7 @@ public class FaltaEnvidoCantadoTest {
         puntos = new Puntaje();
         puntos.sumar(25);
         this.estadoJuego = new EnvidoCantado(this.estadoJuego);
-        this.estadoJuego = this.estadoJuego.faltaEnvido(puntos);
+        this.estadoJuego = this.estadoJuego.faltaEnvido(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))), puntos);
 
         Assert.assertEquals(this.estadoJuego.noQuerido(),2);
 
@@ -114,7 +114,7 @@ public class FaltaEnvidoCantadoTest {
         puntos.sumar(10);
         this.estadoJuego = new EnvidoCantado(this.estadoJuego);
         this.estadoJuego = this.estadoJuego.envido(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))));
-        this.estadoJuego = this.estadoJuego.faltaEnvido(puntos);
+        this.estadoJuego = this.estadoJuego.faltaEnvido(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))), puntos);
 
         Assert.assertEquals(this.estadoJuego.noQuerido(),4);
 
@@ -126,8 +126,8 @@ public class FaltaEnvidoCantadoTest {
         puntos.sumar(10);
         this.estadoJuego = new EnvidoCantado(this.estadoJuego);
         this.estadoJuego = this.estadoJuego.envido(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))));
-        this.estadoJuego = this.estadoJuego.realEnvido();
-        this.estadoJuego = this.estadoJuego.faltaEnvido(puntos);
+        this.estadoJuego = this.estadoJuego.realEnvido(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))));
+        this.estadoJuego = this.estadoJuego.faltaEnvido(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))), puntos);
 
         Assert.assertEquals(this.estadoJuego.noQuerido(),7);
 
@@ -139,8 +139,8 @@ public class FaltaEnvidoCantadoTest {
         puntos = new Puntaje();
         puntos.sumar(10);
         this.estadoJuego = new EnvidoCantado(this.estadoJuego);
-        this.estadoJuego = this.estadoJuego.realEnvido();
-        this.estadoJuego = this.estadoJuego.faltaEnvido(puntos);
+        this.estadoJuego = this.estadoJuego.realEnvido(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))));
+        this.estadoJuego = this.estadoJuego.faltaEnvido(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))), puntos);
 
         Assert.assertEquals(this.estadoJuego.noQuerido(),5);
 
@@ -161,7 +161,7 @@ public class FaltaEnvidoCantadoTest {
 
         puntos = new Puntaje();
         this.estadoJuego = new FaltaEnvidoCantado(this.estadoJuego, puntos);
-        this.estadoJuego.realEnvido();
+        this.estadoJuego.realEnvido(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))));
 
     }
 
@@ -170,7 +170,7 @@ public class FaltaEnvidoCantadoTest {
 
         puntos = new Puntaje();
         this.estadoJuego = new FaltaEnvidoCantado(this.estadoJuego, puntos);
-        this.estadoJuego.faltaEnvido(puntos);
+        this.estadoJuego.faltaEnvido(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))), puntos);
 
     }
 
@@ -180,7 +180,7 @@ public class FaltaEnvidoCantadoTest {
         Puntaje puntos = new Puntaje();
         puntos.sumar(20);
         this.estadoJuego = new FaltaEnvidoCantado(this.estadoJuego, puntos);
-        this.estadoJuego.flor();
+        this.estadoJuego.flor(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))));
 
     }
 

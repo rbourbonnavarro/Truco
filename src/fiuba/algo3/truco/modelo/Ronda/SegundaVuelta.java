@@ -31,21 +31,21 @@ public class SegundaVuelta extends Vuelta {
 
 
     @Override
-    public void realEnvido(Jugador jugadorActual) {
+    public void realEnvido(Equipo equipoIniciador) {
 
         throw new JugadorNoPuedeCantarTantoNoEsPrimeraVuelta();
 
     }
 
     @Override
-    public void faltaEnvido(Jugador jugadorActual, Puntaje puntos) {
+    public void faltaEnvido(Equipo equipoIniciador, Puntaje puntos) {
 
         throw new JugadorNoPuedeCantarTantoNoEsPrimeraVuelta();
 
     }
 
     @Override
-    public void flor() {
+    public void flor(Equipo equipoIniciador) {
 
         throw new JugadorNoPuedeCantarTantoNoEsPrimeraVuelta();
 

@@ -74,7 +74,7 @@ public class EnvidoEnvidoCantadoTests {
     @Test
     public void test5SePuedeCantarRealEnvido() {
 
-        Assert.assertEquals(new RealEnvidoCantado(this.estadoJuego, 4), this.estadoJuego.realEnvido());
+        Assert.assertEquals(new RealEnvidoCantado(this.estadoJuego, 4), this.estadoJuego.realEnvido(new Equipo("equipo", Arrays.asList(new Jugador("jugador")))));
     }
 
     @Test
@@ -82,14 +82,14 @@ public class EnvidoEnvidoCantadoTests {
 
         Puntaje puntos = new Puntaje();
         puntos.sumar(15);
-        Assert.assertEquals(this.estadoJuego.faltaEnvido(puntos), new FaltaEnvidoCantado(this.estadoJuego, puntos));
+        Assert.assertEquals(this.estadoJuego.faltaEnvido(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))), puntos), new FaltaEnvidoCantado(this.estadoJuego, puntos));
 
     }
 
     @Test(expected = NoSePuedeCantarFlorException.class)
     public void testNoSePuedeCantarFlor() {
 
-        this.estadoJuego.flor();
+        this.estadoJuego.flor(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))));
 
     }
 

@@ -75,7 +75,7 @@ public class EnvidoCantadoTest {
     @Test
     public void Test5SePuedeCantarRealEnvido(){
 
-        this.estadoJuego = this.estadoJuego.realEnvido();
+        this.estadoJuego = this.estadoJuego.realEnvido(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))));
         Assert.assertEquals(this.estadoJuego, new RealEnvidoCantado(this.estadoJuego));
 
     }
@@ -85,7 +85,7 @@ public class EnvidoCantadoTest {
 
         Puntaje puntos = new Puntaje();
         puntos.sumar(3);
-        this.estadoJuego = this.estadoJuego.faltaEnvido(puntos);
+        this.estadoJuego = this.estadoJuego.faltaEnvido(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))), puntos);
 
         Assert.assertEquals(this.estadoJuego, new FaltaEnvidoCantado(this.estadoJuego, puntos));
 
@@ -94,7 +94,7 @@ public class EnvidoCantadoTest {
     @Test
     public void testSePuedeCantarFlor() {
 
-        this.estadoJuego = this.estadoJuego.flor();
+        this.estadoJuego = this.estadoJuego.flor(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))));
 
         Assert.assertEquals(this.estadoJuego, new FlorCantada(this.estadoJuego));
 

@@ -72,7 +72,7 @@ public class TrucoCantadoTest {
     @Test
     public void testSePuedeCantarFlor() {
 
-        this.estadoJuego = this.estadoJuego.flor();
+        this.estadoJuego = this.estadoJuego.flor(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))));
 
         Assert.assertEquals(this.estadoJuego, new FlorCantada(this.estadoJuego));
 
