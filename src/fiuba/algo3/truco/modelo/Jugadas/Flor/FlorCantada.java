@@ -13,12 +13,10 @@ import fiuba.algo3.truco.modelo.Jugadas.Truco.NoSePuedeCantarValeCuatroException
 
 public class FlorCantada implements EstadoJuego {
 
-    private boolean aceptado;
     private EstadoJuego estadoPrevio;
 
     public FlorCantada(EstadoJuego estadoPrevio) {
 
-        this.aceptado = false;
         this.estadoPrevio = estadoPrevio;
 
     }
@@ -110,8 +108,6 @@ public class FlorCantada implements EstadoJuego {
     @Override
     public EstadoJuego quiero() {
 
-        this.aceptado = true;
-
         throw new NoSePuedeQuererFlorException();
 
     }
@@ -119,13 +115,15 @@ public class FlorCantada implements EstadoJuego {
     @Override
     public void estadoValido() {
 
-        if(!this.aceptado) throw new FlorNoAceptadaNoSePuedeJugarException();
+        throw new FlorNoAceptadaNoSePuedeJugarException();
 
     }
 
     @Override
     public Equipo getEquipoIniciador() {
+
         return null;
+
     }
 
     @Override
