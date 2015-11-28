@@ -1,13 +1,12 @@
 package fiuba.algo3.truco.vista;
 
-import com.sun.javafx.collections.ImmutableObservableList;
 import fiuba.algo3.truco.modelo.Carta;
 import fiuba.algo3.truco.modelo.Equipo;
+import fiuba.algo3.truco.modelo.LaCartaNoSeEncuentraEnLaManoDelJugadorException;
 import fiuba.algo3.truco.modelo.Mesa;
-import javafx.beans.property.SimpleListProperty;
-import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.DialogEvent;
 import javafx.scene.control.Label;
 
 import java.util.LinkedList;
@@ -33,6 +32,7 @@ public class VentanaJuegoController {
     @FXML
     private List<Label> cartas;
 
+
     private Mesa mesa;
     private Main main;
     private Equipo equipo1;
@@ -41,6 +41,7 @@ public class VentanaJuegoController {
 
     public VentanaJuegoController(){
     }
+
 
     public void setMain(Main main, Mesa mesa,Equipo equipo1, Equipo equipo2) {
         this.main = main;
@@ -60,13 +61,49 @@ public class VentanaJuegoController {
        for (int i=0; i<cartasJugadorActual.size();i++) {
            cartas.get(i).setText(this.toString(cartasJugadorActual.get(i)));
        }
-        for (int i=cartasJugadorActual.size(); i<3;i++) {
-            cartas.get(i).setText("");
-        }
     }
 
     private String toString(Carta carta) {
         return Integer.toString(carta.getValor()) +" de "+ carta.getPalo().getClass().getSimpleName();
+    }
+
+    @FXML
+    private void JugarCarta1Handler() {
+        try {
+            mesa.hacerJugada(cartasJugadorActual.get(0));
+            this.mostrarJugadorActual();
+            this.mostrarCartasJugadorActual();
+        } catch (LaCartaNoSeEncuentraEnLaManoDelJugadorException e){
+            this.mostrarAlertaCartaInvalida();
+        }
+    }
+    @FXML
+    private void JugarCarta2Handler() {
+        try {
+            mesa.hacerJugada(cartasJugadorActual.get(1));
+            this.mostrarJugadorActual();
+            this.mostrarCartasJugadorActual();
+        } catch (LaCartaNoSeEncuentraEnLaManoDelJugadorException e){
+            this.mostrarAlertaCartaInvalida();
+        }
+    }
+    @FXML
+    private void JugarCarta3Handler() {
+        try {
+            mesa.hacerJugada(cartasJugadorActual.get(2));
+            this.mostrarJugadorActual();
+            this.mostrarCartasJugadorActual();
+        } catch (LaCartaNoSeEncuentraEnLaManoDelJugadorException e){
+            this.mostrarAlertaCartaInvalida();
+        }
+    }
+
+    private void mostrarAlertaCartaInvalida() {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Carta invalida");
+        alert.setHeaderText(null);
+        alert.setContentText("No puede jugar esta carta no la tiene mas en su mano.");
+        alert.showAndWait();
     }
 
     @FXML
