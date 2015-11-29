@@ -59,13 +59,16 @@ public class PartidaCompletaTest {
 
     @Test(expected = EquipoQueCantoTrucoNoPuedeCantarRetrucoException.class)
     public void siCantasTrucoYJ2QuiereJ1NoPuedeRevirar(){
+
         Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
         mesa.truco();
         Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
         mesa.quieroTruco();
         Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
         mesa.retruco();
+
     }
+
     @Test
     public void siCantasTrucoYJ2QuiereJ2PuedeRevirar(){
         Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());

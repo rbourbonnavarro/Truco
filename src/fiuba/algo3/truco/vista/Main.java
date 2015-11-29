@@ -31,7 +31,7 @@ public class Main extends Application {
         iniciarVentanaRaiz();
 
         this.equipo1 = new Equipo("equipo1",Arrays.asList(new Jugador("J1")));
-        this.equipo2 = new Equipo("equipo1",Arrays.asList(new Jugador("J2")));
+        this.equipo2 = new Equipo("equipo2",Arrays.asList(new Jugador("J2")));
         this.mesa = new Mesa(equipo1, equipo2,false);
 
         //iniciarSeleccionModoDeJuego();
