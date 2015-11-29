@@ -102,6 +102,8 @@ public class VentanaJuegoController {
     private List<Button> botonesEnvido;
     private List<Button> botonesFlor;
     private List<Button> botonesTanto;
+    private List<Button> botonesTruco;
+    private List<Button> botonesQuiero;
 
     @FXML
     private void initialize() {
@@ -116,10 +118,11 @@ public class VentanaJuegoController {
         this.botonesFlor = new ArrayList<>(Arrays.asList(this.botonFlor, this.botonContraFlorAlResto, this.botonContraFlorAlPartido));
         this.botonesTanto = new ArrayList<>(this.botonesEnvido);
         this.botonesTanto.addAll(this.botonesFlor);
-        this.visibilizarBotones(Arrays.asList(
-                botonNoQuieroTruco,botonQuieroTruco,botonRetruco,
-                botonValeCuatro,botonQuieroEnvido,botonNoQuieroTanto,
-                botonQuieroFlor), false);
+        this.botonesTruco = new ArrayList<>(Arrays.asList(this.botonTruco, this.botonRetruco, this.botonValeCuatro));
+        this.botonesQuiero = new ArrayList<>(Arrays.asList(this.botonQuieroTruco, this.botonNoQuieroTruco, this.botonQuieroEnvido, this.botonQuieroFlor, this.botonNoQuieroTanto));
+
+        this.visibilizarBotones(this.botonesQuiero, false);
+        this.visibilizarBotones(Arrays.asList(this.botonRetruco, this.botonValeCuatro), false);
 
     }
 
@@ -282,6 +285,8 @@ public class VentanaJuegoController {
 
     private void mostrarJugadorActual() {
 
+        this.puedoCantar();
+
         if(!this.jugadorPrevio.equals(this.mesa.getJugadorActual())) {
 
             this.indiceJugador = (this.indiceJugador + 1) % 2;
@@ -310,23 +315,76 @@ public class VentanaJuegoController {
 
     }
 
+    @FXML
+    private void cantarEnvidoHandler() {
+
+        this.mesa.envido();
+        this.visibilizarBotones(this.botonesTruco, false);
+        this.visibilizarBotones(this.botonesQuiero, false);
+        this.botonQuieroEnvido.setVisible(true);
+        this.botonNoQuieroTanto.setVisible(true);
+
+        this.mostrarJugadorActual();
+
+    }
+
+    @FXML
+    private void cantarRealEnvidoHandler() {
+
+        this.mesa.realEnvido();
+        this.botonEnvido.setVisible(false);
+        this.visibilizarBotones(this.botonesTruco, false);
+        this.visibilizarBotones(this.botonesQuiero, false);
+        this.botonQuieroEnvido.setVisible(true);
+        this.botonNoQuieroTanto.setVisible(true);
+
+        this.mostrarJugadorActual();
+
+    }
+
+    @FXML
+    private void cantarFaltaEnvidoHandler() {
+
+        this.mesa.faltaEnvido();
+        this.botonEnvido.setVisible(false);
+        this.botonRealEnvido.setVisible(false);
+        this.visibilizarBotones(this.botonesTruco, false);
+        this.visibilizarBotones(this.botonesQuiero, false);
+        this.botonQuieroEnvido.setVisible(true);
+        this.botonNoQuieroTanto.setVisible(true);
+
+        this.mostrarJugadorActual();
+
+    }
+
+    @FXML
+    private void quieroEnvidoHandler() {
+
+        this.mesa.quieroEnvido();
+
+        this.mostrarJugadorActual();
+
+    }
+
+    @FXML
+    private void noQuieroTantoHandler() {
+
+        this.mesa.noQuieroTanto();
+
+        this.mostrarJugadorActual();
+
+    }
+
     private void puedoCantar() {
 
         this.visibilizarBotones(this.botonesTanto, true);
 
         this.puedoCantarTruco();
-        //this.puedoCantarEnvido();
         this.puedoCantarTanto();
 
     }
 
     private void puedoCantarTruco() {
-
-
-
-    }
-
-    private void puedoCantarEnvido() {
 
 
 
