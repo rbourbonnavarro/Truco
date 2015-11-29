@@ -122,6 +122,8 @@ public class ValeCuatroCantado implements EstadoJuego {
 
     }
 
+
+
     @Override
     public boolean equals (Object estado){
 

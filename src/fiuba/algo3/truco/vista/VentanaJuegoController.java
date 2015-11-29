@@ -11,12 +11,13 @@ import fiuba.algo3.truco.modelo.Jugadas.Flor.ContraFlorAlRestoCantada;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorCantada;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorFlorCantada;
 import fiuba.algo3.truco.modelo.Jugadas.NadaCantado;
-import fiuba.algo3.truco.modelo.Jugadas.Truco.TrucoCantado;
-import fiuba.algo3.truco.modelo.Jugadas.Truco.TrucoQuerido;
+import fiuba.algo3.truco.modelo.Jugadas.Truco.*;
 import fiuba.algo3.truco.modelo.Ronda.PrimeraVuelta;
 import fiuba.algo3.truco.modelo.Ronda.Vuelta;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
+import javafx.scene.control.DialogEvent;
 import javafx.scene.control.Label;
 
 import java.util.ArrayList;
@@ -136,10 +137,9 @@ public class VentanaJuegoController {
         this.equipo2 = equipo2;
         this.mostrarPuntos();
 
-        if(!this.mesa.seJuegaConFlor())
-            this.visibilizarBotones(this.botonesFlor, false);
-        else
-            this.visibilizarBotones(Arrays.asList(this.botonContraFlorAlResto, this.botonContraFlorAlPartido), false);
+
+        this.visibilizarBotones(this.botonesFlor, mesa.seJuegaConFlor());
+        this.visibilizarBotones(Arrays.asList(this.botonContraFlorAlResto, this.botonContraFlorAlPartido), false);
 
         this.jugadorPrevio = this.mesa.getJugadorActual();
         this.mostrarJugadorActual();
@@ -179,7 +179,7 @@ public class VentanaJuegoController {
         this.mostrarCartaEnMesa(cartasJugadorActual.get(0));
         this.mostrarJugadorActual();
         this.mostrarPuntos();
-        if(this.mesa.getCartasEnMesa().size() == 0) this.nuevaRonda();
+        if (this.mesa.getCartasEnMesa().size() == 0) this.nuevaRonda();
 
 
     }
@@ -227,8 +227,7 @@ public class VentanaJuegoController {
 
         this.visibilizarBotones(this.botonesTanto, true);
 
-        if(!this.mesa.seJuegaConFlor())
-            this.visibilizarBotones(this.botonesFlor, false);
+        this.visibilizarBotones(this.botonesFlor, this.mesa.seJuegaConFlor());
 
     }
 
@@ -267,25 +266,39 @@ public class VentanaJuegoController {
 
     @FXML
     private void reTrucoHandler(){
+        try {
+            mesa.retruco();
+            this.mostrarJugadorActual();
+            this.botonRetruco.setVisible(false);
+            this.botonValeCuatro.setVisible(true);
+            this.botonQuieroTruco.setVisible(true);
+            this.botonNoQuieroTruco.setVisible(true);
+        } catch (EquipoQueCantoTrucoNoPuedeCantarRetrucoException e){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Jugador no puede cantar Retruco");
+            alert.setHeaderText("");
+            alert.setContentText("No puede cantar retruco ya que usted cantó truco");
+            alert.showAndWait();
+        }
 
-        mesa.retruco();
-        this.mostrarJugadorActual();
-        this.botonRetruco.setVisible(false);
-        this.botonValeCuatro.setVisible(true);
-        this.botonQuieroTruco.setVisible(true);
-        this.botonNoQuieroTruco.setVisible(true);
 
     }
 
     @FXML
     private void valeCuatroHandler(){
-
-        mesa.valeCuatro();
-        this.mostrarJugadorActual();
-        this.botonValeCuatro.setVisible(false);
-        this.botonQuieroTruco.setVisible(true);
-        this.botonNoQuieroTruco.setVisible(true);
-
+        try{
+            mesa.valeCuatro();
+            this.mostrarJugadorActual();
+            this.botonValeCuatro.setVisible(false);
+            this.botonQuieroTruco.setVisible(true);
+            this.botonNoQuieroTruco.setVisible(true);
+        } catch (EquipoQueCantoRetrucoNoPuedeCantarValeCuatroException e){
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Jugador no puede cantar Vale Cuatro");
+            alert.setHeaderText("");
+            alert.setContentText("No puede cantar vale cuatro ya que usted cantó re truco");
+            alert.showAndWait();
+        }
     }
 
     @FXML
@@ -363,6 +376,8 @@ public class VentanaJuegoController {
         this.visibilizarBotones(this.botonesQuiero, false);
         this.botonQuieroEnvido.setVisible(true);
         this.botonNoQuieroTanto.setVisible(true);
+        if(mesa.getEstadoVuelta().getEstadoJuego() instanceof EnvidoEnvidoCantado)
+            this.botonEnvido.setVisible(false);
 
         this.mostrarJugadorActual();
 
@@ -439,9 +454,9 @@ public class VentanaJuegoController {
 
         this.jugadorPrevio = this.mesa.getJugadorActual();
 
-        this.turno.setText(this.mesa.getJugadorActual().getNombre());
+        this.turno.setText(this.jugadorPrevio.getNombre());
 
-        this.cartasJugadorActual = this.mesa.getCartasDelJugadorActual();
+        this.cartasJugadorActual = this.jugadorPrevio.obtenerCartas();
 
         for(Button boton : this.botonesCartasJugadorActual) {
 
@@ -449,8 +464,7 @@ public class VentanaJuegoController {
             boton.setDisable(true);
 
         }
-
-        if(!(this.mesa.getEstadoVuelta() instanceof PrimeraVuelta)) {
+        if(!(mesa.getEstadoVuelta() instanceof PrimeraVuelta)) {
 
             this.visibilizarBotones(this.botonesTanto, false);
 

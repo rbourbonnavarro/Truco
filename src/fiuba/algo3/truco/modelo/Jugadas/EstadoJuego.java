@@ -36,4 +36,5 @@ public interface EstadoJuego {
     Equipo getEquipoIniciador();
 
 
+
 }
