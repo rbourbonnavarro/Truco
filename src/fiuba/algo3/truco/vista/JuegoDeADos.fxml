@@ -50,6 +50,9 @@
                                                 <Button mnemonicParsing="false" text="Contra al partido" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
                                                 <Button mnemonicParsing="false" text="Quiero" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                                                 <Button mnemonicParsing="false" text="No Quiero" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                                                <Button mnemonicParsing="false" text="Quiero" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                                                <Button mnemonicParsing="false" text="No Quiero" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                                                <Button mnemonicParsing="false" text="Quiero" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                                              </children>
                                           </GridPane>
                                        </children></AnchorPane>
@@ -90,8 +93,8 @@
                                             <children>
                                                 <Label text="Equipo1: " />
                                                 <Label text="Equipo 2:" GridPane.rowIndex="1" />
-                                                <Label fx:id="puntajeEquipo1" text="Label" GridPane.columnIndex="1" />
-                                                <Label fx:id="puntajeEquipo2" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                <Label fx:id="puntajeEquipo1" text="Label" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
+                                                <Label fx:id="puntajeEquipo2" text="Label" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
                                             </children>
                                         </GridPane>
                                     </children>
