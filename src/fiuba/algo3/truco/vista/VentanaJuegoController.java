@@ -12,9 +12,6 @@ import javafx.scene.control.Label;
 import java.util.LinkedList;
 import java.util.List;
 
-/**
- * Created by GomezPeter on 28/11/2015.
- */
 public class VentanaJuegoController {
 
     @FXML
@@ -38,10 +35,15 @@ public class VentanaJuegoController {
     private Equipo equipo1;
     private Equipo equipo2;
     private List<Carta> cartasJugadorActual;
+    private DiccionarioCartas diccionarioCartas;
 
-    public VentanaJuegoController(){
+    @FXML
+    private void initialize(){
+
+        this.cartas = new LinkedList<>();
+        this.diccionarioCartas = new DiccionarioCartas();
+
     }
-
 
     public void setMain(Main main, Mesa mesa,Equipo equipo1, Equipo equipo2) {
         this.main = main;
@@ -57,18 +59,20 @@ public class VentanaJuegoController {
     }
 
     private void mostrarCartasJugadorActual() {
-        cartasJugadorActual = mesa.getCartasDelJugadorActual();
-       for (int i=0; i<cartasJugadorActual.size();i++) {
-           cartas.get(i).setText(this.toString(cartasJugadorActual.get(i)));
-       }
-    }
 
-    private String toString(Carta carta) {
-        return Integer.toString(carta.getValor()) +" de "+ carta.getPalo().getClass().getSimpleName();
+        cartasJugadorActual = mesa.getCartasDelJugadorActual();
+
+        for (int i=0; i<cartasJugadorActual.size();i++) {
+
+           cartas.get(i).setText(this.diccionarioCartas.representacionCarta(cartasJugadorActual.get(i)));
+
+        }
+
     }
 
     @FXML
     private void JugarCarta1Handler() {
+
         try {
             mesa.hacerJugada(cartasJugadorActual.get(0));
             this.mostrarJugadorActual();
@@ -76,9 +80,12 @@ public class VentanaJuegoController {
         } catch (LaCartaNoSeEncuentraEnLaManoDelJugadorException e){
             this.mostrarAlertaCartaInvalida();
         }
+
     }
+
     @FXML
     private void JugarCarta2Handler() {
+
         try {
             mesa.hacerJugada(cartasJugadorActual.get(1));
             this.mostrarJugadorActual();
@@ -86,9 +93,12 @@ public class VentanaJuegoController {
         } catch (LaCartaNoSeEncuentraEnLaManoDelJugadorException e){
             this.mostrarAlertaCartaInvalida();
         }
+
     }
+
     @FXML
     private void JugarCarta3Handler() {
+
         try {
             mesa.hacerJugada(cartasJugadorActual.get(2));
             this.mostrarJugadorActual();
@@ -96,6 +106,7 @@ public class VentanaJuegoController {
         } catch (LaCartaNoSeEncuentraEnLaManoDelJugadorException e){
             this.mostrarAlertaCartaInvalida();
         }
+
     }
 
     private void mostrarAlertaCartaInvalida() {
@@ -106,17 +117,17 @@ public class VentanaJuegoController {
         alert.showAndWait();
     }
 
-    @FXML
-    private void initialize(){
-        this.cartas = new LinkedList<>();
-    }
-
     private void mostrarPuntos(){
+
         this.puntajeEquipo1.setText(Integer.toString(mesa.puntaje(equipo1)));
         this.puntajeEquipo2.setText(Integer.toString(mesa.puntaje(equipo1)));
+
     }
+
     private void mostrarJugadorActual(){
+
         this.turno.setText(mesa.getJugadorActual().getNombre());
+
     }
 
 }

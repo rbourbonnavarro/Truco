@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fiuba.algo3.truco.vista.VentanaSeleccionModoDeJuegoController">
+   <children>
+      <Label layoutX="68.0" layoutY="42.0" text="Jugadores" />
+      <RadioButton fx:id="opcionDeADosContraLaPC" layoutX="47.0" layoutY="80.0" mnemonicParsing="false" onAction="#opcionDeADosContraLaPCHandler" text="De a 2 contra la PC">
+         <toggleGroup>
+            <ToggleGroup fx:id="opcionGrupo1" />
+         </toggleGroup>
+      </RadioButton>
+      <RadioButton fx:id="opcionDeADos" layoutX="47.0" layoutY="122.0" mnemonicParsing="false" onAction="#opcionDeADosHandler" text="De a 2" toggleGroup="$opcionGrupo1" />
+      <RadioButton fx:id="opcionDeACuatro" layoutX="47.0" layoutY="162.0" mnemonicParsing="false" onAction="#opcionDeACuatroHandler" text="De a 4" toggleGroup="$opcionGrupo1" />
+      <RadioButton fx:id="opcionDeASeis" layoutX="47.0" layoutY="203.0" mnemonicParsing="false" onAction="#opcionDeASeisHandler" text="De a 6" toggleGroup="$opcionGrupo1" />
+      <TextField fx:id="textJ1E1" layoutX="259.0" layoutY="37.0" promptText="Jugador 1 - Equipo 1" />
+      <TextField fx:id="textJ1E2" layoutX="259.0" layoutY="101.0" promptText="Jugador 1 - Equipo 2" />
+      <TextField fx:id="textJ2E1" layoutX="259.0" layoutY="172.0" promptText="Jugador 2 - Equipo 1" />
+      <TextField fx:id="textJ2E2" layoutX="259.0" layoutY="241.0" promptText="Jugador 2 - Equipo 2" />
+      <TextField fx:id="textJ3E1" layoutX="259.0" layoutY="308.0" promptText="Jugador 3 - Equipo 1" />
+      <TextField fx:id="textJ3E2" layoutX="259.0" layoutY="373.0" promptText="Jugador 3 - Equipo 2" />
+   </children>
+</AnchorPane>
