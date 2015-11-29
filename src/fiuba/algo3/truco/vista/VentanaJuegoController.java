@@ -458,63 +458,6 @@ public class VentanaJuegoController {
 
     }
 
-    private void puedoCantar() {
-
-        this.visibilizarBotones(this.botonesTanto, true);
-
-        this.puedoCantarTruco();
-        this.puedoCantarTanto();
-
-    }
-
-    private void puedoCantarTruco() {
-
-
-
-    }
-
-    private void puedoCantarTanto() {
-
-        Vuelta estadoVuelta = this.mesa.getEstadoVuelta();
-        EstadoJuego estadoJuego = estadoVuelta.getEstadoJuego();
-
-        this.visibilizarBotones(this.botonesFlor, mesa.seJuegaConFlor());
-
-        if(estadoVuelta instanceof PrimeraVuelta) {
-
-            if(estadoJuego instanceof EnvidoEnvidoCantado) this.visibilizarBotones(this.botonesFlor, false);
-
-            if(estadoJuego instanceof EnvidoEnvidoCantado
-                    || estadoJuego instanceof RealEnvidoCantado
-                    || estadoJuego instanceof FaltaEnvidoCantado) {
-
-                this.botonEnvido.setVisible(false);
-
-            }
-
-            if(estadoJuego instanceof FaltaEnvidoCantado) {
-
-                this.botonEnvido.setVisible(false);
-                this.botonRealEnvido.setVisible(false);
-
-            }
-
-            if(estadoJuego instanceof FlorCantada) this.visibilizarBotones(this.botonesEnvido, false);
-
-            if(estadoJuego instanceof FlorFlorCantada
-                    || estadoJuego instanceof ContraFlorAlRestoCantada
-                    || estadoJuego instanceof ContraFlorAlPartidoCantado)
-                this.visibilizarBotones(this.botonesTanto, false);
-
-        }
-        else {
-
-            this.visibilizarBotones(this.botonesTanto, false);
-
-        }
-
-    }
-
     private void visibilizarBotones(List<Button> botones, boolean visibilidad) {
 
         for(Button boton : botones) {
