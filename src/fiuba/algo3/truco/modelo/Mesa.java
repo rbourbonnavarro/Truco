@@ -423,5 +423,11 @@ public class Mesa {
 
     }
 
+    public boolean seJuegaConFlor() {
+
+        return this.seJuegaConFlor;
+
+    }
+
 
 }

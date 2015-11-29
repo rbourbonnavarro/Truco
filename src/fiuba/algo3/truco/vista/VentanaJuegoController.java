@@ -1,8 +1,21 @@
 package fiuba.algo3.truco.vista;
 
 import fiuba.algo3.truco.modelo.*;
+import fiuba.algo3.truco.modelo.Jugadas.Envido.EnvidoCantado;
+import fiuba.algo3.truco.modelo.Jugadas.Envido.EnvidoEnvidoCantado;
+import fiuba.algo3.truco.modelo.Jugadas.Envido.FaltaEnvidoCantado;
+import fiuba.algo3.truco.modelo.Jugadas.Envido.RealEnvidoCantado;
+import fiuba.algo3.truco.modelo.Jugadas.EstadoJuego;
+import fiuba.algo3.truco.modelo.Jugadas.Flor.ContraFlorAlPartidoCantado;
+import fiuba.algo3.truco.modelo.Jugadas.Flor.ContraFlorAlRestoCantada;
+import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorCantada;
+import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorFlorCantada;
+import fiuba.algo3.truco.modelo.Jugadas.NadaCantado;
+import fiuba.algo3.truco.modelo.Jugadas.Truco.TrucoCantado;
+import fiuba.algo3.truco.modelo.Jugadas.Truco.TrucoQuerido;
+import fiuba.algo3.truco.modelo.Ronda.PrimeraVuelta;
+import fiuba.algo3.truco.modelo.Ronda.Vuelta;
 import javafx.fxml.FXML;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
@@ -47,6 +60,18 @@ public class VentanaJuegoController {
     @FXML
     private List<List<Button>> botonesCartasJugadas;
     @FXML
+    private Button botonFlor;
+    @FXML
+    private Button botonContraFlorAlResto;
+    @FXML
+    private Button botonContraFlorAlPartido;
+    @FXML
+    private Button botonEnvido;
+    @FXML
+    private Button botonRealEnvido;
+    @FXML
+    private Button botonFaltaEnvido;
+    @FXML
     private Button botonTruco;
     @FXML
     private Button botonRetruco;
@@ -74,6 +99,9 @@ public class VentanaJuegoController {
     private List<Integer> cantidadJugadasJugador;
     private Jugador jugadorPrevio;
     private int indiceJugador = 0;
+    private List<Button> botonesEnvido;
+    private List<Button> botonesFlor;
+    private List<Button> botonesTanto;
 
     @FXML
     private void initialize() {
@@ -84,10 +112,14 @@ public class VentanaJuegoController {
         this.botonesCartasJugadas = new ArrayList<>(Arrays.asList(this.botonesCartasJugadasJugador1, this.botonesCartasJugadasJugador2));
         this.cantidadJugadasJugador = new ArrayList<>(Arrays.asList(this.cantidadJugadasJugador1, this.cantidadJugadasJugador2));
         this.diccionarioCartas = new DiccionarioCartas();
+        this.botonesEnvido = new ArrayList<>(Arrays.asList(this.botonEnvido, this.botonRealEnvido, this.botonFaltaEnvido));
+        this.botonesFlor = new ArrayList<>(Arrays.asList(this.botonFlor, this.botonContraFlorAlResto, this.botonContraFlorAlPartido));
+        this.botonesTanto = new ArrayList<>(this.botonesEnvido);
+        this.botonesTanto.addAll(this.botonesFlor);
         this.visibilizarBotones(Arrays.asList(
                 botonNoQuieroTruco,botonQuieroTruco,botonRetruco,
                 botonValeCuatro,botonQuieroEnvido,botonNoQuieroTanto,
-                botonQuieroFlor),false);
+                botonQuieroFlor), false);
 
     }
 
@@ -206,15 +238,6 @@ public class VentanaJuegoController {
 
 
     }
-    private void visibilizarBotones(List<Button> botones, boolean visibilidad) {
-
-        for(Button boton : botones) {
-
-            boton.setVisible(visibilidad);
-
-        }
-
-    }
 
     private void nuevaRonda() {
 
@@ -279,5 +302,87 @@ public class VentanaJuegoController {
         }
 
     }
+
+    @FXML
+    private void cantarFlorHandler() {
+
+        this.mesa.flor();
+
+    }
+
+    private void puedoCantar() {
+
+        this.visibilizarBotones(this.botonesTanto, true);
+
+        this.puedoCantarTruco();
+        //this.puedoCantarEnvido();
+        this.puedoCantarTanto();
+
+    }
+
+    private void puedoCantarTruco() {
+
+
+
+    }
+
+    private void puedoCantarEnvido() {
+
+
+
+    }
+
+    private void puedoCantarTanto() {
+
+        Vuelta estadoVuelta = this.mesa.getEstadoVuelta();
+        EstadoJuego estadoJuego = estadoVuelta.getEstadoJuego();
+
+        if(!this.mesa.seJuegaConFlor()) this.visibilizarBotones(this.botonesFlor, false);
+
+        if(estadoVuelta instanceof PrimeraVuelta) {
+
+            if(estadoJuego instanceof EnvidoEnvidoCantado) this.visibilizarBotones(this.botonesFlor, false);
+
+            if(estadoJuego instanceof EnvidoEnvidoCantado
+                    || estadoJuego instanceof RealEnvidoCantado
+                    || estadoJuego instanceof FaltaEnvidoCantado) {
+
+                this.botonEnvido.setVisible(false);
+
+            }
+
+            if(estadoJuego instanceof FaltaEnvidoCantado) {
+
+                this.botonEnvido.setVisible(false);
+                this.botonRealEnvido.setVisible(false);
+
+            }
+
+            if(estadoJuego instanceof FlorCantada) this.visibilizarBotones(this.botonesEnvido, false);
+
+            if(estadoJuego instanceof FlorFlorCantada
+                    || estadoJuego instanceof ContraFlorAlRestoCantada
+                    || estadoJuego instanceof ContraFlorAlPartidoCantado)
+                this.visibilizarBotones(this.botonesTanto, false);
+
+        }
+        else {
+
+            this.visibilizarBotones(this.botonesTanto, false);
+
+        }
+
+    }
+
+    private void visibilizarBotones(List<Button> botones, boolean visibilidad) {
+
+        for(Button boton : botones) {
+
+            boton.setVisible(visibilidad);
+
+        }
+
+    }
+
 
 }
