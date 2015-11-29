@@ -21,6 +21,7 @@ import javafx.scene.control.Label;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 public class VentanaJuegoController {
@@ -135,6 +136,11 @@ public class VentanaJuegoController {
         this.equipo2 = equipo2;
         this.mostrarPuntos();
 
+        if(!this.mesa.seJuegaConFlor())
+            this.visibilizarBotones(this.botonesFlor, false);
+        else
+            this.visibilizarBotones(Arrays.asList(this.botonContraFlorAlResto, this.botonContraFlorAlPartido), false);
+
         this.jugadorPrevio = this.mesa.getJugadorActual();
         this.mostrarJugadorActual();
 
@@ -211,11 +217,12 @@ public class VentanaJuegoController {
 
     @FXML
     private void JugarCarta1Handler() {
-            mesa.hacerJugada(cartasJugadorActual.get(0));
-            this.mostrarCartaEnMesa(cartasJugadorActual.get(0));
-            this.mostrarJugadorActual();
-            this.mostrarPuntos();
-            if(this.mesa.getCartasEnMesa().size() == 0) this.nuevaRonda();
+
+        mesa.hacerJugada(cartasJugadorActual.get(0));
+        this.mostrarCartaEnMesa(cartasJugadorActual.get(0));
+        this.mostrarJugadorActual();
+        this.mostrarPuntos();
+        if(this.mesa.getCartasEnMesa().size() == 0) this.nuevaRonda();
 
 
     }
@@ -223,21 +230,21 @@ public class VentanaJuegoController {
     @FXML
     private void JugarCarta2Handler() {
 
-            mesa.hacerJugada(cartasJugadorActual.get(1));
-            this.mostrarCartaEnMesa(cartasJugadorActual.get(1));
-            this.mostrarJugadorActual();
-            this.mostrarPuntos();
-            if(this.mesa.getCartasEnMesa().size() == 0) this.nuevaRonda();
+        mesa.hacerJugada(cartasJugadorActual.get(1));
+        this.mostrarCartaEnMesa(cartasJugadorActual.get(1));
+        this.mostrarJugadorActual();
+        this.mostrarPuntos();
+        if(this.mesa.getCartasEnMesa().size() == 0) this.nuevaRonda();
     }
 
     @FXML
     private void JugarCarta3Handler() {
 
-            mesa.hacerJugada(cartasJugadorActual.get(2));
-            this.mostrarCartaEnMesa(cartasJugadorActual.get(2));
-            this.mostrarJugadorActual();
-            this.mostrarPuntos();
-            if(this.mesa.getCartasEnMesa().size() == 0) this.nuevaRonda();
+        mesa.hacerJugada(cartasJugadorActual.get(2));
+        this.mostrarCartaEnMesa(cartasJugadorActual.get(2));
+        this.mostrarJugadorActual();
+        this.mostrarPuntos();
+        if(this.mesa.getCartasEnMesa().size() == 0) this.nuevaRonda();
 
 
     }
@@ -285,8 +292,6 @@ public class VentanaJuegoController {
 
     private void mostrarJugadorActual() {
 
-        this.puedoCantar();
-
         if(!this.jugadorPrevio.equals(this.mesa.getJugadorActual())) {
 
             this.indiceJugador = (this.indiceJugador + 1) % 2;
@@ -312,6 +317,47 @@ public class VentanaJuegoController {
     private void cantarFlorHandler() {
 
         this.mesa.flor();
+
+        if(this.mesa.getEstadoVuelta().getEstadoJuego() instanceof FlorFlorCantada)
+            this.visibilizarBotones(this.botonesFlor, false);
+        else
+            this.visibilizarBotones(Arrays.asList(this.botonContraFlorAlResto, this.botonContraFlorAlPartido), true);
+
+        this.visibilizarBotones(this.botonesEnvido, false);
+        this.visibilizarBotones(this.botonesTruco, false);
+        this.visibilizarBotones(this.botonesQuiero, false);
+        this.botonQuieroFlor.setVisible(true);
+        this.botonNoQuieroTanto.setVisible(true);
+
+        this.mostrarJugadorActual();
+
+    }
+
+    @FXML
+    private void cantarContraFlorAlRestoHandler() {
+
+        this.mesa.contraFlorAlResto();
+        this.visibilizarBotones(this.botonesTanto, false);
+        this.visibilizarBotones(this.botonesTruco, false);
+        this.visibilizarBotones(this.botonesQuiero, false);
+        this.botonQuieroFlor.setVisible(true);
+        this.botonNoQuieroTanto.setVisible(true);
+
+        this.mostrarJugadorActual();
+
+    }
+
+    @FXML
+    private void cantarContraFlorAlPartidoHandler() {
+
+        this.mesa.contraFlorAlPartido();
+        this.visibilizarBotones(this.botonesTanto, false);
+        this.visibilizarBotones(this.botonesTruco, false);
+        this.visibilizarBotones(this.botonesQuiero, false);
+        this.botonQuieroFlor.setVisible(true);
+        this.botonNoQuieroTanto.setVisible(true);
+
+        this.mostrarJugadorActual();
 
     }
 
@@ -361,7 +407,14 @@ public class VentanaJuegoController {
     private void quieroEnvidoHandler() {
 
         this.mesa.quieroEnvido();
+        this.visibilizarBotones(this.botonesTanto, false);
+        this.visibilizarBotones(this.botonesQuiero, false);
+        if(this.mesa.getEstadoVuelta().getEstadoJuego() instanceof TrucoCantado)
+            this.visibilizarBotones(Arrays.asList(this.botonRetruco, this.botonQuieroTruco, this.botonNoQuieroTruco), true);
+        else
+            this.visibilizarBotones(Collections.singletonList(this.botonTruco), true);
 
+        this.mostrarPuntos();
         this.mostrarJugadorActual();
 
     }
@@ -370,7 +423,14 @@ public class VentanaJuegoController {
     private void noQuieroTantoHandler() {
 
         this.mesa.noQuieroTanto();
+        this.visibilizarBotones(this.botonesTanto, false);
+        this.visibilizarBotones(this.botonesQuiero, false);
+        if(this.mesa.getEstadoVuelta().getEstadoJuego() instanceof TrucoCantado)
+            this.visibilizarBotones(Arrays.asList(this.botonRetruco, this.botonQuieroTruco, this.botonNoQuieroTruco), true);
+        else
+            this.visibilizarBotones(Collections.singletonList(this.botonTruco), true);
 
+        this.mostrarPuntos();
         this.mostrarJugadorActual();
 
     }
