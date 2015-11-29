@@ -225,6 +225,11 @@ public class VentanaJuegoController {
         this.visibilizarBotones(Arrays.asList(this.botonRetruco, this.botonValeCuatro), false);
         this.botonTruco.setVisible(true);
 
+        this.visibilizarBotones(this.botonesTanto, true);
+
+        if(!this.mesa.seJuegaConFlor())
+            this.visibilizarBotones(this.botonesFlor, false);
+
     }
 
     private void mostrarCartaEnMesa(Carta cartaJugada) {
@@ -442,6 +447,12 @@ public class VentanaJuegoController {
 
             boton.setText("Carta dada vuelta");
             boton.setDisable(true);
+
+        }
+
+        if(!(this.mesa.getEstadoVuelta() instanceof PrimeraVuelta)) {
+
+            this.visibilizarBotones(this.botonesTanto, false);
 
         }
 
