@@ -467,7 +467,7 @@ public class VentanaJuegoController {
         Vuelta estadoVuelta = this.mesa.getEstadoVuelta();
         EstadoJuego estadoJuego = estadoVuelta.getEstadoJuego();
 
-        if(!this.mesa.seJuegaConFlor()) this.visibilizarBotones(this.botonesFlor, false);
+        this.visibilizarBotones(this.botonesFlor, mesa.seJuegaConFlor());
 
         if(estadoVuelta instanceof PrimeraVuelta) {
 
