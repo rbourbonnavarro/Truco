@@ -137,8 +137,7 @@ public class VentanaJuegoController {
         this.equipo2 = equipo2;
         this.mostrarPuntos();
 
-
-        this.visibilizarBotones(this.botonesFlor, mesa.seJuegaConFlor());
+        this.visibilizarBotones(this.botonesFlor, this.mesa.seJuegaConFlor());
         this.visibilizarBotones(Arrays.asList(this.botonContraFlorAlResto, this.botonContraFlorAlPartido), false);
 
         this.jugadorPrevio = this.mesa.getJugadorActual();
@@ -179,7 +178,7 @@ public class VentanaJuegoController {
         this.mostrarCartaEnMesa(cartasJugadorActual.get(0));
         this.mostrarJugadorActual();
         this.mostrarPuntos();
-        if (this.mesa.getCartasEnMesa().size() == 0) this.nuevaRonda();
+        if(this.mesa.getCartasEnMesa().size() == 0) this.nuevaRonda();
 
 
     }
@@ -280,8 +279,7 @@ public class VentanaJuegoController {
             alert.setContentText("No puede cantar retruco ya que usted cantó truco");
             alert.showAndWait();
         }
-
-
+        
     }
 
     @FXML
@@ -464,7 +462,8 @@ public class VentanaJuegoController {
             boton.setDisable(true);
 
         }
-        if(!(mesa.getEstadoVuelta() instanceof PrimeraVuelta)) {
+
+        if(!(this.mesa.getEstadoVuelta() instanceof PrimeraVuelta)) {
 
             this.visibilizarBotones(this.botonesTanto, false);
 
