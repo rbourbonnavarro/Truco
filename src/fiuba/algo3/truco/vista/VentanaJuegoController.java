@@ -86,12 +86,6 @@ public class VentanaJuegoController {
 
     private void mostrarCartasJugadorActual() {
 
-        for(Button boton : this.botonesCartasJugadorActual) {
-
-            boton.setDisable(false);
-
-        }
-
         for (int i = 0; i < this.cartasJugadorActual.size(); i++) {
 
             this.botonesCartasJugadorActual.get(i).setText(this.diccionarioCartas.representacionCarta(this.cartasJugadorActual.get(i)));
@@ -117,46 +111,34 @@ public class VentanaJuegoController {
 
     @FXML
     private void JugarCarta1Handler() {
-
-        try {
             mesa.hacerJugada(cartasJugadorActual.get(0));
             this.mostrarCartaEnMesa(cartasJugadorActual.get(0));
             this.mostrarJugadorActual();
             this.mostrarPuntos();
             if(this.mesa.getCartasEnMesa().size() == 0) this.nuevaRonda();
-        } catch (LaCartaNoSeEncuentraEnLaManoDelJugadorException e){
-            this.mostrarAlertaCartaInvalida();
-        }
+
 
     }
 
     @FXML
     private void JugarCarta2Handler() {
 
-        try {
             mesa.hacerJugada(cartasJugadorActual.get(1));
             this.mostrarCartaEnMesa(cartasJugadorActual.get(1));
             this.mostrarJugadorActual();
             this.mostrarPuntos();
             if(this.mesa.getCartasEnMesa().size() == 0) this.nuevaRonda();
-        } catch (LaCartaNoSeEncuentraEnLaManoDelJugadorException e){
-            this.mostrarAlertaCartaInvalida();
-        }
-
     }
 
     @FXML
     private void JugarCarta3Handler() {
 
-        try {
             mesa.hacerJugada(cartasJugadorActual.get(2));
             this.mostrarCartaEnMesa(cartasJugadorActual.get(2));
             this.mostrarJugadorActual();
             this.mostrarPuntos();
             if(this.mesa.getCartasEnMesa().size() == 0) this.nuevaRonda();
-        } catch (LaCartaNoSeEncuentraEnLaManoDelJugadorException e){
-            this.mostrarAlertaCartaInvalida();
-        }
+
 
     }
 
@@ -183,19 +165,13 @@ public class VentanaJuegoController {
         Button botonCartaJugada = this.botonesCartasJugadas.get(this.indiceJugador).get(numeroJugada);
 
         botonCartaJugada.setVisible(true);
+        botonCartaJugada.setDisable(true);
         botonCartaJugada.setText(this.diccionarioCartas.representacionCarta(cartaJugada));
 
         this.cantidadJugadasJugador.set(this.indiceJugador, numeroJugada + 1);
 
     }
 
-    private void mostrarAlertaCartaInvalida() {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.setTitle("Carta invalida");
-        alert.setHeaderText(null);
-        alert.setContentText("No puede jugar esta carta no la tiene mas en su mano.");
-        alert.showAndWait();
-    }
 
     private void mostrarPuntos() {
 
