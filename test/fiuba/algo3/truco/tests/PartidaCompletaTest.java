@@ -1,6 +1,7 @@
 package fiuba.algo3.truco.tests;
 
 import fiuba.algo3.truco.modelo.*;
+import fiuba.algo3.truco.modelo.Jugadas.Truco.EquipoQueCantoTrucoNoPuedeCantarRetrucoException;
 import fiuba.algo3.truco.modelo.Palo.Basto;
 import fiuba.algo3.truco.modelo.Palo.Espada;
 import fiuba.algo3.truco.modelo.Palo.Oro;
@@ -56,6 +57,33 @@ public class PartidaCompletaTest {
 
     }
 
+    @Test(expected = EquipoQueCantoTrucoNoPuedeCantarRetrucoException.class)
+    public void siCantasTrucoYJ2QuiereJ1NoPuedeRevirar(){
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.truco();
+        Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.quieroTruco();
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.retruco();
+    }
+    @Test
+    public void siCantasTrucoYJ2QuiereJ2PuedeRevirar(){
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.truco();
+        Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.quieroTruco();
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.hacerJugada(mesa.getCartasDelJugadorActual().get(0));
+        Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.retruco();
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.valeCuatro();
+        Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.noQuieroTruco();
+
+        Assert.assertEquals(equipo1.getPuntos(),3);
+        Assert.assertEquals(equipo2.getPuntos(),0);
+    }
     @Test
     public void partidaCompleta1() {
 
