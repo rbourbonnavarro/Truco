@@ -4,7 +4,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="580.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fiuba.algo3.truco.vista.VentanaSeleccionModoDeJuegoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fiuba.algo3.truco.vista.VentanaSeleccionModoDeJuegoController">
    <children>
       <Label layoutX="68.0" layoutY="42.0" text="Jugadores" />
       <RadioButton fx:id="opcionDeADosContraLaPC" layoutX="47.0" layoutY="80.0" mnemonicParsing="false" onAction="#opcionDeADosContraLaPCHandler" text="De a 2 contra la PC">
@@ -21,5 +21,10 @@
       <TextField fx:id="textJ2E2" layoutX="259.0" layoutY="241.0" promptText="Jugador 2 - Equipo 2" />
       <TextField fx:id="textJ3E1" layoutX="259.0" layoutY="308.0" promptText="Jugador 3 - Equipo 1" />
       <TextField fx:id="textJ3E2" layoutX="259.0" layoutY="373.0" promptText="Jugador 3 - Equipo 2" />
+      <TextField fx:id="textEquipo1" layoutX="497.0" layoutY="37.0" onKeyPressed="#nombresEquiposHandler" promptText="Equipo 1" />
+      <TextField fx:id="textEquipo2" layoutX="497.0" layoutY="101.0" onKeyReleased="#nombresEquiposHandler" promptText="Equipo 2" />
+      <Button fx:id="botonComenzarJuego" layoutX="436.0" layoutY="563.0" mnemonicParsing="false" onAction="#comenzarJuegoHandler" text="Comenzar juego" />
+      <Label fx:id="labelNombreEquiposIguales" layoutX="475.0" layoutY="177.0" text="Los nombres de los equipos no pueden ser iguales" textFill="#e80808" />
+      <CheckBox fx:id="checkJugarConFlor" layoutX="58.0" layoutY="457.0" mnemonicParsing="false" text="Jugar con flor" />
    </children>
 </AnchorPane>

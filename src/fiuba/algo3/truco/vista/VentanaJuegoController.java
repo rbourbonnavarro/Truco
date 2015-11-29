@@ -11,6 +11,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.MenuBar;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -21,6 +22,10 @@ public class VentanaJuegoController {
 
     @FXML
     private Label turno;
+    @FXML
+    private Label labelEquipo1;
+    @FXML
+    private Label labelEquipo2;
     @FXML
     private Label puntajeEquipo1;
     @FXML
@@ -127,6 +132,8 @@ public class VentanaJuegoController {
         this.mesa = mesa;
         this.equipo1 = equipo1;
         this.equipo2 = equipo2;
+        this.labelEquipo1.setText(this.equipo1.getNombre());
+        this.labelEquipo2.setText(this.equipo2.getNombre());
         this.mostrarPuntos();
 
         this.visibilizarBotones(this.botonesFlor, this.mesa.seJuegaConFlor());

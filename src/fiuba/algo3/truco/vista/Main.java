@@ -30,17 +30,17 @@ public class Main extends Application {
 
         iniciarVentanaRaiz();
 
-        this.equipo1 = new Equipo("equipo1",Arrays.asList(new Jugador("J1")));
+        /*this.equipo1 = new Equipo("equipo1",Arrays.asList(new Jugador("J1")));
         this.equipo2 = new Equipo("equipo2",Arrays.asList(new Jugador("J2")));
-        this.mesa = new Mesa(equipo1, equipo2,false);
+        this.mesa = new Mesa(equipo1, equipo2,false);*/
 
-        //iniciarSeleccionModoDeJuego();
+        iniciarSeleccionModoDeJuego();
 
-        iniciarPartidaDeADos();
+        //iniciarPartidaDeADos();
 
     }
 
-    private void iniciarSeleccionModoDeJuego() {
+    public void iniciarSeleccionModoDeJuego() {
 
         try {
 
@@ -59,7 +59,7 @@ public class Main extends Application {
 
     }
 
-    private void iniciarPartidaDeADos() {
+    public void iniciarPartidaDeADos(Mesa mesa, Equipo equipo1, Equipo equipo2) {
 
         try {
 
@@ -70,7 +70,7 @@ public class Main extends Application {
             this.disenioRaiz.setCenter(partidaDeADos);
 
             VentanaJuegoController controlador = loader.getController();
-            controlador.setMain(this,this.mesa,equipo1,equipo2);
+            controlador.setMain(this, mesa, equipo1, equipo2);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -85,6 +85,9 @@ public class Main extends Application {
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(Main.class.getResource("disenioRaiz.fxml"));
             this.disenioRaiz = loader.load();
+
+            DisenioRaizController controlador = loader.getController();
+            controlador.setMain(this);
 
             Scene scene = new Scene(this.disenioRaiz);
             this.ventanaPrincipal.setScene(scene);
