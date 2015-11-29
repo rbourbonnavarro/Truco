@@ -1,23 +1,15 @@
 package fiuba.algo3.truco.vista;
 
 import fiuba.algo3.truco.modelo.*;
-import fiuba.algo3.truco.modelo.Jugadas.Envido.EnvidoCantado;
 import fiuba.algo3.truco.modelo.Jugadas.Envido.EnvidoEnvidoCantado;
-import fiuba.algo3.truco.modelo.Jugadas.Envido.FaltaEnvidoCantado;
-import fiuba.algo3.truco.modelo.Jugadas.Envido.RealEnvidoCantado;
 import fiuba.algo3.truco.modelo.Jugadas.EstadoJuego;
-import fiuba.algo3.truco.modelo.Jugadas.Flor.ContraFlorAlPartidoCantado;
-import fiuba.algo3.truco.modelo.Jugadas.Flor.ContraFlorAlRestoCantada;
-import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorCantada;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorFlorCantada;
 import fiuba.algo3.truco.modelo.Jugadas.NadaCantado;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.*;
 import fiuba.algo3.truco.modelo.Ronda.PrimeraVuelta;
-import fiuba.algo3.truco.modelo.Ronda.Vuelta;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
-import javafx.scene.control.DialogEvent;
 import javafx.scene.control.Label;
 
 import java.util.ArrayList;
@@ -161,11 +153,14 @@ public class VentanaJuegoController {
     @FXML
     private void MostarCartasHandler() {
 
-        for(Button boton : this.botonesCartasJugadorActual) {
-
-            boton.setDisable(false);
-
-        }
+        EstadoJuego estadoJuego = this.mesa.getEstadoVuelta().getEstadoJuego();
+        if(!(estadoJuego instanceof NadaCantado
+                || estadoJuego instanceof TrucoQuerido
+                || estadoJuego instanceof RetrucoQuerido
+                || estadoJuego instanceof ValeCuatroCantado))
+            this.desactivarBotones(this.botonesCartasJugadorActual, true);
+        else
+            this.desactivarBotones(this.botonesCartasJugadorActual, false);
 
         this.mostrarCartasJugadorActual();
 
@@ -258,6 +253,7 @@ public class VentanaJuegoController {
         this.mostrarJugadorActual();
         this.botonRetruco.setVisible(true);
         this.botonTruco.setVisible(false);
+        this.visibilizarBotones(this.botonesQuiero, false);
         this.botonQuieroTruco.setVisible(true);
         this.botonNoQuieroTruco.setVisible(true);
 
@@ -265,38 +261,51 @@ public class VentanaJuegoController {
 
     @FXML
     private void reTrucoHandler(){
+
         try {
+
             mesa.retruco();
             this.mostrarJugadorActual();
             this.botonRetruco.setVisible(false);
             this.botonValeCuatro.setVisible(true);
+            this.visibilizarBotones(this.botonesQuiero, false);
             this.botonQuieroTruco.setVisible(true);
             this.botonNoQuieroTruco.setVisible(true);
+
         } catch (EquipoQueCantoTrucoNoPuedeCantarRetrucoException e){
+
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Jugador no puede cantar Retruco");
             alert.setHeaderText("");
-            alert.setContentText("No puede cantar retruco ya que usted cantó truco");
+            alert.setContentText("No puede cantar retruco ya que usted canto truco");
             alert.showAndWait();
+
         }
         
     }
 
     @FXML
     private void valeCuatroHandler(){
+
         try{
+
             mesa.valeCuatro();
             this.mostrarJugadorActual();
             this.botonValeCuatro.setVisible(false);
+            this.visibilizarBotones(this.botonesQuiero, false);
             this.botonQuieroTruco.setVisible(true);
             this.botonNoQuieroTruco.setVisible(true);
+
         } catch (EquipoQueCantoRetrucoNoPuedeCantarValeCuatroException e){
+
             Alert alert = new Alert(Alert.AlertType.WARNING);
             alert.setTitle("Jugador no puede cantar Vale Cuatro");
             alert.setHeaderText("");
-            alert.setContentText("No puede cantar vale cuatro ya que usted cantó re truco");
+            alert.setContentText("No puede cantar vale cuatro ya que usted canto re truco");
             alert.showAndWait();
+
         }
+
     }
 
     @FXML
@@ -314,6 +323,7 @@ public class VentanaJuegoController {
 
         mesa.noQuieroTruco();
         this.nuevaRonda();
+        this.mostrarPuntos();
         this.mostrarJugadorActual();
 
     }
@@ -481,7 +491,7 @@ public class VentanaJuegoController {
 
     }
 
-    private void activarBotones(List<Button> botones, boolean activar) {
+    private void desactivarBotones(List<Button> botones, boolean activar) {
 
         for(Button boton : botones) {
 
