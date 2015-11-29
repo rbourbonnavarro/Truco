@@ -386,6 +386,7 @@ public class VentanaJuegoController {
 
         this.mesa.realEnvido();
         this.botonEnvido.setVisible(false);
+        this.botonRealEnvido.setVisible(false);
         this.visibilizarBotones(this.botonesTruco, false);
         this.visibilizarBotones(this.botonesQuiero, false);
         this.botonQuieroEnvido.setVisible(true);
@@ -399,8 +400,7 @@ public class VentanaJuegoController {
     private void cantarFaltaEnvidoHandler() {
 
         this.mesa.faltaEnvido();
-        this.botonEnvido.setVisible(false);
-        this.botonRealEnvido.setVisible(false);
+        this.visibilizarBotones(this.botonesEnvido,false);
         this.visibilizarBotones(this.botonesTruco, false);
         this.visibilizarBotones(this.botonesQuiero, false);
         this.botonQuieroEnvido.setVisible(true);
