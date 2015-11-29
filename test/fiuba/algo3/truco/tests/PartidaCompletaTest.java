@@ -105,17 +105,22 @@ public class PartidaCompletaTest {
         J2.setMano(new Mano(cartasJ2));
 
         Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.getJugadorActual();
+        mesa.getCartasDelJugadorActual();
         mesa.truco();
         Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.getJugadorActual();
+        mesa.getCartasDelJugadorActual();
         mesa.retruco();
         Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.getJugadorActual();
+        mesa.getCartasDelJugadorActual();
         mesa.quieroTruco();
         Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
         mesa.hacerJugada(carta1);
 
-
-
     }
+
     @Test
     public void partidaCompleta1() {
 
