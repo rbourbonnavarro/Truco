@@ -86,9 +86,17 @@ public class VentanaJuegoController {
 
     private void mostrarCartasJugadorActual() {
 
-        for (int i = 0; i < cartasJugadorActual.size(); i++) {
+        for(Button boton : this.botonesCartasJugadorActual) {
 
-           this.botonesCartasJugadorActual.get(i).setText(this.diccionarioCartas.representacionCarta(this.cartasJugadorActual.get(i)));
+            boton.setDisable(false);
+
+        }
+
+        for (int i = 0; i < this.cartasJugadorActual.size(); i++) {
+
+            this.botonesCartasJugadorActual.get(i).setText(this.diccionarioCartas.representacionCarta(this.cartasJugadorActual.get(i)));
+            if(!this.mesa.getJugadorActual().obtenerCartasEnMano().contains(this.cartasJugadorActual.get(i)))
+                this.botonesCartasJugadorActual.get(i).setDisable(true);
 
         }
 
