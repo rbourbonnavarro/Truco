@@ -160,6 +160,49 @@ public class VentanaJuegoController {
     }
 
     @FXML
+    private void trucoHandler(){
+        mesa.truco();
+        this.mostrarJugadorActual();
+        this.botonRetruco.setVisible(true);
+        this.botonTruco.setVisible(false);
+        this.botonQuieroTruco.setVisible(true);
+        this.botonNoQuieroTruco.setVisible(true);
+    }
+
+    @FXML
+    private void reTrucoHandler(){
+        mesa.retruco();
+        this.mostrarJugadorActual();
+        this.botonRetruco.setVisible(false);
+        this.botonValeCuatro.setVisible(true);
+        this.botonQuieroTruco.setVisible(true);
+        this.botonNoQuieroTruco.setVisible(true);
+    }
+
+    @FXML
+    private void valeCuatroHandler(){
+        mesa.valeCuatro();
+        this.mostrarJugadorActual();
+        this.botonValeCuatro.setVisible(false);
+        this.botonQuieroTruco.setVisible(true);
+        this.botonNoQuieroTruco.setVisible(true);
+    }
+
+    @FXML
+    private void quieroTrucoHandler(){
+        mesa.quieroTruco();
+        this.mostrarJugadorActual();
+        this.botonNoQuieroTruco.setVisible(false);
+        this.botonQuieroTruco.setVisible(false);
+    }
+    @FXML
+    private void noQuieroTrucoHandler() {
+        mesa.noQuieroTruco();
+        this.nuevaRonda();
+        this.mostrarJugadorActual();
+    }
+
+    @FXML
     private void MostarCartasHandler() {
 
         for(Button boton : this.botonesCartasJugadorActual) {
@@ -216,14 +259,13 @@ public class VentanaJuegoController {
                 botonCartaJugada.setVisible(false);
 
             }
-
+            this.visibilizarBotones(Arrays.asList(
+                    botonNoQuieroTruco,botonQuieroTruco,botonRetruco,
+                    botonValeCuatro),false);
+            this.botonTruco.setVisible(true);
             this.cantidadJugadasJugador.set(i, 0);
 
         }
-
-        this.visibilizarBotones(this.botonesQuiero, false);
-        this.visibilizarBotones(Arrays.asList(this.botonRetruco, this.botonValeCuatro), false);
-        this.botonTruco.setVisible(true);
 
     }
 
@@ -248,57 +290,26 @@ public class VentanaJuegoController {
 
     }
 
-    @FXML
-    private void trucoHandler(){
+    private void mostrarJugadorActual() {
 
-        mesa.truco();
-        this.mostrarJugadorActual();
-        this.botonRetruco.setVisible(true);
-        this.botonTruco.setVisible(false);
-        this.botonQuieroTruco.setVisible(true);
-        this.botonNoQuieroTruco.setVisible(true);
+        if(!this.jugadorPrevio.equals(this.mesa.getJugadorActual())) {
 
-    }
+            this.indiceJugador = (this.indiceJugador + 1) % 2;
 
-    @FXML
-    private void reTrucoHandler(){
+        }
 
-        mesa.retruco();
-        this.mostrarJugadorActual();
-        this.botonRetruco.setVisible(false);
-        this.botonValeCuatro.setVisible(true);
-        this.botonQuieroTruco.setVisible(true);
-        this.botonNoQuieroTruco.setVisible(true);
+        this.jugadorPrevio = this.mesa.getJugadorActual();
 
-    }
+        this.turno.setText(this.mesa.getJugadorActual().getNombre());
 
-    @FXML
-    private void valeCuatroHandler(){
+        this.cartasJugadorActual = this.mesa.getCartasDelJugadorActual();
 
-        mesa.valeCuatro();
-        this.mostrarJugadorActual();
-        this.botonValeCuatro.setVisible(false);
-        this.botonQuieroTruco.setVisible(true);
-        this.botonNoQuieroTruco.setVisible(true);
+        for(Button boton : this.botonesCartasJugadorActual) {
 
-    }
+            boton.setText("Carta dada vuelta");
+            boton.setDisable(true);
 
-    @FXML
-    private void quieroTrucoHandler(){
-
-        mesa.quieroTruco();
-        this.mostrarJugadorActual();
-        this.botonNoQuieroTruco.setVisible(false);
-        this.botonQuieroTruco.setVisible(false);
-
-    }
-
-    @FXML
-    private void noQuieroTrucoHandler() {
-
-        mesa.noQuieroTruco();
-        this.nuevaRonda();
-        this.mostrarJugadorActual();
+        }
 
     }
 
@@ -424,29 +435,6 @@ public class VentanaJuegoController {
 
     }
 
-    private void mostrarJugadorActual() {
-
-        if(!this.jugadorPrevio.equals(this.mesa.getJugadorActual())) {
-
-            this.indiceJugador = (this.indiceJugador + 1) % 2;
-
-        }
-
-        this.jugadorPrevio = this.mesa.getJugadorActual();
-
-        this.turno.setText(this.mesa.getJugadorActual().getNombre());
-
-        this.cartasJugadorActual = this.mesa.getCartasDelJugadorActual();
-
-        for(Button boton : this.botonesCartasJugadorActual) {
-
-            boton.setText("Carta dada vuelta");
-            boton.setDisable(true);
-
-        }
-
-    }
-
     private void puedoCantar() {
 
         this.visibilizarBotones(this.botonesTanto, true);
@@ -509,16 +497,6 @@ public class VentanaJuegoController {
         for(Button boton : botones) {
 
             boton.setVisible(visibilidad);
-
-        }
-
-    }
-
-    private void activarBotones(List<Button> botones, boolean activar) {
-
-        for(Button boton : botones) {
-
-            boton.setDisable(activar);
 
         }
 
