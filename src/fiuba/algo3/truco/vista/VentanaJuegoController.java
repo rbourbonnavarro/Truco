@@ -6,10 +6,11 @@ import fiuba.algo3.truco.modelo.LaCartaNoSeEncuentraEnLaManoDelJugadorException;
 import fiuba.algo3.truco.modelo.Mesa;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
-import javafx.scene.control.DialogEvent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class VentanaJuegoController {
@@ -21,13 +22,13 @@ public class VentanaJuegoController {
     @FXML
     private Label puntajeEquipo2;
     @FXML
-    private Label carta1;
+    private Button botonCarta1;
     @FXML
-    private Label carta2;
+    private Button botonCarta2;
     @FXML
-    private Label carta3;
+    private Button botonCarta3;
     @FXML
-    private List<Label> cartas;
+    private List<Button> cartas;
 
 
     private Mesa mesa;
@@ -40,22 +41,21 @@ public class VentanaJuegoController {
     @FXML
     private void initialize(){
 
-        this.cartas = new LinkedList<>();
+        this.cartas = new ArrayList<>(Arrays.asList(botonCarta1, botonCarta2, botonCarta3));
         this.diccionarioCartas = new DiccionarioCartas();
 
     }
 
     public void setMain(Main main, Mesa mesa,Equipo equipo1, Equipo equipo2) {
+
         this.main = main;
         this.mesa = mesa;
         this.equipo1 = equipo1;
         this.equipo2 = equipo2;
-        cartas.add(carta1);
-        cartas.add(carta2);
-        cartas.add(carta3);
         mostrarPuntos();
         mostrarJugadorActual();
         mostrarCartasJugadorActual();
+
     }
 
     private void mostrarCartasJugadorActual() {

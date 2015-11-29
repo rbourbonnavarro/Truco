@@ -75,16 +75,9 @@
                                                 <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                             <children>
-                                                <Button mnemonicParsing="false" onAction="#JugarCarta1Handler" text="Jugar" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                                                <Button mnemonicParsing="false" onAction="#JugarCarta3Handler" text="Jugar" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                                                <Button mnemonicParsing="false" onAction="#JugarCarta2Handler" text="Jugar" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                                                <Label fx:id="carta1" text="Label" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                                                <Label fx:id="carta3" text="Label" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                                                <Label fx:id="carta2" text="Label" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
-                                                    <GridPane.margin>
-                                                        <Insets />
-                                                    </GridPane.margin>
-                                                </Label>
+                                                <Button fx:id="botonCarta1" mnemonicParsing="false" onAction="#JugarCarta1Handler" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                                <Button fx:id="botonCarta3" mnemonicParsing="false" onAction="#JugarCarta3Handler" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                                <Button fx:id="botonCarta2" mnemonicParsing="false" onAction="#JugarCarta2Handler" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
                                             </children>
                                         </GridPane>
                                     </children>
