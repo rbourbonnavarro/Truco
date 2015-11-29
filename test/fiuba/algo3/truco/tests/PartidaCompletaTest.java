@@ -84,6 +84,35 @@ public class PartidaCompletaTest {
         Assert.assertEquals(equipo1.getPuntos(),3);
         Assert.assertEquals(equipo2.getPuntos(),0);
     }
+
+    @Test
+    public void quererTrucoDevuelveLaManoAlInciador(){
+        carta1 = new Carta(7, new Espada());
+        carta2 = new Carta(3, new Espada());
+        carta3 = new Carta(2, new Basto());
+
+        carta4 = new Carta(1, new Espada());
+        carta5 = new Carta(2, new Espada());
+        carta6 = new Figura(12, new Basto());
+
+        cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
+        cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
+
+        J1.setMano(new Mano(cartasJ1));
+        J2.setMano(new Mano(cartasJ2));
+
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.truco();
+        Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.retruco();
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.quieroTruco();
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.hacerJugada(carta1);
+
+
+
+    }
     @Test
     public void partidaCompleta1() {
 
