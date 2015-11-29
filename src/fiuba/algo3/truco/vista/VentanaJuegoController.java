@@ -84,13 +84,10 @@ public class VentanaJuegoController {
         this.botonesCartasJugadas = new ArrayList<>(Arrays.asList(this.botonesCartasJugadasJugador1, this.botonesCartasJugadasJugador2));
         this.cantidadJugadasJugador = new ArrayList<>(Arrays.asList(this.cantidadJugadasJugador1, this.cantidadJugadasJugador2));
         this.diccionarioCartas = new DiccionarioCartas();
-        this.botonRetruco.setVisible(false);
-        this.botonValeCuatro.setVisible(false);
-        this.botonNoQuieroTanto.setVisible(false);
-        this.botonNoQuieroTruco.setVisible(false);
-        this.botonQuieroEnvido.setVisible(false);
-        this.botonQuieroTruco.setVisible(false);
-        this.botonQuieroFlor.setVisible(false);
+        this.visibilizarBotones(Arrays.asList(
+                botonNoQuieroTruco,botonQuieroTruco,botonRetruco,
+                botonValeCuatro,botonQuieroEnvido,botonNoQuieroTanto,
+                botonQuieroFlor),false);
 
     }
 
@@ -158,15 +155,10 @@ public class VentanaJuegoController {
         this.botonQuieroTruco.setVisible(false);
     }
     @FXML
-    private void noQuieroTrucoHandler(){
+    private void noQuieroTrucoHandler() {
         mesa.noQuieroTruco();
+        this.nuevaRonda();
         this.mostrarJugadorActual();
-        this.botonNoQuieroTruco.setVisible(false);
-        this.botonQuieroTruco.setVisible(false);
-        this.botonTruco.setVisible(true);
-        this.botonRetruco.setVisible(false);
-        this.botonValeCuatro.setVisible(false);
-
     }
 
     @FXML
@@ -214,6 +206,15 @@ public class VentanaJuegoController {
 
 
     }
+    private void visibilizarBotones(List<Button> botones, boolean visibilidad) {
+
+        for(Button boton : botones) {
+
+            boton.setVisible(visibilidad);
+
+        }
+
+    }
 
     private void nuevaRonda() {
 
@@ -225,7 +226,10 @@ public class VentanaJuegoController {
                 botonCartaJugada.setVisible(false);
 
             }
-
+            this.visibilizarBotones(Arrays.asList(
+                    botonNoQuieroTruco,botonQuieroTruco,botonRetruco,
+                    botonValeCuatro),false);
+            this.botonTruco.setVisible(true);
             this.cantidadJugadasJugador.set(i, 0);
 
         }
