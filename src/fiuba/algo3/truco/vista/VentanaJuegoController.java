@@ -136,10 +136,8 @@ public class VentanaJuegoController {
         this.equipo2 = equipo2;
         this.mostrarPuntos();
 
-        if(!this.mesa.seJuegaConFlor())
-            this.visibilizarBotones(this.botonesFlor, false);
-        else
-            this.visibilizarBotones(Arrays.asList(this.botonContraFlorAlResto, this.botonContraFlorAlPartido), false);
+        this.visibilizarBotones(this.botonesFlor, this.mesa.seJuegaConFlor());
+        this.visibilizarBotones(Arrays.asList(this.botonContraFlorAlResto, this.botonContraFlorAlPartido), false);
 
         this.jugadorPrevio = this.mesa.getJugadorActual();
         this.mostrarJugadorActual();
@@ -227,8 +225,7 @@ public class VentanaJuegoController {
 
         this.visibilizarBotones(this.botonesTanto, true);
 
-        if(!this.mesa.seJuegaConFlor())
-            this.visibilizarBotones(this.botonesFlor, false);
+        this.visibilizarBotones(this.botonesFlor, this.mesa.seJuegaConFlor());
 
     }
 
