@@ -9,7 +9,7 @@ public class JuegoConPicaPica implements EstadoPicaPica {
 
         if(equipo1.getPuntos() >= 5 || equipo2.getPuntos() >= 5) {
 
-            this.mesaPicaPica = new MesaPicaPica(equipo1, equipo2, seJuegaConFlor);
+            this.mesaPicaPica = new MesaPicaPica(equipo1, equipo2, seJuegaConFlor, true);
 
         }
 

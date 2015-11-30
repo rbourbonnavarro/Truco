@@ -7,6 +7,7 @@ import fiuba.algo3.truco.modelo.Ronda.PrimeraVuelta;
 import fiuba.algo3.truco.modelo.Ronda.Vuelta;
 
 import java.util.ArrayDeque;
+import java.util.ArrayList;
 import java.util.Deque;
 import java.util.List;
 import java.util.Objects;
@@ -24,6 +25,7 @@ public class Mesa {
     private Mazo mazo;
     private EstadoPicaPica estadoPicaPica;
     private boolean seJuegaConFlor;
+    private boolean seJuegaConPicaPica;
 
     public Mesa(Equipo equipo1, Equipo equipo2, boolean seJuegaConFlor) {
 
@@ -45,6 +47,7 @@ public class Mesa {
         this.equipo2.setPie();
 
         this.seJuegaConFlor = seJuegaConFlor;
+        this.seJuegaConPicaPica = true;
 
         this.estadoVuelta = new PrimeraVuelta(seJuegaConFlor, equipo1, equipo2, this.mazo);
 
@@ -71,7 +74,9 @@ public class Mesa {
     public void hacerJugada(Carta carta) throws NoHayCartasParaJugar {
 
         this.estadoVuelta.estadoValido();
-
+        if (seJuegaConPicaPica){
+        	this.rondaConPicaPica();
+        }
         try {
 
             this.cartasEnMesa.add(carta);
@@ -428,6 +433,22 @@ public class Mesa {
         return this.seJuegaConFlor;
 
     }
-
+    
+    private void rondaConPicaPica(){
+    	
+    	List<Jugador> integrantesEquipo1 = new ArrayList<>();
+    	integrantesEquipo1.add(equipoActual.getIntegrantes().get(0));
+    	Equipo equipo1 = new Equipo("Jugador1", integrantesEquipo1);
+    	
+    	List<Jugador> integrantesEquipo2 = new ArrayList<>();
+    	integrantesEquipo2.add(equipoContrario.getIntegrantes().get(0));
+    	Equipo equipo2 = new Equipo("Jugador2", integrantesEquipo2);
+    	
+    	MesaPicaPica mesa = new MesaPicaPica(equipo1, equipo2, true, false);
+    	
+    	//this.equipoActual.sumarPuntos(mesa.obtenerPuntaje(equipo1));
+    	//this.equipoContrario.sumarPuntos(mesa.obtenerPuntaje(equipo2));
+    	
+    }
 
 }
