@@ -51,11 +51,43 @@ public class VentanaJuegoController {
     @FXML
     protected Button botonCartaJugada3Jugador2;
     @FXML
+    private Button botonCartaJugada1Jugador3;
+    @FXML
+    private Button botonCartaJugada2Jugador3;
+    @FXML
+    private Button botonCartaJugada3Jugador3;
+    @FXML
+    private Button botonCartaJugada1Jugador4;
+    @FXML
+    private Button botonCartaJugada2Jugador4;
+    @FXML
+    private Button botonCartaJugada3Jugador4;
+    @FXML
+    private Button botonCartaJugada1Jugador5;
+    @FXML
+    private Button botonCartaJugada2Jugador5;
+    @FXML
+    private Button botonCartaJugada3Jugador5;
+    @FXML
+    private Button botonCartaJugada1Jugador6;
+    @FXML
+    private Button botonCartaJugada2Jugador6;
+    @FXML
+    private Button botonCartaJugada3Jugador6;
+    @FXML
     protected List<Button> botonesCartasJugadorActual;
     @FXML
     protected List<Button> botonesCartasJugadasJugador1;
     @FXML
     protected List<Button> botonesCartasJugadasJugador2;
+    @FXML
+    private List<Button> botonesCartasJugadasJugador3;
+    @FXML
+    private List<Button> botonesCartasJugadasJugador4;
+    @FXML
+    private List<Button> botonesCartasJugadasJugador5;
+    @FXML
+    private List<Button> botonesCartasJugadasJugador6;
     @FXML
     protected List<List<Button>> botonesCartasJugadas;
     @FXML
@@ -95,6 +127,10 @@ public class VentanaJuegoController {
     protected DiccionarioCartas diccionarioCartas;
     protected int cantidadJugadasJugador1 = 0;
     protected int cantidadJugadasJugador2 = 0;
+    private int cantidadJugadasJugador3 = 0;
+    private int cantidadJugadasJugador4 = 0;
+    private int cantidadJugadasJugador5 = 0;
+    private int cantidadJugadasJugador6 = 0;
     protected List<Integer> cantidadJugadasJugador;
     protected Jugador jugadorPrevio;
     protected int indiceJugador = 0;
@@ -110,8 +146,14 @@ public class VentanaJuegoController {
         this.botonesCartasJugadorActual = new ArrayList<>(Arrays.asList(this.botonCarta1, this.botonCarta2, this.botonCarta3));
         this.botonesCartasJugadasJugador1 = new ArrayList<>(Arrays.asList(this.botonCartaJugada1Jugador1, this.botonCartaJugada2Jugador1, this.botonCartaJugada3Jugador1));
         this.botonesCartasJugadasJugador2 = new ArrayList<>(Arrays.asList(this.botonCartaJugada1Jugador2, this.botonCartaJugada2Jugador2, this.botonCartaJugada3Jugador2));
-        this.botonesCartasJugadas = new ArrayList<>(Arrays.asList(this.botonesCartasJugadasJugador1, this.botonesCartasJugadasJugador2));
-        this.cantidadJugadasJugador = new ArrayList<>(Arrays.asList(this.cantidadJugadasJugador1, this.cantidadJugadasJugador2));
+        this.botonesCartasJugadasJugador3 = new ArrayList<>(Arrays.asList(this.botonCartaJugada1Jugador3, this.botonCartaJugada2Jugador3, this.botonCartaJugada3Jugador3));
+        this.botonesCartasJugadasJugador4 = new ArrayList<>(Arrays.asList(this.botonCartaJugada1Jugador4, this.botonCartaJugada2Jugador4, this.botonCartaJugada3Jugador4));
+        this.botonesCartasJugadasJugador5 = new ArrayList<>(Arrays.asList(this.botonCartaJugada1Jugador5, this.botonCartaJugada2Jugador5, this.botonCartaJugada3Jugador5));
+        this.botonesCartasJugadasJugador6 = new ArrayList<>(Arrays.asList(this.botonCartaJugada1Jugador6, this.botonCartaJugada2Jugador6, this.botonCartaJugada3Jugador6));
+        this.botonesCartasJugadas = new ArrayList<>(Arrays.asList(this.botonesCartasJugadasJugador1, this.botonesCartasJugadasJugador2,
+                this.botonesCartasJugadasJugador3,this.botonesCartasJugadasJugador4,this.botonesCartasJugadasJugador5,this.botonesCartasJugadasJugador6));
+        this.cantidadJugadasJugador = new ArrayList<>(Arrays.asList(this.cantidadJugadasJugador1, this.cantidadJugadasJugador2,
+                this.cantidadJugadasJugador3,this.cantidadJugadasJugador4,this.cantidadJugadasJugador5,this.cantidadJugadasJugador6));
         this.diccionarioCartas = new DiccionarioCartas();
         this.botonesEnvido = new ArrayList<>(Arrays.asList(this.botonEnvido, this.botonRealEnvido, this.botonFaltaEnvido));
         this.botonesFlor = new ArrayList<>(Arrays.asList(this.botonFlor, this.botonContraFlorAlResto, this.botonContraFlorAlPartido));
@@ -214,8 +256,8 @@ public class VentanaJuegoController {
     }
 
     protected void nuevaRonda() {
-
-        for(int i = 0; i < 2; i++) {
+        int cantidadJugadores = this.mesa.getEquipoActual().getCantidadIntegrantes()*2;
+        for(int i = 0; i < cantidadJugadores; i++) {
 
             for (Button botonCartaJugada : this.botonesCartasJugadas.get(i)) {
 
@@ -475,7 +517,7 @@ public class VentanaJuegoController {
 
         if(!this.jugadorPrevio.equals(this.mesa.getJugadorActual())) {
 
-            this.indiceJugador = (this.indiceJugador + 1) % 2;
+            this.indiceJugador = (this.indiceJugador + 1) % (this.mesa.getEquipoActual().getCantidadIntegrantes()*2);
 
         }
 
