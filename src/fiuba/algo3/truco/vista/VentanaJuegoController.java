@@ -3,6 +3,7 @@ package fiuba.algo3.truco.vista;
 import fiuba.algo3.truco.modelo.*;
 import fiuba.algo3.truco.modelo.Jugadas.EstadoJuego;
 import fiuba.algo3.truco.modelo.Jugadas.NadaCantado;
+import fiuba.algo3.truco.modelo.Jugadas.TantoJugado;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.*;
 import fiuba.algo3.truco.modelo.Puntos.JuegoTerminadoException;
 import fiuba.algo3.truco.modelo.Ronda.PrimeraVuelta;
@@ -205,6 +206,7 @@ public class VentanaJuegoController {
 
         EstadoJuego estadoJuego = this.mesa.getEstadoVuelta().getEstadoJuego();
         if(!(estadoJuego instanceof NadaCantado
+                || estadoJuego instanceof TantoJugado
                 || estadoJuego instanceof TrucoQuerido
                 || estadoJuego instanceof RetrucoQuerido
                 || estadoJuego instanceof ValeCuatroCantado))
@@ -218,46 +220,64 @@ public class VentanaJuegoController {
 
     @FXML
     private void JugarCarta1Handler() {
+
         try {
             mesa.hacerJugada(cartasJugadorActual.get(0));
             this.mostrarCartaEnMesa(cartasJugadorActual.get(0));
             this.mostrarJugadorActual();
             this.mostrarPuntos();
             if (this.mesa.getCartasEnMesa().size() == 0) this.nuevaRonda();
-        }catch (JuegoTerminadoException terminado) {
+
+        } catch (JuegoTerminadoException terminado) {
+
             this.main.juegoTerminado(mesa.getEquipoGanador().getNombre());
+
         }
 
     }
 
     @FXML
     private void JugarCarta2Handler() {
+
         try {
+
             mesa.hacerJugada(cartasJugadorActual.get(1));
             this.mostrarCartaEnMesa(cartasJugadorActual.get(1));
             this.mostrarJugadorActual();
             this.mostrarPuntos();
             if (this.mesa.getCartasEnMesa().size() == 0) this.nuevaRonda();
-        }catch (JuegoTerminadoException terminado) {
+
+        } catch (JuegoTerminadoException terminado) {
+
             this.main.juegoTerminado(mesa.getEquipoGanador().getNombre());
+
         }
+
     }
 
     @FXML
     private void JugarCarta3Handler() {
+
         try {
+
             mesa.hacerJugada(cartasJugadorActual.get(2));
             this.mostrarCartaEnMesa(cartasJugadorActual.get(2));
             this.mostrarJugadorActual();
             this.mostrarPuntos();
             if (this.mesa.getCartasEnMesa().size() == 0) this.nuevaRonda();
-        }catch (JuegoTerminadoException terminado) {
+
+        } catch (JuegoTerminadoException terminado) {
+
             this.main.juegoTerminado(mesa.getEquipoGanador().getNombre());
+
         }
+
     }
 
     protected void nuevaRonda() {
+
         int cantidadJugadores = this.mesa.getEquipoActual().getCantidadIntegrantes()*2;
+
         for(int i = 0; i < cantidadJugadores; i++) {
 
             for (Button botonCartaJugada : this.botonesCartasJugadas.get(i)) {
