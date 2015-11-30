@@ -16,12 +16,15 @@ public class JugadorIA extends Jugador {
 
     private Mesa mesa;
     private ValoresTruco valoresTruco;
+    private Carta ultimaCartaJugada;
 
     public JugadorIA(String nombre) {
 
         super(nombre);
 
         this.valoresTruco = new ValoresTruco();
+
+        this.ultimaCartaJugada = null;
 
     }
 
@@ -51,7 +54,9 @@ public class JugadorIA extends Jugador {
 
                     } catch (NoHayDecisionException a) {
 
-                        this.mesa.hacerJugada(this.decisionCarta());
+                        this.ultimaCartaJugada = this.decisionCarta();
+
+                        this.mesa.hacerJugada(this.ultimaCartaJugada);
 
                     }
 
@@ -65,7 +70,9 @@ public class JugadorIA extends Jugador {
 
                 } catch (NoHayDecisionException a) {
 
-                    this.mesa.hacerJugada(this.decisionCarta());
+                    this.ultimaCartaJugada = this.decisionCarta();
+
+                    this.mesa.hacerJugada(this.ultimaCartaJugada);
 
                 }
 
@@ -498,6 +505,12 @@ public class JugadorIA extends Jugador {
         }
 
         return cartaMasAlta;
+
+    }
+
+    public Carta getUltimaCartaJugada() {
+
+        return this.ultimaCartaJugada;
 
     }
 

@@ -1,8 +1,12 @@
 package fiuba.algo3.truco.vista;
 
 import fiuba.algo3.truco.IA.JugadorIA;
+import fiuba.algo3.truco.modelo.Carta;
+import fiuba.algo3.truco.modelo.Jugadas.EstadoJuego;
+import fiuba.algo3.truco.modelo.Jugadas.NadaCantado;
 import fiuba.algo3.truco.modelo.Ronda.PrimeraVuelta;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 
 import java.util.NoSuchElementException;
@@ -10,7 +14,34 @@ import java.util.NoSuchElementException;
 public class VentanaJuegoContraLaPCController extends VentanaJuegoController {
 
     @FXML
-    private Label labelEstadoJuego;
+    private Button botonContinuar;
+
+    private boolean terminarRonda = false;
+
+    @FXML
+    private void botonContinuarHandler() {
+
+        if(this.terminarRonda) {
+
+            this.nuevaRonda();
+
+        }
+
+        try {
+
+            this.mesa.getEstadoVuelta().estadoValido();
+
+            this.desactivarBotones(this.botonesCartasJugadorActual, false);
+
+        } catch(Exception e) {
+
+            this.desactivarBotones(this.botonesCartasJugadorActual, true);
+
+        }
+
+        this.mostrarJugadorActual();
+
+    }
 
     @Override
     protected void mostrarJugadorActual() {
@@ -34,39 +65,79 @@ public class VentanaJuegoContraLaPCController extends VentanaJuegoController {
 
         if(this.mesa.getJugadorActual().equals(this.equipo1.getJugadorActual())) {
 
+            this.botonContinuar.setDisable(true);
+
             if (!(this.mesa.getEstadoVuelta() instanceof PrimeraVuelta)) {
 
                 this.visibilizarBotones(this.botonesTanto, false);
 
             }
 
+            /*EstadoJuego estadoJuego = this.mesa.getEstadoVuelta().getEstadoJuego();
+
+            try {
+
+                this.mesa.getEstadoVuelta().estadoValido();
+
+                this.desactivarBotones(this.botonesCartasJugadorActual, false);
+
+            } catch(Exception e) {
+
+                this.desactivarBotones(this.botonesCartasJugadorActual, true);
+
+            }*/
+
             this.mostrarCartasJugadorActual();
 
         }
         else {
 
+            this.botonContinuar.setDisable(false);
+
             JugadorIA jugadorIA = (JugadorIA) this.mesa.getJugadorActual();
+
+            EstadoJuego estadoJuegoPrevio = this.mesa.getEstadoVuelta().getEstadoJuego();
+
+            Carta ultimaCartaJugadaIA = jugadorIA.getUltimaCartaJugada();
+
             jugadorIA.turno();
 
-            try {
+            if(!(estadoJuegoPrevio instanceof NadaCantado)
+                    && this.mesa.getEstadoVuelta().getEstadoJuego() instanceof NadaCantado) {
 
-                if (jugadorIA.obtenerCartas().contains(this.mesa.getCartasEnMesa().getLast())) {
+                this.terminarRonda = true;
 
-                    this.mostrarCartaEnMesa(this.mesa.getCartasEnMesa().getLast());
+            }
+            else {
 
-                }
+                try {
 
-            } catch(NoSuchElementException noSuchElementException) {
+                    if (ultimaCartaJugadaIA != jugadorIA.getUltimaCartaJugada() && ultimaCartaJugadaIA != null) {
 
-                if(jugadorIA.obtenerCartasEnMano().size() < 3) {
+                        this.mostrarCartaEnMesa(jugadorIA.getUltimaCartaJugada());
 
-                    this.nuevaRonda();
+                    }
+
+                } catch (NoSuchElementException noSuchElementException) {
+
+                    if (jugadorIA.obtenerCartasEnMano().size() < 3) {
+
+                        this.terminarRonda = true;
+
+                    }
 
                 }
 
             }
 
-            this.mostrarJugadorActual();
+            this.visibilizarBotones(this.botonesTanto, false);
+            this.visibilizarBotones(this.botonesTruco, false);
+            this.visibilizarBotones(this.botonesQuiero, false);
+
+            this.desactivarBotones(this.botonesCartasJugadorActual, true);
+
+            this.mostrarEstadoJuego();
+            this.mostrarPuntos();
 
         }
 

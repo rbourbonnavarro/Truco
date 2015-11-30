@@ -229,9 +229,9 @@ public class VentanaJuegoController {
 
             mesa.hacerJugada(cartasJugadorActual.get(0));
             this.mostrarCartaEnMesa(cartasJugadorActual.get(0));
-            this.mostrarJugadorActual();
             this.mostrarPuntos();
             if (this.mesa.getCartasEnMesa().size() == 0) this.nuevaRonda();
+            this.mostrarJugadorActual();
 
         } catch (JuegoTerminadoException terminado) {
 
@@ -248,9 +248,9 @@ public class VentanaJuegoController {
 
             mesa.hacerJugada(cartasJugadorActual.get(1));
             this.mostrarCartaEnMesa(cartasJugadorActual.get(1));
-            this.mostrarJugadorActual();
             this.mostrarPuntos();
             if (this.mesa.getCartasEnMesa().size() == 0) this.nuevaRonda();
+            this.mostrarJugadorActual();
 
         } catch (JuegoTerminadoException terminado) {
 
@@ -267,9 +267,9 @@ public class VentanaJuegoController {
 
             mesa.hacerJugada(cartasJugadorActual.get(2));
             this.mostrarCartaEnMesa(cartasJugadorActual.get(2));
-            this.mostrarJugadorActual();
             this.mostrarPuntos();
             if (this.mesa.getCartasEnMesa().size() == 0) this.nuevaRonda();
+            this.mostrarJugadorActual();
 
         } catch (JuegoTerminadoException terminado) {
 
@@ -281,7 +281,7 @@ public class VentanaJuegoController {
 
     protected void nuevaRonda() {
 
-        int cantidadJugadores = this.mesa.getEquipoActual().getCantidadIntegrantes()*2;
+        int cantidadJugadores = this.mesa.getEquipoActual().getCantidadIntegrantes() * 2;
 
         for(int i = 0; i < cantidadJugadores; i++) {
 
@@ -381,14 +381,20 @@ public class VentanaJuegoController {
 
     @FXML
     private void noQuieroTrucoHandler() {
+
         try {
+
             mesa.noQuieroTruco();
             this.nuevaRonda();
             this.mostrarPuntos();
             this.mostrarJugadorActual();
+
         }catch (JuegoTerminadoException terminado) {
+
             this.main.juegoTerminado(mesa.getEquipoGanador().getNombre());
+
         }
+
     }
 
     @FXML
@@ -466,6 +472,7 @@ public class VentanaJuegoController {
             this.main.juegoTerminado(mesa.getEquipoGanador().getNombre());
 
         }
+
     }
 
     @FXML
