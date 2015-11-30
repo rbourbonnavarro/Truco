@@ -296,14 +296,6 @@ public class VentanaJuegoController {
 
         }
 
-        this.visibilizarBotones(this.botonesQuiero, false);
-        this.visibilizarBotones(Arrays.asList(this.botonRetruco, this.botonValeCuatro), false);
-        this.botonTruco.setVisible(true);
-
-        this.visibilizarBotones(this.botonesTanto, true);
-
-        this.visibilizarBotones(this.botonesFlor, this.mesa.seJuegaConFlor());
-
     }
 
     protected void mostrarCartaEnMesa(Carta cartaJugada) {
