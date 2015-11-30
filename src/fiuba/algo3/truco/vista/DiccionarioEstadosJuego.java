@@ -1,5 +1,6 @@
 package fiuba.algo3.truco.vista;
 
+import com.sun.javafx.geom.AreaOp;
 import fiuba.algo3.truco.modelo.Equipo;
 import fiuba.algo3.truco.modelo.Jugadas.Envido.EnvidoCantado;
 import fiuba.algo3.truco.modelo.Jugadas.Envido.EnvidoEnvidoCantado;
@@ -11,7 +12,9 @@ import fiuba.algo3.truco.modelo.Jugadas.Flor.ContraFlorAlRestoCantada;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorCantada;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorFlorCantada;
 import fiuba.algo3.truco.modelo.Jugadas.NadaCantado;
+import fiuba.algo3.truco.modelo.Jugadas.TantoJugado;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.*;
+import fiuba.algo3.truco.modelo.Jugadas.TrucoCantadoTantoJugado;
 import fiuba.algo3.truco.modelo.Jugador;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 import javafx.scene.control.Button;
@@ -30,7 +33,9 @@ public class DiccionarioEstadosJuego {
         MENSAJE_ESTADO = new Hashtable<>(15);
 
         MENSAJE_ESTADO.put(new NadaCantado(), "Nada ha sido cantado");
+        MENSAJE_ESTADO.put(new TantoJugado(EQUIPO), "Tanto ya jugado");
         MENSAJE_ESTADO.put(new TrucoCantadoTantoNoJugado(EQUIPO), "Truco cantado");
+        MENSAJE_ESTADO.put(new TrucoCantadoTantoJugado(EQUIPO, EQUIPO), "Truco cantado");
         MENSAJE_ESTADO.put(new TrucoQuerido(EQUIPO), "Truco querido");
         MENSAJE_ESTADO.put(new RetrucoCantado(EQUIPO), "Retruco cantado");
         MENSAJE_ESTADO.put(new RetrucoQuerido(EQUIPO, EQUIPO), "Retruco querido");
@@ -66,10 +71,12 @@ public class DiccionarioEstadosJuego {
         Button botonQuieroFlor = botonesQuiero.get(3);
         Button botonNoQuieroTanto = botonesQuiero.get(4);
 
-        botonesADeshabilitar = new Hashtable<>(15);
+        botonesADeshabilitar = new Hashtable<>(17);
 
         botonesADeshabilitar.put(new NadaCantado(), Arrays.asList(botonRetruco, botonValeCuatro, botonContraFlorAlResto, botonContraFlorAlPartido, botonQuieroTruco, botonNoQuieroTruco, botonQuieroEnvido, botonQuieroFlor, botonNoQuieroTanto));
+        botonesADeshabilitar.put(new TantoJugado(EQUIPO), Arrays.asList(botonRetruco, botonValeCuatro, botonEnvido, botonRealEnvido, botonFaltaEnvido, botonFlor, botonContraFlorAlResto, botonContraFlorAlPartido, botonQuieroTruco, botonNoQuieroTruco, botonQuieroEnvido, botonQuieroFlor, botonNoQuieroTanto));
         botonesADeshabilitar.put(new TrucoCantadoTantoNoJugado(EQUIPO), Arrays.asList(botonTruco, botonValeCuatro, botonContraFlorAlResto, botonContraFlorAlPartido, botonQuieroEnvido, botonQuieroFlor, botonNoQuieroTanto));
+        botonesADeshabilitar.put(new TrucoCantadoTantoJugado(EQUIPO, EQUIPO), Arrays.asList(botonTruco, botonValeCuatro, botonEnvido, botonRealEnvido, botonFaltaEnvido, botonFlor, botonContraFlorAlResto, botonContraFlorAlPartido, botonQuieroEnvido, botonQuieroFlor, botonNoQuieroTanto));
         botonesADeshabilitar.put(new TrucoQuerido(EQUIPO), Arrays.asList(botonTruco, botonValeCuatro, botonEnvido, botonRealEnvido, botonFaltaEnvido, botonFlor, botonContraFlorAlResto, botonContraFlorAlPartido, botonQuieroTruco, botonNoQuieroTruco, botonQuieroEnvido, botonQuieroFlor, botonNoQuieroTanto));
         botonesADeshabilitar.put(new RetrucoCantado(EQUIPO), Arrays.asList(botonTruco, botonRetruco, botonEnvido, botonRealEnvido, botonFaltaEnvido, botonFlor, botonContraFlorAlResto, botonContraFlorAlPartido, botonQuieroEnvido, botonQuieroFlor, botonNoQuieroTanto));
         botonesADeshabilitar.put(new RetrucoQuerido(EQUIPO, EQUIPO), Arrays.asList(botonTruco, botonRetruco, botonEnvido, botonRealEnvido, botonFaltaEnvido, botonFlor, botonContraFlorAlResto, botonContraFlorAlPartido, botonQuieroTruco, botonNoQuieroTruco, botonQuieroEnvido, botonQuieroFlor, botonNoQuieroTanto));
