@@ -148,7 +148,7 @@ public class RealEnvidoCantado implements EstadoJuego {
     @Override
     public int hashCode() {
 
-        return this.puntos() + this.noQuerido();
+        return 10;
 
     }
 

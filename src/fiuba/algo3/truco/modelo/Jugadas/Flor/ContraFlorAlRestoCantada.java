@@ -140,7 +140,7 @@ public class ContraFlorAlRestoCantada implements EstadoJuego {
     @Override
     public int hashCode() {
 
-        return this.puntos() + this.noQuerido();
+        return 12;
 
     }
 

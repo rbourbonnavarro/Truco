@@ -30,7 +30,7 @@ public class DiccionarioEstadosJuego {
 
     static {
 
-        MENSAJE_ESTADO = new Hashtable<>(15);
+        MENSAJE_ESTADO = new Hashtable<>(17);
 
         MENSAJE_ESTADO.put(new NadaCantado(), "Nada ha sido cantado");
         MENSAJE_ESTADO.put(new TantoJugado(EQUIPO), "Tanto ya jugado");
