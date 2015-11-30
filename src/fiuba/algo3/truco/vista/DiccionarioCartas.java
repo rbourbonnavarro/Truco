@@ -14,50 +14,52 @@ public class DiccionarioCartas {
 
     private static final Dictionary<Carta, String> REPRESENTACION_CARTA;
 
+    private static final String RUTA_IMAGENES = "/gui/images/imagenesCartas";
+
     static {
 
         REPRESENTACION_CARTA = new Hashtable<>(40);
 
-        REPRESENTACION_CARTA.put(new Carta(1, new Espada()), "1 de Espada");
-        REPRESENTACION_CARTA.put(new Carta(1, new Basto()), "1 de Basto");
-        REPRESENTACION_CARTA.put(new Carta(7, new Espada()), "7 de Espada");
-        REPRESENTACION_CARTA.put(new Carta(7, new Oro()), "7 de Oro");
-        REPRESENTACION_CARTA.put(new Carta(3, new Espada()), "3 de Espada");
-        REPRESENTACION_CARTA.put(new Carta(3, new Basto()), "3 de Basto");
-        REPRESENTACION_CARTA.put(new Carta(3, new Oro()), "3 de Oro");
-        REPRESENTACION_CARTA.put(new Carta(3, new Copa()), "3 de Copa");
-        REPRESENTACION_CARTA.put(new Carta(2, new Espada()), "2 de Espada");
-        REPRESENTACION_CARTA.put(new Carta(2, new Basto()), "2 de Basto");
-        REPRESENTACION_CARTA.put(new Carta(2, new Oro()), "2 de Oro");
-        REPRESENTACION_CARTA.put(new Carta(2, new Copa()), "2 de Copa");
-        REPRESENTACION_CARTA.put(new Carta(1, new Oro()), "1 de Oro");
-        REPRESENTACION_CARTA.put(new Carta(1, new Copa()), "1 de Copa");
-        REPRESENTACION_CARTA.put(new Figura(12, new Espada()), "12 de Espada");
-        REPRESENTACION_CARTA.put(new Figura(12, new Basto()), "12 de Basto");
-        REPRESENTACION_CARTA.put(new Figura(12, new Oro()), "12 de Oro");
-        REPRESENTACION_CARTA.put(new Figura(12, new Copa()), "12 de Oro");
-        REPRESENTACION_CARTA.put(new Figura(11, new Espada()), "11 de Espada");
-        REPRESENTACION_CARTA.put(new Figura(11, new Basto()), "11 de Basto");
-        REPRESENTACION_CARTA.put(new Figura(11, new Oro()), "11 de Oro");
-        REPRESENTACION_CARTA.put(new Figura(11, new Copa()), "11 de Copa");
-        REPRESENTACION_CARTA.put(new Figura(10, new Espada()), "10 de Espada");
-        REPRESENTACION_CARTA.put(new Figura(10, new Basto()), "10 de Basto");
-        REPRESENTACION_CARTA.put(new Figura(10, new Oro()), "10 de Oro");
-        REPRESENTACION_CARTA.put(new Figura(10, new Copa()), "10 de Copa");
-        REPRESENTACION_CARTA.put(new Carta(7, new Basto()), "7 de Basto");
-        REPRESENTACION_CARTA.put(new Carta(7, new Copa()), "7 de Copa");
-        REPRESENTACION_CARTA.put(new Carta(6, new Espada()), "6 de Espada");
-        REPRESENTACION_CARTA.put(new Carta(6, new Basto()), "6 de Basto");
-        REPRESENTACION_CARTA.put(new Carta(6, new Oro()), "6 de Oro");
-        REPRESENTACION_CARTA.put(new Carta(6, new Copa()), "6 de Copa");
-        REPRESENTACION_CARTA.put(new Carta(5, new Espada()), "5 de Espada");
-        REPRESENTACION_CARTA.put(new Carta(5, new Basto()), "5 de Basto");
-        REPRESENTACION_CARTA.put(new Carta(5, new Oro()), "5 de Oro");
-        REPRESENTACION_CARTA.put(new Carta(5, new Copa()), "5 de Copa");
-        REPRESENTACION_CARTA.put(new Carta(4, new Espada()), "4 de Espada");
-        REPRESENTACION_CARTA.put(new Carta(4, new Basto()), "4 de Basto");
-        REPRESENTACION_CARTA.put(new Carta(4, new Oro()), "4 de Oro");
-        REPRESENTACION_CARTA.put(new Carta(4, new Copa()), "4 de Copa");
+        REPRESENTACION_CARTA.put(new Carta(1, new Espada()), RUTA_IMAGENES + "/1Espada (Custom).png");
+        REPRESENTACION_CARTA.put(new Carta(1, new Basto()), RUTA_IMAGENES + "/1Basto (Custom).png");
+        REPRESENTACION_CARTA.put(new Carta(1, new Oro()), RUTA_IMAGENES + "/1Oro (Custom).png");
+        REPRESENTACION_CARTA.put(new Carta(1, new Copa()), RUTA_IMAGENES + "/1Copa (Custom).png");
+        REPRESENTACION_CARTA.put(new Carta(3, new Espada()), RUTA_IMAGENES + "/3Espada (Custom).png");
+        REPRESENTACION_CARTA.put(new Carta(3, new Basto()), RUTA_IMAGENES + "/3Basto (Custom).png");
+        REPRESENTACION_CARTA.put(new Carta(3, new Oro()), RUTA_IMAGENES + "/3Oro (Custom).png");
+        REPRESENTACION_CARTA.put(new Carta(3, new Copa()), RUTA_IMAGENES + "/3Copa (Custom).png");
+        REPRESENTACION_CARTA.put(new Carta(2, new Espada()), RUTA_IMAGENES + "/2Espada (Custom).png");
+        REPRESENTACION_CARTA.put(new Carta(2, new Basto()), RUTA_IMAGENES + "/2Basto (Custom).png");
+        REPRESENTACION_CARTA.put(new Carta(2, new Oro()), RUTA_IMAGENES + "/2Oro (Custom).png");
+        REPRESENTACION_CARTA.put(new Carta(2, new Copa()), RUTA_IMAGENES + "/2Copa (Custom).png");
+        REPRESENTACION_CARTA.put(new Figura(12, new Espada()), RUTA_IMAGENES + "/12Espada (Custom).png");
+        REPRESENTACION_CARTA.put(new Figura(12, new Basto()), RUTA_IMAGENES + "/12Basto (Custom).png");
+        REPRESENTACION_CARTA.put(new Figura(12, new Oro()), RUTA_IMAGENES + "/12Oro (Custom).png");
+        REPRESENTACION_CARTA.put(new Figura(12, new Copa()), RUTA_IMAGENES + "/12Copa (Custom).png");
+        REPRESENTACION_CARTA.put(new Figura(11, new Espada()), RUTA_IMAGENES + "/11Espada (Custom).png");
+        REPRESENTACION_CARTA.put(new Figura(11, new Basto()), RUTA_IMAGENES + "/11Basto (Custom).png");
+        REPRESENTACION_CARTA.put(new Figura(11, new Oro()), RUTA_IMAGENES + "11Oro (Custom).png");
+        REPRESENTACION_CARTA.put(new Figura(11, new Copa()), RUTA_IMAGENES + "/11Copa (Custom).png");
+        REPRESENTACION_CARTA.put(new Figura(10, new Espada()), RUTA_IMAGENES + "/10Espada (Custom).png");
+        REPRESENTACION_CARTA.put(new Figura(10, new Basto()), RUTA_IMAGENES + "/10Basto (Custom).png");
+        REPRESENTACION_CARTA.put(new Figura(10, new Oro()), RUTA_IMAGENES + "/10Oro (Custom).png");
+        REPRESENTACION_CARTA.put(new Figura(10, new Copa()), RUTA_IMAGENES + "/10Copa (Custom).png");
+        REPRESENTACION_CARTA.put(new Carta(7, new Espada()), RUTA_IMAGENES + "/7Espada (Custom).png");
+        REPRESENTACION_CARTA.put(new Carta(7, new Basto()), RUTA_IMAGENES + "/7Basto (Custom).png");
+        REPRESENTACION_CARTA.put(new Carta(7, new Oro()), RUTA_IMAGENES + "/7Oro (Custom).png");
+        REPRESENTACION_CARTA.put(new Carta(7, new Copa()), RUTA_IMAGENES + "/7Copa (Custom).png");
+        REPRESENTACION_CARTA.put(new Carta(6, new Espada()), RUTA_IMAGENES + "/6Espada (Custom).png");
+        REPRESENTACION_CARTA.put(new Carta(6, new Basto()), RUTA_IMAGENES + "/6Basto (Custom).png");
+        REPRESENTACION_CARTA.put(new Carta(6, new Oro()), RUTA_IMAGENES + "/6Oro (Custom).png");
+        REPRESENTACION_CARTA.put(new Carta(6, new Copa()), RUTA_IMAGENES + "/6Copa (Custom).png");
+        REPRESENTACION_CARTA.put(new Carta(5, new Espada()), RUTA_IMAGENES + "/5Espada (Custom).png");
+        REPRESENTACION_CARTA.put(new Carta(5, new Basto()), RUTA_IMAGENES + "/5Basto (Custom).png");
+        REPRESENTACION_CARTA.put(new Carta(5, new Oro()), RUTA_IMAGENES + "/5Oro (Custom).png");
+        REPRESENTACION_CARTA.put(new Carta(5, new Copa()), RUTA_IMAGENES + "/5Copa (Custom).png");
+        REPRESENTACION_CARTA.put(new Carta(4, new Espada()), RUTA_IMAGENES + "/4Espada (Custom).png");
+        REPRESENTACION_CARTA.put(new Carta(4, new Basto()), RUTA_IMAGENES + "/4Basto (Custom).png");
+        REPRESENTACION_CARTA.put(new Carta(4, new Oro()), RUTA_IMAGENES + "/4Oro (Custom).png");
+        REPRESENTACION_CARTA.put(new Carta(4, new Copa()), RUTA_IMAGENES + "/4Copa (Custom).png");
 
     }
 

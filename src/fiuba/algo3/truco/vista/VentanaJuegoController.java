@@ -9,6 +9,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -16,6 +17,8 @@ import java.util.Collections;
 import java.util.List;
 
 public class VentanaJuegoController {
+
+    private static final String DORSO_CARTA = "/gui/images/imagenesCartas/dorsoCarta (Custom).png";
 
     @FXML
     protected Label turno;
@@ -193,7 +196,7 @@ public class VentanaJuegoController {
 
         for (int i = 0; i < this.cartasJugadorActual.size(); i++) {
 
-            this.botonesCartasJugadorActual.get(i).setText(this.diccionarioCartas.representacionCarta(this.cartasJugadorActual.get(i)));
+            this.botonesCartasJugadorActual.get(i).setGraphic(new ImageView(this.diccionarioCartas.representacionCarta(this.cartasJugadorActual.get(i))));
             if(!this.mesa.getJugadorActual().obtenerCartasEnMano().contains(this.cartasJugadorActual.get(i)))
                 this.botonesCartasJugadorActual.get(i).setDisable(true);
 
@@ -305,7 +308,7 @@ public class VentanaJuegoController {
 
         botonCartaJugada.setVisible(true);
         botonCartaJugada.setDisable(true);
-        botonCartaJugada.setText(this.diccionarioCartas.representacionCarta(cartaJugada));
+        botonCartaJugada.setGraphic(new ImageView(this.diccionarioCartas.representacionCarta(cartaJugada)));
 
         this.cantidadJugadasJugador.set(this.indiceJugador, numeroJugada + 1);
 
@@ -518,7 +521,7 @@ public class VentanaJuegoController {
 
         for(Button boton : this.botonesCartasJugadorActual) {
 
-            boton.setText("Carta dada vuelta");
+            boton.setGraphic(new ImageView(DORSO_CARTA));
             boton.setDisable(true);
 
         }

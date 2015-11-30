@@ -7,7 +7,6 @@ import fiuba.algo3.truco.modelo.Jugadas.NadaCantado;
 import fiuba.algo3.truco.modelo.Ronda.PrimeraVuelta;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.Label;
 
 import java.util.NoSuchElementException;
 
@@ -15,8 +14,6 @@ public class VentanaJuegoContraLaPCController extends VentanaJuegoController {
 
     @FXML
     private Button botonContinuar;
-
-    private boolean terminarRonda = false;
 
     @FXML
     private void botonContinuarHandler() {
