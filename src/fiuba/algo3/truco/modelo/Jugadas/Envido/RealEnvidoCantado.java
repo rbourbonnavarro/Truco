@@ -147,14 +147,14 @@ public class RealEnvidoCantado implements EstadoJuego {
     @Override
     public boolean equals(Object estado) {
 
-        return estado instanceof RealEnvidoCantado;
+        return estado instanceof RealEnvidoCantado && ((RealEnvidoCantado) estado).envidoCantado == this.envidoCantado;
 
     }
 
     @Override
     public int hashCode() {
 
-        return 10;
+        return 10 + ((Boolean) this.envidoCantado).hashCode();
 
     }
 

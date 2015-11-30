@@ -30,7 +30,7 @@ public class DiccionarioEstadosJuego {
 
     static {
 
-        MENSAJE_ESTADO = new Hashtable<>(17);
+        MENSAJE_ESTADO = new Hashtable<>(18);
 
         MENSAJE_ESTADO.put(new NadaCantado(), "Nada ha sido cantado");
         MENSAJE_ESTADO.put(new TantoJugado(EQUIPO), "Tanto ya jugado");
@@ -44,6 +44,7 @@ public class DiccionarioEstadosJuego {
         MENSAJE_ESTADO.put(new EnvidoCantado(ESTADO_JUEGO), "Envido cantado");
         MENSAJE_ESTADO.put(new EnvidoEnvidoCantado(ESTADO_JUEGO), "Envido envido cantado");
         MENSAJE_ESTADO.put(new RealEnvidoCantado(ESTADO_JUEGO, 0, false), "Real Envido cantado");
+        MENSAJE_ESTADO.put(new RealEnvidoCantado(ESTADO_JUEGO, 0, true), "Real Envido cantado");
         MENSAJE_ESTADO.put(new FaltaEnvidoCantado(ESTADO_JUEGO, new Puntaje()), "Falta Envido cantado");
         MENSAJE_ESTADO.put(new FlorCantada(ESTADO_JUEGO), "Flor cantada");
         MENSAJE_ESTADO.put(new FlorFlorCantada(ESTADO_JUEGO), "Flor flor cantada");
@@ -71,7 +72,7 @@ public class DiccionarioEstadosJuego {
         Button botonQuieroFlor = botonesQuiero.get(3);
         Button botonNoQuieroTanto = botonesQuiero.get(4);
 
-        botonesADeshabilitar = new Hashtable<>(17);
+        botonesADeshabilitar = new Hashtable<>(18);
 
         botonesADeshabilitar.put(new NadaCantado(), Arrays.asList(botonRetruco, botonValeCuatro, botonContraFlorAlResto, botonContraFlorAlPartido, botonQuieroTruco, botonNoQuieroTruco, botonQuieroEnvido, botonQuieroFlor, botonNoQuieroTanto));
         botonesADeshabilitar.put(new TantoJugado(EQUIPO), Arrays.asList(botonRetruco, botonValeCuatro, botonEnvido, botonRealEnvido, botonFaltaEnvido, botonFlor, botonContraFlorAlResto, botonContraFlorAlPartido, botonQuieroTruco, botonNoQuieroTruco, botonQuieroEnvido, botonQuieroFlor, botonNoQuieroTanto));
@@ -84,7 +85,8 @@ public class DiccionarioEstadosJuego {
         botonesADeshabilitar.put(new ValeCuatroQuerido(EQUIPO), Arrays.asList(botonTruco, botonRetruco, botonValeCuatro, botonEnvido, botonRealEnvido, botonFaltaEnvido, botonFlor, botonContraFlorAlResto, botonContraFlorAlPartido, botonQuieroTruco, botonNoQuieroTruco, botonQuieroEnvido, botonQuieroFlor, botonNoQuieroTanto));
         botonesADeshabilitar.put(new EnvidoCantado(ESTADO_JUEGO), Arrays.asList(botonTruco, botonRetruco, botonValeCuatro, botonContraFlorAlResto, botonContraFlorAlPartido, botonQuieroTruco, botonNoQuieroTruco, botonQuieroFlor));
         botonesADeshabilitar.put(new EnvidoEnvidoCantado(ESTADO_JUEGO), Arrays.asList(botonTruco, botonRetruco, botonValeCuatro, botonEnvido, botonFlor, botonContraFlorAlResto, botonContraFlorAlPartido, botonQuieroTruco, botonNoQuieroTruco, botonQuieroFlor));
-        botonesADeshabilitar.put(new RealEnvidoCantado(ESTADO_JUEGO, 0, false), Arrays.asList(botonTruco, botonRetruco, botonValeCuatro, botonEnvido, botonRealEnvido, botonFlor, botonContraFlorAlResto, botonContraFlorAlPartido, botonQuieroTruco, botonNoQuieroTruco, botonQuieroFlor));
+        botonesADeshabilitar.put(new RealEnvidoCantado(ESTADO_JUEGO, 0, false), Arrays.asList(botonTruco, botonRetruco, botonValeCuatro, botonEnvido, botonRealEnvido, botonContraFlorAlResto, botonContraFlorAlPartido, botonQuieroTruco, botonNoQuieroTruco, botonQuieroFlor));
+        botonesADeshabilitar.put(new RealEnvidoCantado(ESTADO_JUEGO, 0, true), Arrays.asList(botonTruco, botonRetruco, botonValeCuatro, botonEnvido, botonRealEnvido, botonFlor, botonContraFlorAlResto, botonContraFlorAlPartido, botonQuieroTruco, botonNoQuieroTruco, botonQuieroFlor));
         botonesADeshabilitar.put(new FaltaEnvidoCantado(ESTADO_JUEGO, new Puntaje()), Arrays.asList(botonTruco, botonRetruco, botonValeCuatro, botonEnvido, botonRealEnvido, botonFaltaEnvido, botonFlor, botonContraFlorAlResto, botonContraFlorAlPartido, botonQuieroTruco, botonNoQuieroTruco, botonQuieroFlor));
         botonesADeshabilitar.put(new FlorCantada(ESTADO_JUEGO), Arrays.asList(botonTruco, botonRetruco, botonValeCuatro, botonEnvido, botonRealEnvido, botonFaltaEnvido, botonFlor, botonQuieroTruco, botonNoQuieroTruco, botonQuieroEnvido));
         botonesADeshabilitar.put(new FlorFlorCantada(ESTADO_JUEGO), Arrays.asList(botonTruco, botonRetruco, botonValeCuatro, botonEnvido, botonRealEnvido, botonFaltaEnvido, botonFlor, botonContraFlorAlResto, botonContraFlorAlPartido, botonQuieroTruco, botonNoQuieroTruco, botonQuieroEnvido));

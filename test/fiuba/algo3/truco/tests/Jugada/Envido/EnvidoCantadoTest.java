@@ -76,7 +76,7 @@ public class EnvidoCantadoTest {
     public void Test5SePuedeCantarRealEnvido(){
 
         this.estadoJuego = this.estadoJuego.realEnvido(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))));
-        Assert.assertEquals(this.estadoJuego, new RealEnvidoCantado(this.estadoJuego, false));
+        Assert.assertEquals(this.estadoJuego, new RealEnvidoCantado(this.estadoJuego, true));
 
     }
 
