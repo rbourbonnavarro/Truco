@@ -982,6 +982,10 @@ public class JugadasConIATest {
         mesa.hacerJugada(carta1);
         Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
         JIA.turno();
+        Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+        mesa.quieroTruco();
+        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+        JIA.turno();
 
         Assert.assertEquals(carta4, mesa.getCartasEnMesa().getLast());
 
@@ -1060,10 +1064,10 @@ public class JugadasConIATest {
         mesa.hacerJugada(carta1);
         Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
         JIA.turno();
-        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
-        JIA.turno();
         Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
         mesa.quieroTruco();
+        Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
+        JIA.turno();
         Assert.assertEquals(JIA.getNombre(), mesa.getJugadorActual().getNombre());
         JIA.turno();
 

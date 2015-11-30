@@ -55,7 +55,7 @@
                                                 <Button fx:id="botonQuieroTruco" mnemonicParsing="false" onAction="#quieroTrucoHandler" text="Quiero" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
                                              </children>
                                           </GridPane>
-                                          <Label fx:id="labelEstadoJuego" layoutX="103.0" layoutY="40.0" prefHeight="21.0" prefWidth="45.0" />
+                                          <Label fx:id="labelEstadoJuego" layoutX="44.0" layoutY="40.0" prefHeight="21.0" prefWidth="170.0" textAlignment="CENTER" />
                                        </children></AnchorPane>
                                             </items>
                                         </SplitPane>

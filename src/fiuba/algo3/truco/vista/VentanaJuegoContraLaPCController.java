@@ -16,8 +16,9 @@ public class VentanaJuegoContraLaPCController extends VentanaJuegoController {
     protected void mostrarJugadorActual() {
 
         this.setearBotones();
+        this.mostrarEstadoJuego();
 
-        this.labelEstadoJuego.setText(this.diccionarioEstadosJuego.obtenerMensajeEstado(this.mesa.getEstadoVuelta().getEstadoJuego()));
+        this.mostrarPuntos();
 
         if(!this.jugadorPrevio.equals(this.mesa.getJugadorActual())) {
 
@@ -47,8 +48,6 @@ public class VentanaJuegoContraLaPCController extends VentanaJuegoController {
             JugadorIA jugadorIA = (JugadorIA) this.mesa.getJugadorActual();
             jugadorIA.turno();
 
-            this.labelEstadoJuego.setText(this.diccionarioEstadosJuego.obtenerMensajeEstado(this.mesa.getEstadoVuelta().getEstadoJuego()));
-
             try {
 
                 if (jugadorIA.obtenerCartas().contains(this.mesa.getCartasEnMesa().getLast())) {
@@ -58,6 +57,8 @@ public class VentanaJuegoContraLaPCController extends VentanaJuegoController {
                 }
 
             } catch(NoSuchElementException noSuchElementException) {}
+
+            this.mostrarJugadorActual();
 
         }
 

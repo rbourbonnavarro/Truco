@@ -2,8 +2,6 @@ package fiuba.algo3.truco.vista;
 
 import fiuba.algo3.truco.modelo.*;
 import fiuba.algo3.truco.modelo.Jugadas.EstadoJuego;
-import fiuba.algo3.truco.modelo.Jugadas.NadaCantado;
-import fiuba.algo3.truco.modelo.Jugadas.TantoJugado;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.*;
 import fiuba.algo3.truco.modelo.Puntos.JuegoTerminadoException;
 import fiuba.algo3.truco.modelo.Ronda.PrimeraVuelta;
@@ -21,6 +19,8 @@ public class VentanaJuegoController {
 
     @FXML
     protected Label turno;
+    @FXML
+    private Label labelEstadoJuego;
     @FXML
     protected Label labelEquipo1;
     @FXML
@@ -503,6 +503,7 @@ public class VentanaJuegoController {
     protected void mostrarJugadorActual() {
 
         this.setearBotones();
+        this.mostrarEstadoJuego();
 
         if(!this.jugadorPrevio.equals(this.mesa.getJugadorActual())) {
 
@@ -562,6 +563,14 @@ public class VentanaJuegoController {
         this.visibilizarBotones(this.diccionarioEstadosJuego.obtenerBotones(estadoJuego), false);
         if(! this.mesa.seJuegaConFlor())
            this.visibilizarBotones(this.botonesFlor, false);
+
+    }
+
+    protected void mostrarEstadoJuego() {
+
+        EstadoJuego estadoJuego = this.mesa.getEstadoVuelta().getEstadoJuego();
+
+        this.labelEstadoJuego.setText(this.diccionarioEstadosJuego.obtenerMensajeEstado(estadoJuego));
 
     }
 
