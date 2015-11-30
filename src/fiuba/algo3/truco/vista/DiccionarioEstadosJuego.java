@@ -21,27 +21,52 @@ import java.util.*;
 public class DiccionarioEstadosJuego {
 
     private Dictionary<EstadoJuego, List<Button>> botonesADeshabilitar;
+    private static final Dictionary<EstadoJuego, String> MENSAJE_ESTADO;
     private static final Equipo EQUIPO = new Equipo("EQUIPO", Collections.singletonList(new Jugador("jugador")));
     private static final EstadoJuego ESTADO_JUEGO = new NadaCantado();
 
-    public DiccionarioEstadosJuego(List<Button> botones, List<Button> botonesTruco, List<Button> botonesTanto, List<Button> botonesQuiero) {
+    static {
 
-        Button botonTruco = botones.get(0);
-        Button botonRetruco = botones.get(1);
-        Button botonValeCuatro = botones.get(2);
-        Button botonQuieroTruco = botones.get(3);
-        Button botonNoQuieroTruco = botones.get(4);
-        Button botonEnvido = botones.get(5);
-        Button botonRealEnvido = botones.get(6);
-        Button botonFaltaEnvido = botones.get(7);
-        Button botonQuieroEnvido = botones.get(8);
-        Button botonFlor = botones.get(9);
-        Button botonContraFlorAlResto = botones.get(10);
-        Button botonContraFlorAlPartido = botones.get(11);
-        Button botonQuieroFlor = botones.get(12);
-        Button botonNoQuieroTanto = botones.get(13);
+        MENSAJE_ESTADO = new Hashtable<>(15);
 
-        botonesADeshabilitar = new Hashtable<>();
+        MENSAJE_ESTADO.put(new NadaCantado(), "Nada ha sido cantado");
+        MENSAJE_ESTADO.put(new TrucoCantado(EQUIPO, true), "Truco cantado");
+        MENSAJE_ESTADO.put(new TrucoQuerido(EQUIPO), "Truco querido");
+        MENSAJE_ESTADO.put(new RetrucoCantado(EQUIPO), "Retruco cantado");
+        MENSAJE_ESTADO.put(new RetrucoQuerido(EQUIPO, EQUIPO), "Retruco querido");
+        MENSAJE_ESTADO.put(new ValeCuatroCantado(EQUIPO), "Vale cuatro cantado");
+        MENSAJE_ESTADO.put(new ValeCuatroQuerido(EQUIPO), "Vale cuatro querido");
+        MENSAJE_ESTADO.put(new EnvidoCantado(ESTADO_JUEGO), "Envido cantado");
+        MENSAJE_ESTADO.put(new EnvidoEnvidoCantado(ESTADO_JUEGO), "Envido envido cantado");
+        MENSAJE_ESTADO.put(new RealEnvidoCantado(ESTADO_JUEGO, 0), "Real Envido cantado");
+        MENSAJE_ESTADO.put(new FaltaEnvidoCantado(ESTADO_JUEGO, new Puntaje()), "Falta Envido cantado");
+        MENSAJE_ESTADO.put(new FlorCantada(ESTADO_JUEGO), "Flor cantada");
+        MENSAJE_ESTADO.put(new FlorFlorCantada(ESTADO_JUEGO), "Flor flor cantada");
+        MENSAJE_ESTADO.put(new ContraFlorAlRestoCantada(ESTADO_JUEGO, new Puntaje(), 0), "Contra flor al resto cantada");
+        MENSAJE_ESTADO.put(new ContraFlorAlPartidoCantado(ESTADO_JUEGO), "Contra flor al partido cantada");
+
+
+
+    }
+
+    public DiccionarioEstadosJuego(List<Button> botonesTruco, List<Button> botonesTanto, List<Button> botonesQuiero) {
+
+        Button botonTruco = botonesTruco.get(0);
+        Button botonRetruco = botonesTruco.get(1);
+        Button botonValeCuatro = botonesTruco.get(2);
+        Button botonEnvido = botonesTanto.get(0);
+        Button botonRealEnvido = botonesTanto.get(1);
+        Button botonFaltaEnvido = botonesTanto.get(2);
+        Button botonFlor = botonesTanto.get(3);
+        Button botonContraFlorAlResto = botonesTanto.get(4);
+        Button botonContraFlorAlPartido = botonesTanto.get(5);
+        Button botonQuieroTruco = botonesQuiero.get(0);
+        Button botonNoQuieroTruco = botonesQuiero.get(1);
+        Button botonQuieroEnvido = botonesQuiero.get(2);
+        Button botonQuieroFlor = botonesQuiero.get(3);
+        Button botonNoQuieroTanto = botonesQuiero.get(4);
+
+        botonesADeshabilitar = new Hashtable<>(15);
 
         botonesADeshabilitar.put(new NadaCantado(), Arrays.asList(botonRetruco, botonValeCuatro, botonContraFlorAlResto, botonContraFlorAlPartido, botonQuieroTruco, botonNoQuieroTruco, botonQuieroEnvido, botonQuieroFlor, botonNoQuieroTanto));
         botonesADeshabilitar.put(new TrucoCantado(EQUIPO, true), Arrays.asList(botonTruco, botonValeCuatro, botonContraFlorAlResto, botonContraFlorAlPartido, botonQuieroEnvido, botonQuieroFlor, botonNoQuieroTanto));
@@ -49,7 +74,7 @@ public class DiccionarioEstadosJuego {
         botonesADeshabilitar.put(new RetrucoCantado(EQUIPO), Arrays.asList(botonTruco, botonRetruco, botonEnvido, botonRealEnvido, botonFaltaEnvido, botonFlor, botonContraFlorAlResto, botonContraFlorAlPartido, botonQuieroEnvido, botonQuieroFlor, botonNoQuieroTanto));
         botonesADeshabilitar.put(new RetrucoQuerido(EQUIPO, EQUIPO), Arrays.asList(botonTruco, botonRetruco, botonEnvido, botonRealEnvido, botonFaltaEnvido, botonFlor, botonContraFlorAlResto, botonContraFlorAlPartido, botonQuieroTruco, botonNoQuieroTruco, botonQuieroEnvido, botonQuieroFlor, botonNoQuieroTanto));
         botonesADeshabilitar.put(new ValeCuatroCantado(EQUIPO), Arrays.asList(botonTruco, botonRetruco, botonValeCuatro, botonEnvido, botonRealEnvido, botonFaltaEnvido, botonFlor, botonContraFlorAlResto, botonContraFlorAlPartido, botonQuieroEnvido, botonQuieroFlor, botonNoQuieroTanto));
-        botonesADeshabilitar.put(new ValeCuatroQuerido(EQUIPO), botones);
+        botonesADeshabilitar.put(new ValeCuatroQuerido(EQUIPO), Arrays.asList(botonTruco, botonRetruco, botonValeCuatro, botonEnvido, botonRealEnvido, botonFaltaEnvido, botonFlor, botonContraFlorAlResto, botonContraFlorAlPartido, botonQuieroTruco, botonNoQuieroTruco, botonQuieroEnvido, botonQuieroFlor, botonNoQuieroTanto));
         botonesADeshabilitar.put(new EnvidoCantado(ESTADO_JUEGO), Arrays.asList(botonTruco, botonRetruco, botonValeCuatro, botonContraFlorAlResto, botonContraFlorAlPartido, botonQuieroTruco, botonNoQuieroTruco, botonQuieroFlor));
         botonesADeshabilitar.put(new EnvidoEnvidoCantado(ESTADO_JUEGO), Arrays.asList(botonTruco, botonRetruco, botonValeCuatro, botonEnvido, botonFlor, botonContraFlorAlResto, botonContraFlorAlPartido, botonQuieroTruco, botonNoQuieroTruco, botonQuieroFlor));
         botonesADeshabilitar.put(new RealEnvidoCantado(ESTADO_JUEGO, 0), Arrays.asList(botonTruco, botonRetruco, botonValeCuatro, botonEnvido, botonRealEnvido, botonFlor, botonContraFlorAlResto, botonContraFlorAlPartido, botonQuieroTruco, botonNoQuieroTruco, botonQuieroFlor));
@@ -64,6 +89,12 @@ public class DiccionarioEstadosJuego {
     public List<Button> obtenerBotones(EstadoJuego estadoJuego) {
 
         return this.botonesADeshabilitar.get(estadoJuego);
+
+    }
+
+    public String obtenerMensajeEstado(EstadoJuego estadoJuego) {
+
+        return this.MENSAJE_ESTADO.get(estadoJuego);
 
     }
 

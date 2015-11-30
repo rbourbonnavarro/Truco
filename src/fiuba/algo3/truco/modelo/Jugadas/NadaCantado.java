@@ -148,5 +148,12 @@ public class NadaCantado implements EstadoJuego {
 
     }
 
+    @Override
+    public int hashCode() {
+
+        return 0;
+
+    }
+
 
 }

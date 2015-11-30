@@ -157,5 +157,12 @@ public class TrucoCantado implements EstadoJuego {
 
     }
 
+    @Override
+    public int hashCode() {
+
+        return this.noQuerido();
+
+    }
+
 
 }

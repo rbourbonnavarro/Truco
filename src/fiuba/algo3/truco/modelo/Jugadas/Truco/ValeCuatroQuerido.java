@@ -130,5 +130,12 @@ public class ValeCuatroQuerido implements EstadoJuego {
 
     }
 
+    @Override
+    public int hashCode() {
+
+        return this.puntos();
+
+    }
+
 
 }

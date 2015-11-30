@@ -139,6 +139,7 @@ public class VentanaJuegoController {
     protected List<Button> botonesTanto;
     protected List<Button> botonesTruco;
     protected List<Button> botonesQuiero;
+    protected DiccionarioEstadosJuego diccionarioEstadosJuego;
 
     @FXML
     protected void initialize() {
@@ -161,6 +162,8 @@ public class VentanaJuegoController {
         this.botonesTanto.addAll(this.botonesFlor);
         this.botonesTruco = new ArrayList<>(Arrays.asList(this.botonTruco, this.botonRetruco, this.botonValeCuatro));
         this.botonesQuiero = new ArrayList<>(Arrays.asList(this.botonQuieroTruco, this.botonNoQuieroTruco, this.botonQuieroEnvido, this.botonQuieroFlor, this.botonNoQuieroTanto));
+
+        this.diccionarioEstadosJuego = new DiccionarioEstadosJuego(this.botonesTruco, this.botonesTanto, this.botonesQuiero);
 
         this.visibilizarBotones(this.botonesQuiero, false);
         this.visibilizarBotones(Arrays.asList(this.botonRetruco, this.botonValeCuatro), false);

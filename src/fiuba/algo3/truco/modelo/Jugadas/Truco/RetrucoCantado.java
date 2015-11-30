@@ -138,5 +138,12 @@ public class RetrucoCantado implements EstadoJuego {
 
     }
 
+    @Override
+    public int hashCode() {
+
+        return this.noQuerido();
+
+    }
+
 
 }

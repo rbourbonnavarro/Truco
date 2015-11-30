@@ -11,9 +11,16 @@ import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorCantada;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorFlorCantada;
 import fiuba.algo3.truco.modelo.Ronda.PrimeraVuelta;
 import fiuba.algo3.truco.modelo.Ronda.Vuelta;
+import javafx.fxml.FXML;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+
+import java.util.NoSuchElementException;
 
 public class VentanaJuegoContraLaPCController extends VentanaJuegoController {
+
+    @FXML
+    private Label labelEstadoJuego;
 
     @Override
     protected void mostrarJugadorActual() {
@@ -48,11 +55,17 @@ public class VentanaJuegoContraLaPCController extends VentanaJuegoController {
             JugadorIA jugadorIA = (JugadorIA) this.mesa.getJugadorActual();
             jugadorIA.turno();
 
-            if(jugadorIA.obtenerCartas().contains(this.mesa.getCartasEnMesa().getLast())) {
+            this.labelEstadoJuego.setText(this.diccionarioEstadosJuego.obtenerMensajeEstado(this.mesa.getEstadoVuelta().getEstadoJuego()));
 
-                this.mostrarCartaEnMesa(this.mesa.getCartasEnMesa().getLast());
+            try {
 
-            }
+                if (jugadorIA.obtenerCartas().contains(this.mesa.getCartasEnMesa().getLast())) {
+
+                    this.mostrarCartaEnMesa(this.mesa.getCartasEnMesa().getLast());
+
+                }
+
+            } catch(NoSuchElementException noSuchElementException) {}
 
         }
 
@@ -65,9 +78,11 @@ public class VentanaJuegoContraLaPCController extends VentanaJuegoController {
 
         this.visibilizarBotones(this.botonesTruco, true);
         this.visibilizarBotones(this.botonesTanto, true);
+        this.visibilizarBotones(this.botonesQuiero, true);
 
-        this.puedoCantarTruco();
-        this.puedoCantarTanto();
+        this.visibilizarBotones(this.diccionarioEstadosJuego.obtenerBotones(estadoJuego), false);
+
+        this.labelEstadoJuego.setText(this.diccionarioEstadosJuego.obtenerMensajeEstado(estadoJuego));
 
     }
 
