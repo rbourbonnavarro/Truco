@@ -21,23 +21,44 @@ public class VentanaJuegoContraLaPCController extends VentanaJuegoController {
     @FXML
     private void botonContinuarHandler() {
 
-        if(this.terminarRonda) {
+        JugadorIA jugadorIA = (JugadorIA) this.mesa.getJugadorActual();
+
+        EstadoJuego estadoJuegoPrevio = this.mesa.getEstadoVuelta().getEstadoJuego();
+
+        Carta ultimaCartaJugadaIA = jugadorIA.getUltimaCartaJugada();
+
+        jugadorIA.turno();
+
+        if(!(estadoJuegoPrevio instanceof NadaCantado)
+                && this.mesa.getEstadoVuelta().getEstadoJuego() instanceof NadaCantado) {
 
             this.nuevaRonda();
 
         }
+        else {
 
-        try {
+            try {
 
-            this.mesa.getEstadoVuelta().estadoValido();
+                if (ultimaCartaJugadaIA != jugadorIA.getUltimaCartaJugada()) {
 
-            this.desactivarBotones(this.botonesCartasJugadorActual, false);
+                    this.mostrarCartaEnMesa(jugadorIA.getUltimaCartaJugada());
 
-        } catch(Exception e) {
+                }
 
-            this.desactivarBotones(this.botonesCartasJugadorActual, true);
+            } catch (NoSuchElementException noSuchElementException) {
+
+                if (jugadorIA.obtenerCartasEnMano().size() < 3) {
+
+                    this.nuevaRonda();
+
+                }
+
+            }
 
         }
+
+        this.mostrarEstadoJuego();
+        this.mostrarPuntos();
 
         this.mostrarJugadorActual();
 
@@ -73,8 +94,6 @@ public class VentanaJuegoContraLaPCController extends VentanaJuegoController {
 
             }
 
-            /*EstadoJuego estadoJuego = this.mesa.getEstadoVuelta().getEstadoJuego();
-
             try {
 
                 this.mesa.getEstadoVuelta().estadoValido();
@@ -85,7 +104,7 @@ public class VentanaJuegoContraLaPCController extends VentanaJuegoController {
 
                 this.desactivarBotones(this.botonesCartasJugadorActual, true);
 
-            }*/
+            }
 
             this.mostrarCartasJugadorActual();
 
@@ -94,50 +113,11 @@ public class VentanaJuegoContraLaPCController extends VentanaJuegoController {
 
             this.botonContinuar.setDisable(false);
 
-            JugadorIA jugadorIA = (JugadorIA) this.mesa.getJugadorActual();
-
-            EstadoJuego estadoJuegoPrevio = this.mesa.getEstadoVuelta().getEstadoJuego();
-
-            Carta ultimaCartaJugadaIA = jugadorIA.getUltimaCartaJugada();
-
-            jugadorIA.turno();
-
-            if(!(estadoJuegoPrevio instanceof NadaCantado)
-                    && this.mesa.getEstadoVuelta().getEstadoJuego() instanceof NadaCantado) {
-
-                this.terminarRonda = true;
-
-            }
-            else {
-
-                try {
-
-                    if (ultimaCartaJugadaIA != jugadorIA.getUltimaCartaJugada() && ultimaCartaJugadaIA != null) {
-
-                        this.mostrarCartaEnMesa(jugadorIA.getUltimaCartaJugada());
-
-                    }
-
-                } catch (NoSuchElementException noSuchElementException) {
-
-                    if (jugadorIA.obtenerCartasEnMano().size() < 3) {
-
-                        this.terminarRonda = true;
-
-                    }
-
-                }
-
-            }
-
             this.visibilizarBotones(this.botonesTanto, false);
             this.visibilizarBotones(this.botonesTruco, false);
             this.visibilizarBotones(this.botonesQuiero, false);
 
             this.desactivarBotones(this.botonesCartasJugadorActual, true);
-
-            this.mostrarEstadoJuego();
-            this.mostrarPuntos();
 
         }
 

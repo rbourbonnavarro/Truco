@@ -54,9 +54,11 @@ public class JugadorIA extends Jugador {
 
                     } catch (NoHayDecisionException a) {
 
-                        this.ultimaCartaJugada = this.decisionCarta();
+                        Carta cartaAJugar = this.decisionCarta();
 
-                        this.mesa.hacerJugada(this.ultimaCartaJugada);
+                        this.mesa.hacerJugada(cartaAJugar);
+
+                        this.ultimaCartaJugada = cartaAJugar;
 
                     }
 
@@ -71,9 +73,11 @@ public class JugadorIA extends Jugador {
 
                 } catch (NoHayDecisionException a) {
 
-                    this.ultimaCartaJugada = this.decisionCarta();
+                    Carta cartaAJugar = this.decisionCarta();
 
-                    this.mesa.hacerJugada(this.ultimaCartaJugada);
+                    this.mesa.hacerJugada(cartaAJugar);
+
+                    this.ultimaCartaJugada = cartaAJugar;
 
                 }
 
