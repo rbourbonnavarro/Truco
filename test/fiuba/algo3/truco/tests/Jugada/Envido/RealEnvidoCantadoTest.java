@@ -3,6 +3,7 @@ package fiuba.algo3.truco.tests.Jugada.Envido;
 import fiuba.algo3.truco.modelo.Equipo;
 import fiuba.algo3.truco.modelo.Jugadas.Envido.*;
 import fiuba.algo3.truco.modelo.Jugadas.EstadoJuego;
+import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorCantada;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeCantarContraFlorException;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeCantarFlorException;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.NoSePuedeCantarRetrucoException;
@@ -22,7 +23,7 @@ public class RealEnvidoCantadoTest {
     @Test
     public void Test1PuntosDevuelve3SiSoloSeCantoRealEnvido(){
 
-        this.estadoJuego = new RealEnvidoCantado(this.estadoJuego);
+        this.estadoJuego = new RealEnvidoCantado(this.estadoJuego, false);
         Assert.assertEquals(this.estadoJuego.puntos(), 3);
 
     }
@@ -30,7 +31,7 @@ public class RealEnvidoCantadoTest {
     @Test(expected = NoSePuedeCantarTrucoException.class)
     public void TestNoSePuedeCantarTruco(){
 
-        this.estadoJuego = new RealEnvidoCantado(this.estadoJuego);
+        this.estadoJuego = new RealEnvidoCantado(this.estadoJuego, false);
         this.estadoJuego.truco(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))));
 
     }
@@ -38,7 +39,7 @@ public class RealEnvidoCantadoTest {
     @Test(expected = NoSePuedeCantarRetrucoException.class)
     public void TestNoSePuedeCantarRetruco(){
 
-        this.estadoJuego = new RealEnvidoCantado(this.estadoJuego);
+        this.estadoJuego = new RealEnvidoCantado(this.estadoJuego, false);
         this.estadoJuego.reTruco(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))));
 
     }
@@ -46,7 +47,7 @@ public class RealEnvidoCantadoTest {
     @Test(expected = NoSePuedeCantarValeCuatroException.class)
     public void TestNoSePuedeCantarValeCuatro(){
 
-        this.estadoJuego = new RealEnvidoCantado(this.estadoJuego);
+        this.estadoJuego = new RealEnvidoCantado(this.estadoJuego, false);
         this.estadoJuego.valeCuatro(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))));
 
     }
@@ -54,7 +55,7 @@ public class RealEnvidoCantadoTest {
     @Test
     public void Test2NoQueridoDevuelve1PuntoSiSoloSeCantoRealEnvido(){
 
-        this.estadoJuego = new RealEnvidoCantado(this.estadoJuego);
+        this.estadoJuego = new RealEnvidoCantado(this.estadoJuego, false);
         Assert.assertEquals(this.estadoJuego.noQuerido(),1);
 
     }
@@ -100,7 +101,7 @@ public class RealEnvidoCantadoTest {
     @Test(expected = NoSePuedeCantarEnvido.class)
     public void Test7NoSePuedeCantarEnvido(){
 
-        this.estadoJuego = new RealEnvidoCantado(this.estadoJuego);
+        this.estadoJuego = new RealEnvidoCantado(this.estadoJuego, false);
         this.estadoJuego.envido(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))));
 
     }
@@ -108,7 +109,7 @@ public class RealEnvidoCantadoTest {
     @Test(expected = NoSePuedeCantarRealEnvido.class)
     public void Test9NoSePuedeCantarRealEnvido(){
 
-        this.estadoJuego = new RealEnvidoCantado(this.estadoJuego);
+        this.estadoJuego = new RealEnvidoCantado(this.estadoJuego, false);
         this.estadoJuego.realEnvido(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))));
 
     }
@@ -116,7 +117,7 @@ public class RealEnvidoCantadoTest {
     @Test
     public void Test10SePuedeCantarFaltaEnvido(){
 
-        this.estadoJuego = new RealEnvidoCantado(this.estadoJuego);
+        this.estadoJuego = new RealEnvidoCantado(this.estadoJuego, false);
         Puntaje puntos = new Puntaje();
         puntos.sumar(16);
 
@@ -124,19 +125,30 @@ public class RealEnvidoCantadoTest {
 
     }
 
+    @Test
+    public void test11SePuedeCantarFlor() {
+
+        this.estadoJuego = new RealEnvidoCantado(this.estadoJuego, false);
+        this.estadoJuego = this.estadoJuego.flor(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))));
+
+        Assert.assertEquals(this.estadoJuego, new FlorCantada(this.estadoJuego));
+
+    }
+
     @Test(expected = NoSePuedeCantarFlorException.class)
     public void testNoSePuedeCantarFlor() {
 
-        this.estadoJuego = new RealEnvidoCantado(this.estadoJuego);
+        this.estadoJuego = new RealEnvidoCantado(this.estadoJuego, true);
         this.estadoJuego.flor(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))));
 
     }
+
     @Test(expected = NoSePuedeCantarContraFlorException.class)
     public void testNoSePuedeCantarContraFlorAlResto() {
 
         Puntaje puntos = new Puntaje();
         puntos.sumar(20);
-        this.estadoJuego = new RealEnvidoCantado(this.estadoJuego);
+        this.estadoJuego = new RealEnvidoCantado(this.estadoJuego, false);
         this.estadoJuego.contraFlorAlResto(puntos);
 
     }
@@ -144,7 +156,7 @@ public class RealEnvidoCantadoTest {
     @Test(expected = NoSePuedeCantarContraFlorException.class)
     public void testNoSePuedeCantarContraFlorAlPartido() {
 
-        this.estadoJuego = new RealEnvidoCantado(this.estadoJuego);
+        this.estadoJuego = new RealEnvidoCantado(this.estadoJuego, false);
         this.estadoJuego.contraFlorAlPartido();
 
     }

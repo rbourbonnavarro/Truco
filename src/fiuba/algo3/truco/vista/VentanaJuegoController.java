@@ -226,6 +226,7 @@ public class VentanaJuegoController {
     private void JugarCarta1Handler() {
 
         try {
+
             mesa.hacerJugada(cartasJugadorActual.get(0));
             this.mostrarCartaEnMesa(cartasJugadorActual.get(0));
             this.mostrarJugadorActual();

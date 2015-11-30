@@ -64,7 +64,7 @@ public class NadaCantado implements EstadoJuego {
 
         this.equipoIniciadorTanto = equipoIniciador;
 
-        return new RealEnvidoCantado(this);
+        return new RealEnvidoCantado(this, false);
 
     }
 

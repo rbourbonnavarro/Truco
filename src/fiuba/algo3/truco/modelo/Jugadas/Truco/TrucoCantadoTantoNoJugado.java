@@ -69,7 +69,7 @@ public class TrucoCantadoTantoNoJugado implements EstadoJuego {
 
         this.equipoIniciadorTanto = this.equipoIniciador;
 
-        return new RealEnvidoCantado(this);
+        return new RealEnvidoCantado(this, false);
 
     }
 
