@@ -205,15 +205,18 @@ public class VentanaJuegoController {
     protected void MostarCartasHandler() {
 
         EstadoJuego estadoJuego = this.mesa.getEstadoVuelta().getEstadoJuego();
-        if(!(estadoJuego instanceof NadaCantado
-                || estadoJuego instanceof TantoJugado
-                || estadoJuego instanceof TrucoQuerido
-                || estadoJuego instanceof RetrucoQuerido
-                || estadoJuego instanceof ValeCuatroCantado
-                || estadoJuego instanceof ValeCuatroQuerido))
-            this.desactivarBotones(this.botonesCartasJugadorActual, true);
-        else
+
+        try {
+
+            this.mesa.getEstadoVuelta().estadoValido();
+
             this.desactivarBotones(this.botonesCartasJugadorActual, false);
+
+        } catch(Exception e) {
+
+            this.desactivarBotones(this.botonesCartasJugadorActual, true);
+
+        }
 
         this.mostrarCartasJugadorActual();
 
@@ -451,7 +454,9 @@ public class VentanaJuegoController {
 
     @FXML
     private void quieroEnvidoHandler() {
+
         try {
+
             this.mesa.quieroEnvido();
             this.visibilizarBotones(this.botonesTanto, false);
             this.visibilizarBotones(this.botonesQuiero, false);
@@ -462,14 +467,19 @@ public class VentanaJuegoController {
 
             this.mostrarPuntos();
             this.mostrarJugadorActual();
+
         }catch (JuegoTerminadoException terminado) {
+
             this.main.juegoTerminado(mesa.getEquipoGanador().getNombre());
+
         }
     }
 
     @FXML
     private void noQuieroTantoHandler() {
+
         try {
+
             this.mesa.noQuieroTanto();
             this.visibilizarBotones(this.botonesTanto, false);
             this.visibilizarBotones(this.botonesQuiero, false);
@@ -480,9 +490,13 @@ public class VentanaJuegoController {
 
             this.mostrarPuntos();
             this.mostrarJugadorActual();
+
         }catch (JuegoTerminadoException terminado) {
+
             this.main.juegoTerminado(mesa.getEquipoGanador().getNombre());
+
         }
+
     }
 
     protected void mostrarJugadorActual() {
