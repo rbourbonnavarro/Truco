@@ -209,7 +209,8 @@ public class VentanaJuegoController {
                 || estadoJuego instanceof TantoJugado
                 || estadoJuego instanceof TrucoQuerido
                 || estadoJuego instanceof RetrucoQuerido
-                || estadoJuego instanceof ValeCuatroCantado))
+                || estadoJuego instanceof ValeCuatroCantado
+                || estadoJuego instanceof ValeCuatroQuerido))
             this.desactivarBotones(this.botonesCartasJugadorActual, true);
         else
             this.desactivarBotones(this.botonesCartasJugadorActual, false);
