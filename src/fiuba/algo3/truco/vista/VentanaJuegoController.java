@@ -6,12 +6,12 @@ import fiuba.algo3.truco.modelo.Jugadas.EstadoJuego;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorFlorCantada;
 import fiuba.algo3.truco.modelo.Jugadas.NadaCantado;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.*;
+import fiuba.algo3.truco.modelo.Puntos.JuegoTerminadoException;
 import fiuba.algo3.truco.modelo.Ronda.PrimeraVuelta;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuBar;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -175,36 +175,42 @@ public class VentanaJuegoController {
 
     @FXML
     private void JugarCarta1Handler() {
-
-        mesa.hacerJugada(cartasJugadorActual.get(0));
-        this.mostrarCartaEnMesa(cartasJugadorActual.get(0));
-        this.mostrarJugadorActual();
-        this.mostrarPuntos();
-        if(this.mesa.getCartasEnMesa().size() == 0) this.nuevaRonda();
-
+        try {
+            mesa.hacerJugada(cartasJugadorActual.get(0));
+            this.mostrarCartaEnMesa(cartasJugadorActual.get(0));
+            this.mostrarJugadorActual();
+            this.mostrarPuntos();
+            if (this.mesa.getCartasEnMesa().size() == 0) this.nuevaRonda();
+        }catch (JuegoTerminadoException terminado) {
+            this.main.juegoTerminado(mesa.getEquipoGanador().getNombre());
+        }
 
     }
 
     @FXML
     private void JugarCarta2Handler() {
-
-        mesa.hacerJugada(cartasJugadorActual.get(1));
-        this.mostrarCartaEnMesa(cartasJugadorActual.get(1));
-        this.mostrarJugadorActual();
-        this.mostrarPuntos();
-        if(this.mesa.getCartasEnMesa().size() == 0) this.nuevaRonda();
+        try {
+            mesa.hacerJugada(cartasJugadorActual.get(1));
+            this.mostrarCartaEnMesa(cartasJugadorActual.get(1));
+            this.mostrarJugadorActual();
+            this.mostrarPuntos();
+            if (this.mesa.getCartasEnMesa().size() == 0) this.nuevaRonda();
+        }catch (JuegoTerminadoException terminado) {
+            this.main.juegoTerminado(mesa.getEquipoGanador().getNombre());
+        }
     }
 
     @FXML
     private void JugarCarta3Handler() {
-
-        mesa.hacerJugada(cartasJugadorActual.get(2));
-        this.mostrarCartaEnMesa(cartasJugadorActual.get(2));
-        this.mostrarJugadorActual();
-        this.mostrarPuntos();
-        if(this.mesa.getCartasEnMesa().size() == 0) this.nuevaRonda();
-
-
+        try {
+            mesa.hacerJugada(cartasJugadorActual.get(2));
+            this.mostrarCartaEnMesa(cartasJugadorActual.get(2));
+            this.mostrarJugadorActual();
+            this.mostrarPuntos();
+            if (this.mesa.getCartasEnMesa().size() == 0) this.nuevaRonda();
+        }catch (JuegoTerminadoException terminado) {
+            this.main.juegoTerminado(mesa.getEquipoGanador().getNombre());
+        }
     }
 
     private void nuevaRonda() {
@@ -327,12 +333,14 @@ public class VentanaJuegoController {
 
     @FXML
     private void noQuieroTrucoHandler() {
-
-        mesa.noQuieroTruco();
-        this.nuevaRonda();
-        this.mostrarPuntos();
-        this.mostrarJugadorActual();
-
+        try {
+            mesa.noQuieroTruco();
+            this.nuevaRonda();
+            this.mostrarPuntos();
+            this.mostrarJugadorActual();
+        }catch (JuegoTerminadoException terminado) {
+            this.main.juegoTerminado(mesa.getEquipoGanador().getNombre());
+        }
     }
 
     @FXML
@@ -429,34 +437,38 @@ public class VentanaJuegoController {
 
     @FXML
     private void quieroEnvidoHandler() {
+        try {
+            this.mesa.quieroEnvido();
+            this.visibilizarBotones(this.botonesTanto, false);
+            this.visibilizarBotones(this.botonesQuiero, false);
+            if (this.mesa.getEstadoVuelta().getEstadoJuego() instanceof TrucoCantado)
+                this.visibilizarBotones(Arrays.asList(this.botonRetruco, this.botonQuieroTruco, this.botonNoQuieroTruco), true);
+            else
+                this.visibilizarBotones(Collections.singletonList(this.botonTruco), true);
 
-        this.mesa.quieroEnvido();
-        this.visibilizarBotones(this.botonesTanto, false);
-        this.visibilizarBotones(this.botonesQuiero, false);
-        if(this.mesa.getEstadoVuelta().getEstadoJuego() instanceof TrucoCantado)
-            this.visibilizarBotones(Arrays.asList(this.botonRetruco, this.botonQuieroTruco, this.botonNoQuieroTruco), true);
-        else
-            this.visibilizarBotones(Collections.singletonList(this.botonTruco), true);
-
-        this.mostrarPuntos();
-        this.mostrarJugadorActual();
-
+            this.mostrarPuntos();
+            this.mostrarJugadorActual();
+        }catch (JuegoTerminadoException terminado) {
+            this.main.juegoTerminado(mesa.getEquipoGanador().getNombre());
+        }
     }
 
     @FXML
     private void noQuieroTantoHandler() {
+        try {
+            this.mesa.noQuieroTanto();
+            this.visibilizarBotones(this.botonesTanto, false);
+            this.visibilizarBotones(this.botonesQuiero, false);
+            if (this.mesa.getEstadoVuelta().getEstadoJuego() instanceof TrucoCantado)
+                this.visibilizarBotones(Arrays.asList(this.botonRetruco, this.botonQuieroTruco, this.botonNoQuieroTruco), true);
+            else
+                this.visibilizarBotones(Collections.singletonList(this.botonTruco), true);
 
-        this.mesa.noQuieroTanto();
-        this.visibilizarBotones(this.botonesTanto, false);
-        this.visibilizarBotones(this.botonesQuiero, false);
-        if(this.mesa.getEstadoVuelta().getEstadoJuego() instanceof TrucoCantado)
-            this.visibilizarBotones(Arrays.asList(this.botonRetruco, this.botonQuieroTruco, this.botonNoQuieroTruco), true);
-        else
-            this.visibilizarBotones(Collections.singletonList(this.botonTruco), true);
-
-        this.mostrarPuntos();
-        this.mostrarJugadorActual();
-
+            this.mostrarPuntos();
+            this.mostrarJugadorActual();
+        }catch (JuegoTerminadoException terminado) {
+            this.main.juegoTerminado(mesa.getEquipoGanador().getNombre());
+        }
     }
 
     private void mostrarJugadorActual() {

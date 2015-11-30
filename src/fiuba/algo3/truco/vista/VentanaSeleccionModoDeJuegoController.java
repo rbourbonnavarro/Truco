@@ -138,7 +138,7 @@ public class VentanaSeleccionModoDeJuegoController {
         for(int i = 0; i < this.cantidadJugadores / 2; i++) {
 
             if(this.nombresJugadores.get(i).getText().equals(""))
-                this.nombresJugadores.get(i).setText("Jugador " + i);
+                this.nombresJugadores.get(i).setText("Jugador " + (i+1));
 
             jugadoresEquipo1.add(new Jugador(this.nombresJugadores.get(i).getText()));
             jugadoresEquipo2.add(new Jugador(this.nombresJugadores.get(i + 1).getText()));
