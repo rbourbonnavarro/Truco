@@ -101,7 +101,7 @@ public class DiccionarioEstadosJuego {
 
     public String obtenerMensajeEstado(EstadoJuego estadoJuego) {
 
-        return this.MENSAJE_ESTADO.get(estadoJuego);
+        return MENSAJE_ESTADO.get(estadoJuego);
 
     }
 

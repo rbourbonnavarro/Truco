@@ -127,7 +127,7 @@ public class TrucoCantadoTantoJugado implements EstadoJuego {
     @Override
     public boolean equals (Object estado){
 
-        return estado instanceof TrucoCantadoTantoNoJugado;
+        return estado instanceof TrucoCantadoTantoJugado;
 
     }
 
