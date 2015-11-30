@@ -173,6 +173,7 @@ public class VentanaSeleccionModoDeJuegoController {
         if(this.cantidadJugadores == 1) {
 
             ((JugadorIA) jugadoresEquipo2.get(0)).setMesa(mesa);
+            this.main.iniciarPartidaContraLaPC(mesa, equipo1, equipo2);
 
         }
 

@@ -55,6 +55,25 @@ public class Main extends Application {
 
     }
 
+    public void iniciarPartidaContraLaPC(Mesa mesa, Equipo equipo1, Equipo equipo2) {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("JuegoContraLaPC.fxml"));
+            AnchorPane partidaDeADos = loader.load();
+
+            this.disenioRaiz.setCenter(partidaDeADos);
+
+            VentanaJuegoContraLaPCController controlador = loader.getController();
+            controlador.setMain(this, mesa, equipo1, equipo2);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
     public void juegoTerminado(String equipoGanador){
         try {
 

@@ -21,91 +21,91 @@ import java.util.List;
 public class VentanaJuegoController {
 
     @FXML
-    private Label turno;
+    protected Label turno;
     @FXML
-    private Label labelEquipo1;
+    protected Label labelEquipo1;
     @FXML
-    private Label labelEquipo2;
+    protected Label labelEquipo2;
     @FXML
-    private Label puntajeEquipo1;
+    protected Label puntajeEquipo1;
     @FXML
-    private Label puntajeEquipo2;
+    protected Label puntajeEquipo2;
     @FXML
-    private Button botonMostrarCartas;
+    protected Button botonMostrarCartas;
     @FXML
-    private Button botonCarta1;
+    protected Button botonCarta1;
     @FXML
-    private Button botonCarta2;
+    protected Button botonCarta2;
     @FXML
-    private Button botonCarta3;
+    protected Button botonCarta3;
     @FXML
-    private Button botonCartaJugada1Jugador1;
+    protected Button botonCartaJugada1Jugador1;
     @FXML
-    private Button botonCartaJugada2Jugador1;
+    protected Button botonCartaJugada2Jugador1;
     @FXML
-    private Button botonCartaJugada3Jugador1;
+    protected Button botonCartaJugada3Jugador1;
     @FXML
-    private Button botonCartaJugada1Jugador2;
+    protected Button botonCartaJugada1Jugador2;
     @FXML
-    private Button botonCartaJugada2Jugador2;
+    protected Button botonCartaJugada2Jugador2;
     @FXML
-    private Button botonCartaJugada3Jugador2;
+    protected Button botonCartaJugada3Jugador2;
     @FXML
-    private List<Button> botonesCartasJugadorActual;
+    protected List<Button> botonesCartasJugadorActual;
     @FXML
-    private List<Button> botonesCartasJugadasJugador1;
+    protected List<Button> botonesCartasJugadasJugador1;
     @FXML
-    private List<Button> botonesCartasJugadasJugador2;
+    protected List<Button> botonesCartasJugadasJugador2;
     @FXML
-    private List<List<Button>> botonesCartasJugadas;
+    protected List<List<Button>> botonesCartasJugadas;
     @FXML
-    private Button botonFlor;
+    protected Button botonFlor;
     @FXML
-    private Button botonContraFlorAlResto;
+    protected Button botonContraFlorAlResto;
     @FXML
-    private Button botonContraFlorAlPartido;
+    protected Button botonContraFlorAlPartido;
     @FXML
-    private Button botonEnvido;
+    protected Button botonEnvido;
     @FXML
-    private Button botonRealEnvido;
+    protected Button botonRealEnvido;
     @FXML
-    private Button botonFaltaEnvido;
+    protected Button botonFaltaEnvido;
     @FXML
-    private Button botonTruco;
+    protected Button botonTruco;
     @FXML
-    private Button botonRetruco;
+    protected Button botonRetruco;
     @FXML
-    private Button botonValeCuatro;
+    protected Button botonValeCuatro;
     @FXML
-    private Button botonQuieroTruco;
+    protected Button botonQuieroTruco;
     @FXML
-    private Button botonNoQuieroTruco;
+    protected Button botonNoQuieroTruco;
     @FXML
-    private Button botonQuieroEnvido;
+    protected Button botonQuieroEnvido;
     @FXML
-    private Button botonQuieroFlor;
+    protected Button botonQuieroFlor;
     @FXML
-    private Button botonNoQuieroTanto;
+    protected Button botonNoQuieroTanto;
 
-    private Mesa mesa;
-    private Main main;
-    private Equipo equipo1;
-    private Equipo equipo2;
-    private List<Carta> cartasJugadorActual;
-    private DiccionarioCartas diccionarioCartas;
-    private int cantidadJugadasJugador1 = 0;
-    private int cantidadJugadasJugador2 = 0;
-    private List<Integer> cantidadJugadasJugador;
-    private Jugador jugadorPrevio;
-    private int indiceJugador = 0;
-    private List<Button> botonesEnvido;
-    private List<Button> botonesFlor;
-    private List<Button> botonesTanto;
-    private List<Button> botonesTruco;
-    private List<Button> botonesQuiero;
+    protected Mesa mesa;
+    protected Main main;
+    protected Equipo equipo1;
+    protected Equipo equipo2;
+    protected List<Carta> cartasJugadorActual;
+    protected DiccionarioCartas diccionarioCartas;
+    protected int cantidadJugadasJugador1 = 0;
+    protected int cantidadJugadasJugador2 = 0;
+    protected List<Integer> cantidadJugadasJugador;
+    protected Jugador jugadorPrevio;
+    protected int indiceJugador = 0;
+    protected List<Button> botonesEnvido;
+    protected List<Button> botonesFlor;
+    protected List<Button> botonesTanto;
+    protected List<Button> botonesTruco;
+    protected List<Button> botonesQuiero;
 
     @FXML
-    private void initialize() {
+    protected void initialize() {
 
         this.botonesCartasJugadorActual = new ArrayList<>(Arrays.asList(this.botonCarta1, this.botonCarta2, this.botonCarta3));
         this.botonesCartasJugadasJugador1 = new ArrayList<>(Arrays.asList(this.botonCartaJugada1Jugador1, this.botonCartaJugada2Jugador1, this.botonCartaJugada3Jugador1));
@@ -145,7 +145,7 @@ public class VentanaJuegoController {
     }
 
 
-    private void mostrarCartasJugadorActual() {
+    protected void mostrarCartasJugadorActual() {
 
         for (int i = 0; i < this.cartasJugadorActual.size(); i++) {
 
@@ -158,7 +158,7 @@ public class VentanaJuegoController {
     }
 
     @FXML
-    private void MostarCartasHandler() {
+    protected void MostarCartasHandler() {
 
         EstadoJuego estadoJuego = this.mesa.getEstadoVuelta().getEstadoJuego();
         if(!(estadoJuego instanceof NadaCantado
@@ -213,7 +213,7 @@ public class VentanaJuegoController {
         }
     }
 
-    private void nuevaRonda() {
+    protected void nuevaRonda() {
 
         for(int i = 0; i < 2; i++) {
 
@@ -238,7 +238,7 @@ public class VentanaJuegoController {
 
     }
 
-    private void mostrarCartaEnMesa(Carta cartaJugada) {
+    protected void mostrarCartaEnMesa(Carta cartaJugada) {
 
         Integer numeroJugada = this.cantidadJugadasJugador.get(this.indiceJugador);
         Button botonCartaJugada = this.botonesCartasJugadas.get(this.indiceJugador).get(numeroJugada);
@@ -252,7 +252,7 @@ public class VentanaJuegoController {
     }
 
 
-    private void mostrarPuntos() {
+    protected void mostrarPuntos() {
 
         this.puntajeEquipo1.setText(Integer.toString(this.mesa.puntaje(equipo1)));
         this.puntajeEquipo2.setText(Integer.toString(this.mesa.puntaje(equipo2)));
@@ -260,7 +260,7 @@ public class VentanaJuegoController {
     }
 
     @FXML
-    private void trucoHandler(){
+    protected void trucoHandler(){
 
         mesa.truco();
         this.mostrarJugadorActual();
@@ -273,7 +273,7 @@ public class VentanaJuegoController {
     }
 
     @FXML
-    private void reTrucoHandler(){
+    protected void reTrucoHandler(){
 
         try {
 
@@ -298,7 +298,7 @@ public class VentanaJuegoController {
     }
 
     @FXML
-    private void valeCuatroHandler(){
+    protected void valeCuatroHandler(){
 
         try{
 
@@ -322,7 +322,7 @@ public class VentanaJuegoController {
     }
 
     @FXML
-    private void quieroTrucoHandler(){
+    protected void quieroTrucoHandler(){
 
         mesa.quieroTruco();
         this.mostrarJugadorActual();
@@ -344,7 +344,7 @@ public class VentanaJuegoController {
     }
 
     @FXML
-    private void cantarFlorHandler() {
+    protected void cantarFlorHandler() {
 
         this.mesa.flor();
 
@@ -364,7 +364,7 @@ public class VentanaJuegoController {
     }
 
     @FXML
-    private void cantarContraFlorAlRestoHandler() {
+    protected void cantarContraFlorAlRestoHandler() {
 
         this.mesa.contraFlorAlResto();
         this.visibilizarBotones(this.botonesTanto, false);
@@ -378,7 +378,7 @@ public class VentanaJuegoController {
     }
 
     @FXML
-    private void cantarContraFlorAlPartidoHandler() {
+    protected void cantarContraFlorAlPartidoHandler() {
 
         this.mesa.contraFlorAlPartido();
         this.visibilizarBotones(this.botonesTanto, false);
@@ -392,7 +392,7 @@ public class VentanaJuegoController {
     }
 
     @FXML
-    private void cantarEnvidoHandler() {
+    protected void cantarEnvidoHandler() {
 
         this.mesa.envido();
         this.visibilizarBotones(this.botonesTruco, false);
@@ -407,7 +407,7 @@ public class VentanaJuegoController {
     }
 
     @FXML
-    private void cantarRealEnvidoHandler() {
+    protected void cantarRealEnvidoHandler() {
 
         this.mesa.realEnvido();
         this.botonEnvido.setVisible(false);
@@ -422,7 +422,7 @@ public class VentanaJuegoController {
     }
 
     @FXML
-    private void cantarFaltaEnvidoHandler() {
+    protected void cantarFaltaEnvidoHandler() {
 
         this.mesa.faltaEnvido();
         this.visibilizarBotones(this.botonesEnvido,false);
@@ -471,7 +471,7 @@ public class VentanaJuegoController {
         }
     }
 
-    private void mostrarJugadorActual() {
+    protected void mostrarJugadorActual() {
 
         if(!this.jugadorPrevio.equals(this.mesa.getJugadorActual())) {
 
@@ -500,7 +500,7 @@ public class VentanaJuegoController {
 
     }
 
-    private void visibilizarBotones(List<Button> botones, boolean visibilidad) {
+    protected void visibilizarBotones(List<Button> botones, boolean visibilidad) {
 
         for(Button boton : botones) {
 
@@ -510,7 +510,7 @@ public class VentanaJuegoController {
 
     }
 
-    private void desactivarBotones(List<Button> botones, boolean activar) {
+    protected void desactivarBotones(List<Button> botones, boolean activar) {
 
         for(Button boton : botones) {
 
