@@ -64,6 +64,7 @@ public class JugadorIA extends Jugador {
 
             }
             else {
+
                 try {
 
                     this.decisionTruco();
@@ -505,6 +506,15 @@ public class JugadorIA extends Jugador {
         }
 
         return cartaMasAlta;
+
+    }
+
+    @Override
+    public void setMano(Mano mano) {
+
+        this.mano = mano;
+
+        this.ultimaCartaJugada = null;
 
     }
 
