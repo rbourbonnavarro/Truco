@@ -559,8 +559,8 @@ public class VentanaJuegoController {
         this.visibilizarBotones(this.botonesQuiero, true);
 
         this.visibilizarBotones(this.diccionarioEstadosJuego.obtenerBotones(estadoJuego), false);
-
-        this.visibilizarBotones(this.botonesFlor, this.mesa.seJuegaConFlor());
+        if(! this.mesa.seJuegaConFlor())
+           this.visibilizarBotones(this.botonesFlor, false);
 
     }
 
