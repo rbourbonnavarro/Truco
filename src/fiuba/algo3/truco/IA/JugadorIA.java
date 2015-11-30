@@ -130,25 +130,28 @@ public class JugadorIA extends Jugador {
 
         } catch(FlorFlorNoQueridaNoSePuedeJugarException e) {
 
-            if(this.flor() > 23) this.mesa.quieroFlor();
-
-            this.mesa.noQuieroTanto();
+            if(this.flor() > 23)
+                this.mesa.quieroFlor();
+            else
+                this.mesa.noQuieroTanto();
 
         } catch(ContraFlorAlRestoNoQueridaNoSePuedeJugarException e) {
 
             int flor = this.flor();
 
-            if(flor < 30) this.mesa.noQuieroTanto();
-
-            this.mesa.quieroFlor();
+            if(flor < 30)
+                this.mesa.noQuieroTanto();
+            else
+                this.mesa.quieroFlor();
 
         } catch(ContraFlorAlPartidoNoQueridaNoSePuedeJugarException e) {
 
             int flor = this.flor();
 
-            if(flor > 33) this.mesa.quieroFlor();
-
-            this.mesa.noQuieroTanto();
+            if(flor > 33)
+                this.mesa.quieroFlor();
+            else
+                this.mesa.noQuieroTanto();
 
         }
 

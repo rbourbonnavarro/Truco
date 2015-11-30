@@ -30,7 +30,7 @@ public class DiccionarioEstadosJuego {
         MENSAJE_ESTADO = new Hashtable<>(15);
 
         MENSAJE_ESTADO.put(new NadaCantado(), "Nada ha sido cantado");
-        MENSAJE_ESTADO.put(new TrucoCantado(EQUIPO, true), "Truco cantado");
+        MENSAJE_ESTADO.put(new TrucoCantadoTantoNoJugado(EQUIPO), "Truco cantado");
         MENSAJE_ESTADO.put(new TrucoQuerido(EQUIPO), "Truco querido");
         MENSAJE_ESTADO.put(new RetrucoCantado(EQUIPO), "Retruco cantado");
         MENSAJE_ESTADO.put(new RetrucoQuerido(EQUIPO, EQUIPO), "Retruco querido");
@@ -69,7 +69,7 @@ public class DiccionarioEstadosJuego {
         botonesADeshabilitar = new Hashtable<>(15);
 
         botonesADeshabilitar.put(new NadaCantado(), Arrays.asList(botonRetruco, botonValeCuatro, botonContraFlorAlResto, botonContraFlorAlPartido, botonQuieroTruco, botonNoQuieroTruco, botonQuieroEnvido, botonQuieroFlor, botonNoQuieroTanto));
-        botonesADeshabilitar.put(new TrucoCantado(EQUIPO, true), Arrays.asList(botonTruco, botonValeCuatro, botonContraFlorAlResto, botonContraFlorAlPartido, botonQuieroEnvido, botonQuieroFlor, botonNoQuieroTanto));
+        botonesADeshabilitar.put(new TrucoCantadoTantoNoJugado(EQUIPO), Arrays.asList(botonTruco, botonValeCuatro, botonContraFlorAlResto, botonContraFlorAlPartido, botonQuieroEnvido, botonQuieroFlor, botonNoQuieroTanto));
         botonesADeshabilitar.put(new TrucoQuerido(EQUIPO), Arrays.asList(botonTruco, botonValeCuatro, botonEnvido, botonRealEnvido, botonFaltaEnvido, botonFlor, botonContraFlorAlResto, botonContraFlorAlPartido, botonQuieroTruco, botonNoQuieroTruco, botonQuieroEnvido, botonQuieroFlor, botonNoQuieroTanto));
         botonesADeshabilitar.put(new RetrucoCantado(EQUIPO), Arrays.asList(botonTruco, botonRetruco, botonEnvido, botonRealEnvido, botonFaltaEnvido, botonFlor, botonContraFlorAlResto, botonContraFlorAlPartido, botonQuieroEnvido, botonQuieroFlor, botonNoQuieroTanto));
         botonesADeshabilitar.put(new RetrucoQuerido(EQUIPO, EQUIPO), Arrays.asList(botonTruco, botonRetruco, botonEnvido, botonRealEnvido, botonFaltaEnvido, botonFlor, botonContraFlorAlResto, botonContraFlorAlPartido, botonQuieroTruco, botonNoQuieroTruco, botonQuieroEnvido, botonQuieroFlor, botonNoQuieroTanto));

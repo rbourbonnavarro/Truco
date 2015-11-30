@@ -5,8 +5,8 @@ import fiuba.algo3.truco.modelo.Jugadas.Envido.EnvidoCantado;
 import fiuba.algo3.truco.modelo.Jugadas.Envido.RealEnvidoCantado;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.JuegoSinFlorException;
 import fiuba.algo3.truco.modelo.Jugadas.NadaCantado;
+import fiuba.algo3.truco.modelo.Jugadas.Truco.TrucoCantadoTantoNoJugado;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
-import fiuba.algo3.truco.modelo.Jugadas.Truco.TrucoCantado;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,7 +31,7 @@ public class PrimeraVuelta extends Vuelta {
 
         if(!equipoIniciador.getJugadorActual().jugadorPie()) {
 
-            if(!(this.estadoJuego instanceof TrucoCantado
+            if(!(this.estadoJuego instanceof TrucoCantadoTantoNoJugado
                     || this.estadoJuego instanceof EnvidoCantado)) {
 
                 throw new JugadorNoPieNoPuedeCantarEnvido();
@@ -50,7 +50,7 @@ public class PrimeraVuelta extends Vuelta {
 
         if(!equipoIniciador.getJugadorActual().jugadorPie()) {
 
-            if(!(this.estadoJuego instanceof TrucoCantado
+            if(!(this.estadoJuego instanceof TrucoCantadoTantoNoJugado
                     || this.estadoJuego instanceof EnvidoCantado)) {
 
                 throw new JugadorNoPieNoPuedeCantarEnvido();
@@ -68,7 +68,7 @@ public class PrimeraVuelta extends Vuelta {
 
         if(!equipoIniciador.getJugadorActual().jugadorPie()) {
 
-            if(!(this.estadoJuego instanceof TrucoCantado
+            if(!(this.estadoJuego instanceof TrucoCantadoTantoNoJugado
                     || this.estadoJuego instanceof EnvidoCantado
                     || this.estadoJuego instanceof RealEnvidoCantado)) {
 

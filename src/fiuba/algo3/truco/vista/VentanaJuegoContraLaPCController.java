@@ -39,8 +39,6 @@ public class VentanaJuegoContraLaPCController extends VentanaJuegoController {
 
         if(this.mesa.getJugadorActual().equals(this.equipo1.getJugadorActual())) {
 
-            this.puedoCantar();
-
             if (!(this.mesa.getEstadoVuelta() instanceof PrimeraVuelta)) {
 
                 this.visibilizarBotones(this.botonesTanto, false);

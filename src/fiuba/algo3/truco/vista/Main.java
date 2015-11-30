@@ -126,15 +126,20 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+
             launch(args);
+
     }
 
 
     public void salir() {
+
         this.ventanaPrincipal.close();
+
     }
 
     public void iniciarPartidaDeACuatro(Mesa mesa, Equipo equipo1, Equipo equipo2) {
+
         try {
 
             FXMLLoader loader = new FXMLLoader();
@@ -149,9 +154,11 @@ public class Main extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
 
     public void iniciarPartidaDeASeis(Mesa mesa, Equipo equipo1, Equipo equipo2) {
+
         try {
 
             FXMLLoader loader = new FXMLLoader();
@@ -166,5 +173,8 @@ public class Main extends Application {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
     }
+
+
 }
