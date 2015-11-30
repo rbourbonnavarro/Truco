@@ -7,9 +7,6 @@ import fiuba.algo3.truco.modelo.Mesa;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
-import javafx.scene.input.KeyEvent;
-import javafx.scene.text.Font;
-
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -134,8 +131,8 @@ public class VentanaSeleccionModoDeJuegoController {
         Equipo equipo1;
         Equipo equipo2;
         boolean seJuegaConFlor = this.checkJugarConFlor.isSelected();
-
-        for(int i = 0; i < this.cantidadJugadores / 2; i++) {
+        int jugadoresPorEquipo = this.cantidadJugadores / 2;
+        for(int i = 0; i < jugadoresPorEquipo; i++) {
 
             if(this.nombresJugadores.get(i).getText().equals(""))
                 this.nombresJugadores.get(i).setText("Jugador " + (i+1));
@@ -179,6 +176,11 @@ public class VentanaSeleccionModoDeJuegoController {
 
         if(this.cantidadJugadores == 2)
             this.main.iniciarPartidaDeADos(mesa, equipo1, equipo2);
+
+        if(this.cantidadJugadores == 4)
+            this.main.iniciarPartidaDeACuatro(mesa,equipo1,equipo2);
+        if(this.cantidadJugadores == 6)
+            this.main.iniciarPartidaDeASeis(mesa,equipo1,equipo2);
 
     }
 

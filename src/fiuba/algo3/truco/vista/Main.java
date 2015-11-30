@@ -26,13 +26,7 @@ public class Main extends Application {
 
         iniciarVentanaRaiz();
 
-        /*this.equipo1 = new Equipo("equipo1",Arrays.asList(new Jugador("J1")));
-        this.equipo2 = new Equipo("equipo2",Arrays.asList(new Jugador("J2")));
-        this.mesa = new Mesa(equipo1, equipo2,false);*/
-
         iniciarSeleccionModoDeJuego();
-
-        //iniciarPartidaDeADos();
 
     }
 
@@ -138,5 +132,39 @@ public class Main extends Application {
 
     public void salir() {
         this.ventanaPrincipal.close();
+    }
+
+    public void iniciarPartidaDeACuatro(Mesa mesa, Equipo equipo1, Equipo equipo2) {
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("juegoDeACuatro.fxml"));
+            AnchorPane partidaDeADos = loader.load();
+
+            this.disenioRaiz.setCenter(partidaDeADos);
+
+            VentanaJuegoController controlador = loader.getController();
+            controlador.setMain(this, mesa, equipo1, equipo2);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void iniciarPartidaDeASeis(Mesa mesa, Equipo equipo1, Equipo equipo2) {
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("juegoDeASeis.fxml"));
+            AnchorPane partidaDeADos = loader.load();
+
+            this.disenioRaiz.setCenter(partidaDeADos);
+
+            VentanaJuegoController controlador = loader.getController();
+            controlador.setMain(this, mesa, equipo1, equipo2);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 }
