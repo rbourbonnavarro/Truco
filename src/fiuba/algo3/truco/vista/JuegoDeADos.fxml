@@ -63,13 +63,13 @@
                                 </AnchorPane>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                     <children>
-                                        <Ellipse fill="#1d8614" layoutX="365.0" layoutY="325.0" radiusX="366.0" radiusY="331.0" stroke="BLACK" strokeType="INSIDE" />
-                                        <Button fx:id="botonCartaJugada1Jugador1" layoutX="349.0" layoutY="565.0" mnemonicParsing="false" visible="false" />
-                                        <Button fx:id="botonCartaJugada2Jugador1" layoutX="365.0" layoutY="540.0" mnemonicParsing="false" visible="false" />
-                                        <Button fx:id="botonCartaJugada3Jugador1" layoutX="381.0" layoutY="515.0" mnemonicParsing="false" visible="false" />
-                                        <Button fx:id="botonCartaJugada1Jugador2" layoutX="341.0" layoutY="58.0" mnemonicParsing="false" visible="false" />
-                                        <Button fx:id="botonCartaJugada2Jugador2" layoutX="357.0" layoutY="83.0" mnemonicParsing="false" visible="false" />
-                                        <Button fx:id="botonCartaJugada3Jugador2" layoutX="373.0" layoutY="108.0" mnemonicParsing="false" visible="false" />
+                                        <Ellipse fill="#1d8614" layoutX="361.0" layoutY="302.0" radiusX="370.0" radiusY="331.0" stroke="BLACK" strokeType="INSIDE" />
+                                        <Button fx:id="botonCartaJugada1Jugador1" layoutX="316.0" layoutY="431.0" mnemonicParsing="false" textFill="#110909" />
+                                        <Button fx:id="botonCartaJugada2Jugador1" layoutX="373.0" layoutY="376.0" mnemonicParsing="false" />
+                                        <Button fx:id="botonCartaJugada3Jugador1" layoutX="431.0" layoutY="320.0" mnemonicParsing="false" />
+                                        <Button fx:id="botonCartaJugada1Jugador2" layoutX="316.0" layoutY="20.0" mnemonicParsing="false" />
+                                        <Button fx:id="botonCartaJugada2Jugador2" layoutX="373.0" layoutY="72.0" mnemonicParsing="false" />
+                                        <Button fx:id="botonCartaJugada3Jugador2" layoutX="431.0" layoutY="128.0" mnemonicParsing="false" />
                                     </children>
                                 </AnchorPane>
                             </items>

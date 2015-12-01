@@ -89,7 +89,7 @@ public class TerceraVuelta extends Vuelta {
     }
 
     @Override
-    public Equipo getEquipoGanadorVuelta() {
+    public Equipo getEquipoGanadorRonda() {
 
         return this.ganadoresVuelta.get(1);
 

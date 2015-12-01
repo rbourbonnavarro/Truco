@@ -337,9 +337,9 @@ public class Mesa {
 
     private void terminarVuelta() {
 
-        if(this.estadoVuelta.getEquipoGanadorVuelta() != null) {
+        if(this.estadoVuelta.getEquipoGanadorRonda() != null) {
 
-            if(this.equipoActual != this.estadoVuelta.getEquipoGanadorVuelta())
+            if(this.equipoActual != this.estadoVuelta.getEquipoGanadorRonda())
                 this.intercambiarEquipos();
 
             this.jugadorActual = this.estadoVuelta.getJugadorGanadorVuelta();
@@ -353,12 +353,6 @@ public class Mesa {
         this.estadoVuelta = this.estadoVuelta.terminarVuelta(this);
 
     }
-
-    /*public Equipo getGanadorVuelta() {
-
-        return this.estadoVuelta.getEquipoGanadorVuelta();
-
-    }*/
 
     private void recuperarEquipoIniciadorJugada() {
 

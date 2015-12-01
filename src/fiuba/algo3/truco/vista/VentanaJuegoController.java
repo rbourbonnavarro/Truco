@@ -10,6 +10,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -77,22 +78,6 @@ public class VentanaJuegoController {
     @FXML
     private Button botonCartaJugada3Jugador6;
     @FXML
-    protected List<Button> botonesCartasJugadorActual;
-    @FXML
-    protected List<Button> botonesCartasJugadasJugador1;
-    @FXML
-    protected List<Button> botonesCartasJugadasJugador2;
-    @FXML
-    private List<Button> botonesCartasJugadasJugador3;
-    @FXML
-    private List<Button> botonesCartasJugadasJugador4;
-    @FXML
-    private List<Button> botonesCartasJugadasJugador5;
-    @FXML
-    private List<Button> botonesCartasJugadasJugador6;
-    @FXML
-    protected List<List<Button>> botonesCartasJugadas;
-    @FXML
     protected Button botonFlor;
     @FXML
     protected Button botonContraFlorAlResto;
@@ -127,6 +112,14 @@ public class VentanaJuegoController {
     protected Equipo equipo2;
     protected List<Carta> cartasJugadorActual;
     protected DiccionarioCartas diccionarioCartas;
+    protected List<Button> botonesCartasJugadorActual;
+    protected List<Button> botonesCartasJugadasJugador1;
+    protected List<Button> botonesCartasJugadasJugador2;
+    private List<Button> botonesCartasJugadasJugador3;
+    private List<Button> botonesCartasJugadasJugador4;
+    private List<Button> botonesCartasJugadasJugador5;
+    private List<Button> botonesCartasJugadasJugador6;
+    protected List<List<Button>> botonesCartasJugadas;
     protected int cantidadJugadasJugador1 = 0;
     protected int cantidadJugadasJugador2 = 0;
     private int cantidadJugadasJugador3 = 0;
@@ -167,6 +160,12 @@ public class VentanaJuegoController {
 
         this.diccionarioEstadosJuego = new DiccionarioEstadosJuego(this.botonesTruco, this.botonesTanto, this.botonesQuiero);
 
+        this.visibilizarBotones(this.botonesCartasJugadasJugador1, false);
+        this.visibilizarBotones(this.botonesCartasJugadasJugador2, false);
+        this.visibilizarBotones(this.botonesCartasJugadasJugador3, false);
+        this.visibilizarBotones(this.botonesCartasJugadasJugador4, false);
+        this.visibilizarBotones(this.botonesCartasJugadasJugador5, false);
+        this.visibilizarBotones(this.botonesCartasJugadasJugador6, false);
         this.visibilizarBotones(this.botonesQuiero, false);
         this.visibilizarBotones(Arrays.asList(this.botonRetruco, this.botonValeCuatro), false);
 
@@ -290,7 +289,6 @@ public class VentanaJuegoController {
 
             for (Button botonCartaJugada : this.botonesCartasJugadas.get(i)) {
 
-                botonCartaJugada.setText("");
                 botonCartaJugada.setVisible(false);
 
             }
@@ -307,7 +305,6 @@ public class VentanaJuegoController {
         Button botonCartaJugada = this.botonesCartasJugadas.get(this.indiceJugador).get(numeroJugada);
 
         botonCartaJugada.setVisible(true);
-        botonCartaJugada.setDisable(true);
         botonCartaJugada.setGraphic(new ImageView(this.diccionarioCartas.representacionCarta(cartaJugada)));
 
         this.cantidadJugadasJugador.set(this.indiceJugador, numeroJugada + 1);
@@ -460,12 +457,6 @@ public class VentanaJuegoController {
         try {
 
             this.mesa.quieroEnvido();
-            this.visibilizarBotones(this.botonesTanto, false);
-            this.visibilizarBotones(this.botonesQuiero, false);
-            if (this.mesa.getEstadoVuelta().getEstadoJuego() instanceof TrucoCantadoTantoNoJugado)
-                this.visibilizarBotones(Arrays.asList(this.botonRetruco, this.botonQuieroTruco, this.botonNoQuieroTruco), true);
-            else
-                this.visibilizarBotones(Collections.singletonList(this.botonTruco), true);
 
             this.mostrarPuntos();
             this.mostrarJugadorActual();
@@ -484,12 +475,6 @@ public class VentanaJuegoController {
         try {
 
             this.mesa.noQuieroTanto();
-            this.visibilizarBotones(this.botonesTanto, false);
-            this.visibilizarBotones(this.botonesQuiero, false);
-            if (this.mesa.getEstadoVuelta().getEstadoJuego() instanceof TrucoCantadoTantoNoJugado)
-                this.visibilizarBotones(Arrays.asList(this.botonRetruco, this.botonQuieroTruco, this.botonNoQuieroTruco), true);
-            else
-                this.visibilizarBotones(Collections.singletonList(this.botonTruco), true);
 
             this.mostrarPuntos();
             this.mostrarJugadorActual();
@@ -536,9 +521,15 @@ public class VentanaJuegoController {
 
     protected void visibilizarBotones(List<Button> botones, boolean visibilidad) {
 
-        for(Button boton : botones) {
+        try {
 
-            boton.setVisible(visibilidad);
+            for(Button boton : botones) {
+
+                boton.setVisible(visibilidad);
+
+            }
+
+        } catch(NullPointerException nullPointerException) {
 
         }
 

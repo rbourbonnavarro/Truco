@@ -117,7 +117,7 @@ public class PrimeraVuelta extends Vuelta {
     }
 
     @Override
-    public Equipo getEquipoGanadorVuelta() {
+    public Equipo getEquipoGanadorRonda() {
 
         return this.equipoGanadorVuelta;
 
