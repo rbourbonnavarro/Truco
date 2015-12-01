@@ -23,8 +23,8 @@ import java.util.List;
 public class VentanaJuegoController {
 
     private static final String DORSO_CARTA = "/gui/images/imagenesCartas/dorsoCarta (Custom).png";
-    @FXML
-    protected ImageView imagenMesa;
+    //@FXML
+   // protected ImageView imagenMesa;
     @FXML
     protected Label turno;
     @FXML
@@ -172,7 +172,7 @@ public class VentanaJuegoController {
         this.visibilizarBotones(this.botonesCartasJugadasJugador6, false);
         this.visibilizarBotones(this.botonesQuiero, false);
         this.visibilizarBotones(Arrays.asList(this.botonRetruco, this.botonValeCuatro), false);
-        this.imagenMesa.setImage(new Image("/gui/images/mesa.png"));
+       // this.imagenMesa.setImage(new Image("/gui/images/mesa.png"));
 
     }
 
