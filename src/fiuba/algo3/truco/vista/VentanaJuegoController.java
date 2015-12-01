@@ -461,7 +461,25 @@ public class VentanaJuegoController {
             this.mostrarPuntos();
             this.mostrarJugadorActual();
 
-        }catch (JuegoTerminadoException terminado) {
+        } catch (JuegoTerminadoException terminado) {
+
+            this.main.juegoTerminado(mesa.getEquipoGanador().getNombre());
+
+        }
+
+    }
+
+    @FXML
+    private void quieroFlorHandler() {
+
+        try {
+
+            this.mesa.quieroFlor();
+
+            this.mostrarPuntos();
+            this.mostrarJugadorActual();
+
+        } catch (JuegoTerminadoException terminado) {
 
             this.main.juegoTerminado(mesa.getEquipoGanador().getNombre());
 
@@ -496,6 +514,12 @@ public class VentanaJuegoController {
 
             this.indiceJugador = (this.indiceJugador + 1) % (this.mesa.getEquipoActual().getCantidadIntegrantes()*2);
 
+        }
+
+        try {
+            this.mesa.getJugadorActual().flor();
+        } catch(JugadorNoTieneFlorException jugadorNoTieneFlorException) {
+            this.botonFlor.setVisible(false);
         }
 
         this.jugadorPrevio = this.mesa.getJugadorActual();

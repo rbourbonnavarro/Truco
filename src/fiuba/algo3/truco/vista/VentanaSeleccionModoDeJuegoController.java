@@ -50,6 +50,8 @@ public class VentanaSeleccionModoDeJuegoController {
         this.visibilizarElementos(this.nombresEquipos, false);
         this.labelNombreEquiposIguales.setVisible(false);
 
+        this.botonComenzarJuego.setDisable(true);
+
     }
 
     public void setMain(Main main) {
@@ -68,6 +70,8 @@ public class VentanaSeleccionModoDeJuegoController {
 
         this.nombresJugadores.get(0).setVisible(true);
 
+        this.botonComenzarJuego.setDisable(false);
+
     }
 
     @FXML
@@ -82,6 +86,8 @@ public class VentanaSeleccionModoDeJuegoController {
             this.nombresJugadores.get(i).setVisible(true);
 
         }
+
+        this.botonComenzarJuego.setDisable(false);
 
     }
 
@@ -100,6 +106,8 @@ public class VentanaSeleccionModoDeJuegoController {
 
         this.visibilizarElementos(this.nombresEquipos, true);
 
+        this.botonComenzarJuego.setDisable(false);
+
     }
 
     @FXML
@@ -109,6 +117,8 @@ public class VentanaSeleccionModoDeJuegoController {
 
         this.visibilizarElementos(this.nombresJugadores, true);
         this.visibilizarElementos(this.nombresEquipos, true);
+
+        this.botonComenzarJuego.setDisable(false);
 
     }
 
@@ -132,10 +142,11 @@ public class VentanaSeleccionModoDeJuegoController {
         Equipo equipo2;
         boolean seJuegaConFlor = this.checkJugarConFlor.isSelected();
         int jugadoresPorEquipo = this.cantidadJugadores / 2;
+
         for(int i = 0; i < jugadoresPorEquipo; i++) {
 
             if(this.nombresJugadores.get(i).getText().equals(""))
-                this.nombresJugadores.get(i).setText("Jugador " + (i+1));
+                this.nombresJugadores.get(i).setText("Jugador " + (i + 1));
 
             jugadoresEquipo1.add(new Jugador(this.nombresJugadores.get(i).getText()));
             jugadoresEquipo2.add(new Jugador(this.nombresJugadores.get(i + 1).getText()));
@@ -148,7 +159,7 @@ public class VentanaSeleccionModoDeJuegoController {
         if(this.cantidadJugadores == 1) {
 
             if(this.textJ1E1.getText().equals("")) this.textJ1E1.setText("Jugador 1");
-            this.textEquipo1.setText("Jugador 1");
+            this.textEquipo1.setText(this.textJ1E1.getText());
             jugadoresEquipo1.add(new Jugador(this.textJ1E1.getText()));
             this.textEquipo2.setText("PC");
             jugadoresEquipo2.add(new JugadorIA("PC"));
@@ -157,8 +168,7 @@ public class VentanaSeleccionModoDeJuegoController {
 
         if(this.cantidadJugadores == 2) {
 
-            this.textEquipo1.setText("Jugador 1");
-            this.textEquipo2.setText("Jugador 2");
+
 
         }
 
@@ -179,6 +189,7 @@ public class VentanaSeleccionModoDeJuegoController {
 
         if(this.cantidadJugadores == 4)
             this.main.iniciarPartidaDeACuatro(mesa,equipo1,equipo2);
+
         if(this.cantidadJugadores == 6)
             this.main.iniciarPartidaDeASeis(mesa,equipo1,equipo2);
 
