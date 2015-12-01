@@ -9,9 +9,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.ImageView;
+import javafx.scene.image.*;
+import javafx.scene.image.Image;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
@@ -20,7 +23,8 @@ import java.util.List;
 public class VentanaJuegoController {
 
     private static final String DORSO_CARTA = "/gui/images/imagenesCartas/dorsoCarta (Custom).png";
-
+    @FXML
+    protected ImageView imagenMesa;
     @FXML
     protected Label turno;
     @FXML
@@ -168,6 +172,7 @@ public class VentanaJuegoController {
         this.visibilizarBotones(this.botonesCartasJugadasJugador6, false);
         this.visibilizarBotones(this.botonesQuiero, false);
         this.visibilizarBotones(Arrays.asList(this.botonRetruco, this.botonValeCuatro), false);
+        this.imagenMesa.setImage(new Image("/gui/images/mesa.png"));
 
     }
 
