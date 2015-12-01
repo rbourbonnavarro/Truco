@@ -2,10 +2,8 @@ package fiuba.algo3.truco.IA;
 
 import fiuba.algo3.truco.modelo.*;
 import fiuba.algo3.truco.modelo.Jugadas.Envido.*;
-import fiuba.algo3.truco.modelo.Jugadas.Flor.ContraFlorAlPartidoNoQueridaNoSePuedeJugarException;
-import fiuba.algo3.truco.modelo.Jugadas.Flor.ContraFlorAlRestoNoQueridaNoSePuedeJugarException;
-import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorFlorNoQueridaNoSePuedeJugarException;
-import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorNoAceptadaNoSePuedeJugarException;
+import fiuba.algo3.truco.modelo.Jugadas.EstadoJuego;
+import fiuba.algo3.truco.modelo.Jugadas.Flor.*;
 import fiuba.algo3.truco.modelo.Jugadas.NadaCantado;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.*;
 import fiuba.algo3.truco.modelo.Ronda.PrimeraVuelta;
@@ -38,9 +36,9 @@ public class JugadorIA extends Jugador {
 
 
         try {
-
-            if (this.mesa.getEstadoVuelta().getEstadoJuego() instanceof NadaCantado
-                    || this.mesa.getEstadoVuelta().getEstadoJuego() instanceof TrucoCantadoTantoNoJugado) {
+            EstadoJuego estadoJuego = this.mesa.getEstadoVuelta().getEstadoJuego();
+            if (estadoJuego instanceof NadaCantado
+                    || estadoJuego instanceof TrucoCantadoTantoNoJugado) {
 
                 try {
 
@@ -292,6 +290,8 @@ public class JugadorIA extends Jugador {
 
             decisionEnvido();
 
+        }catch (JuegoSinFlorException e1) {
+            decisionEnvido();
         }
 
     }

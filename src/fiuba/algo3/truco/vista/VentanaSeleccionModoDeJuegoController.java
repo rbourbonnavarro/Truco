@@ -143,14 +143,14 @@ public class VentanaSeleccionModoDeJuegoController {
         boolean seJuegaConFlor = this.checkJugarConFlor.isSelected();
         int jugadoresPorEquipo = this.cantidadJugadores / 2;
 
-        for(int i = 0; i < jugadoresPorEquipo; i++) {
+        for(int i = 0; i < this.cantidadJugadores; i++) {
 
             if(this.nombresJugadores.get(i).getText().equals(""))
                 this.nombresJugadores.get(i).setText("Jugador " + (i + 1));
-
-            jugadoresEquipo1.add(new Jugador(this.nombresJugadores.get(i).getText()));
-            jugadoresEquipo2.add(new Jugador(this.nombresJugadores.get(i + 1).getText()));
-
+        }
+        for(int i=0 ; i < jugadoresPorEquipo;i++){
+            jugadoresEquipo1.add(new Jugador(this.nombresJugadores.get(2*i).getText()));
+            jugadoresEquipo2.add(new Jugador(this.nombresJugadores.get(i*2 +1).getText()));
         }
 
         if(this.textEquipo1.getText().equals("")) this.textEquipo1.setText("Equipo 1");

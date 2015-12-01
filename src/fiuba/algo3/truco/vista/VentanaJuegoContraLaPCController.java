@@ -4,6 +4,7 @@ import fiuba.algo3.truco.IA.JugadorIA;
 import fiuba.algo3.truco.modelo.Carta;
 import fiuba.algo3.truco.modelo.Jugadas.EstadoJuego;
 import fiuba.algo3.truco.modelo.Jugadas.NadaCantado;
+import fiuba.algo3.truco.modelo.Puntos.JuegoTerminadoException;
 import fiuba.algo3.truco.modelo.Ronda.PrimeraVuelta;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -17,48 +18,49 @@ public class VentanaJuegoContraLaPCController extends VentanaJuegoController {
 
     @FXML
     private void botonContinuarHandler() {
+        try {
+            JugadorIA jugadorIA = (JugadorIA) this.mesa.getJugadorActual();
 
-        JugadorIA jugadorIA = (JugadorIA) this.mesa.getJugadorActual();
+            EstadoJuego estadoJuegoPrevio = this.mesa.getEstadoVuelta().getEstadoJuego();
 
-        EstadoJuego estadoJuegoPrevio = this.mesa.getEstadoVuelta().getEstadoJuego();
+            Carta ultimaCartaJugadaIA = jugadorIA.getUltimaCartaJugada();
 
-        Carta ultimaCartaJugadaIA = jugadorIA.getUltimaCartaJugada();
+            jugadorIA.turno();
 
-        jugadorIA.turno();
+            if (!(estadoJuegoPrevio instanceof NadaCantado)
+                    && this.mesa.getEstadoVuelta().getEstadoJuego() instanceof NadaCantado) {
 
-        if(!(estadoJuegoPrevio instanceof NadaCantado)
-                && this.mesa.getEstadoVuelta().getEstadoJuego() instanceof NadaCantado) {
+                this.nuevaRonda();
 
-            this.nuevaRonda();
+            } else {
 
-        }
-        else {
+                try {
 
-            try {
+                    if (ultimaCartaJugadaIA != jugadorIA.getUltimaCartaJugada()) {
 
-                if (ultimaCartaJugadaIA != jugadorIA.getUltimaCartaJugada()) {
+                        this.mostrarCartaEnMesa(jugadorIA.getUltimaCartaJugada());
 
-                    this.mostrarCartaEnMesa(jugadorIA.getUltimaCartaJugada());
+                    }
 
-                }
+                } catch (NoSuchElementException noSuchElementException) {
 
-            } catch (NoSuchElementException noSuchElementException) {
+                    if (jugadorIA.obtenerCartasEnMano().size() < 3) {
 
-                if (jugadorIA.obtenerCartasEnMano().size() < 3) {
+                        this.nuevaRonda();
 
-                    this.nuevaRonda();
+                    }
 
                 }
 
             }
 
+            this.mostrarEstadoJuego();
+            this.mostrarPuntos();
+
+            this.mostrarJugadorActual();
+        }catch (JuegoTerminadoException e) {
+            this.main.juegoTerminado(mesa.getEquipoGanador().getNombre());
         }
-
-        this.mostrarEstadoJuego();
-        this.mostrarPuntos();
-
-        this.mostrarJugadorActual();
-
     }
 
     @Override
