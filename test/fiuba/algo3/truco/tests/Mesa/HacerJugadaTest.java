@@ -10,12 +10,14 @@ import fiuba.algo3.truco.modelo.Jugadas.Envido.NoSePuedeCantarEnvido;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.JuegoSinFlorException;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.EquipoQueCantoRetrucoNoPuedeCantarValeCuatroException;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.EquipoQueCantoTrucoNoPuedeCantarRetrucoException;
+import fiuba.algo3.truco.modelo.Jugadas.Truco.EstadoYaQueridoException;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.TrucoNoQueridoNoSePuedeJugarException;
 import fiuba.algo3.truco.modelo.Palo.Basto;
 import fiuba.algo3.truco.modelo.Palo.Copa;
 import fiuba.algo3.truco.modelo.Palo.Espada;
 import fiuba.algo3.truco.modelo.Palo.Oro;
 import fiuba.algo3.truco.modelo.Puntos.JuegoTerminadoException;
+
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
@@ -84,6 +86,13 @@ public class HacerJugadaTest {
 		Assert.assertEquals(mesa.puntaje(azules), 0);
 		Assert.assertEquals(mesa.puntaje(rojos), 1);
 
+	}
+	
+	@Test(expected = EstadoYaQueridoException.class)
+	public void noSePuedeQuererDosVecesElTruco() {
+		mesa.truco();
+		mesa.quieroTruco();
+		mesa.quieroTruco();
 	}
 	
 	@Test(expected = JugadorNoPuedeCantarTantoNoEsPrimeraVuelta.class)

@@ -50,7 +50,7 @@ public class Mesa {
 
     }
 
-    public List<Carta> getCartasDelJugadorActual(){
+	public List<Carta> getCartasDelJugadorActual(){
 
         return this.jugadorActual.obtenerCartas();
 

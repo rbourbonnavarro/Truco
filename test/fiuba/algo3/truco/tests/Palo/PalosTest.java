@@ -1,6 +1,8 @@
 package fiuba.algo3.truco.tests.Palo;
 
+import fiuba.algo3.truco.modelo.Carta;
 import fiuba.algo3.truco.modelo.Palo.*;
+
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -72,6 +74,16 @@ public class PalosTest {
         Assert.assertEquals(palo.tantoEspada(1),0);
         Assert.assertEquals(palo.tantoCopa(7),27);
         Assert.assertEquals(palo.tantoOro(1),0);
+    }
+    
+    @Test
+    public void Test9Devuelve20MasElNumeroDeLaCartaCuandoSeLlamaAGetTanto(){
+    	Palo palo = new Basto();
+    	
+    	Carta carta = new Carta(1, palo);
+    	
+    	Assert.assertEquals(palo.getTanto(carta), 21);
+    	
     }
 
 }
