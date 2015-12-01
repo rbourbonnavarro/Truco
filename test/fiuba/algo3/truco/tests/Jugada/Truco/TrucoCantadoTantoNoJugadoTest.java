@@ -15,14 +15,14 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
-public class TrucoCantadoTest {
+public class TrucoCantadoTantoNoJugadoTest {
     
     EstadoJuego estadoJuego;
 
     @Before
     public void setUp(){
 
-        this.estadoJuego = new TrucoCantado(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))), false);
+        this.estadoJuego = new TrucoCantadoTantoNoJugado(new Equipo("equipo", Arrays.asList(new Jugador("jugador"))));
 
     }
 

@@ -1,6 +1,7 @@
 package fiuba.algo3.truco.modelo.Jugadas.Envido;
 
 import fiuba.algo3.truco.modelo.Equipo;
+import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorCantada;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeCantarContraFlorException;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeCantarFlorException;
 import fiuba.algo3.truco.modelo.Jugadas.EstadoJuego;
@@ -13,23 +14,26 @@ public class RealEnvidoCantado implements EstadoJuego {
 
     private EstadoJuego estadoPrevio;
     private final int puntosRealEnvido = 3;
+    private boolean envidoCantado;
 
     private int puntos;
     private int puntosNoQuerido;
 
-    public RealEnvidoCantado(EstadoJuego estadoPrevio, int puntos) {
+    public RealEnvidoCantado(EstadoJuego estadoPrevio, int puntos, boolean envidoCantado) {
 
         this.estadoPrevio = estadoPrevio;
         this.puntos = puntos + this.puntosRealEnvido;
         this.puntosNoQuerido = puntos;
+        this.envidoCantado = envidoCantado;
 
     }
 
-    public RealEnvidoCantado(EstadoJuego estadoPrevio) {
+    public RealEnvidoCantado(EstadoJuego estadoPrevio, boolean envidoCantado) {
 
         this.estadoPrevio = estadoPrevio;
         this.puntos = this.puntosRealEnvido;
         this.puntosNoQuerido = 1;
+        this.envidoCantado = envidoCantado;
 
     }
 
@@ -92,7 +96,9 @@ public class RealEnvidoCantado implements EstadoJuego {
     @Override
     public EstadoJuego flor(Equipo equipoIniciador) {
 
-        throw new NoSePuedeCantarFlorException();
+        if(this.envidoCantado) throw new NoSePuedeCantarFlorException();
+
+        return new FlorCantada(this.estadoPrevio);
 
     }
 
@@ -141,7 +147,14 @@ public class RealEnvidoCantado implements EstadoJuego {
     @Override
     public boolean equals(Object estado) {
 
-        return estado instanceof RealEnvidoCantado;
+        return estado instanceof RealEnvidoCantado && ((RealEnvidoCantado) estado).envidoCantado == this.envidoCantado;
+
+    }
+
+    @Override
+    public int hashCode() {
+
+        return 10 + ((Boolean) this.envidoCantado).hashCode();
 
     }
 

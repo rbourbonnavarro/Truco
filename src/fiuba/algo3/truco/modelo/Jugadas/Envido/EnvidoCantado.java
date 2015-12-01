@@ -65,7 +65,7 @@ public class EnvidoCantado implements EstadoJuego {
     @Override
     public EstadoJuego realEnvido(Equipo equipoIniciador) {
 
-        return new RealEnvidoCantado(this, this.puntos());
+        return new RealEnvidoCantado(this, this.puntos(), true);
 
     }
 
@@ -129,6 +129,13 @@ public class EnvidoCantado implements EstadoJuego {
     public boolean equals(Object estado) {
 
         return estado instanceof EnvidoCantado;
+
+    }
+
+    @Override
+    public int hashCode() {
+
+        return this.puntos() + this.noQuerido();
 
     }
 

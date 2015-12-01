@@ -129,5 +129,12 @@ public class TrucoQuerido implements EstadoJuego {
 
     }
 
+    @Override
+    public int hashCode() {
+
+        return this.puntos();
+
+    }
+
 
 }

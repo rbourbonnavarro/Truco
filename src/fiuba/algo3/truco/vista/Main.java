@@ -3,6 +3,7 @@ package fiuba.algo3.truco.vista;
 import fiuba.algo3.truco.modelo.Equipo;
 import fiuba.algo3.truco.modelo.Jugador;
 import fiuba.algo3.truco.modelo.Mesa;
+import fiuba.algo3.truco.modelo.Puntos.JuegoTerminadoException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -17,26 +18,15 @@ public class Main extends Application {
 
     private Stage ventanaPrincipal;
     private BorderPane disenioRaiz;
-    private Mesa mesa;
-    private Equipo equipo1;
-    private Equipo equipo2;
-
     @Override
     public void start(Stage primaryStage) {
-
 
         this.ventanaPrincipal = primaryStage;
         this.ventanaPrincipal.setTitle("Truco");
 
         iniciarVentanaRaiz();
 
-        /*this.equipo1 = new Equipo("equipo1",Arrays.asList(new Jugador("J1")));
-        this.equipo2 = new Equipo("equipo2",Arrays.asList(new Jugador("J2")));
-        this.mesa = new Mesa(equipo1, equipo2,false);*/
-
         iniciarSeleccionModoDeJuego();
-
-        //iniciarPartidaDeADos();
 
     }
 
@@ -57,6 +47,42 @@ public class Main extends Application {
             e.printStackTrace();
         }
 
+    }
+
+    public void iniciarPartidaContraLaPC(Mesa mesa, Equipo equipo1, Equipo equipo2) {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("JuegoContraLaPC.fxml"));
+            AnchorPane partidaDeADos = loader.load();
+
+            this.disenioRaiz.setCenter(partidaDeADos);
+
+            VentanaJuegoContraLaPCController controlador = loader.getController();
+            controlador.setMain(this, mesa, equipo1, equipo2);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void juegoTerminado(String equipoGanador){
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("juegoTerminado.fxml"));
+            AnchorPane juegoTerminado = loader.load();
+
+            this.disenioRaiz.setCenter(juegoTerminado);
+
+            VentanaJuegoTerminadoController controlador = loader.getController();
+            controlador.setMain(this,equipoGanador);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void iniciarPartidaDeADos(Mesa mesa, Equipo equipo1, Equipo equipo2) {
@@ -101,7 +127,52 @@ public class Main extends Application {
 
     public static void main(String[] args) {
 
-        launch(args);
+            launch(args);
+
+    }
+
+
+    public void salir() {
+
+        this.ventanaPrincipal.close();
+
+    }
+
+    public void iniciarPartidaDeACuatro(Mesa mesa, Equipo equipo1, Equipo equipo2) {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("juegoDeACuatro.fxml"));
+            AnchorPane partidaDeADos = loader.load();
+
+            this.disenioRaiz.setCenter(partidaDeADos);
+
+            VentanaJuegoController controlador = loader.getController();
+            controlador.setMain(this, mesa, equipo1, equipo2);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+    }
+
+    public void iniciarPartidaDeASeis(Mesa mesa, Equipo equipo1, Equipo equipo2) {
+
+        try {
+
+            FXMLLoader loader = new FXMLLoader();
+            loader.setLocation(Main.class.getResource("juegoDeASeis.fxml"));
+            AnchorPane partidaDeADos = loader.load();
+
+            this.disenioRaiz.setCenter(partidaDeADos);
+
+            VentanaJuegoController controlador = loader.getController();
+            controlador.setMain(this, mesa, equipo1, equipo2);
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
 
     }
 

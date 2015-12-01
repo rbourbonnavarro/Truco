@@ -17,7 +17,7 @@ import org.junit.Test;
 
 import java.util.Arrays;
 
-public class ReTrucoCantadoTest {
+public class ReTrucoCantadoTantoNoJugadoTest {
     
     EstadoJuego estadoJuego;
     

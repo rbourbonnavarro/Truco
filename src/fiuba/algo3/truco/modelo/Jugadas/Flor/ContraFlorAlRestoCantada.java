@@ -132,7 +132,16 @@ public class ContraFlorAlRestoCantada implements EstadoJuego {
 
     @Override
     public boolean equals(Object estado) {
+
         return estado instanceof ContraFlorAlRestoCantada;
+
+    }
+
+    @Override
+    public int hashCode() {
+
+        return 12;
+
     }
 
 

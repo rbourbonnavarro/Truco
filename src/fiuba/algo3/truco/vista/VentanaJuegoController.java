@@ -1,17 +1,16 @@
 package fiuba.algo3.truco.vista;
 
 import fiuba.algo3.truco.modelo.*;
-import fiuba.algo3.truco.modelo.Jugadas.Envido.EnvidoEnvidoCantado;
 import fiuba.algo3.truco.modelo.Jugadas.EstadoJuego;
-import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorFlorCantada;
-import fiuba.algo3.truco.modelo.Jugadas.NadaCantado;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.*;
+import fiuba.algo3.truco.modelo.Puntos.JuegoTerminadoException;
 import fiuba.algo3.truco.modelo.Ronda.PrimeraVuelta;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.control.MenuBar;
+import javafx.scene.image.ImageView;
+import javafx.scene.shape.Rectangle;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,98 +19,137 @@ import java.util.List;
 
 public class VentanaJuegoController {
 
-    @FXML
-    private Label turno;
-    @FXML
-    private Label labelEquipo1;
-    @FXML
-    private Label labelEquipo2;
-    @FXML
-    private Label puntajeEquipo1;
-    @FXML
-    private Label puntajeEquipo2;
-    @FXML
-    private Button botonMostrarCartas;
-    @FXML
-    private Button botonCarta1;
-    @FXML
-    private Button botonCarta2;
-    @FXML
-    private Button botonCarta3;
-    @FXML
-    private Button botonCartaJugada1Jugador1;
-    @FXML
-    private Button botonCartaJugada2Jugador1;
-    @FXML
-    private Button botonCartaJugada3Jugador1;
-    @FXML
-    private Button botonCartaJugada1Jugador2;
-    @FXML
-    private Button botonCartaJugada2Jugador2;
-    @FXML
-    private Button botonCartaJugada3Jugador2;
-    @FXML
-    private List<Button> botonesCartasJugadorActual;
-    @FXML
-    private List<Button> botonesCartasJugadasJugador1;
-    @FXML
-    private List<Button> botonesCartasJugadasJugador2;
-    @FXML
-    private List<List<Button>> botonesCartasJugadas;
-    @FXML
-    private Button botonFlor;
-    @FXML
-    private Button botonContraFlorAlResto;
-    @FXML
-    private Button botonContraFlorAlPartido;
-    @FXML
-    private Button botonEnvido;
-    @FXML
-    private Button botonRealEnvido;
-    @FXML
-    private Button botonFaltaEnvido;
-    @FXML
-    private Button botonTruco;
-    @FXML
-    private Button botonRetruco;
-    @FXML
-    private Button botonValeCuatro;
-    @FXML
-    private Button botonQuieroTruco;
-    @FXML
-    private Button botonNoQuieroTruco;
-    @FXML
-    private Button botonQuieroEnvido;
-    @FXML
-    private Button botonQuieroFlor;
-    @FXML
-    private Button botonNoQuieroTanto;
-
-    private Mesa mesa;
-    private Main main;
-    private Equipo equipo1;
-    private Equipo equipo2;
-    private List<Carta> cartasJugadorActual;
-    private DiccionarioCartas diccionarioCartas;
-    private int cantidadJugadasJugador1 = 0;
-    private int cantidadJugadasJugador2 = 0;
-    private List<Integer> cantidadJugadasJugador;
-    private Jugador jugadorPrevio;
-    private int indiceJugador = 0;
-    private List<Button> botonesEnvido;
-    private List<Button> botonesFlor;
-    private List<Button> botonesTanto;
-    private List<Button> botonesTruco;
-    private List<Button> botonesQuiero;
+    private static final String DORSO_CARTA = "/gui/images/imagenesCartas/dorsoCarta (Custom).png";
 
     @FXML
-    private void initialize() {
+    protected Label turno;
+    @FXML
+    private Label labelEstadoJuego;
+    @FXML
+    protected Label labelEquipo1;
+    @FXML
+    protected Label labelEquipo2;
+    @FXML
+    protected Label puntajeEquipo1;
+    @FXML
+    protected Label puntajeEquipo2;
+    @FXML
+    protected Button botonMostrarCartas;
+    @FXML
+    protected Button botonCarta1;
+    @FXML
+    protected Button botonCarta2;
+    @FXML
+    protected Button botonCarta3;
+    @FXML
+    protected Button botonCartaJugada1Jugador1;
+    @FXML
+    protected Button botonCartaJugada2Jugador1;
+    @FXML
+    protected Button botonCartaJugada3Jugador1;
+    @FXML
+    protected Button botonCartaJugada1Jugador2;
+    @FXML
+    protected Button botonCartaJugada2Jugador2;
+    @FXML
+    protected Button botonCartaJugada3Jugador2;
+    @FXML
+    private Button botonCartaJugada1Jugador3;
+    @FXML
+    private Button botonCartaJugada2Jugador3;
+    @FXML
+    private Button botonCartaJugada3Jugador3;
+    @FXML
+    private Button botonCartaJugada1Jugador4;
+    @FXML
+    private Button botonCartaJugada2Jugador4;
+    @FXML
+    private Button botonCartaJugada3Jugador4;
+    @FXML
+    private Button botonCartaJugada1Jugador5;
+    @FXML
+    private Button botonCartaJugada2Jugador5;
+    @FXML
+    private Button botonCartaJugada3Jugador5;
+    @FXML
+    private Button botonCartaJugada1Jugador6;
+    @FXML
+    private Button botonCartaJugada2Jugador6;
+    @FXML
+    private Button botonCartaJugada3Jugador6;
+    @FXML
+    protected Button botonFlor;
+    @FXML
+    protected Button botonContraFlorAlResto;
+    @FXML
+    protected Button botonContraFlorAlPartido;
+    @FXML
+    protected Button botonEnvido;
+    @FXML
+    protected Button botonRealEnvido;
+    @FXML
+    protected Button botonFaltaEnvido;
+    @FXML
+    protected Button botonTruco;
+    @FXML
+    protected Button botonRetruco;
+    @FXML
+    protected Button botonValeCuatro;
+    @FXML
+    protected Button botonQuieroTruco;
+    @FXML
+    protected Button botonNoQuieroTruco;
+    @FXML
+    protected Button botonQuieroEnvido;
+    @FXML
+    protected Button botonQuieroFlor;
+    @FXML
+    protected Button botonNoQuieroTanto;
+
+    protected Mesa mesa;
+    protected Main main;
+    protected Equipo equipo1;
+    protected Equipo equipo2;
+    protected List<Carta> cartasJugadorActual;
+    protected DiccionarioCartas diccionarioCartas;
+    protected List<Button> botonesCartasJugadorActual;
+    protected List<Button> botonesCartasJugadasJugador1;
+    protected List<Button> botonesCartasJugadasJugador2;
+    private List<Button> botonesCartasJugadasJugador3;
+    private List<Button> botonesCartasJugadasJugador4;
+    private List<Button> botonesCartasJugadasJugador5;
+    private List<Button> botonesCartasJugadasJugador6;
+    protected List<List<Button>> botonesCartasJugadas;
+    protected int cantidadJugadasJugador1 = 0;
+    protected int cantidadJugadasJugador2 = 0;
+    private int cantidadJugadasJugador3 = 0;
+    private int cantidadJugadasJugador4 = 0;
+    private int cantidadJugadasJugador5 = 0;
+    private int cantidadJugadasJugador6 = 0;
+    protected List<Integer> cantidadJugadasJugador;
+    protected Jugador jugadorPrevio;
+    protected int indiceJugador = 0;
+    protected List<Button> botonesEnvido;
+    protected List<Button> botonesFlor;
+    protected List<Button> botonesTanto;
+    protected List<Button> botonesTruco;
+    protected List<Button> botonesQuiero;
+    protected DiccionarioEstadosJuego diccionarioEstadosJuego;
+
+    @FXML
+    protected void initialize() {
 
         this.botonesCartasJugadorActual = new ArrayList<>(Arrays.asList(this.botonCarta1, this.botonCarta2, this.botonCarta3));
         this.botonesCartasJugadasJugador1 = new ArrayList<>(Arrays.asList(this.botonCartaJugada1Jugador1, this.botonCartaJugada2Jugador1, this.botonCartaJugada3Jugador1));
         this.botonesCartasJugadasJugador2 = new ArrayList<>(Arrays.asList(this.botonCartaJugada1Jugador2, this.botonCartaJugada2Jugador2, this.botonCartaJugada3Jugador2));
-        this.botonesCartasJugadas = new ArrayList<>(Arrays.asList(this.botonesCartasJugadasJugador1, this.botonesCartasJugadasJugador2));
-        this.cantidadJugadasJugador = new ArrayList<>(Arrays.asList(this.cantidadJugadasJugador1, this.cantidadJugadasJugador2));
+        this.botonesCartasJugadasJugador3 = new ArrayList<>(Arrays.asList(this.botonCartaJugada1Jugador3, this.botonCartaJugada2Jugador3, this.botonCartaJugada3Jugador3));
+        this.botonesCartasJugadasJugador4 = new ArrayList<>(Arrays.asList(this.botonCartaJugada1Jugador4, this.botonCartaJugada2Jugador4, this.botonCartaJugada3Jugador4));
+        this.botonesCartasJugadasJugador5 = new ArrayList<>(Arrays.asList(this.botonCartaJugada1Jugador5, this.botonCartaJugada2Jugador5, this.botonCartaJugada3Jugador5));
+        this.botonesCartasJugadasJugador6 = new ArrayList<>(Arrays.asList(this.botonCartaJugada1Jugador6, this.botonCartaJugada2Jugador6, this.botonCartaJugada3Jugador6));
+        this.botonesCartasJugadas = new ArrayList<>(Arrays.asList(this.botonesCartasJugadasJugador1, this.botonesCartasJugadasJugador2,
+                this.botonesCartasJugadasJugador3,this.botonesCartasJugadasJugador4,this.botonesCartasJugadasJugador5,this.botonesCartasJugadasJugador6));
+        this.cantidadJugadasJugador = new ArrayList<>(Arrays.asList(this.cantidadJugadasJugador1, this.cantidadJugadasJugador2,
+                this.cantidadJugadasJugador3,this.cantidadJugadasJugador4,this.cantidadJugadasJugador5,this.cantidadJugadasJugador6));
         this.diccionarioCartas = new DiccionarioCartas();
         this.botonesEnvido = new ArrayList<>(Arrays.asList(this.botonEnvido, this.botonRealEnvido, this.botonFaltaEnvido));
         this.botonesFlor = new ArrayList<>(Arrays.asList(this.botonFlor, this.botonContraFlorAlResto, this.botonContraFlorAlPartido));
@@ -120,6 +158,14 @@ public class VentanaJuegoController {
         this.botonesTruco = new ArrayList<>(Arrays.asList(this.botonTruco, this.botonRetruco, this.botonValeCuatro));
         this.botonesQuiero = new ArrayList<>(Arrays.asList(this.botonQuieroTruco, this.botonNoQuieroTruco, this.botonQuieroEnvido, this.botonQuieroFlor, this.botonNoQuieroTanto));
 
+        this.diccionarioEstadosJuego = new DiccionarioEstadosJuego(this.botonesTruco, this.botonesTanto, this.botonesQuiero);
+
+        this.visibilizarBotones(this.botonesCartasJugadasJugador1, false);
+        this.visibilizarBotones(this.botonesCartasJugadasJugador2, false);
+        this.visibilizarBotones(this.botonesCartasJugadasJugador3, false);
+        this.visibilizarBotones(this.botonesCartasJugadasJugador4, false);
+        this.visibilizarBotones(this.botonesCartasJugadasJugador5, false);
+        this.visibilizarBotones(this.botonesCartasJugadasJugador6, false);
         this.visibilizarBotones(this.botonesQuiero, false);
         this.visibilizarBotones(Arrays.asList(this.botonRetruco, this.botonValeCuatro), false);
 
@@ -145,11 +191,11 @@ public class VentanaJuegoController {
     }
 
 
-    private void mostrarCartasJugadorActual() {
+    protected void mostrarCartasJugadorActual() {
 
         for (int i = 0; i < this.cartasJugadorActual.size(); i++) {
 
-            this.botonesCartasJugadorActual.get(i).setText(this.diccionarioCartas.representacionCarta(this.cartasJugadorActual.get(i)));
+            this.botonesCartasJugadorActual.get(i).setGraphic(new ImageView(this.diccionarioCartas.representacionCarta(this.cartasJugadorActual.get(i))));
             if(!this.mesa.getJugadorActual().obtenerCartasEnMano().contains(this.cartasJugadorActual.get(i)))
                 this.botonesCartasJugadorActual.get(i).setDisable(true);
 
@@ -158,16 +204,21 @@ public class VentanaJuegoController {
     }
 
     @FXML
-    private void MostarCartasHandler() {
+    protected void MostarCartasHandler() {
 
         EstadoJuego estadoJuego = this.mesa.getEstadoVuelta().getEstadoJuego();
-        if(!(estadoJuego instanceof NadaCantado
-                || estadoJuego instanceof TrucoQuerido
-                || estadoJuego instanceof RetrucoQuerido
-                || estadoJuego instanceof ValeCuatroCantado))
-            this.desactivarBotones(this.botonesCartasJugadorActual, true);
-        else
+
+        try {
+
+            this.mesa.getEstadoVuelta().estadoValido();
+
             this.desactivarBotones(this.botonesCartasJugadorActual, false);
+
+        } catch(Exception e) {
+
+            this.desactivarBotones(this.botonesCartasJugadorActual, true);
+
+        }
 
         this.mostrarCartasJugadorActual();
 
@@ -176,44 +227,68 @@ public class VentanaJuegoController {
     @FXML
     private void JugarCarta1Handler() {
 
-        mesa.hacerJugada(cartasJugadorActual.get(0));
-        this.mostrarCartaEnMesa(cartasJugadorActual.get(0));
-        this.mostrarJugadorActual();
-        this.mostrarPuntos();
-        if(this.mesa.getCartasEnMesa().size() == 0) this.nuevaRonda();
+        try {
 
+            mesa.hacerJugada(cartasJugadorActual.get(0));
+            this.mostrarCartaEnMesa(cartasJugadorActual.get(0));
+            this.mostrarPuntos();
+            if (this.mesa.getCartasEnMesa().size() == 0) this.nuevaRonda();
+            this.mostrarJugadorActual();
+
+        } catch (JuegoTerminadoException terminado) {
+
+            this.main.juegoTerminado(mesa.getEquipoGanador().getNombre());
+
+        }
 
     }
 
     @FXML
     private void JugarCarta2Handler() {
 
-        mesa.hacerJugada(cartasJugadorActual.get(1));
-        this.mostrarCartaEnMesa(cartasJugadorActual.get(1));
-        this.mostrarJugadorActual();
-        this.mostrarPuntos();
-        if(this.mesa.getCartasEnMesa().size() == 0) this.nuevaRonda();
+        try {
+
+            mesa.hacerJugada(cartasJugadorActual.get(1));
+            this.mostrarCartaEnMesa(cartasJugadorActual.get(1));
+            this.mostrarPuntos();
+            if (this.mesa.getCartasEnMesa().size() == 0) this.nuevaRonda();
+            this.mostrarJugadorActual();
+
+        } catch (JuegoTerminadoException terminado) {
+
+            this.main.juegoTerminado(mesa.getEquipoGanador().getNombre());
+
+        }
+
     }
 
     @FXML
     private void JugarCarta3Handler() {
 
-        mesa.hacerJugada(cartasJugadorActual.get(2));
-        this.mostrarCartaEnMesa(cartasJugadorActual.get(2));
-        this.mostrarJugadorActual();
-        this.mostrarPuntos();
-        if(this.mesa.getCartasEnMesa().size() == 0) this.nuevaRonda();
+        try {
 
+            mesa.hacerJugada(cartasJugadorActual.get(2));
+            this.mostrarCartaEnMesa(cartasJugadorActual.get(2));
+            this.mostrarPuntos();
+            if (this.mesa.getCartasEnMesa().size() == 0) this.nuevaRonda();
+            this.mostrarJugadorActual();
+
+        } catch (JuegoTerminadoException terminado) {
+
+            this.main.juegoTerminado(mesa.getEquipoGanador().getNombre());
+
+        }
 
     }
 
-    private void nuevaRonda() {
+    protected void nuevaRonda() {
 
-        for(int i = 0; i < 2; i++) {
+        int cantidadJugadores = this.mesa.getEquipoActual().getCantidadIntegrantes() * 2;
+
+        for(int i = 0; i < cantidadJugadores; i++) {
 
             for (Button botonCartaJugada : this.botonesCartasJugadas.get(i)) {
 
-                botonCartaJugada.setText("");
                 botonCartaJugada.setVisible(false);
 
             }
@@ -222,31 +297,22 @@ public class VentanaJuegoController {
 
         }
 
-        this.visibilizarBotones(this.botonesQuiero, false);
-        this.visibilizarBotones(Arrays.asList(this.botonRetruco, this.botonValeCuatro), false);
-        this.botonTruco.setVisible(true);
-
-        this.visibilizarBotones(this.botonesTanto, true);
-
-        this.visibilizarBotones(this.botonesFlor, this.mesa.seJuegaConFlor());
-
     }
 
-    private void mostrarCartaEnMesa(Carta cartaJugada) {
+    protected void mostrarCartaEnMesa(Carta cartaJugada) {
 
         Integer numeroJugada = this.cantidadJugadasJugador.get(this.indiceJugador);
         Button botonCartaJugada = this.botonesCartasJugadas.get(this.indiceJugador).get(numeroJugada);
 
         botonCartaJugada.setVisible(true);
-        botonCartaJugada.setDisable(true);
-        botonCartaJugada.setText(this.diccionarioCartas.representacionCarta(cartaJugada));
+        botonCartaJugada.setGraphic(new ImageView(this.diccionarioCartas.representacionCarta(cartaJugada)));
 
         this.cantidadJugadasJugador.set(this.indiceJugador, numeroJugada + 1);
 
     }
 
 
-    private void mostrarPuntos() {
+    protected void mostrarPuntos() {
 
         this.puntajeEquipo1.setText(Integer.toString(this.mesa.puntaje(equipo1)));
         this.puntajeEquipo2.setText(Integer.toString(this.mesa.puntaje(equipo2)));
@@ -254,30 +320,22 @@ public class VentanaJuegoController {
     }
 
     @FXML
-    private void trucoHandler(){
+    protected void trucoHandler(){
 
         mesa.truco();
+
         this.mostrarJugadorActual();
-        this.botonRetruco.setVisible(true);
-        this.botonTruco.setVisible(false);
-        this.visibilizarBotones(this.botonesQuiero, false);
-        this.botonQuieroTruco.setVisible(true);
-        this.botonNoQuieroTruco.setVisible(true);
 
     }
 
     @FXML
-    private void reTrucoHandler(){
+    protected void reTrucoHandler(){
 
         try {
 
             mesa.retruco();
+
             this.mostrarJugadorActual();
-            this.botonRetruco.setVisible(false);
-            this.botonValeCuatro.setVisible(true);
-            this.visibilizarBotones(this.botonesQuiero, false);
-            this.botonQuieroTruco.setVisible(true);
-            this.botonNoQuieroTruco.setVisible(true);
 
         } catch (EquipoQueCantoTrucoNoPuedeCantarRetrucoException e){
 
@@ -292,16 +350,13 @@ public class VentanaJuegoController {
     }
 
     @FXML
-    private void valeCuatroHandler(){
+    protected void valeCuatroHandler(){
 
         try{
 
             mesa.valeCuatro();
+
             this.mostrarJugadorActual();
-            this.botonValeCuatro.setVisible(false);
-            this.visibilizarBotones(this.botonesQuiero, false);
-            this.botonQuieroTruco.setVisible(true);
-            this.botonNoQuieroTruco.setVisible(true);
 
         } catch (EquipoQueCantoRetrucoNoPuedeCantarValeCuatroException e){
 
@@ -316,112 +371,81 @@ public class VentanaJuegoController {
     }
 
     @FXML
-    private void quieroTrucoHandler(){
+    protected void quieroTrucoHandler(){
 
         mesa.quieroTruco();
+
         this.mostrarJugadorActual();
-        this.botonNoQuieroTruco.setVisible(false);
-        this.botonQuieroTruco.setVisible(false);
 
     }
 
     @FXML
     private void noQuieroTrucoHandler() {
 
-        mesa.noQuieroTruco();
-        this.nuevaRonda();
-        this.mostrarPuntos();
-        this.mostrarJugadorActual();
+        try {
+
+            mesa.noQuieroTruco();
+            this.nuevaRonda();
+            this.mostrarPuntos();
+            this.mostrarJugadorActual();
+
+        }catch (JuegoTerminadoException terminado) {
+
+            this.main.juegoTerminado(mesa.getEquipoGanador().getNombre());
+
+        }
 
     }
 
     @FXML
-    private void cantarFlorHandler() {
+    protected void cantarFlorHandler() {
 
         this.mesa.flor();
 
-        if(this.mesa.getEstadoVuelta().getEstadoJuego() instanceof FlorFlorCantada)
-            this.visibilizarBotones(this.botonesFlor, false);
-        else
-            this.visibilizarBotones(Arrays.asList(this.botonContraFlorAlResto, this.botonContraFlorAlPartido), true);
-
-        this.visibilizarBotones(this.botonesEnvido, false);
-        this.visibilizarBotones(this.botonesTruco, false);
-        this.visibilizarBotones(this.botonesQuiero, false);
-        this.botonQuieroFlor.setVisible(true);
-        this.botonNoQuieroTanto.setVisible(true);
-
         this.mostrarJugadorActual();
 
     }
 
     @FXML
-    private void cantarContraFlorAlRestoHandler() {
+    protected void cantarContraFlorAlRestoHandler() {
 
         this.mesa.contraFlorAlResto();
-        this.visibilizarBotones(this.botonesTanto, false);
-        this.visibilizarBotones(this.botonesTruco, false);
-        this.visibilizarBotones(this.botonesQuiero, false);
-        this.botonQuieroFlor.setVisible(true);
-        this.botonNoQuieroTanto.setVisible(true);
 
         this.mostrarJugadorActual();
 
     }
 
     @FXML
-    private void cantarContraFlorAlPartidoHandler() {
+    protected void cantarContraFlorAlPartidoHandler() {
 
         this.mesa.contraFlorAlPartido();
-        this.visibilizarBotones(this.botonesTanto, false);
-        this.visibilizarBotones(this.botonesTruco, false);
-        this.visibilizarBotones(this.botonesQuiero, false);
-        this.botonQuieroFlor.setVisible(true);
-        this.botonNoQuieroTanto.setVisible(true);
 
         this.mostrarJugadorActual();
 
     }
 
     @FXML
-    private void cantarEnvidoHandler() {
+    protected void cantarEnvidoHandler() {
 
         this.mesa.envido();
-        this.visibilizarBotones(this.botonesTruco, false);
-        this.visibilizarBotones(this.botonesQuiero, false);
-        this.botonQuieroEnvido.setVisible(true);
-        this.botonNoQuieroTanto.setVisible(true);
-        if(mesa.getEstadoVuelta().getEstadoJuego() instanceof EnvidoEnvidoCantado)
-            this.botonEnvido.setVisible(false);
 
         this.mostrarJugadorActual();
 
     }
 
     @FXML
-    private void cantarRealEnvidoHandler() {
+    protected void cantarRealEnvidoHandler() {
 
         this.mesa.realEnvido();
-        this.botonEnvido.setVisible(false);
-        this.botonRealEnvido.setVisible(false);
-        this.visibilizarBotones(this.botonesTruco, false);
-        this.visibilizarBotones(this.botonesQuiero, false);
-        this.botonQuieroEnvido.setVisible(true);
-        this.botonNoQuieroTanto.setVisible(true);
 
         this.mostrarJugadorActual();
 
     }
 
     @FXML
-    private void cantarFaltaEnvidoHandler() {
+    protected void cantarFaltaEnvidoHandler() {
 
         this.mesa.faltaEnvido();
-        this.visibilizarBotones(this.botonesEnvido,false);
-        this.visibilizarBotones(this.botonesTruco, false);
-        this.visibilizarBotones(this.botonesQuiero, false);
-        this.botonQuieroEnvido.setVisible(true);
-        this.botonNoQuieroTanto.setVisible(true);
 
         this.mostrarJugadorActual();
 
@@ -430,41 +454,72 @@ public class VentanaJuegoController {
     @FXML
     private void quieroEnvidoHandler() {
 
-        this.mesa.quieroEnvido();
-        this.visibilizarBotones(this.botonesTanto, false);
-        this.visibilizarBotones(this.botonesQuiero, false);
-        if(this.mesa.getEstadoVuelta().getEstadoJuego() instanceof TrucoCantado)
-            this.visibilizarBotones(Arrays.asList(this.botonRetruco, this.botonQuieroTruco, this.botonNoQuieroTruco), true);
-        else
-            this.visibilizarBotones(Collections.singletonList(this.botonTruco), true);
+        try {
 
-        this.mostrarPuntos();
-        this.mostrarJugadorActual();
+            this.mesa.quieroEnvido();
+
+            this.mostrarPuntos();
+            this.mostrarJugadorActual();
+
+        } catch (JuegoTerminadoException terminado) {
+
+            this.main.juegoTerminado(mesa.getEquipoGanador().getNombre());
+
+        }
+
+    }
+
+    @FXML
+    private void quieroFlorHandler() {
+
+        try {
+
+            this.mesa.quieroFlor();
+
+            this.mostrarPuntos();
+            this.mostrarJugadorActual();
+
+        } catch (JuegoTerminadoException terminado) {
+
+            this.main.juegoTerminado(mesa.getEquipoGanador().getNombre());
+
+        }
 
     }
 
     @FXML
     private void noQuieroTantoHandler() {
 
-        this.mesa.noQuieroTanto();
-        this.visibilizarBotones(this.botonesTanto, false);
-        this.visibilizarBotones(this.botonesQuiero, false);
-        if(this.mesa.getEstadoVuelta().getEstadoJuego() instanceof TrucoCantado)
-            this.visibilizarBotones(Arrays.asList(this.botonRetruco, this.botonQuieroTruco, this.botonNoQuieroTruco), true);
-        else
-            this.visibilizarBotones(Collections.singletonList(this.botonTruco), true);
+        try {
 
-        this.mostrarPuntos();
-        this.mostrarJugadorActual();
+            this.mesa.noQuieroTanto();
+
+            this.mostrarPuntos();
+            this.mostrarJugadorActual();
+
+        }catch (JuegoTerminadoException terminado) {
+
+            this.main.juegoTerminado(mesa.getEquipoGanador().getNombre());
+
+        }
 
     }
 
-    private void mostrarJugadorActual() {
+    protected void mostrarJugadorActual() {
+
+        this.setearBotones();
+        this.mostrarEstadoJuego();
 
         if(!this.jugadorPrevio.equals(this.mesa.getJugadorActual())) {
 
-            this.indiceJugador = (this.indiceJugador + 1) % 2;
+            this.indiceJugador = (this.indiceJugador + 1) % (this.mesa.getEquipoActual().getCantidadIntegrantes()*2);
 
+        }
+
+        try {
+            this.mesa.getJugadorActual().flor();
+        } catch(JugadorNoTieneFlorException jugadorNoTieneFlorException) {
+            this.botonFlor.setVisible(false);
         }
 
         this.jugadorPrevio = this.mesa.getJugadorActual();
@@ -475,7 +530,7 @@ public class VentanaJuegoController {
 
         for(Button boton : this.botonesCartasJugadorActual) {
 
-            boton.setText("Carta dada vuelta");
+            boton.setGraphic(new ImageView(DORSO_CARTA));
             boton.setDisable(true);
 
         }
@@ -488,23 +543,51 @@ public class VentanaJuegoController {
 
     }
 
-    private void visibilizarBotones(List<Button> botones, boolean visibilidad) {
+    protected void visibilizarBotones(List<Button> botones, boolean visibilidad) {
 
-        for(Button boton : botones) {
+        try {
 
-            boton.setVisible(visibilidad);
+            for(Button boton : botones) {
+
+                boton.setVisible(visibilidad);
+
+            }
+
+        } catch(NullPointerException nullPointerException) {
 
         }
 
     }
 
-    private void desactivarBotones(List<Button> botones, boolean activar) {
+    protected void desactivarBotones(List<Button> botones, boolean activar) {
 
         for(Button boton : botones) {
 
             boton.setDisable(activar);
 
         }
+
+    }
+
+    protected void setearBotones() {
+
+        EstadoJuego estadoJuego = this.mesa.getEstadoVuelta().getEstadoJuego();
+
+        this.visibilizarBotones(this.botonesTruco, true);
+        this.visibilizarBotones(this.botonesTanto, true);
+        this.visibilizarBotones(this.botonesQuiero, true);
+
+        this.visibilizarBotones(this.diccionarioEstadosJuego.obtenerBotones(estadoJuego), false);
+        if(! this.mesa.seJuegaConFlor())
+           this.visibilizarBotones(this.botonesFlor, false);
+
+    }
+
+    protected void mostrarEstadoJuego() {
+
+        EstadoJuego estadoJuego = this.mesa.getEstadoVuelta().getEstadoJuego();
+
+        this.labelEstadoJuego.setText(this.diccionarioEstadosJuego.obtenerMensajeEstado(estadoJuego));
 
     }
 

@@ -133,5 +133,12 @@ public class FlorCantada implements EstadoJuego {
 
     }
 
+    @Override
+    public int hashCode() {
+
+        return this.puntos();
+
+    }
+
 
 }

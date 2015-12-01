@@ -214,7 +214,7 @@ public class HacerJugadaTest {
 
 	}
 
-	@Test(expected = NoSePuedeCantarEnvido.class)
+	@Test(expected = JugadorNoPieNoPuedeCantarEnvido.class)
 	public void seCantaTrucoYDespuesEnvidoSeDecideYSeIntentaCantarTantoDeNuevoLanzaExcepcion() {
 
 		mesa.truco();

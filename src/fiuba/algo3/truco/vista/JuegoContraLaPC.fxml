@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.shape.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fiuba.algo3.truco.vista.VentanaJuegoContraLaPCController">
+    <children>
+        <SplitPane dividerPositions="0.7622107969151671" layoutX="307.0" layoutY="123.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+            <items>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                    <children>
+                        <SplitPane dividerPositions="0.2651006711409396" layoutX="132.0" layoutY="64.0" prefHeight="287.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <items>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                    <children>
+                                        <SplitPane dividerPositions="0.05709876543209876" layoutX="-2.0" layoutY="14.0" orientation="VERTICAL" prefHeight="285.0" prefWidth="155.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <items>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="46.0" prefWidth="259.0">
+                                                    <children>
+                                                        <Label layoutX="8.0" layoutY="10.0" text="Turno: " />
+                                                        <Label fx:id="turno" layoutX="183.0" layoutY="9.0" text="Label" />
+                                                    </children>
+                                                </AnchorPane>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                       <children>
+                                          <GridPane layoutX="23.0" layoutY="74.0" prefHeight="532.0" prefWidth="258.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="74.0">
+                                            <columnConstraints>
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                              <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                              <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                             <children>
+                                                <Button fx:id="botonEnvido" mnemonicParsing="false" onAction="#cantarEnvidoHandler" text="Envido" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                                <Button fx:id="botonTruco" mnemonicParsing="false" onAction="#trucoHandler" text="Truco" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                                <Button fx:id="botonFlor" mnemonicParsing="false" onAction="#cantarFlorHandler" text="Flor" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                                                <Button fx:id="botonRealEnvido" mnemonicParsing="false" onAction="#cantarRealEnvidoHandler" text="Real envido" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                                <Button fx:id="botonRetruco" mnemonicParsing="false" onAction="#reTrucoHandler" text="Re truco" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                                <Button fx:id="botonContraFlorAlResto" mnemonicParsing="false" onAction="#cantarContraFlorAlRestoHandler" text="Contra al resto" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                                <Button fx:id="botonFaltaEnvido" mnemonicParsing="false" onAction="#cantarFaltaEnvidoHandler" text="Falta envido" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                                                <Button fx:id="botonValeCuatro" mnemonicParsing="false" onAction="#valeCuatroHandler" text="Vale 4" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                                                <Button fx:id="botonContraFlorAlPartido" mnemonicParsing="false" onAction="#cantarContraFlorAlPartidoHandler" text="Contra al partido" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+                                                <Button fx:id="botonQuieroEnvido" mnemonicParsing="false" onAction="#quieroEnvidoHandler" text="Quiero" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                                                <Button fx:id="botonNoQuieroTanto" mnemonicParsing="false" onAction="#noQuieroTantoHandler" text="No Quiero" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                                                <Button fx:id="botonQuieroFlor" mnemonicParsing="false" text="Quiero" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                                                <Button fx:id="botonNoQuieroTruco" mnemonicParsing="false" onAction="#noQuieroTrucoHandler" text="No Quiero" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                                                <Button fx:id="botonQuieroTruco" mnemonicParsing="false" onAction="#quieroTrucoHandler" text="Quiero" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+                                             </children>
+                                          </GridPane>
+                                          <Label fx:id="labelEstadoJuego" layoutX="44.0" layoutY="14.0" prefHeight="21.0" prefWidth="170.0" textAlignment="CENTER" />
+                                          <Button fx:id="botonContinuar" layoutX="86.0" layoutY="43.0" mnemonicParsing="false" onAction="#botonContinuarHandler" text="Continuar" />
+                                       </children></AnchorPane>
+                                            </items>
+                                        </SplitPane>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                    <children>
+                                        <Ellipse fill="#1d8614" layoutX="365.0" layoutY="303.0" radiusX="387.0" radiusY="360.0" stroke="BLACK" strokeType="INSIDE" />
+                                        <Button fx:id="botonCartaJugada1Jugador1" layoutX="306.0" layoutY="437.0" mnemonicParsing="false" />
+                                        <Button fx:id="botonCartaJugada2Jugador1" layoutX="363.0" layoutY="388.0" mnemonicParsing="false" />
+                                        <Button fx:id="botonCartaJugada3Jugador1" layoutX="422.0" layoutY="338.0" mnemonicParsing="false" />
+                                        <Button fx:id="botonCartaJugada1Jugador2" layoutX="306.0" layoutY="14.0" mnemonicParsing="false" />
+                                        <Button fx:id="botonCartaJugada2Jugador2" layoutX="363.0" layoutY="64.0" mnemonicParsing="false" />
+                                        <Button fx:id="botonCartaJugada3Jugador2" layoutX="422.0" layoutY="123.0" mnemonicParsing="false" />
+                                    </children>
+                                </AnchorPane>
+                            </items>
+                        </SplitPane>
+                    </children>
+                </AnchorPane>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                    <children>
+                        <SplitPane dividerPositions="0.2634228187919463" layoutX="99.0" layoutY="-49.0" prefHeight="105.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                            <items>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                    <children>
+                                        <GridPane layoutX="-14.0" layoutY="41.0" prefHeight="103.0" prefWidth="154.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                            <children>
+                                                <Label fx:id="labelEquipo1" />
+                                                <Label fx:id="labelEquipo2" GridPane.rowIndex="1" />
+                                                <Label fx:id="puntajeEquipo1" text="Label" GridPane.columnIndex="1" GridPane.halignment="RIGHT" />
+                                                <Label fx:id="puntajeEquipo2" text="Label" GridPane.columnIndex="1" GridPane.halignment="RIGHT" GridPane.rowIndex="1" />
+                                            </children>
+                                        </GridPane>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                    <children>
+                                        <GridPane alignment="CENTER" prefHeight="152.0" prefWidth="583.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <columnConstraints>
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                            </columnConstraints>
+                                            <rowConstraints>
+                                                <RowConstraints maxHeight="73.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="179.0" minHeight="10.0" prefHeight="179.0" vgrow="SOMETIMES" />
+                                            </rowConstraints>
+                                            <children>
+                                                <Button fx:id="botonCarta1" mnemonicParsing="false" onAction="#JugarCarta1Handler" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                                <Button fx:id="botonCarta3" mnemonicParsing="false" onAction="#JugarCarta3Handler" GridPane.columnIndex="2" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                                <Button fx:id="botonCarta2" mnemonicParsing="false" onAction="#JugarCarta2Handler" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+                                            </children>
+                                        </GridPane>
+                                    </children>
+                                </AnchorPane>
+                            </items>
+                        </SplitPane>
+                    </children>
+                </AnchorPane>
+            </items>
+        </SplitPane>
+    </children>
+</AnchorPane>

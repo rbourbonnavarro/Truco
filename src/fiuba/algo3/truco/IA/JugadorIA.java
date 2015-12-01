@@ -9,18 +9,22 @@ import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorNoAceptadaNoSePuedeJugarExcepti
 import fiuba.algo3.truco.modelo.Jugadas.NadaCantado;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.*;
 import fiuba.algo3.truco.modelo.Ronda.PrimeraVuelta;
-import fiuba.algo3.truco.modelo.Ronda.Vuelta;
+
+import java.util.NoSuchElementException;
 
 public class JugadorIA extends Jugador {
 
     private Mesa mesa;
     private ValoresTruco valoresTruco;
+    private Carta ultimaCartaJugada;
 
     public JugadorIA(String nombre) {
 
         super(nombre);
 
         this.valoresTruco = new ValoresTruco();
+
+        this.ultimaCartaJugada = null;
 
     }
 
@@ -35,7 +39,8 @@ public class JugadorIA extends Jugador {
 
         try {
 
-            if (this.mesa.getEstadoVuelta().getEstadoJuego() instanceof NadaCantado) {
+            if (this.mesa.getEstadoVuelta().getEstadoJuego() instanceof NadaCantado
+                    || this.mesa.getEstadoVuelta().getEstadoJuego() instanceof TrucoCantadoTantoNoJugado) {
 
                 try {
 
@@ -49,7 +54,11 @@ public class JugadorIA extends Jugador {
 
                     } catch (NoHayDecisionException a) {
 
-                        this.mesa.hacerJugada(this.decisionCarta());
+                        Carta cartaAJugar = this.decisionCarta();
+
+                        this.mesa.hacerJugada(cartaAJugar);
+
+                        this.ultimaCartaJugada = cartaAJugar;
 
                     }
 
@@ -57,13 +66,18 @@ public class JugadorIA extends Jugador {
 
             }
             else {
+
                 try {
 
                     this.decisionTruco();
 
                 } catch (NoHayDecisionException a) {
 
-                    this.mesa.hacerJugada(this.cartaMasAlta());
+                    Carta cartaAJugar = this.decisionCarta();
+
+                    this.mesa.hacerJugada(cartaAJugar);
+
+                    this.ultimaCartaJugada = cartaAJugar;
 
                 }
 
@@ -130,25 +144,53 @@ public class JugadorIA extends Jugador {
 
         } catch(FlorFlorNoQueridaNoSePuedeJugarException e) {
 
-            if(this.flor() > 23) this.mesa.quieroFlor();
-
-            this.mesa.noQuieroTanto();
+            if(this.flor() > 23)
+                this.mesa.quieroFlor();
+            else
+                this.mesa.noQuieroTanto();
 
         } catch(ContraFlorAlRestoNoQueridaNoSePuedeJugarException e) {
 
             int flor = this.flor();
 
-            if(flor < 30) this.mesa.noQuieroTanto();
-
-            this.mesa.quieroFlor();
+            if(flor < 30)
+                this.mesa.noQuieroTanto();
+            else
+                this.mesa.quieroFlor();
 
         } catch(ContraFlorAlPartidoNoQueridaNoSePuedeJugarException e) {
 
             int flor = this.flor();
 
-            if(flor > 33) this.mesa.quieroFlor();
+            if(flor > 33)
+                this.mesa.quieroFlor();
+            else
+                this.mesa.noQuieroTanto();
 
-            this.mesa.noQuieroTanto();
+        } catch(TrucoNoQueridoNoSePuedeJugarException e) {
+
+            if(this.manoDeValeCuatro())
+                this.mesa.retruco();
+            if(this.manoDeTruco())
+                this.mesa.quieroTruco();
+            else
+                this.mesa.noQuieroTruco();
+
+        } catch(RetrucoNoQueridoNoSePuedeJugarException e) {
+
+            if(this.manoDeValeCuatro())
+                this.mesa.valeCuatro();
+            if(this.manoDeRetruco())
+                this.mesa.quieroTruco();
+            else
+                this.mesa.noQuieroTruco();
+
+        } catch(ValeCuatroNoQueridoNoSePuedeJugarException e) {
+
+            if(this.manoDeValeCuatro())
+                this.mesa.quieroTruco();
+            else
+                this.mesa.noQuieroTruco();
 
         }
 
@@ -168,16 +210,23 @@ public class JugadorIA extends Jugador {
 
     private Carta decisionCarta() {
 
-        Carta ultimaCarta = this.mesa.getCartasEnMesa().getLast();
+        try {
 
-        if((this.mesa.getCartasEnMesa().size() % 2) == 0)
+            Carta ultimaCarta = this.mesa.getCartasEnMesa().getLast();
+
+            if ((this.mesa.getCartasEnMesa().size() % 2) == 0)
+                return this.cartaMasAlta();
+            else {
+
+                return this.cartaApropiada(ultimaCarta);
+
+            }
+
+        } catch(NoSuchElementException noSuchElementException) {
+
             return this.cartaMasAlta();
-        else {
-
-            return this.cartaApropiada(ultimaCarta);
 
         }
-
 
     }
 
@@ -268,65 +317,123 @@ public class JugadorIA extends Jugador {
 
     private void decisionTruco() {
 
-        Vuelta vuelta = mesa.getEstadoVuelta();
+        if(this.manoDeValeCuatro()) {
 
-        if (vuelta instanceof PrimeraVuelta) {
+            try {
 
-            if(this.manoDeTruco()) {
+                this.mesa.truco();
+
+                return;
+
+            } catch (NoSePuedeCantarTrucoException e) {
+
+            }
+
+            try {
+
+                this.mesa.retruco();
+
+                return;
+
+            } catch (NoSePuedeCantarRetrucoException | EquipoQueCantoTrucoNoPuedeCantarRetrucoException e) {
+
+            }
+
+            try {
+
+                this.mesa.valeCuatro();
+
+                return;
+
+            } catch (NoSePuedeCantarValeCuatroException | EquipoQueCantoRetrucoNoPuedeCantarValeCuatroException e) {
+
+            }
+
+        }
+
+        if(this.manoDeRetruco()) {
+
+            try {
+
+                this.mesa.truco();
+
+                return;
+
+            } catch (NoSePuedeCantarTrucoException e) {
+
+            }
+
+            try {
+
+                this.mesa.retruco();
+
+                return;
+
+            } catch (NoSePuedeCantarRetrucoException | EquipoQueCantoTrucoNoPuedeCantarRetrucoException e) {
+
+            }
+
+        }
+
+        if(this.manoDeTruco()) {
+
+            try {
+
+                this.mesa.truco();
+
+                return;
+
+            } catch (NoSePuedeCantarTrucoException e) {}
+
+        }
+
+        int cartaMasAlta = this.valoresTruco.rankingCarta(this.cartaMasAlta());
+
+        if(!(this.mesa.getEstadoVuelta() instanceof PrimeraVuelta)) {
+
+            if (cartaMasAlta >= 7)
+                throw new NoHayDecisionException();
+
+            try {
 
                 try {
 
-                    this.mesa.truco();
+                    mesa.truco();
 
-                    return;
+                } catch (NoSePuedeCantarTrucoException e) {
 
-                } catch (NoSePuedeCantarTrucoException noSePuedeCantarTrucoException) {
+                    if (cartaMasAlta < 6)
+                        try {
+                            mesa.retruco();
+                        } catch (NoSePuedeCantarRetrucoException e2) {
+                            if (cartaMasAlta < 4)
+                                try {
+                                    mesa.valeCuatro();
+                                } catch(NoSePuedeCantarValeCuatroException e3){
+                                    throw new NoHayDecisionException();
+                                }
+                            else throw new NoHayDecisionException();
+                        }
+                    else {
 
-                    throw new NoHayDecisionException();
+                        throw new NoHayDecisionException();
+
+                    }
 
                 }
 
-            }
-            else {
+            } catch (EquipoQueCantoTrucoNoPuedeCantarRetrucoException e) {
+
+                throw new NoHayDecisionException();
+
+            } catch (EquipoQueCantoRetrucoNoPuedeCantarValeCuatroException e) {
 
                 throw new NoHayDecisionException();
 
             }
 
         }
-
-        int cartaMasAlta = this.valoresTruco.rankingCarta(this.cartaMasAlta());
-
-        if(cartaMasAlta >= 7)
-            throw new NoHayDecisionException();
-
-        try {
-
-            try {
-                mesa.truco();
-            } catch (NoSePuedeCantarTrucoException e) {
-
-                if (cartaMasAlta < 6)
-                    try {
-                        mesa.retruco();
-                    } catch (NoSePuedeCantarRetrucoException e2) {
-                        if (cartaMasAlta < 4)
-                            mesa.retruco();
-                        else throw new NoHayDecisionException();
-                    }
-                else {
-
-                    throw new NoHayDecisionException();
-
-                }
-
-            }
-
-        } catch(EquipoQueCantoTrucoNoPuedeCantarRetrucoException e) {
-
-            throw new NoHayDecisionException();
-
-        } catch(EquipoQueCantoRetrucoNoPuedeCantarValeCuatroException e) {
+        else {
 
             throw new NoHayDecisionException();
 
@@ -334,7 +441,7 @@ public class JugadorIA extends Jugador {
 
     }
 
-    private boolean manoDeTruco() {
+    private boolean manoDeValeCuatro() {
 
         int cartasAltas = 0;
 
@@ -348,6 +455,42 @@ public class JugadorIA extends Jugador {
         if(cartasAltas > 1) return true;
 
         return false;
+
+    }
+
+    private boolean manoDeRetruco() {
+
+        boolean tengoAlta = false;
+        boolean tengoUnTres = false;
+
+        for(Carta carta : this.obtenerCartas()) {
+
+            if(this.valoresTruco.rankingCarta(carta) <= 4)
+                tengoAlta = true;
+            if(this.valoresTruco.rankingCarta(carta) == 5)
+                tengoUnTres = true;
+
+        }
+
+        return tengoAlta && tengoUnTres;
+
+    }
+
+    private boolean manoDeTruco() {
+
+        boolean tengoAlta = false;
+        boolean tengoUnDos = false;
+
+        for(Carta carta : this.obtenerCartas()) {
+
+            if(this.valoresTruco.rankingCarta(carta) <= 5)
+                tengoAlta = true;
+            if(this.valoresTruco.rankingCarta(carta) == 6)
+                tengoUnDos = true;
+
+        }
+
+        return tengoAlta && tengoUnDos;
 
     }
 
@@ -367,6 +510,21 @@ public class JugadorIA extends Jugador {
         }
 
         return cartaMasAlta;
+
+    }
+
+    @Override
+    public void setMano(Mano mano) {
+
+        this.mano = mano;
+
+        this.ultimaCartaJugada = null;
+
+    }
+
+    public Carta getUltimaCartaJugada() {
+
+        return this.ultimaCartaJugada;
 
     }
 

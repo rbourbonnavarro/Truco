@@ -105,7 +105,7 @@ public abstract class Vuelta {
 
     }
 
-    public abstract Equipo getEquipoGanadorVuelta();
+    public abstract Equipo getEquipoGanadorRonda();
 
     public abstract int numeroVuelta();
 

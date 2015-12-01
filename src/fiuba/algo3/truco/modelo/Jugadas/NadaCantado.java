@@ -5,10 +5,10 @@ import fiuba.algo3.truco.modelo.Jugadas.Envido.*;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorCantada;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeCantarContraFlorException;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeCantarFlorException;
+import fiuba.algo3.truco.modelo.Jugadas.Truco.TrucoCantadoTantoNoJugado;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.NoSePuedeCantarRetrucoException;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.NoSePuedeCantarValeCuatroException;
-import fiuba.algo3.truco.modelo.Jugadas.Truco.TrucoCantado;
 
 public class NadaCantado implements EstadoJuego {
 
@@ -25,14 +25,15 @@ public class NadaCantado implements EstadoJuego {
     @Override
     public int noQuerido() {
 
-        return 0;
+        throw new NadaCantadoException();
 
     }
 
     @Override
     public EstadoJuego truco(Equipo equipoIniciador) {
 
-        return new TrucoCantado(equipoIniciador, this.tantoCantado);
+        return new TrucoCantadoTantoNoJugado(equipoIniciador);
+
     }
 
     @Override
@@ -52,10 +53,6 @@ public class NadaCantado implements EstadoJuego {
     @Override
     public EstadoJuego envido(Equipo equipoIniciador) {
 
-        if(this.tantoCantado) throw new NoSePuedeCantarEnvido();
-
-        this.tantoCantado = true;
-
         this.equipoIniciadorTanto = equipoIniciador;
 
         return new EnvidoCantado(this);
@@ -65,22 +62,14 @@ public class NadaCantado implements EstadoJuego {
     @Override
     public EstadoJuego realEnvido(Equipo equipoIniciador) {
 
-        if(this.tantoCantado) throw new NoSePuedeCantarRealEnvido();
-
-        this.tantoCantado = true;
-
         this.equipoIniciadorTanto = equipoIniciador;
 
-        return new RealEnvidoCantado(this);
+        return new RealEnvidoCantado(this, false);
 
     }
 
     @Override
     public EstadoJuego faltaEnvido(Equipo equipoIniciador, Puntaje puntos) {
-
-        if(this.tantoCantado) throw new NoSePuedeCantarFaltaEnvido();
-
-        this.tantoCantado = true;
 
         this.equipoIniciadorTanto = equipoIniciador;
 
@@ -90,10 +79,6 @@ public class NadaCantado implements EstadoJuego {
 
     @Override
     public EstadoJuego flor(Equipo equipoIniciador) {
-
-        if(this.tantoCantado) throw new NoSePuedeCantarFlorException();
-
-        this.tantoCantado = true;
 
         this.equipoIniciadorTanto = equipoIniciador;
 
@@ -118,9 +103,7 @@ public class NadaCantado implements EstadoJuego {
     @Override
     public EstadoJuego terminarTanto() {
 
-        this.tantoCantado = true;
-
-        return this;
+        return new TantoJugado(this.equipoIniciadorTanto);
 
     }
 
@@ -145,6 +128,13 @@ public class NadaCantado implements EstadoJuego {
     public boolean equals (Object estado){
 
         return estado instanceof NadaCantado;
+
+    }
+
+    @Override
+    public int hashCode() {
+
+        return 0;
 
     }
 

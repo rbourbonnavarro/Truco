@@ -143,5 +143,12 @@ public class FaltaEnvidoCantado implements EstadoJuego {
 
     }
 
+    @Override
+    public int hashCode() {
+
+        return 11;
+
+    }
+
 
 }

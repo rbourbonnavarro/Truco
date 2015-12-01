@@ -1,23 +1,21 @@
-package fiuba.algo3.truco.modelo.Jugadas.Truco;
+package fiuba.algo3.truco.modelo.Jugadas;
 
 import fiuba.algo3.truco.modelo.Equipo;
 import fiuba.algo3.truco.modelo.Jugadas.Envido.*;
-import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorCantada;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeCantarContraFlorException;
-import fiuba.algo3.truco.modelo.Jugadas.EstadoJuego;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeCantarFlorException;
+import fiuba.algo3.truco.modelo.Jugadas.Truco.*;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 
-public class TrucoCantado implements EstadoJuego {
+public class TrucoCantadoTantoJugado implements EstadoJuego {
 
     private Equipo equipoIniciador;
     private Equipo equipoIniciadorTanto;
-    private boolean tantoCantado;
 
-    public TrucoCantado(Equipo equipoIniciador, boolean tantoCantado) {
+    public TrucoCantadoTantoJugado(Equipo equipoIniciador, Equipo equipoIniciadorTanto) {
 
         this.equipoIniciador = equipoIniciador;
-        this.tantoCantado = tantoCantado;
+        this.equipoIniciadorTanto = equipoIniciadorTanto;
 
     }
 
@@ -59,52 +57,28 @@ public class TrucoCantado implements EstadoJuego {
     @Override
     public EstadoJuego envido(Equipo equipoIniciador) {
 
-        if(this.tantoCantado) throw new NoSePuedeCantarEnvido();
-
-        this.tantoCantado = true;
-
-        this.equipoIniciadorTanto = equipoIniciador;
-
-        return new EnvidoCantado(this);
+        throw new NoSePuedeCantarEnvido();
 
     }
 
     @Override
     public EstadoJuego realEnvido(Equipo equipoIniciador) {
 
-        if(this.tantoCantado) throw new NoSePuedeCantarRealEnvido();
-
-        this.tantoCantado = true;
-
-        this.equipoIniciadorTanto = this.equipoIniciador;
-
-        return new RealEnvidoCantado(this);
+        throw new NoSePuedeCantarRealEnvido();
 
     }
 
     @Override
     public EstadoJuego faltaEnvido(Equipo equipoIniciador, Puntaje puntos) {
 
-        if(this.tantoCantado) throw new NoSePuedeCantarFaltaEnvido();
-
-        this.tantoCantado = true;
-
-        this.equipoIniciadorTanto = this.equipoIniciador;
-
-        return new FaltaEnvidoCantado(this, puntos);
+        throw new NoSePuedeCantarFaltaEnvido();
 
     }
 
     @Override
     public EstadoJuego flor(Equipo equipoIniciador) {
 
-        if(this.tantoCantado) throw new NoSePuedeCantarFlorException();
-
-        this.tantoCantado = true;
-
-        this.equipoIniciadorTanto = equipoIniciador;
-
-        return new FlorCantada(this);
+        throw new NoSePuedeCantarFlorException();
 
     }
 
@@ -153,7 +127,14 @@ public class TrucoCantado implements EstadoJuego {
     @Override
     public boolean equals (Object estado){
 
-        return estado instanceof TrucoCantado;
+        return estado instanceof TrucoCantadoTantoJugado;
+
+    }
+
+    @Override
+    public int hashCode() {
+
+        return this.noQuerido();
 
     }
 

@@ -122,12 +122,17 @@ public class ValeCuatroCantado implements EstadoJuego {
 
     }
 
-
-
     @Override
     public boolean equals (Object estado){
 
         return estado instanceof ValeCuatroCantado;
+
+    }
+
+    @Override
+    public int hashCode() {
+
+        return this.noQuerido();
 
     }
 
