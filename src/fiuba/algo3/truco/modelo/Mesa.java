@@ -2,6 +2,7 @@ package fiuba.algo3.truco.modelo;
 
 import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeQuererFlorException;
 import fiuba.algo3.truco.modelo.Puntos.JuegoTerminadoException;
+import fiuba.algo3.truco.modelo.Puntos.Malas;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 import fiuba.algo3.truco.modelo.Ronda.PrimeraVuelta;
 import fiuba.algo3.truco.modelo.Ronda.Vuelta;
@@ -22,7 +23,6 @@ public class Mesa {
     private Jugador jugadorActual;
     private Equipo equipoGanador;
     private Mazo mazo;
-    private EstadoPicaPica estadoPicaPica;
     private boolean seJuegaConFlor;
 
     public Mesa(Equipo equipo1, Equipo equipo2, boolean seJuegaConFlor) {
@@ -424,4 +424,8 @@ public class Mesa {
     }
 
 
+    public void reiniciarPuntos() {
+        this.equipo1.setPuntaje(new Puntaje());
+        this.equipo2.setPuntaje(new Puntaje());
+    }
 }

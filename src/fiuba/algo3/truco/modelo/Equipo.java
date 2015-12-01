@@ -98,6 +98,9 @@ public class Equipo {
         return this.puntaje;
 
     }
+    public void setPuntaje(Puntaje puntaje){
+        this.puntaje = puntaje;
+    }
 
     public void sumarPuntos(int puntosRonda) {
 
