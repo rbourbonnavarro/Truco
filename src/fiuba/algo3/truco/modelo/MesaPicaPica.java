@@ -19,7 +19,7 @@ public class MesaPicaPica{
 
     public MesaPicaPica(Equipo equipo1, Equipo equipo2, boolean seJuegaConFlor) {
 
-        this.mesaGeneral = new Mesa(equipo1,equipo2,seJuegaConFlor);
+        mesaGeneral = new Mesa(equipo1,equipo2,seJuegaConFlor);
 
         List<Jugador> jugadoresEquipo1 = equipo1.getIntegrantes();
         List<Jugador> jugadoresEquipo2 = equipo2.getIntegrantes();
@@ -36,11 +36,11 @@ public class MesaPicaPica{
         Mesa mesa3 = new Mesa(new Equipo(equipo1.getNombre(), Arrays.asList(jugadoresEquipo1.get(2))),
                 new Equipo(equipo2.getNombre(), Arrays.asList(jugadoresEquipo2.get(0))), seJuegaConFlor);
 
-        this.mesas.addAll(Arrays.asList(mesaActual, mesa1, mesa2, mesa3));
-        this.mesaActual = this.mesaGeneral;
-        this.indiceMesa =0;
+        mesaActual = mesaGeneral;
+        mesas = Arrays.asList(mesaActual, mesa1, mesa2, mesa3);
+        this.indiceMesa = 0;
     }
-/*
+
     public List<Carta> getCartasDelJugadorActual(){
         return this.mesaActual.getCartasDelJugadorActual();
     }
@@ -62,30 +62,30 @@ public class MesaPicaPica{
     public void envido() {
         this.mesaActual.envido();
     }
-    public void realEnvido(){
+    /*public void realEnvido(){
         this.mesaActual.realEnvido();
     }
     public void faltaEnvido(){
         this.mesaActual.faltaEnvido();
-    }
+    }*/
     public void flor(){
         this.mesaActual.flor();
     }
-    public void contraFlorAlResto(){
+    /*public void contraFlorAlResto(){
         this.mesaActual.contraFlorAlResto();
     }
     public void contraFlorAlPartido(){
         this.mesaActual.contraFlorAlPartido();
-    }
+    }*/
     public void truco(){
         this.mesaActual.truco();
     }
     public void reTruco(){
         this.mesaActual.retruco();
     }
-    public void valeCuatro(){
+    /*public void valeCuatro(){
         this.mesaActual.valeCuatro();
-    }
+    }*/
     public void quieroTruco(){
         this.mesaActual.quieroTruco();
     }
@@ -139,5 +139,5 @@ public class MesaPicaPica{
 
     public int getPuntajeMaximo() {
         return Math.max(mesaGeneral.puntaje(equipo1), mesaGeneral.puntaje(equipo2));
-    }*/
+    }
 }
