@@ -289,9 +289,9 @@ public class PartidaCompletaTest {
 
         } catch(JuegoTerminadoException juegoTerminadoException) {
 
-            Assert.assertEquals(equipo1, mesa.getEquipoGanador());
-            Assert.assertEquals(mesa.getEquipoGanador().getPuntaje().getEstadoPuntaje(), new Buenas());
-            Assert.assertTrue(mesa.getEquipoGanador().getPuntos() >= 30);
+            Assert.assertEquals(equipo1, mesa.getEquipoGanadorJuego());
+            Assert.assertEquals(mesa.getEquipoGanadorJuego().getPuntaje().getEstadoPuntaje(), new Buenas());
+            Assert.assertTrue(mesa.getEquipoGanadorJuego().getPuntos() >= 30);
 
             Assert.assertEquals(equipo2.getPuntos(), 10);
 

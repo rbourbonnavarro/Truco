@@ -18,7 +18,8 @@ public class Mesa {
     private Equipo equipoActual;
     private Equipo equipoContrario;
     private Jugador jugadorActual;
-    private Equipo equipoGanador;
+    private Equipo equipoGanadorJuego;
+    private Equipo equipoGanadorRonda;
     private Mazo mazo;
     private boolean seJuegaConFlor;
 
@@ -185,13 +186,15 @@ public class Mesa {
 
         } catch(JuegoTerminadoException juegoTerminadoException) {
 
-            this.equipoGanador = this.equipoContrario;
+            this.equipoGanadorJuego = this.equipoContrario;
 
             throw new JuegoTerminadoException();
 
         }
 
         this.equipoActual.terminarJugada();
+
+        this.equipoGanadorRonda = this.equipoContrario;
 
         this.estadoVuelta = this.terminarRonda();
 
@@ -207,7 +210,7 @@ public class Mesa {
 
         } catch(JuegoTerminadoException juegoTerminadoException) {
 
-            this.equipoGanador = this.obtenerGanadorEnvido();
+            this.equipoGanadorJuego = this.obtenerGanadorEnvido();
 
             throw new JuegoTerminadoException();
 
@@ -231,7 +234,7 @@ public class Mesa {
 
             } catch(JuegoTerminadoException juegoTerminadoException) {
 
-                this.equipoGanador = this.obtenerGanadorFlor();
+                this.equipoGanadorJuego = this.obtenerGanadorFlor();
 
                 throw new JuegoTerminadoException();
 
@@ -245,7 +248,7 @@ public class Mesa {
 
             } catch(JuegoTerminadoException juegoTerminadoException) {
 
-                this.equipoGanador = this.equipoContrario;
+                this.equipoGanadorJuego = this.equipoContrario;
 
                 throw new JuegoTerminadoException();
 
@@ -267,7 +270,7 @@ public class Mesa {
 
         } catch(JuegoTerminadoException juegoTerminadoException) {
 
-            this.equipoGanador = this.equipoContrario;
+            this.equipoGanadorJuego = this.equipoContrario;
 
             throw new JuegoTerminadoException();
 
@@ -396,9 +399,9 @@ public class Mesa {
 
     }
 
-    public Equipo getEquipoGanador() {
+    public Equipo getEquipoGanadorJuego() {
 
-        return this.equipoGanador;
+        return this.equipoGanadorJuego;
 
     }
 
@@ -423,6 +426,18 @@ public class Mesa {
     public boolean seJuegaConFlor() {
 
         return this.seJuegaConFlor;
+
+    }
+
+    public Equipo getEquipoGanadorRonda() {
+
+        return this.equipoGanadorRonda;
+
+    }
+
+    public void setEquipoGanadorRonda(Equipo equipoGanadorRonda) {
+
+        this.equipoGanadorRonda = equipoGanadorRonda;
 
     }
 

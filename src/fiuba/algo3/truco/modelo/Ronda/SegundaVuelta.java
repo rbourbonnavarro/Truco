@@ -98,6 +98,8 @@ public class SegundaVuelta extends Vuelta {
 
             if (ganadoresVuelta.get(0) == equipoGanadorVuelta) {
 
+                mesa.setEquipoGanadorRonda(equipoGanadorVuelta);
+
                 this.equipoGanadorVuelta.sumarPuntos(this.estadoJuego.puntos());
 
                 return mesa.terminarRonda();
@@ -108,6 +110,8 @@ public class SegundaVuelta extends Vuelta {
 
                 this.equipoGanadorVuelta.sumarPuntos(this.estadoJuego.puntos());
 
+                mesa.setEquipoGanadorRonda(equipoGanadorVuelta);
+
                 return mesa.terminarRonda();
 
             }
@@ -115,6 +119,8 @@ public class SegundaVuelta extends Vuelta {
             if (ganadoresVuelta.get(0) != null && this.equipoGanadorVuelta == null) {
 
                 this.ganadoresVuelta.get(0).sumarPuntos(this.estadoJuego.puntos());
+
+                mesa.setEquipoGanadorRonda(this.ganadoresVuelta.get(0));
 
                 return mesa.terminarRonda();
 

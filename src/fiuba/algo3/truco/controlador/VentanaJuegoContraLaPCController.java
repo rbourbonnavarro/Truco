@@ -62,7 +62,7 @@ public class VentanaJuegoContraLaPCController extends VentanaJuegoController {
 
             this.mostrarJugadorActual();
         }catch (JuegoTerminadoException e) {
-            this.main.juegoTerminado(mesa.getEquipoGanador().getNombre());
+            this.main.juegoTerminado(mesa.getEquipoGanadorJuego().getNombre());
         }
     }
 

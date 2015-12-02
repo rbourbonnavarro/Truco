@@ -164,7 +164,7 @@ public class PartidoCompletoDeACuatroTest {
 
 			Assert.assertTrue(mesa.puntaje(equipoPar) >= 30);
 			Assert.assertTrue(mesa.puntaje(equipoImpar) == 2);
-			Assert.assertEquals(equipoPar, mesa.getEquipoGanador());
+			Assert.assertEquals(equipoPar, mesa.getEquipoGanadorJuego());
 
 		}
 		
@@ -426,7 +426,7 @@ public class PartidoCompletoDeACuatroTest {
 
 			Assert.assertTrue(mesa.puntaje(equipoPar) >= 30);
 			Assert.assertTrue(mesa.puntaje(equipoImpar) == 13);
-			Assert.assertEquals(equipoPar, mesa.getEquipoGanador());
+			Assert.assertEquals(equipoPar, mesa.getEquipoGanadorJuego());
 
 		}
 

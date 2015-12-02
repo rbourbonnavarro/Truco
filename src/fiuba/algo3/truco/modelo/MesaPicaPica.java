@@ -173,7 +173,7 @@ public class MesaPicaPica{
 
    public Equipo getEquipoGanador() {
 
-       return this.mesaGeneral.getEquipoGanador();
+       return this.mesaGeneral.getEquipoGanadorJuego();
 
    }
 
@@ -265,6 +265,12 @@ public class MesaPicaPica{
     public Equipo getEquipo2() {
 
         return this.mesaActual.getEquipo2();
+
+    }
+
+    public Equipo getEquipoGanadorRonda() {
+
+        return this.mesaGeneral.getEquipoGanadorRonda();
 
     }
 

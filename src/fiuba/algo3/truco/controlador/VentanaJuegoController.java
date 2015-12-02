@@ -255,7 +255,7 @@ public class VentanaJuegoController {
 
         } catch (JuegoTerminadoException terminado) {
 
-            this.main.juegoTerminado(mesa.getEquipoGanador().getNombre());
+            this.main.juegoTerminado(mesa.getEquipoGanadorJuego().getNombre());
 
         }
 
@@ -274,7 +274,7 @@ public class VentanaJuegoController {
 
         } catch (JuegoTerminadoException terminado) {
 
-            this.main.juegoTerminado(mesa.getEquipoGanador().getNombre());
+            this.main.juegoTerminado(mesa.getEquipoGanadorJuego().getNombre());
 
         }
 
@@ -293,13 +293,19 @@ public class VentanaJuegoController {
 
         } catch (JuegoTerminadoException terminado) {
 
-            this.main.juegoTerminado(mesa.getEquipoGanador().getNombre());
+            this.main.juegoTerminado(mesa.getEquipoGanadorJuego().getNombre());
 
         }
 
     }
 
     protected void nuevaRonda() {
+
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Final de la ronda");
+        alert.setHeaderText("");
+        alert.setContentText("Final de la ronda, " + this.mesa.getEquipoGanadorRonda().getNombre() + " gana");
+        alert.showAndWait();
 
         int cantidadJugadores = this.mesa.getEquipoActual().getCantidadIntegrantes() * 2;
 
@@ -415,7 +421,7 @@ public class VentanaJuegoController {
 
         }catch (JuegoTerminadoException terminado) {
 
-            this.main.juegoTerminado(mesa.getEquipoGanador().getNombre());
+            this.main.juegoTerminado(mesa.getEquipoGanadorJuego().getNombre());
 
         }
 
@@ -487,7 +493,7 @@ public class VentanaJuegoController {
 
         } catch (JuegoTerminadoException terminado) {
 
-            this.main.juegoTerminado(mesa.getEquipoGanador().getNombre());
+            this.main.juegoTerminado(mesa.getEquipoGanadorJuego().getNombre());
 
         }
 
@@ -505,7 +511,7 @@ public class VentanaJuegoController {
 
         } catch (JuegoTerminadoException terminado) {
 
-            this.main.juegoTerminado(mesa.getEquipoGanador().getNombre());
+            this.main.juegoTerminado(mesa.getEquipoGanadorJuego().getNombre());
 
         }
 
@@ -523,7 +529,7 @@ public class VentanaJuegoController {
 
         }catch (JuegoTerminadoException terminado) {
 
-            this.main.juegoTerminado(mesa.getEquipoGanador().getNombre());
+            this.main.juegoTerminado(mesa.getEquipoGanadorJuego().getNombre());
 
         }
 

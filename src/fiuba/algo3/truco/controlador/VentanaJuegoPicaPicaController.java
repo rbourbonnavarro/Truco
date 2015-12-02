@@ -320,6 +320,12 @@ public class VentanaJuegoPicaPicaController {
 
         if(!this.rondaPicaPica || (this.mesa.getEquipoActual().getCantidadIntegrantes() * 2) == this.cantidadJugadores) {
 
+            Alert alert = new Alert(Alert.AlertType.INFORMATION);
+            alert.setTitle("Final de la ronda");
+            alert.setHeaderText("");
+            alert.setContentText("Final de la ronda, " + this.mesa.getEquipoGanadorRonda().getNombre() + " gana");
+            alert.showAndWait();
+
             this.cantidadDeRondas++;
 
             for (int i = 0; i < this.cantidadJugadores; i++) {

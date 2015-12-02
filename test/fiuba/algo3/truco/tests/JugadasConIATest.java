@@ -148,7 +148,7 @@ public class JugadasConIATest {
 
         } catch(JuegoTerminadoException juegoTerminadoException) {
 
-            Assert.assertEquals(equipo2, mesa.getEquipoGanador());
+            Assert.assertEquals(equipo2, mesa.getEquipoGanadorJuego());
 
         }
 
@@ -269,7 +269,7 @@ public class JugadasConIATest {
 
             Assert.assertEquals(equipo1.getPuntos(), 0);
             Assert.assertEquals(equipo2.getPuntos(), 30);
-            Assert.assertEquals(equipo2, mesa.getEquipoGanador());
+            Assert.assertEquals(equipo2, mesa.getEquipoGanadorJuego());
 
         }
 
@@ -305,7 +305,7 @@ public class JugadasConIATest {
 
             Assert.assertEquals(equipo1.getPuntos(), 0);
             Assert.assertEquals(equipo2.getPuntos(), 30);
-            Assert.assertEquals(equipo2, mesa.getEquipoGanador());
+            Assert.assertEquals(equipo2, mesa.getEquipoGanadorJuego());
 
         }
 
@@ -405,7 +405,7 @@ public class JugadasConIATest {
 
             Assert.assertEquals(equipo1.getPuntos(), 0);
             Assert.assertEquals(equipo2.getPuntos(), 30);
-            Assert.assertEquals(equipo2, mesa.getEquipoGanador());
+            Assert.assertEquals(equipo2, mesa.getEquipoGanadorJuego());
 
         }
 
@@ -443,7 +443,7 @@ public class JugadasConIATest {
 
             Assert.assertEquals(equipo1.getPuntos(), 0);
             Assert.assertEquals(equipo2.getPuntos(), 30);
-            Assert.assertEquals(equipo2, mesa.getEquipoGanador());
+            Assert.assertEquals(equipo2, mesa.getEquipoGanadorJuego());
 
         }
 
@@ -571,7 +571,7 @@ public class JugadasConIATest {
 
             Assert.assertEquals(equipo1.getPuntos(), 30);
             Assert.assertEquals(equipo2.getPuntos(), 0);
-            Assert.assertEquals(equipo1, mesa.getEquipoGanador());
+            Assert.assertEquals(equipo1, mesa.getEquipoGanadorJuego());
 
         }
 
@@ -748,7 +748,7 @@ public class JugadasConIATest {
 
             Assert.assertEquals(equipo1.getPuntos(), 0);
             Assert.assertEquals(equipo2.getPuntos(), 30);
-            Assert.assertEquals(equipo2, mesa.getEquipoGanador());
+            Assert.assertEquals(equipo2, mesa.getEquipoGanadorJuego());
 
         }
 
@@ -954,7 +954,7 @@ public class JugadasConIATest {
 
             Assert.assertEquals(equipo1.getPuntos(), 30);
             Assert.assertEquals(equipo2.getPuntos(), 0);
-            Assert.assertEquals(equipo1, mesa.getEquipoGanador());
+            Assert.assertEquals(equipo1, mesa.getEquipoGanadorJuego());
 
         }
 
