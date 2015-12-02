@@ -56,7 +56,7 @@ public class Equipo {
 
     }
 
-    private void reordenarJugadores() {
+    public void reordenarJugadores() {
 
         for(int i = 0; i < (this.integrantes.size() - 1); i++) {
 
@@ -97,9 +97,6 @@ public class Equipo {
 
         return this.puntaje;
 
-    }
-    public void setPuntaje(Puntaje puntaje){
-        this.puntaje = puntaje;
     }
 
     public void sumarPuntos(int puntosRonda) {
@@ -185,20 +182,6 @@ public class Equipo {
             throw new JugadorNoTieneFlorException();
 
         }
-
-    }
-
-    public Collection<Carta> recuperarCartas() {
-        List<Carta> cartas = new ArrayList<>();
-        for (Jugador jugador : this.integrantes) {
-            cartas.addAll(jugador.obtenerCartas());
-        }
-        return cartas;
-    }
-
-    public int getOrdenMesa() {
-
-        return this.ordenMesa;
 
     }
 

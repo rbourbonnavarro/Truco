@@ -104,12 +104,12 @@ public class PartidoCompletoDeASeisConPicaPicaTest {
 			carta10 = new Figura(12, new Espada());
 			carta11 = new Figura(11, new Basto());
 			carta12 = new Figura(10, new Oro());
-			carta13 = new Carta(10, new Espada());
-			carta14 = new Carta(12, new Basto());
-			carta15 = new Carta(11, new Oro());
-			carta16 = new Figura(11, new Espada());
-			carta17 = new Figura(10, new Basto());
-			carta18 = new Figura(12, new Oro());
+			carta13 = new Carta(12, new Basto());
+			carta14 = new Carta(11, new Oro());
+			carta15 = new Carta(10, new Copa());
+			carta16 = new Figura(12, new Oro());
+			carta17 = new Figura(11, new Espada());
+			carta18 = new Figura(10, new Basto());
 
 			cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
 			cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
@@ -128,46 +128,38 @@ public class PartidoCompletoDeASeisConPicaPicaTest {
 			Assert.assertTrue(mesa.puntaje(equipoPar) == 0);
 			Assert.assertTrue(mesa.puntaje(equipoImpar) == 0);
 
-			mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
-			mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
-			mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
-			mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+			Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.hacerJugada(carta1);
+			Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.hacerJugada(carta4);
+			Assert.assertEquals(J3.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.hacerJugada(carta7);
+			Assert.assertEquals(J4.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.hacerJugada(carta10);
 
 			Assert.assertEquals(J5.getNombre(), mesa.getJugadorActual().getNombre());
 			mesa.envido();
 			Assert.assertEquals(J6.getNombre(), mesa.getJugadorActual().getNombre());
-			mesa.quieroEnvido();
+			mesa.envido();
+			Assert.assertEquals(J5.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.noQuieroTanto();
 
-			Assert.assertTrue(mesa.puntaje(equipoImpar) == 2);
-			Assert.assertTrue(mesa.puntaje(equipoPar) == 0);
+			Assert.assertTrue(mesa.puntaje(equipoImpar) == 0);
+			Assert.assertTrue(mesa.puntaje(equipoPar) == 2);
 
 			Assert.assertEquals(J5.getNombre(), mesa.getJugadorActual().getNombre());
-			mesa.truco();
+			mesa.hacerJugada(carta13);
 			Assert.assertEquals(J6.getNombre(), mesa.getJugadorActual().getNombre());
-			mesa.reTruco();
-			Assert.assertEquals(J5.getNombre(), mesa.getJugadorActual().getNombre());
-			mesa.quieroTruco();
-
-			mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
-			mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+			mesa.truco();
 			Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
-			mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(1));
-			mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(2));
-			mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(1));
-			mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(1));
-			mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(2));
-			mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(1));
-			Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
-			mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(1));
-			mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(2));
-			mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(2));
-			Assert.assertEquals(J5.getNombre(), mesa.getJugadorActual().getNombre());
-			mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(1));
-			mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(2));
-			mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(2));
+			mesa.reTruco();
+			Assert.assertEquals(J6.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.valeCuatro();
+			Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.noQuieroTruco();
 
-			Assert.assertTrue(mesa.puntaje(equipoImpar) == 5);
-			Assert.assertTrue(mesa.puntaje(equipoPar) == 0);
+			Assert.assertEquals(mesa.puntaje(equipoImpar), 0);
+			Assert.assertEquals(mesa.puntaje(equipoPar), 5);
 
 			carta1 = new Figura(12, new Copa());
 			carta2 = new Figura(11, new Copa());
@@ -181,9 +173,9 @@ public class PartidoCompletoDeASeisConPicaPicaTest {
 			carta10 = new Carta(6, new Espada());
 			carta11 = new Carta(12, new Basto());
 			carta12 = new Carta(2, new Oro());
-			carta13 = new Figura(2, new Espada());
-			carta14 = new Figura(2, new Basto());
-			carta15 = new Figura(7, new Oro());
+			carta13 = new Carta(2, new Espada());
+			carta14 = new Carta(2, new Basto());
+			carta15 = new Carta(7, new Oro());
 			carta16 = new Carta(1, new Espada());
 			carta17 = new Carta(1, new Basto());
 			carta18 = new Carta(3, new Oro());
@@ -203,52 +195,81 @@ public class PartidoCompletoDeASeisConPicaPicaTest {
 			J5.setMano(new Mano(cartasJ5));
 			J6.setMano(new Mano(cartasJ6));
 
-			Assert.assertTrue(mesa.puntaje(equipoImpar) == 5);
-			Assert.assertTrue(mesa.puntaje(equipoPar) == 0);
+			Assert.assertEquals(mesa.puntaje(equipoImpar), 0);
+			Assert.assertEquals(mesa.puntaje(equipoPar), 5);
+
+			//la ronda pica a pica, primero J2 V J5 dsps J3 V J6 y luego J4 V J1 (los primeros son los mano)
 
 			Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
-			Assert.assertEquals(4, mesa.getJugadorActual().obtenerCartas().get(2).getValor());
-			mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(2));
-			Assert.assertEquals(J3.getNombre(), mesa.getJugadorActual().getNombre());
-			mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(2));
-			Assert.assertEquals(J4.getNombre(), mesa.getJugadorActual().getNombre());
-			mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(1));
-			Assert.assertEquals(J5.getNombre(), mesa.getJugadorActual().getNombre());
-			mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(1));
+			mesa.hacerJugada(carta4);
 
+			Assert.assertEquals(J5.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.hacerJugada(carta13);
+			Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.hacerJugada(carta5);
+			Assert.assertEquals(J5.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.hacerJugada(carta15);
+			Assert.assertEquals(J5.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.hacerJugada(carta14);
+			Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.truco();
+			Assert.assertEquals(J5.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.quieroTruco();
+			Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.hacerJugada(carta6);
+
+			//termino la primera ronda, pero los puntos los sumo  al final del pica a pica, si quieren cambiarlo haganlo a gusto
+			// J5 gano 2 por truco
+			//turno de J3 vs J6
+
+			Assert.assertEquals(J3.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.hacerJugada(carta7);
 			Assert.assertEquals(J6.getNombre(), mesa.getJugadorActual().getNombre());
 			mesa.envido();
-			Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
-			mesa.flor();
+			Assert.assertEquals(J3.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.realEnvido();
 			Assert.assertEquals(J6.getNombre(), mesa.getJugadorActual().getNombre());
-			mesa.quieroFlor();
-
-			Assert.assertTrue(mesa.puntaje(equipoImpar) == 8);
-			Assert.assertTrue(mesa.puntaje(equipoPar) == 0);
-
+			mesa.faltaEnvido();
+			Assert.assertEquals(J3.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.noQuieroTanto();
+			Assert.assertEquals(J6.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.hacerJugada(carta18);
+			Assert.assertEquals(J6.getNombre(), mesa.getJugadorActual().getNombre());
 			mesa.truco();
+			Assert.assertEquals(J3.getNombre(), mesa.getJugadorActual().getNombre());
 			mesa.noQuieroTruco();
-			
-			Assert.assertEquals(mesa.puntaje(equipoImpar), 8);
-			Assert.assertEquals(mesa.puntaje(equipoPar), 1);
-			
-			carta1 = new Figura(12, new Basto());
-			carta2 = new Figura(11, new Basto());
-			carta3 = new Figura(10, new Basto());
+
+			//J6 gano 6 puntos
+			// turno de J4 V J1
+			Assert.assertEquals(J4.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.hacerJugada(carta10);
+			Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.truco();
+			Assert.assertEquals(J4.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.noQuieroTruco();
+
+			//J1 gano 1 punto
+			Assert.assertEquals(mesa.puntaje(equipoImpar), 3);
+			Assert.assertEquals(mesa.puntaje(equipoPar), 11);
+
+			//momento de una redonda, y que deberia arrancar con J3
+			carta1 = new Figura(12, new Copa());
+			carta2 = new Figura(11, new Copa());
+			carta3 = new Figura(10, new Copa());
 			carta4 = new Carta(7, new Espada());
-			carta5 = new Carta(7, new Basto());
-			carta6 = new Carta(7, new Oro());
+			carta5 = new Carta(3, new Basto());
+			carta6 = new Carta(4, new Oro());
 			carta7 = new Carta(4, new Espada());
 			carta8 = new Carta(4, new Basto());
-			carta9 = new Carta(4, new Oro());
-			carta10 = new Carta(3, new Espada());
-			carta11 = new Carta(11, new Oro());
+			carta9 = new Carta(5, new Oro());
+			carta10 = new Carta(6, new Espada());
+			carta11 = new Carta(12, new Basto());
 			carta12 = new Carta(2, new Oro());
-			carta13 = new Figura(2, new Espada());
-			carta14 = new Figura(3, new Basto());
-			carta15 = new Figura(3, new Copa());
-			carta16 = new Carta(1, new Copa());
-			carta17 = new Carta(1, new Oro());
+			carta13 = new Carta(2, new Espada());
+			carta14 = new Carta(2, new Basto());
+			carta15 = new Carta(7, new Oro());
+			carta16 = new Carta(1, new Espada());
+			carta17 = new Carta(1, new Basto());
 			carta18 = new Carta(3, new Oro());
 
 
@@ -265,65 +286,216 @@ public class PartidoCompletoDeASeisConPicaPicaTest {
 			J4.setMano(new Mano(cartasJ4));
 			J5.setMano(new Mano(cartasJ5));
 			J6.setMano(new Mano(cartasJ6));
-			
-			/*
+
 			Assert.assertEquals(J3.getNombre(), mesa.getJugadorActual().getNombre());
-			mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(2));
+			mesa.hacerJugada(carta7);
+			Assert.assertEquals(J4.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.hacerJugada(carta10);
+			Assert.assertEquals(J5.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.hacerJugada(carta13);
+			Assert.assertEquals(J6.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.envido();
+			Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.flor();
+			Assert.assertEquals(J6.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.quieroFlor();
+
+			Assert.assertEquals(mesa.puntaje(equipoImpar), 6);
+			Assert.assertEquals(mesa.puntaje(equipoPar), 11);
+
+			Assert.assertEquals(J6.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.hacerJugada(carta18);
+			Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.hacerJugada(carta1);
+			Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.truco();
+			Assert.assertEquals(J3.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.noQuieroTruco();
+
+			Assert.assertEquals(mesa.puntaje(equipoImpar), 6);
+			Assert.assertEquals(mesa.puntaje(equipoPar), 12);
+
+			//nuevo pica a pica esta vez la ronda va J4 v J1, J5 V J2 y J6 V J3
+			carta1 = new Carta(2, new Copa());
+			carta2 = new Carta(1, new Basto());
+			carta3 = new Carta(6, new Copa());
+			carta4 = new Carta(7, new Espada());
+			carta5 = new Carta(3, new Basto());
+			carta6 = new Carta(4, new Oro());
+			carta7 = new Carta(4, new Espada());
+			carta8 = new Carta(4, new Basto());
+			carta9 = new Carta(5, new Oro());
+			carta10 = new Carta(6, new Espada());
+			carta11 = new Carta(12, new Basto());
+			carta12 = new Carta(2, new Oro());
+			carta13 = new Carta(2, new Espada());
+			carta14 = new Carta(2, new Basto());
+			carta15 = new Carta(7, new Oro());
+			carta16 = new Carta(1, new Espada());
+			carta17 = new Carta(5, new Basto());
+			carta18 = new Carta(3, new Oro());
+
+
+			cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
+			cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
+			cartasJ3 = new LinkedList<>(Arrays.asList(carta7, carta8, carta9));
+			cartasJ4 = new LinkedList<>(Arrays.asList(carta10, carta11, carta12));
+			cartasJ5 = new LinkedList<>(Arrays.asList(carta13, carta14, carta15));
+			cartasJ6 = new LinkedList<>(Arrays.asList(carta16, carta17, carta18));
+
+			J1.setMano(new Mano(cartasJ1));
+			J2.setMano(new Mano(cartasJ2));
+			J3.setMano(new Mano(cartasJ3));
+			J4.setMano(new Mano(cartasJ4));
+			J5.setMano(new Mano(cartasJ5));
+			J6.setMano(new Mano(cartasJ6));
+
+			//J4 V J1
+			Assert.assertEquals(J4.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.envido();
+			Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.envido();
+			Assert.assertEquals(J4.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.realEnvido();
+			Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.quieroEnvido();
+
+			//J1 gano 7 puntos
+			Assert.assertEquals(J4.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.truco();
+			Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.noQuieroTruco();
+			//J1 7 J4 1
+
+			//J5 vs J2
+			Assert.assertEquals(J5.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.truco();
+			Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.noQuieroTruco();
+			//J5 1
+
+			//J6 V J3
 			Assert.assertEquals(J6.getNombre(), mesa.getJugadorActual().getNombre());
 			mesa.envido();
 			Assert.assertEquals(J3.getNombre(), mesa.getJugadorActual().getNombre());
 			mesa.quieroEnvido();
-			Assert.assertEquals(mesa.puntaje(equipoImpar), 8);
-			Assert.assertEquals(mesa.puntaje(equipoPar), 3);
+			//J6 gano 2
 			Assert.assertEquals(J6.getNombre(), mesa.getJugadorActual().getNombre());
-			mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
-			Assert.assertEquals(J6.getNombre(), mesa.getJugadorActual().getNombre());
-			mesa.truco();
+			mesa.hacerJugada(carta18);
 			Assert.assertEquals(J3.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.truco();
+			Assert.assertEquals(J6.getNombre(), mesa.getJugadorActual().getNombre());
 			mesa.noQuieroTruco();
-			Assert.assertEquals(mesa.puntaje(equipoImpar), 8);
-			Assert.assertEquals(mesa.puntaje(equipoPar), 4);
-			
-			
-			Assert.assertEquals(J4.getNombre(), mesa.getJugadorActual().getNombre());
-			mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
+			//J3 gano 1
+
+			Assert.assertEquals(mesa.puntaje(equipoImpar), 15);
+			Assert.assertEquals(mesa.puntaje(equipoPar), 15);
+
+			carta1 = new Figura(12, new Copa());
+			carta2 = new Figura(11, new Copa());
+			carta3 = new Figura(10, new Basto());
+			carta4 = new Carta(7, new Espada());
+			carta5 = new Carta(3, new Oro());
+			carta6 = new Carta(4, new Espada());
+			carta7 = new Carta(4, new Espada());
+			carta8 = new Carta(4, new Basto());
+			carta9 = new Carta(5, new Oro());
+			carta10 = new Carta(6, new Espada());
+			carta11 = new Carta(12, new Basto());
+			carta12 = new Carta(2, new Oro());
+			carta13 = new Carta(2, new Espada());
+			carta14 = new Carta(2, new Basto());
+			carta15 = new Carta(7, new Oro());
+			carta16 = new Carta(1, new Espada());
+			carta17 = new Carta(1, new Basto());
+			carta18 = new Carta(3, new Oro());
+
+
+			cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
+			cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
+			cartasJ3 = new LinkedList<>(Arrays.asList(carta7, carta8, carta9));
+			cartasJ4 = new LinkedList<>(Arrays.asList(carta10, carta11, carta12));
+			cartasJ5 = new LinkedList<>(Arrays.asList(carta13, carta14, carta15));
+			cartasJ6 = new LinkedList<>(Arrays.asList(carta16, carta17, carta18));
+
+			J1.setMano(new Mano(cartasJ1));
+			J2.setMano(new Mano(cartasJ2));
+			J3.setMano(new Mano(cartasJ3));
+			J4.setMano(new Mano(cartasJ4));
+			J5.setMano(new Mano(cartasJ5));
+			J6.setMano(new Mano(cartasJ6));
+
+			//momento de una redonda donde J5 es mano
+
+			Assert.assertEquals(J5.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.hacerJugada(carta13);
+			Assert.assertEquals(J6.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.hacerJugada(carta18);
 			Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
-			mesa.flor();
+			mesa.hacerJugada(carta1);
+			Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.hacerJugada(carta4);
+			Assert.assertEquals(J3.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.envido();
 			Assert.assertEquals(J4.getNombre(), mesa.getJugadorActual().getNombre());
-			mesa.quieroFlor();
-			Assert.assertEquals(mesa.puntaje(equipoImpar), 11);
-			Assert.assertEquals(mesa.puntaje(equipoPar), 4);
-			Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
-			mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
-			Assert.assertEquals(J4.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.envido();
+			Assert.assertEquals(J3.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.quieroEnvido();
+
+			Assert.assertEquals(mesa.puntaje(equipoImpar), 15);
+			Assert.assertEquals(mesa.puntaje(equipoPar), 19);
+
+			Assert.assertEquals(J3.getNombre(), mesa.getJugadorActual().getNombre());
 			mesa.truco();
-			Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
-			mesa.quieroTruco();
 			Assert.assertEquals(J4.getNombre(), mesa.getJugadorActual().getNombre());
-			mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(2));
-			Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
-			mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(2));
-			Assert.assertEquals(mesa.puntaje(equipoImpar), 11);
-			Assert.assertEquals(mesa.puntaje(equipoPar), 6);
-			
-			Assert.assertEquals(J5.getNombre(), mesa.getJugadorActual().getNombre());
-			mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
-			Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
-			mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(0));
-			Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
-			mesa.truco();
-			Assert.assertEquals(J5.getNombre(), mesa.getJugadorActual().getNombre());
-			mesa.quieroTruco();
-			Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
-			mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(2));
-			Assert.assertEquals(J5.getNombre(), mesa.getJugadorActual().getNombre());
-			mesa.hacerJugada(mesa.getJugadorActual().obtenerCartas().get(2));
-			Assert.assertEquals(mesa.puntaje(equipoImpar), 11);
-			Assert.assertEquals(mesa.puntaje(equipoPar), 8);
-			
+			mesa.reTruco();
+			Assert.assertEquals(J3.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.valeCuatro();
 			Assert.assertEquals(J4.getNombre(), mesa.getJugadorActual().getNombre());
-			*/
-			
+			mesa.noQuieroTruco();
+
+			Assert.assertEquals(mesa.puntaje(equipoImpar), 18);
+			Assert.assertEquals(mesa.puntaje(equipoPar), 19);
+
+			//pica a pica, J6 vs J3, J1 vs J4 , J2 vs J5
+			carta1 = new Figura(12, new Copa());
+			carta2 = new Figura(11, new Copa());
+			carta3 = new Figura(10, new Copa());
+			carta4 = new Carta(7, new Espada());
+			carta5 = new Carta(3, new Basto());
+			carta6 = new Carta(4, new Oro());
+			carta7 = new Carta(4, new Espada());
+			carta8 = new Carta(4, new Basto());
+			carta9 = new Carta(5, new Oro());
+			carta10 = new Carta(6, new Espada());
+			carta11 = new Carta(12, new Basto());
+			carta12 = new Carta(2, new Oro());
+			carta13 = new Carta(2, new Espada());
+			carta14 = new Carta(2, new Basto());
+			carta15 = new Carta(7, new Oro());
+			carta16 = new Carta(1, new Espada());
+			carta17 = new Carta(1, new Basto());
+			carta18 = new Carta(3, new Oro());
+
+
+			cartasJ1 = new LinkedList<>(Arrays.asList(carta1, carta2, carta3));
+			cartasJ2 = new LinkedList<>(Arrays.asList(carta4, carta5, carta6));
+			cartasJ3 = new LinkedList<>(Arrays.asList(carta7, carta8, carta9));
+			cartasJ4 = new LinkedList<>(Arrays.asList(carta10, carta11, carta12));
+			cartasJ5 = new LinkedList<>(Arrays.asList(carta13, carta14, carta15));
+			cartasJ6 = new LinkedList<>(Arrays.asList(carta16, carta17, carta18));
+
+			J1.setMano(new Mano(cartasJ1));
+			J2.setMano(new Mano(cartasJ2));
+			J3.setMano(new Mano(cartasJ3));
+			J4.setMano(new Mano(cartasJ4));
+			J5.setMano(new Mano(cartasJ5));
+			J6.setMano(new Mano(cartasJ6));
+
+
+
+
+
 		} catch(JuegoTerminadoException juegoTerminadoException) {
 
 			Assert.assertTrue(mesa.puntaje(equipoImpar) >= 30);

@@ -7,16 +7,14 @@ import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 import fiuba.algo3.truco.modelo.Ronda.PrimeraVuelta;
 import fiuba.algo3.truco.modelo.Ronda.Vuelta;
 
-import java.util.ArrayDeque;
-import java.util.Deque;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class Mesa {
 
     private Vuelta estadoVuelta;
     private Equipo equipo1;
     private Equipo equipo2;
+    private List<Equipo> equipos;
     private Deque<Carta> cartasEnMesa;
     private Equipo equipoActual;
     private Equipo equipoContrario;
@@ -31,6 +29,7 @@ public class Mesa {
 
         this.equipo1 = equipo1;
         this.equipo2 = equipo2;
+        this.equipos = new ArrayList<>(Arrays.asList(equipo1,equipo2));
 
         this.equipo1.setOrdenMesa(0);
         this.equipo2.setOrdenMesa(1);
@@ -64,8 +63,7 @@ public class Mesa {
     
     public int puntaje(Equipo equipo){
 
-    	return equipo.getPuntos();
-
+        return equipos.get(equipos.indexOf(equipo)).getPuntos();
     }
 
     public void hacerJugada(Carta carta) throws NoHayCartasParaJugar {
@@ -423,9 +421,4 @@ public class Mesa {
 
     }
 
-
-    public void reiniciarPuntos() {
-        this.equipo1.setPuntaje(new Puntaje());
-        this.equipo2.setPuntaje(new Puntaje());
-    }
 }
