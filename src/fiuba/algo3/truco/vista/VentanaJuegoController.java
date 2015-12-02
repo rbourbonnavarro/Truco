@@ -1,5 +1,6 @@
 package fiuba.algo3.truco.vista;
 
+import com.sun.javaws.exceptions.InvalidArgumentException;
 import fiuba.algo3.truco.modelo.*;
 import fiuba.algo3.truco.modelo.Jugadas.EstadoJuego;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.*;
@@ -172,7 +173,7 @@ public class VentanaJuegoController {
         this.visibilizarBotones(this.botonesCartasJugadasJugador6, false);
         this.visibilizarBotones(this.botonesQuiero, false);
         this.visibilizarBotones(Arrays.asList(this.botonRetruco, this.botonValeCuatro), false);
-       // this.imagenMesa.setImage(new Image("/gui/images/mesa.png"));
+        //this.imagenMesa.setImage(new Image("/gui/images/mesa.png"));
 
     }
 
@@ -200,7 +201,17 @@ public class VentanaJuegoController {
 
         for (int i = 0; i < this.cartasJugadorActual.size(); i++) {
 
-            this.botonesCartasJugadorActual.get(i).setGraphic(new ImageView(this.diccionarioCartas.representacionCarta(this.cartasJugadorActual.get(i))));
+           // boolean continuar = false;
+
+          //  while(!continuar) {
+           //     try {
+                    this.botonesCartasJugadorActual.get(i).setGraphic(new ImageView(this.diccionarioCartas.representacionCarta(this.cartasJugadorActual.get(i))));
+          //          continuar = true;
+             //   } catch (RuntimeException a) {
+
+              //  }
+            //}
+
             if(!this.mesa.getJugadorActual().obtenerCartasEnMano().contains(this.cartasJugadorActual.get(i)))
                 this.botonesCartasJugadorActual.get(i).setDisable(true);
 
@@ -310,7 +321,19 @@ public class VentanaJuegoController {
         Button botonCartaJugada = this.botonesCartasJugadas.get(this.indiceJugador).get(numeroJugada);
 
         botonCartaJugada.setVisible(true);
-        botonCartaJugada.setGraphic(new ImageView(this.diccionarioCartas.representacionCarta(cartaJugada)));
+
+        //boolean continuar = false;
+
+       // while(!continuar) {
+
+         //   try {
+                botonCartaJugada.setGraphic(new ImageView(this.diccionarioCartas.representacionCarta(cartaJugada)));
+          //      continuar = true;
+         //   } catch (RuntimeException a) {
+
+         //   }
+
+        //}
 
         this.cantidadJugadasJugador.set(this.indiceJugador, numeroJugada + 1);
 
@@ -432,7 +455,19 @@ public class VentanaJuegoController {
     @FXML
     protected void cantarEnvidoHandler() {
 
-        this.mesa.envido();
+        try {
+
+            this.mesa.envido();
+
+        } catch(JugadorNoPieNoPuedeCantarEnvido jugadorNoPieNoPuedeCantarEnvido) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Jugador que no es pie no puede cantar tanto");
+            alert.setHeaderText("");
+            alert.setContentText("No puede cantar envido ya que usted no es pie.");
+            alert.showAndWait();
+
+        }
 
         this.mostrarJugadorActual();
 
@@ -441,7 +476,19 @@ public class VentanaJuegoController {
     @FXML
     protected void cantarRealEnvidoHandler() {
 
-        this.mesa.realEnvido();
+        try {
+
+            this.mesa.realEnvido();
+
+        } catch(JugadorNoPieNoPuedeCantarEnvido jugadorNoPieNoPuedeCantarEnvido) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Jugador que no es pie no puede cantar tanto");
+            alert.setHeaderText("");
+            alert.setContentText("No puede cantar real envido ya que usted no es pie.");
+            alert.showAndWait();
+
+        }
 
         this.mostrarJugadorActual();
 
@@ -450,7 +497,19 @@ public class VentanaJuegoController {
     @FXML
     protected void cantarFaltaEnvidoHandler() {
 
-        this.mesa.faltaEnvido();
+        try {
+
+            this.mesa.faltaEnvido();
+
+        } catch(JugadorNoPieNoPuedeCantarEnvido jugadorNoPieNoPuedeCantarEnvido) {
+
+            Alert alert = new Alert(Alert.AlertType.WARNING);
+            alert.setTitle("Jugador que no es pie no puede cantar tanto");
+            alert.setHeaderText("");
+            alert.setContentText("No puede cantar falta envido ya que usted no es pie.");
+            alert.showAndWait();
+
+        }
 
         this.mostrarJugadorActual();
 

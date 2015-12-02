@@ -8,13 +8,13 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fiuba.algo3.truco.vista.VentanaJuegoController">
     <children>
-        <SplitPane dividerPositions="0.7956298200514139" layoutX="307.0" layoutY="123.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <SplitPane dividerPositions="0.7532133676092545" layoutX="307.0" layoutY="123.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <items>
-                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="561.0" prefWidth="998.0">
                     <children>
-                        <SplitPane dividerPositions="0.2651006711409396" layoutX="132.0" layoutY="64.0" prefHeight="287.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <SplitPane dividerPositions="0.2651006711409396" layoutX="132.0" layoutY="64.0" prefHeight="582.0" prefWidth="998.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                             <items>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="511.0" prefWidth="260.0">
                                     <children>
                                         <SplitPane dividerPositions="0.05709876543209876" layoutX="-2.0" layoutY="14.0" orientation="VERTICAL" prefHeight="285.0" prefWidth="155.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <items>
@@ -61,27 +61,27 @@
                                         </SplitPane>
                                     </children>
                                 </AnchorPane>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="573.0" prefWidth="728.0">
                                     <children>
                                         <Ellipse fill="#30752a" layoutX="366.0" layoutY="325.0" radiusX="466.0" radiusY="420.0" stroke="BLACK" strokeType="INSIDE" />
-                                        <Button fx:id="botonCartaJugada1Jugador1" layoutX="342.0" layoutY="466.0" mnemonicParsing="false" />
-                                        <Button fx:id="botonCartaJugada2Jugador1" layoutX="342.0" layoutY="419.0" mnemonicParsing="false" />
-                                        <Button fx:id="botonCartaJugada3Jugador1" layoutX="342.0" layoutY="369.0" mnemonicParsing="false" />
-                                        <Button fx:id="botonCartaJugada1Jugador2" layoutX="533.0" layoutY="454.0" mnemonicParsing="false" />
-                                        <Button fx:id="botonCartaJugada2Jugador2" layoutX="501.0" layoutY="419.0" mnemonicParsing="false" />
-                                        <Button fx:id="botonCartaJugada3Jugador2" layoutX="472.0" layoutY="369.0" mnemonicParsing="false" />
-                                        <Button fx:id="botonCartaJugada1Jugador4" layoutX="342.0" layoutY="80.0" mnemonicParsing="false" />
-                                        <Button fx:id="botonCartaJugada2Jugador4" layoutX="342.0" layoutY="131.0" mnemonicParsing="false" />
-                                        <Button fx:id="botonCartaJugada3Jugador4" layoutX="342.0" layoutY="180.0" mnemonicParsing="false" />
-                                        <Button fx:id="botonCartaJugada1Jugador3" layoutX="533.0" layoutY="105.0" mnemonicParsing="false" />
-                                        <Button fx:id="botonCartaJugada2Jugador3" layoutX="501.0" layoutY="143.0" mnemonicParsing="false" />
-                                        <Button fx:id="botonCartaJugada3Jugador3" layoutX="472.0" layoutY="180.0" mnemonicParsing="false" />
-                              <Button fx:id="botonCartaJugada1Jugador5" layoutX="130.0" layoutY="105.0" mnemonicParsing="false" />
-                              <Button fx:id="botonCartaJugada2Jugador5" layoutX="168.0" layoutY="143.0" mnemonicParsing="false" />
-                              <Button fx:id="botonCartaJugada3Jugador5" layoutX="206.0" layoutY="180.0" mnemonicParsing="false" />
-                              <Button fx:id="botonCartaJugada1Jugador6" layoutX="130.0" layoutY="454.0" mnemonicParsing="false" />
-                              <Button fx:id="botonCartaJugada2Jugador6" layoutX="168.0" layoutY="419.0" mnemonicParsing="false" />
-                              <Button fx:id="botonCartaJugada3Jugador6" layoutX="206.0" layoutY="369.0" mnemonicParsing="false" />
+                                        <Button fx:id="botonCartaJugada1Jugador1" layoutX="322.0" layoutY="430.0" mnemonicParsing="false" />
+                                        <Button fx:id="botonCartaJugada2Jugador1" layoutX="322.0" layoutY="374.0" mnemonicParsing="false" />
+                                        <Button fx:id="botonCartaJugada3Jugador1" layoutX="322.0" layoutY="310.0" mnemonicParsing="false" />
+                                        <Button fx:id="botonCartaJugada1Jugador2" layoutX="595.0" layoutY="389.0" mnemonicParsing="false" />
+                                        <Button fx:id="botonCartaJugada2Jugador2" layoutX="558.0" layoutY="351.0" mnemonicParsing="false" />
+                                        <Button fx:id="botonCartaJugada3Jugador2" layoutX="523.0" layoutY="310.0" mnemonicParsing="false" />
+                                        <Button fx:id="botonCartaJugada1Jugador4" layoutX="322.0" layoutY="14.0" mnemonicParsing="false" />
+                                        <Button fx:id="botonCartaJugada2Jugador4" layoutX="322.0" layoutY="73.0" mnemonicParsing="false" />
+                                        <Button fx:id="botonCartaJugada3Jugador4" layoutX="322.0" layoutY="137.0" mnemonicParsing="false" />
+                                        <Button fx:id="botonCartaJugada1Jugador3" layoutX="595.0" layoutY="57.0" mnemonicParsing="false" />
+                                        <Button fx:id="botonCartaJugada2Jugador3" layoutX="558.0" layoutY="96.0" mnemonicParsing="false" />
+                                        <Button fx:id="botonCartaJugada3Jugador3" layoutX="523.0" layoutY="137.0" mnemonicParsing="false" />
+                              <Button fx:id="botonCartaJugada1Jugador5" layoutX="47.0" layoutY="57.0" mnemonicParsing="false" />
+                              <Button fx:id="botonCartaJugada2Jugador5" layoutX="87.0" layoutY="96.0" mnemonicParsing="false" />
+                              <Button fx:id="botonCartaJugada3Jugador5" layoutX="128.0" layoutY="137.0" mnemonicParsing="false" />
+                              <Button fx:id="botonCartaJugada1Jugador6" layoutX="47.0" layoutY="389.0" mnemonicParsing="false" />
+                              <Button fx:id="botonCartaJugada2Jugador6" layoutX="87.0" layoutY="351.0" mnemonicParsing="false" />
+                              <Button fx:id="botonCartaJugada3Jugador6" layoutX="128.0" layoutY="310.0" mnemonicParsing="false" />
                                     </children>
                                 </AnchorPane>
                             </items>
@@ -90,9 +90,9 @@
                 </AnchorPane>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                     <children>
-                        <SplitPane dividerPositions="0.2634228187919463" layoutX="99.0" layoutY="-49.0" prefHeight="105.0" prefWidth="598.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                        <SplitPane dividerPositions="0.2634228187919463" layoutY="-37.0" prefHeight="192.0" prefWidth="998.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="-37.0">
                             <items>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="173.0" prefWidth="674.0">
                                     <children>
                                         <GridPane layoutX="-14.0" layoutY="41.0" prefHeight="103.0" prefWidth="154.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <columnConstraints>
@@ -114,15 +114,15 @@
                                 </AnchorPane>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                     <children>
-                                        <GridPane alignment="CENTER" prefHeight="152.0" prefWidth="583.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                        <GridPane alignment="CENTER" layoutY="35.0" prefHeight="188.0" prefWidth="730.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="35.0">
                                             <columnConstraints>
                                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" />
                                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                             </columnConstraints>
                                             <rowConstraints>
-                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
-                                                <RowConstraints minHeight="10.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="153.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="152.0" minHeight="10.0" prefHeight="150.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                             <children>
                                                 <Button fx:id="botonCarta1" mnemonicParsing="false" onAction="#JugarCarta1Handler" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />

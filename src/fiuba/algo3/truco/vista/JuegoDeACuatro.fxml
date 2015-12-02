@@ -64,19 +64,19 @@
                                 </AnchorPane>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                     <children>
-                              <Ellipse fill="#376b25" layoutX="365.0" layoutY="291.0" radiusX="457.0" radiusY="417.0" stroke="BLACK" strokeType="INSIDE" />
-                                        <Button fx:id="botonCartaJugada1Jugador1" layoutX="132.0" layoutY="417.0" mnemonicParsing="false" />
-                                        <Button fx:id="botonCartaJugada2Jugador1" layoutX="192.0" layoutY="379.0" mnemonicParsing="false" />
-                                        <Button fx:id="botonCartaJugada3Jugador1" layoutX="242.0" layoutY="338.0" mnemonicParsing="false" />
-                                        <Button fx:id="botonCartaJugada1Jugador2" layoutX="563.0" layoutY="417.0" mnemonicParsing="false" />
-                                        <Button fx:id="botonCartaJugada2Jugador2" layoutX="514.0" layoutY="379.0" mnemonicParsing="false" />
-                                        <Button fx:id="botonCartaJugada3Jugador2" layoutX="457.0" layoutY="338.0" mnemonicParsing="false" />
-                              <Button fx:id="botonCartaJugada1Jugador4" layoutX="132.0" layoutY="71.0" mnemonicParsing="false" />
-                              <Button fx:id="botonCartaJugada2Jugador4" layoutX="184.0" layoutY="114.0" mnemonicParsing="false" />
-                              <Button fx:id="botonCartaJugada3Jugador4" layoutX="242.0" layoutY="155.0" mnemonicParsing="false" />
-                              <Button fx:id="botonCartaJugada1Jugador3" layoutX="563.0" layoutY="71.0" mnemonicParsing="false" />
-                              <Button fx:id="botonCartaJugada2Jugador3" layoutX="514.0" layoutY="114.0" mnemonicParsing="false" />
-                              <Button fx:id="botonCartaJugada3Jugador3" layoutX="457.0" layoutY="155.0" mnemonicParsing="false" />
+                              <Ellipse fill="#376b25" layoutX="364.0" layoutY="291.0" radiusX="457.0" radiusY="417.0" stroke="BLACK" strokeType="INSIDE" />
+                                        <Button fx:id="botonCartaJugada1Jugador1" layoutX="106.0" layoutY="417.0" mnemonicParsing="false" />
+                                        <Button fx:id="botonCartaJugada2Jugador1" layoutX="158.0" layoutY="379.0" mnemonicParsing="false" />
+                                        <Button fx:id="botonCartaJugada3Jugador1" layoutX="210.0" layoutY="338.0" mnemonicParsing="false" />
+                                        <Button fx:id="botonCartaJugada1Jugador2" layoutX="523.0" layoutY="417.0" mnemonicParsing="false" />
+                                        <Button fx:id="botonCartaJugada2Jugador2" layoutX="474.0" layoutY="379.0" mnemonicParsing="false" />
+                                        <Button fx:id="botonCartaJugada3Jugador2" layoutX="427.0" layoutY="338.0" mnemonicParsing="false" />
+                              <Button fx:id="botonCartaJugada1Jugador4" layoutX="106.0" layoutY="42.0" mnemonicParsing="false" />
+                              <Button fx:id="botonCartaJugada2Jugador4" layoutX="158.0" layoutY="85.0" mnemonicParsing="false" />
+                              <Button fx:id="botonCartaJugada3Jugador4" layoutX="210.0" layoutY="126.0" mnemonicParsing="false" />
+                              <Button fx:id="botonCartaJugada1Jugador3" layoutX="523.0" layoutY="42.0" mnemonicParsing="false" />
+                              <Button fx:id="botonCartaJugada2Jugador3" layoutX="474.0" layoutY="85.0" mnemonicParsing="false" />
+                              <Button fx:id="botonCartaJugada3Jugador3" layoutX="427.0" layoutY="126.0" mnemonicParsing="false" />
                                     </children>
                                 </AnchorPane>
                             </items>
@@ -116,8 +116,8 @@
                                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                             </columnConstraints>
                                             <rowConstraints>
-                                                <RowConstraints maxHeight="84.0" minHeight="10.0" prefHeight="47.0" vgrow="SOMETIMES" />
-                                                <RowConstraints maxHeight="131.0" minHeight="10.0" prefHeight="131.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="84.0" minHeight="10.0" prefHeight="38.0" vgrow="SOMETIMES" />
+                                                <RowConstraints maxHeight="141.0" minHeight="10.0" prefHeight="140.0" vgrow="SOMETIMES" />
                                             </rowConstraints>
                                             <children>
                                                 <Button fx:id="botonCarta1" mnemonicParsing="false" onAction="#JugarCarta1Handler" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
