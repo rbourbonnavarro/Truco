@@ -24,8 +24,11 @@ import java.util.List;
 public class VentanaJuegoController {
 
     private static final String DORSO_CARTA = "/gui/images/imagenesCartas/dorsoCarta (Custom).png";
-    //@FXML
-   // protected ImageView imagenMesa;
+    private static final String MAZO = "/gui/images/imagenesCartas/mazo.png";
+    @FXML
+    protected ImageView imagenMazoJ1;
+    @FXML
+    protected ImageView imagenMazoJ2;
     @FXML
     protected Label turno;
     @FXML
@@ -132,6 +135,7 @@ public class VentanaJuegoController {
     private int cantidadJugadasJugador5 = 0;
     private int cantidadJugadasJugador6 = 0;
     protected List<Integer> cantidadJugadasJugador;
+    protected int cantidadDeRondas = 0;
     protected Jugador jugadorPrevio;
     protected int indiceJugador = 0;
     protected List<Button> botonesEnvido;
@@ -139,6 +143,7 @@ public class VentanaJuegoController {
     protected List<Button> botonesTanto;
     protected List<Button> botonesTruco;
     protected List<Button> botonesQuiero;
+    protected List<ImageView> imagenesMazo;
     protected DiccionarioEstadosJuego diccionarioEstadosJuego;
 
     @FXML
@@ -174,6 +179,10 @@ public class VentanaJuegoController {
         this.visibilizarBotones(this.botonesQuiero, false);
         this.visibilizarBotones(Arrays.asList(this.botonRetruco, this.botonValeCuatro), false);
         //this.imagenMesa.setImage(new Image("/gui/images/mesa.png"));
+
+        this.imagenesMazo = new ArrayList<>(Arrays.asList(this.imagenMazoJ1, this.imagenMazoJ2));
+        this.visibilizarImagenes(this.imagenesMazo, false);
+        this.imagenesMazo.get(0).setVisible(true);
 
     }
 
@@ -301,6 +310,8 @@ public class VentanaJuegoController {
 
         int cantidadJugadores = this.mesa.getEquipoActual().getCantidadIntegrantes() * 2;
 
+        this.cantidadDeRondas++;
+
         for(int i = 0; i < cantidadJugadores; i++) {
 
             for (Button botonCartaJugada : this.botonesCartasJugadas.get(i)) {
@@ -312,6 +323,9 @@ public class VentanaJuegoController {
             this.cantidadJugadasJugador.set(i, 0);
 
         }
+
+        this.visibilizarImagenes(this.imagenesMazo, false);
+        this.imagenesMazo.get(this.cantidadDeRondas % cantidadJugadores).setVisible(true);
 
     }
 
@@ -576,7 +590,7 @@ public class VentanaJuegoController {
 
         if(!this.jugadorPrevio.equals(this.mesa.getJugadorActual())) {
 
-            this.indiceJugador = (this.indiceJugador + 1) % (this.mesa.getEquipoActual().getCantidadIntegrantes()*2);
+            this.indiceJugador = (this.indiceJugador + 1) % (this.mesa.getEquipoActual().getCantidadIntegrantes() * 2);
 
         }
 
@@ -614,6 +628,22 @@ public class VentanaJuegoController {
             for(Button boton : botones) {
 
                 boton.setVisible(visibilidad);
+
+            }
+
+        } catch(NullPointerException nullPointerException) {
+
+        }
+
+    }
+
+    protected void visibilizarImagenes(List<ImageView> imagenes, boolean visibilidad) {
+
+        try {
+
+            for(ImageView imagen : imagenes) {
+
+                imagen.setVisible(visibilidad);
 
             }
 
