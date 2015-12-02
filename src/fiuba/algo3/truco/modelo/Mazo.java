@@ -89,9 +89,5 @@ public class Mazo {
 
     }
 
-    public List<Carta> getCartas() {
-        return CARTAS;
-    }
-
 
 }
