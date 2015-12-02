@@ -48,9 +48,13 @@ public class Equipo {
 
             jugador.setOrdenMesa(ordenMesa);
 
+            jugador.setJugadorPie(false);
+
             ordenMesa += 2;
 
         }
+
+        this.integrantes.get(this.integrantes.size() - 1).setJugadorPie(true);
 
         this.inicializacionOrdenMesa = true;
 
@@ -61,8 +65,8 @@ public class Equipo {
         for(int i = 0; i < (this.integrantes.size() - 1); i++) {
 
             Jugador aux = this.integrantes.get(i);
-            this.integrantes.set(i, this.integrantes.get(i+1));
-            this.integrantes.set(i+1, aux);
+            this.integrantes.set(i, this.integrantes.get(i + 1));
+            this.integrantes.set(i + 1, aux);
 
         }
 
@@ -81,6 +85,7 @@ public class Equipo {
     }
 
     public int getCantidadIntegrantes() {
+
         return this.integrantes.size();
 
     }

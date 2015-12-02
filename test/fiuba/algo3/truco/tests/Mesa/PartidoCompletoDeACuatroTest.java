@@ -154,6 +154,7 @@ public class PartidoCompletoDeACuatroTest {
 			J4.setMano(new Mano(cartasJ4));
 
 			Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
+
 			mesa.flor();
 			Assert.assertEquals(J3.getNombre(), mesa.getJugadorActual().getNombre());
 			mesa.contraFlorAlPartido();

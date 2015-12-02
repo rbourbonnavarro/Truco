@@ -589,11 +589,7 @@ public class VentanaJuegoController {
         this.setearBotones();
         this.mostrarEstadoJuego();
 
-        if(!this.jugadorPrevio.equals(this.mesa.getJugadorActual())) {
-
-            this.indiceJugador = (this.indiceJugador + 1) % (this.mesa.getEquipoActual().getCantidadIntegrantes() * 2);
-
-        }
+        this.indiceJugador = (this.mesa.getJugadorActual().getOrdenMesa() + this.cantidadDeRondas) % (this.mesa.getEquipoActual().getCantidadIntegrantes() * 2);
 
         try {
             this.mesa.getJugadorActual().flor();

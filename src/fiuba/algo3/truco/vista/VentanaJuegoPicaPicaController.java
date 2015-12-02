@@ -10,16 +10,12 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-/**
- * Created by GomezPeter on 02/12/2015.
- */
 public class VentanaJuegoPicaPicaController {
     private static final String DORSO_CARTA = "/gui/images/imagenesCartas/dorsoCarta (Custom).png";
     @FXML
@@ -690,5 +686,6 @@ public class VentanaJuegoPicaPicaController {
         this.labelEstadoJuego.setText(this.diccionarioEstadosJuego.obtenerMensajeEstado(estadoJuego));
 
     }
+
 
 }
