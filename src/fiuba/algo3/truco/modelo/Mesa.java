@@ -2,7 +2,6 @@ package fiuba.algo3.truco.modelo;
 
 import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeQuererFlorException;
 import fiuba.algo3.truco.modelo.Puntos.JuegoTerminadoException;
-import fiuba.algo3.truco.modelo.Puntos.Malas;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 import fiuba.algo3.truco.modelo.Ronda.PrimeraVuelta;
 import fiuba.algo3.truco.modelo.Ronda.Vuelta;

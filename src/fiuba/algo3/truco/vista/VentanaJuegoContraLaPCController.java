@@ -42,6 +42,9 @@ public class VentanaJuegoContraLaPCController extends VentanaJuegoController {
 
                     }
 
+                    if(jugadorIA.obtenerCartasEnMano().size() == 0 && this.mesa.getCartasEnMesa().size() == 6)
+                        this.nuevaRonda();
+
                 } catch (NoSuchElementException noSuchElementException) {
 
                     if (jugadorIA.obtenerCartasEnMano().size() < 3) {

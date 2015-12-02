@@ -211,16 +211,7 @@ public class VentanaJuegoController {
 
         for (int i = 0; i < this.cartasJugadorActual.size(); i++) {
 
-           // boolean continuar = false;
-
-          //  while(!continuar) {
-           //     try {
-                    this.botonesCartasJugadorActual.get(i).setGraphic(new ImageView(this.diccionarioCartas.representacionCarta(this.cartasJugadorActual.get(i))));
-          //          continuar = true;
-             //   } catch (RuntimeException a) {
-
-              //  }
-            //}
+            this.botonesCartasJugadorActual.get(i).setGraphic(new ImageView(this.diccionarioCartas.representacionCarta(this.cartasJugadorActual.get(i))));
 
             if(!this.mesa.getJugadorActual().obtenerCartasEnMano().contains(this.cartasJugadorActual.get(i)))
                 this.botonesCartasJugadorActual.get(i).setDisable(true);
@@ -337,18 +328,7 @@ public class VentanaJuegoController {
 
         botonCartaJugada.setVisible(true);
 
-        //boolean continuar = false;
-
-       // while(!continuar) {
-
-         //   try {
-                botonCartaJugada.setGraphic(new ImageView(this.diccionarioCartas.representacionCarta(cartaJugada)));
-          //      continuar = true;
-         //   } catch (RuntimeException a) {
-
-         //   }
-
-        //}
+        botonCartaJugada.setGraphic(new ImageView(this.diccionarioCartas.representacionCarta(cartaJugada)));
 
         this.cantidadJugadasJugador.set(this.indiceJugador, numeroJugada + 1);
 

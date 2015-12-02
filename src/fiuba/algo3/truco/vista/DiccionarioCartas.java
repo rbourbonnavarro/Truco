@@ -38,7 +38,7 @@ public class DiccionarioCartas {
         REPRESENTACION_CARTA.put(new Figura(12, new Copa()), RUTA_IMAGENES + "/12Copa (Custom).png");
         REPRESENTACION_CARTA.put(new Figura(11, new Espada()), RUTA_IMAGENES + "/11Espada (Custom).png");
         REPRESENTACION_CARTA.put(new Figura(11, new Basto()), RUTA_IMAGENES + "/11Basto (Custom).png");
-        REPRESENTACION_CARTA.put(new Figura(11, new Oro()), RUTA_IMAGENES + "11Oro (Custom).png");
+        REPRESENTACION_CARTA.put(new Figura(11, new Oro()), RUTA_IMAGENES + "/11Oro (Custom).png");
         REPRESENTACION_CARTA.put(new Figura(11, new Copa()), RUTA_IMAGENES + "/11Copa (Custom).png");
         REPRESENTACION_CARTA.put(new Figura(10, new Espada()), RUTA_IMAGENES + "/10Espada (Custom).png");
         REPRESENTACION_CARTA.put(new Figura(10, new Basto()), RUTA_IMAGENES + "/10Basto (Custom).png");
