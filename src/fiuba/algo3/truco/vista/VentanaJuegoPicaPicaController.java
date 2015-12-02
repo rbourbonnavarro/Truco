@@ -17,6 +17,7 @@ import java.util.Arrays;
 import java.util.List;
 
 public class VentanaJuegoPicaPicaController {
+
     private static final String DORSO_CARTA = "/gui/images/imagenesCartas/dorsoCarta (Custom).png";
     @FXML
     protected ImageView imagenMazoJ1;
@@ -590,11 +591,7 @@ public class VentanaJuegoPicaPicaController {
         this.setearBotones();
         this.mostrarEstadoJuego();
 
-        if(!this.jugadorPrevio.equals(this.mesa.getJugadorActual())) {
-
-            this.indiceJugador = (this.indiceJugador + 1) % (this.mesa.getEquipoActual().getCantidadIntegrantes() * 2);
-
-        }
+        this.indiceJugador = (this.mesa.getJugadorActual().getOrdenMesa() + this.cantidadDeRondas) % (this.mesa.getEquipoActual().getCantidadIntegrantes() * 2);
 
         try {
             this.mesa.getJugadorActual().flor();

@@ -31,8 +31,6 @@ public class VentanaSeleccionModoDeJuegoController {
     @FXML
     private TextField textEquipo2;
     @FXML
-    private Label labelNombreEquiposIguales;
-    @FXML
     private CheckBox checkJugarConFlor;
     @FXML
     private Button botonComenzarJuego;
@@ -49,7 +47,6 @@ public class VentanaSeleccionModoDeJuegoController {
         this.nombresEquipos = new ArrayList<>(Arrays.asList(this.textEquipo1, this.textEquipo2));
         this.visibilizarElementos(this.nombresJugadores, false);
         this.visibilizarElementos(this.nombresEquipos, false);
-        this.labelNombreEquiposIguales.setVisible(false);
 
         this.botonComenzarJuego.setDisable(true);
 
@@ -124,16 +121,6 @@ public class VentanaSeleccionModoDeJuegoController {
     }
 
     @FXML
-    private void nombresEquiposHandler() {
-
-        boolean activar = this.textEquipo1.getText().equals(this.textEquipo2.getText());
-
-        this.botonComenzarJuego.setDisable(activar);
-        this.labelNombreEquiposIguales.setVisible(activar);
-
-    }
-
-    @FXML
     private void comenzarJuegoHandler() {
 
         Mesa mesa;
@@ -148,14 +135,17 @@ public class VentanaSeleccionModoDeJuegoController {
 
             if(this.nombresJugadores.get(i).getText().equals(""))
                 this.nombresJugadores.get(i).setText("Jugador " + (i + 1));
+
         }
-        for(int i=0 ; i < jugadoresPorEquipo;i++){
-            jugadoresEquipo1.add(new Jugador(this.nombresJugadores.get(2*i).getText()));
-            jugadoresEquipo2.add(new Jugador(this.nombresJugadores.get(i*2 +1).getText()));
+        for(int i = 0; i < jugadoresPorEquipo; i++){
+
+            jugadoresEquipo1.add(new Jugador(this.nombresJugadores.get(2 * i).getText()));
+            jugadoresEquipo2.add(new Jugador(this.nombresJugadores.get(i * 2 + 1).getText()));
+
         }
 
         if(this.textEquipo1.getText().equals("")) this.textEquipo1.setText("Equipo 1");
-        if(this.textEquipo2.getText().equals("")) this.textEquipo1.setText("Equipo 2");
+        if(this.textEquipo2.getText().equals("")) this.textEquipo2.setText("Equipo 2");
 
         if(this.cantidadJugadores == 1) {
 
@@ -169,7 +159,8 @@ public class VentanaSeleccionModoDeJuegoController {
 
         if(this.cantidadJugadores == 2) {
 
-
+            this.textEquipo1.setText(this.textJ1E1.getText());
+            this.textEquipo2.setText(this.textJ1E2.getText());
 
         }
 

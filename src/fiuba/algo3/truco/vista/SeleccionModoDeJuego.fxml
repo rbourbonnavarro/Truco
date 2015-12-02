@@ -21,10 +21,9 @@
       <TextField fx:id="textJ2E2" layoutX="259.0" layoutY="241.0" promptText="Jugador 2 - Equipo 2" />
       <TextField fx:id="textJ3E1" layoutX="259.0" layoutY="308.0" promptText="Jugador 3 - Equipo 1" />
       <TextField fx:id="textJ3E2" layoutX="259.0" layoutY="373.0" promptText="Jugador 3 - Equipo 2" />
-      <TextField fx:id="textEquipo1" layoutX="497.0" layoutY="37.0" onKeyPressed="#nombresEquiposHandler" promptText="Equipo 1" />
-      <TextField fx:id="textEquipo2" layoutX="497.0" layoutY="101.0" onKeyReleased="#nombresEquiposHandler" promptText="Equipo 2" />
+      <TextField fx:id="textEquipo1" layoutX="497.0" layoutY="37.0" promptText="Equipo 1" />
+      <TextField fx:id="textEquipo2" layoutX="497.0" layoutY="101.0" promptText="Equipo 2" />
       <Button fx:id="botonComenzarJuego" layoutX="436.0" layoutY="563.0" mnemonicParsing="false" onAction="#comenzarJuegoHandler" text="Comenzar juego" />
-      <Label fx:id="labelNombreEquiposIguales" layoutX="475.0" layoutY="177.0" text="Los nombres de los equipos no pueden ser iguales" textFill="#e80808" />
       <CheckBox fx:id="checkJugarConFlor" layoutX="58.0" layoutY="457.0" mnemonicParsing="false" text="Jugar con flor" />
    </children>
 </AnchorPane>

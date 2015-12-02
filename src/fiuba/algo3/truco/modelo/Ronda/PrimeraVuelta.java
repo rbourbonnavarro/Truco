@@ -44,7 +44,6 @@ public class PrimeraVuelta extends Vuelta {
 
     }
 
-
     @Override
     public void realEnvido(Equipo equipoIniciador) {
 
