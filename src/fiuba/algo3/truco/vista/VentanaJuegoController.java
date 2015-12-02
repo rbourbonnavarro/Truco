@@ -470,19 +470,7 @@ public class VentanaJuegoController {
     @FXML
     protected void cantarEnvidoHandler() {
 
-        try {
-
-            this.mesa.envido();
-
-        } catch(JugadorNoPieNoPuedeCantarEnvido jugadorNoPieNoPuedeCantarEnvido) {
-
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Jugador que no es pie no puede cantar tanto");
-            alert.setHeaderText("");
-            alert.setContentText("No puede cantar envido ya que usted no es pie.");
-            alert.showAndWait();
-
-        }
+        this.mesa.envido();
 
         this.mostrarJugadorActual();
 
@@ -491,19 +479,7 @@ public class VentanaJuegoController {
     @FXML
     protected void cantarRealEnvidoHandler() {
 
-        try {
-
-            this.mesa.realEnvido();
-
-        } catch(JugadorNoPieNoPuedeCantarEnvido jugadorNoPieNoPuedeCantarEnvido) {
-
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Jugador que no es pie no puede cantar tanto");
-            alert.setHeaderText("");
-            alert.setContentText("No puede cantar real envido ya que usted no es pie.");
-            alert.showAndWait();
-
-        }
+        this.mesa.realEnvido();
 
         this.mostrarJugadorActual();
 
@@ -512,19 +488,7 @@ public class VentanaJuegoController {
     @FXML
     protected void cantarFaltaEnvidoHandler() {
 
-        try {
-
-            this.mesa.faltaEnvido();
-
-        } catch(JugadorNoPieNoPuedeCantarEnvido jugadorNoPieNoPuedeCantarEnvido) {
-
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Jugador que no es pie no puede cantar tanto");
-            alert.setHeaderText("");
-            alert.setContentText("No puede cantar falta envido ya que usted no es pie.");
-            alert.showAndWait();
-
-        }
+        this.mesa.faltaEnvido();
 
         this.mostrarJugadorActual();
 
@@ -598,6 +562,9 @@ public class VentanaJuegoController {
         }
 
         this.jugadorPrevio = this.mesa.getJugadorActual();
+
+        if(!this.jugadorPrevio.jugadorPie())
+            this.visibilizarBotones(this.botonesEnvido, false);
 
         this.turno.setText(this.jugadorPrevio.getNombre());
 

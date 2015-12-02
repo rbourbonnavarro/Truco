@@ -147,6 +147,9 @@ public class VentanaJuegoPicaPicaController {
     protected List<Button> botonesQuiero;
     protected List<ImageView> imagenesMazo;
     protected DiccionarioEstadosJuego diccionarioEstadosJuego;
+    private int cantidadJugadores;
+    private int cantidadRondasPicaPica;
+    private boolean rondaPicaPica;
 
     @FXML
     protected void initialize() {
@@ -187,6 +190,8 @@ public class VentanaJuegoPicaPicaController {
         this.visibilizarImagenes(this.imagenesMazo, false);
         this.imagenesMazo.get(0).setVisible(true);
 
+        this.rondaPicaPica = false;
+
     }
 
 
@@ -198,6 +203,7 @@ public class VentanaJuegoPicaPicaController {
         this.equipo2 = equipo2;
         this.labelEquipo1.setText(this.equipo1.getNombre());
         this.labelEquipo2.setText(this.equipo2.getNombre());
+        this.cantidadJugadores = this.mesa.getEquipoActual().getCantidadIntegrantes() * 2;
         this.mostrarPuntos();
 
         this.visibilizarBotones(this.botonesFlor, this.mesa.seJuegaConFlor());
@@ -311,24 +317,30 @@ public class VentanaJuegoPicaPicaController {
 
     protected void nuevaRonda() {
 
-        int cantidadJugadores = this.mesa.getEquipoActual().getCantidadIntegrantes() * 2;
+        if(!this.rondaPicaPica || (this.mesa.getEquipoActual().getCantidadIntegrantes() * 2) == this.cantidadJugadores) {
 
-        this.cantidadDeRondas++;
+            this.cantidadDeRondas++;
 
-        for(int i = 0; i < cantidadJugadores; i++) {
+            for (int i = 0; i < this.cantidadJugadores; i++) {
 
-            for (Button botonCartaJugada : this.botonesCartasJugadas.get(i)) {
+                for (Button botonCartaJugada : this.botonesCartasJugadas.get(i)) {
 
-                botonCartaJugada.setVisible(false);
+                    botonCartaJugada.setVisible(false);
+
+                }
+
+                this.cantidadJugadasJugador.set(i, 0);
 
             }
 
-            this.cantidadJugadasJugador.set(i, 0);
+            this.visibilizarImagenes(this.imagenesMazo, false);
+            this.imagenesMazo.get(this.cantidadDeRondas % this.cantidadJugadores).setVisible(true);
+
+            this.cantidadRondasPicaPica = 0;
 
         }
-
-        this.visibilizarImagenes(this.imagenesMazo, false);
-        this.imagenesMazo.get(this.cantidadDeRondas % cantidadJugadores).setVisible(true);
+        else
+            this.cantidadRondasPicaPica++;
 
     }
 
@@ -472,19 +484,7 @@ public class VentanaJuegoPicaPicaController {
     @FXML
     protected void cantarEnvidoHandler() {
 
-        try {
-
-            this.mesa.envido();
-
-        } catch(JugadorNoPieNoPuedeCantarEnvido jugadorNoPieNoPuedeCantarEnvido) {
-
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Jugador que no es pie no puede cantar tanto");
-            alert.setHeaderText("");
-            alert.setContentText("No puede cantar envido ya que usted no es pie.");
-            alert.showAndWait();
-
-        }
+        this.mesa.envido();
 
         this.mostrarJugadorActual();
 
@@ -493,19 +493,7 @@ public class VentanaJuegoPicaPicaController {
     @FXML
     protected void cantarRealEnvidoHandler() {
 
-        try {
-
-            this.mesa.realEnvido();
-
-        } catch(JugadorNoPieNoPuedeCantarEnvido jugadorNoPieNoPuedeCantarEnvido) {
-
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Jugador que no es pie no puede cantar tanto");
-            alert.setHeaderText("");
-            alert.setContentText("No puede cantar real envido ya que usted no es pie.");
-            alert.showAndWait();
-
-        }
+        this.mesa.realEnvido();
 
         this.mostrarJugadorActual();
 
@@ -514,19 +502,7 @@ public class VentanaJuegoPicaPicaController {
     @FXML
     protected void cantarFaltaEnvidoHandler() {
 
-        try {
-
-            this.mesa.faltaEnvido();
-
-        } catch(JugadorNoPieNoPuedeCantarEnvido jugadorNoPieNoPuedeCantarEnvido) {
-
-            Alert alert = new Alert(Alert.AlertType.WARNING);
-            alert.setTitle("Jugador que no es pie no puede cantar tanto");
-            alert.setHeaderText("");
-            alert.setContentText("No puede cantar falta envido ya que usted no es pie.");
-            alert.showAndWait();
-
-        }
+        this.mesa.faltaEnvido();
 
         this.mostrarJugadorActual();
 
@@ -591,7 +567,18 @@ public class VentanaJuegoPicaPicaController {
         this.setearBotones();
         this.mostrarEstadoJuego();
 
-        this.indiceJugador = (this.mesa.getJugadorActual().getOrdenMesa() + this.cantidadDeRondas) % (this.mesa.getEquipoActual().getCantidadIntegrantes() * 2);
+        this.indiceJugador = (this.mesa.getJugadorActual().getOrdenMesa() + this.cantidadDeRondas + this.cantidadRondasPicaPica) % this.cantidadJugadores;
+
+        if(this.mesa.esPicaPica() && this.mesa.getJugadorActual().equals(this.mesa.getEquipo2().getJugadorActual())) {
+
+            this.indiceJugador = (this.indiceJugador + 2) % this.cantidadJugadores;
+
+        }
+
+        if((this.mesa.getEquipoActual().getCantidadIntegrantes() * 2) != this.cantidadJugadores)
+            this.rondaPicaPica = true;
+        else
+            this.rondaPicaPica = false;
 
         try {
             this.mesa.getJugadorActual().flor();
@@ -600,6 +587,9 @@ public class VentanaJuegoPicaPicaController {
         }
 
         this.jugadorPrevio = this.mesa.getJugadorActual();
+
+        if(!this.jugadorPrevio.jugadorPie())
+            this.visibilizarBotones(this.botonesEnvido, false);
 
         this.turno.setText(this.jugadorPrevio.getNombre());
 

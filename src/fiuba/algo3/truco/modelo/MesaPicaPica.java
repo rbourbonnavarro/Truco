@@ -190,5 +190,17 @@ public class MesaPicaPica{
         return Math.max(mesaGeneral.puntaje(equipo1), mesaGeneral.puntaje(equipo2));
     }
 
+    public boolean esPicaPica() {
+
+        return this.esPicaPica;
+
+    }
+
+    public Equipo getEquipo2() {
+
+        return this.mesaActual.getEquipo2();
+
+    }
+
 
 }

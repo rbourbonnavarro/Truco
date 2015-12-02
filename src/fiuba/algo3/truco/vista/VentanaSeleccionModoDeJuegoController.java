@@ -123,7 +123,6 @@ public class VentanaSeleccionModoDeJuegoController {
     @FXML
     private void comenzarJuegoHandler() {
 
-        Mesa mesa;
         List<Jugador> jugadoresEquipo1 = new ArrayList<>();
         List<Jugador> jugadoresEquipo2 = new ArrayList<>();
         Equipo equipo1;
@@ -137,6 +136,7 @@ public class VentanaSeleccionModoDeJuegoController {
                 this.nombresJugadores.get(i).setText("Jugador " + (i + 1));
 
         }
+
         for(int i = 0; i < jugadoresPorEquipo; i++){
 
             jugadoresEquipo1.add(new Jugador(this.nombresJugadores.get(2 * i).getText()));
@@ -167,9 +167,9 @@ public class VentanaSeleccionModoDeJuegoController {
         equipo1 = new Equipo(this.textEquipo1.getText(), jugadoresEquipo1);
         equipo2 = new Equipo(this.textEquipo2.getText(), jugadoresEquipo2);
 
-        mesa = new Mesa(equipo1, equipo2, seJuegaConFlor);
-
         if(this.cantidadJugadores == 1) {
+
+            Mesa mesa = new Mesa(equipo1, equipo2, seJuegaConFlor);
 
             ((JugadorIA) jugadoresEquipo2.get(0)).setMesa(mesa);
             this.main.iniciarPartidaContraLaPC(mesa, equipo1, equipo2);
@@ -177,13 +177,13 @@ public class VentanaSeleccionModoDeJuegoController {
         }
 
         if(this.cantidadJugadores == 2)
-            this.main.iniciarPartidaDeADos(mesa, equipo1, equipo2);
+            this.main.iniciarPartidaDeADos(new Mesa(equipo1, equipo2, seJuegaConFlor), equipo1, equipo2);
 
         if(this.cantidadJugadores == 4)
-            this.main.iniciarPartidaDeACuatro(mesa,equipo1,equipo2);
+            this.main.iniciarPartidaDeACuatro(new Mesa(equipo1, equipo2, seJuegaConFlor),equipo1,equipo2);
 
         if(this.cantidadJugadores == 6)
-            this.main.iniciarPartidaDeASeis(new MesaPicaPica(equipo1,equipo2,seJuegaConFlor),equipo1,equipo2);
+            this.main.iniciarPartidaDeASeis(new MesaPicaPica(equipo1, equipo2, seJuegaConFlor),equipo1,equipo2);
 
     }
 

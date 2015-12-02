@@ -391,6 +391,12 @@ public class Mesa {
 
     }
 
+    public Equipo getEquipo2() {
+
+        return this.equipo2;
+
+    }
+
     public Equipo getEquipoGanador() {
 
         return this.equipoGanador;
@@ -420,5 +426,6 @@ public class Mesa {
         return this.seJuegaConFlor;
 
     }
+
 
 }
