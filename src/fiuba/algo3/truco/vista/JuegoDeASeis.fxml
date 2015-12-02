@@ -7,7 +7,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fiuba.algo3.truco.vista.VentanaJuegoPicaPicaController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fiuba.algo3.truco.controlador.VentanaJuegoPicaPicaController">
     <children>
         <SplitPane dividerPositions="0.7532133676092545" layoutX="307.0" layoutY="123.0" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <items>
@@ -85,32 +85,32 @@
                               <Button fx:id="botonCartaJugada3Jugador6" layoutX="128.0" layoutY="310.0" mnemonicParsing="false" />
                               <ImageView fx:id="imagenMazoJ1" fitHeight="107.0" fitWidth="61.0" layoutX="219.0" layoutY="380.0" pickOnBounds="true" preserveRatio="true" visible="false">
                                  <image>
-                                    <Image url="@../../../../gui/images/imagenesCartas/dorsoCarta%20(Custom).png" />
+                                    <Image url="@../../../../gui/images/imagenesCartas/dorsoCarta (Custom).png" />
                                  </image>
                               </ImageView>
                               <ImageView fx:id="imagenMazoJ6" fitHeight="107.0" fitWidth="61.0" layoutX="17.0" layoutY="224.0" pickOnBounds="true" preserveRatio="true" visible="false">
                                  <image>
-                                    <Image url="@../../../../gui/images/imagenesCartas/dorsoCarta%20(Custom).png" />
+                                    <Image url="@../../../../gui/images/imagenesCartas/dorsoCarta (Custom).png" />
                                  </image>
                               </ImageView>
                               <ImageView fx:id="imagenMazoJ5" fitHeight="107.0" fitWidth="61.0" layoutX="136.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" visible="false">
                                  <image>
-                                    <Image url="@../../../../gui/images/imagenesCartas/dorsoCarta%20(Custom).png" />
+                                    <Image url="@../../../../gui/images/imagenesCartas/dorsoCarta (Custom).png" />
                                  </image>
                               </ImageView>
                               <ImageView fx:id="imagenMazoJ4" fitHeight="107.0" fitWidth="61.0" layoutX="416.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true" visible="false">
                                  <image>
-                                    <Image url="@../../../../gui/images/imagenesCartas/dorsoCarta%20(Custom).png" />
+                                    <Image url="@../../../../gui/images/imagenesCartas/dorsoCarta (Custom).png" />
                                  </image>
                               </ImageView>
                               <ImageView fx:id="imagenMazoJ3" fitHeight="107.0" fitWidth="61.0" layoutX="611.0" layoutY="203.0" pickOnBounds="true" preserveRatio="true" visible="false">
                                  <image>
-                                    <Image url="@../../../../gui/images/imagenesCartas/dorsoCarta%20(Custom).png" />
+                                    <Image url="@../../../../gui/images/imagenesCartas/dorsoCarta (Custom).png" />
                                  </image>
                               </ImageView>
                               <ImageView fx:id="imagenMazoJ2" fitHeight="107.0" fitWidth="61.0" layoutX="416.0" layoutY="291.0" pickOnBounds="true" preserveRatio="true" visible="false">
                                  <image>
-                                    <Image url="@../../../../gui/images/imagenesCartas/dorsoCarta%20(Custom).png" />
+                                    <Image url="@../../../../gui/images/imagenesCartas/dorsoCarta (Custom).png" />
                                  </image>
                               </ImageView>
                                     </children>

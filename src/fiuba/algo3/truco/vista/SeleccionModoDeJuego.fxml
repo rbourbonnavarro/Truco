@@ -4,7 +4,7 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fiuba.algo3.truco.vista.VentanaSeleccionModoDeJuegoController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="780.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fiuba.algo3.truco.controlador.VentanaSeleccionModoDeJuegoController">
    <children>
       <Label layoutX="68.0" layoutY="42.0" text="Jugadores" />
       <RadioButton fx:id="opcionDeADosContraLaPC" layoutX="47.0" layoutY="80.0" mnemonicParsing="false" onAction="#opcionDeADosContraLaPCHandler" text="De a 2 contra la PC">

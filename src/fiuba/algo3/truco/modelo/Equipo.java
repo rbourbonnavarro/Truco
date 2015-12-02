@@ -92,8 +92,6 @@ public class Equipo {
 
     public void terminarJugada() {
 
-        //if(this.indiceJugador > 2) this.indiceJugador = 0;
-
         this.indiceJugador++;
 
     }
@@ -222,8 +220,6 @@ public class Equipo {
             indiceJugador += 1;
 
         }
-
-        // Creo que no hace falta if(indiceJugador > 2) indiceJugador = 0;
 
         this.indiceJugador = indiceJugador;
 

@@ -1,4 +1,4 @@
-package fiuba.algo3.truco.vista;
+package fiuba.algo3.truco.controlador;
 
 import fiuba.algo3.truco.IA.JugadorIA;
 import fiuba.algo3.truco.modelo.Carta;

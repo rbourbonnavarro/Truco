@@ -1,4 +1,4 @@
-package fiuba.algo3.truco.vista;
+package fiuba.algo3.truco.controlador;
 
 import fiuba.algo3.truco.modelo.*;
 import fiuba.algo3.truco.modelo.Jugadas.EstadoJuego;
@@ -6,6 +6,7 @@ import fiuba.algo3.truco.modelo.Jugadas.Truco.EquipoQueCantoRetrucoNoPuedeCantar
 import fiuba.algo3.truco.modelo.Jugadas.Truco.EquipoQueCantoTrucoNoPuedeCantarRetrucoException;
 import fiuba.algo3.truco.modelo.Puntos.JuegoTerminadoException;
 import fiuba.algo3.truco.modelo.Ronda.PrimeraVuelta;
+import fiuba.algo3.truco.vista.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;

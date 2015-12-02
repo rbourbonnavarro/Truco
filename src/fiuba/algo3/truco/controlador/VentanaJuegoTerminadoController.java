@@ -1,5 +1,6 @@
-package fiuba.algo3.truco.vista;
+package fiuba.algo3.truco.controlador;
 
+import fiuba.algo3.truco.vista.Main;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;

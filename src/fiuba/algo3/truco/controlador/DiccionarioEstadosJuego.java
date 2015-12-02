@@ -1,6 +1,5 @@
-package fiuba.algo3.truco.vista;
+package fiuba.algo3.truco.controlador;
 
-import com.sun.javafx.geom.AreaOp;
 import fiuba.algo3.truco.modelo.Equipo;
 import fiuba.algo3.truco.modelo.Jugadas.Envido.EnvidoCantado;
 import fiuba.algo3.truco.modelo.Jugadas.Envido.EnvidoEnvidoCantado;
@@ -14,7 +13,7 @@ import fiuba.algo3.truco.modelo.Jugadas.Flor.FlorFlorCantada;
 import fiuba.algo3.truco.modelo.Jugadas.NadaCantado;
 import fiuba.algo3.truco.modelo.Jugadas.TantoJugado;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.*;
-import fiuba.algo3.truco.modelo.Jugadas.TrucoCantadoTantoJugado;
+import fiuba.algo3.truco.modelo.Jugadas.Truco.TrucoCantadoTantoJugado;
 import fiuba.algo3.truco.modelo.Jugador;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 import javafx.scene.control.Button;

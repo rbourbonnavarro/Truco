@@ -1,10 +1,9 @@
 package fiuba.algo3.truco.vista;
 
+import fiuba.algo3.truco.controlador.*;
 import fiuba.algo3.truco.modelo.Equipo;
-import fiuba.algo3.truco.modelo.Jugador;
 import fiuba.algo3.truco.modelo.Mesa;
 import fiuba.algo3.truco.modelo.MesaPicaPica;
-import fiuba.algo3.truco.modelo.Puntos.JuegoTerminadoException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
@@ -13,7 +12,6 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 import java.io.IOException;
-import java.util.Arrays;
 
 public class Main extends Application {
 
@@ -110,7 +108,7 @@ public class Main extends Application {
         try {
 
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("disenioRaiz.fxml"));
+            loader.setLocation(Main.class.getResource("DisenioRaiz.fxml"));
             this.disenioRaiz = loader.load();
 
             DisenioRaizController controlador = loader.getController();

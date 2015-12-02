@@ -6,7 +6,7 @@ import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeCantarContraFlorException;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.NoSePuedeCantarFlorException;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.NoSePuedeCantarRetrucoException;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.NoSePuedeCantarValeCuatroException;
-import fiuba.algo3.truco.modelo.Jugadas.Truco.TrucoCantadoTantoNoJugado;
+import fiuba.algo3.truco.modelo.Jugadas.Truco.TrucoCantadoTantoJugado;
 import fiuba.algo3.truco.modelo.Puntos.Puntaje;
 
 public class TantoJugado implements EstadoJuego {

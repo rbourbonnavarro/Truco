@@ -1,10 +1,11 @@
-package fiuba.algo3.truco.vista;
+package fiuba.algo3.truco.controlador;
 
 import fiuba.algo3.truco.IA.JugadorIA;
 import fiuba.algo3.truco.modelo.Equipo;
 import fiuba.algo3.truco.modelo.Jugador;
 import fiuba.algo3.truco.modelo.Mesa;
 import fiuba.algo3.truco.modelo.MesaPicaPica;
+import fiuba.algo3.truco.vista.Main;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
