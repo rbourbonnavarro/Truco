@@ -4,6 +4,7 @@ import fiuba.algo3.truco.IA.JugadorIA;
 import fiuba.algo3.truco.modelo.Equipo;
 import fiuba.algo3.truco.modelo.Jugador;
 import fiuba.algo3.truco.modelo.Mesa;
+import fiuba.algo3.truco.modelo.MesaPicaPica;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
@@ -191,7 +192,7 @@ public class VentanaSeleccionModoDeJuegoController {
             this.main.iniciarPartidaDeACuatro(mesa,equipo1,equipo2);
 
         if(this.cantidadJugadores == 6)
-            this.main.iniciarPartidaDeASeis(mesa,equipo1,equipo2);
+            this.main.iniciarPartidaDeASeis(new MesaPicaPica(equipo1,equipo2,seJuegaConFlor),equipo1,equipo2);
 
     }
 

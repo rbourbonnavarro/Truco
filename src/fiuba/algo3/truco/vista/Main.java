@@ -3,6 +3,7 @@ package fiuba.algo3.truco.vista;
 import fiuba.algo3.truco.modelo.Equipo;
 import fiuba.algo3.truco.modelo.Jugador;
 import fiuba.algo3.truco.modelo.Mesa;
+import fiuba.algo3.truco.modelo.MesaPicaPica;
 import fiuba.algo3.truco.modelo.Puntos.JuegoTerminadoException;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -157,7 +158,7 @@ public class Main extends Application {
 
     }
 
-    public void iniciarPartidaDeASeis(Mesa mesa, Equipo equipo1, Equipo equipo2) {
+    public void iniciarPartidaDeASeis(MesaPicaPica mesa, Equipo equipo1, Equipo equipo2) {
 
         try {
 
@@ -167,7 +168,7 @@ public class Main extends Application {
 
             this.disenioRaiz.setCenter(partidaDeADos);
 
-            VentanaJuegoController controlador = loader.getController();
+            VentanaJuegoPicaPicaController controlador = loader.getController();
             controlador.setMain(this, mesa, equipo1, equipo2);
 
         } catch (IOException e) {
