@@ -294,22 +294,22 @@ public class PartidoCompletoDeASeisConPicaPicaTest {
 			Assert.assertEquals(J5.getNombre(), mesa.getJugadorActual().getNombre());
 			mesa.hacerJugada(carta13);
 			Assert.assertEquals(J6.getNombre(), mesa.getJugadorActual().getNombre());
-			mesa.envido();
+			mesa.hacerJugada(carta16);
 			Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
 			mesa.flor();
-			Assert.assertEquals(J6.getNombre(), mesa.getJugadorActual().getNombre());
+			Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
 			mesa.quieroFlor();
 
 			Assert.assertEquals(mesa.puntaje(equipoImpar), 6);
 			Assert.assertEquals(mesa.puntaje(equipoPar), 11);
 
-			Assert.assertEquals(J6.getNombre(), mesa.getJugadorActual().getNombre());
-			mesa.hacerJugada(carta18);
 			Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
 			mesa.hacerJugada(carta1);
 			Assert.assertEquals(J2.getNombre(), mesa.getJugadorActual().getNombre());
+			mesa.hacerJugada(carta4);
+			Assert.assertEquals(J6.getNombre(), mesa.getJugadorActual().getNombre());
 			mesa.truco();
-			Assert.assertEquals(J3.getNombre(), mesa.getJugadorActual().getNombre());
+			Assert.assertEquals(J1.getNombre(), mesa.getJugadorActual().getNombre());
 			mesa.noQuieroTruco();
 
 			Assert.assertEquals(mesa.puntaje(equipoImpar), 6);
@@ -622,5 +622,8 @@ public class PartidoCompletoDeASeisConPicaPicaTest {
 			Assert.assertTrue(mesa.puntaje(equipoPar) >= 30);
 
 		}
+
 	}
+
+
 }

@@ -33,7 +33,7 @@ public class MesaPicaPica{
 
     public MesaPicaPica(Equipo equipo1, Equipo equipo2, boolean seJuegaConFlor) {
 
-        mesaGeneral = new Mesa(equipo1,equipo2,seJuegaConFlor);
+        this.mesaGeneral = new Mesa(equipo1, equipo2, seJuegaConFlor);
 
         List<Jugador> jugadoresEquipo1 = equipo1.getIntegrantes();
         List<Jugador> jugadoresEquipo2 = equipo2.getIntegrantes();
@@ -45,20 +45,23 @@ public class MesaPicaPica{
 
         this.jugadores = new ArrayList<>();
 
-        for(int i = 0 ; i<3 ; i++){
+        for(int i = 0; i < 3; i++){
+
             this.jugadores.add(jugadoresEquipo1.get(i));
             this.jugadores.add(jugadoresEquipo2.get(i));
+
         }
 
         this.indiceJugadores = 0;
 
         this.mazo = new Mazo();
 
-        mesaActual = mesaGeneral;
+        this.mesaActual = this.mesaGeneral;
 
         this.indiceMesa = 0;
         this.esPicaPica = false;
         this.seJuegaConFlor = seJuegaConFlor;
+
     }
 
     public List<Carta> getCartasDelJugadorActual(){
@@ -148,13 +151,13 @@ public class MesaPicaPica{
             this.indiceJugadores++;
             //esto no lo puedo meter en una lista y un ciclo porque la lista maneja referencias, si creo una mesa nueva la referncia de la lista apunta
             //a otro lado
-            mesa1 = new Mesa(new Equipo(this.equipos.get(indiceJugadores % 2).getNombre(), Arrays.asList(jugadores.get((indiceJugadores) % 6))),
+            this.mesa1 = new Mesa(new Equipo(this.equipos.get(indiceJugadores % 2).getNombre(), Arrays.asList(jugadores.get((indiceJugadores) % 6))),
                     new Equipo(this.equipos.get((indiceJugadores + 1) % 2).getNombre(), Arrays.asList(jugadores.get((indiceJugadores + 3)%6))),
                     this.seJuegaConFlor());
-            mesa2 = new Mesa(new Equipo(this.equipos.get((indiceJugadores + 1) % 2).getNombre(), Arrays.asList(jugadores.get((indiceJugadores + 1) %6))),
+            this.mesa2 = new Mesa(new Equipo(this.equipos.get((indiceJugadores + 1) % 2).getNombre(), Arrays.asList(jugadores.get((indiceJugadores + 1) %6))),
                     new Equipo(this.equipos.get(indiceJugadores % 2).getNombre(), Arrays.asList(jugadores.get((indiceJugadores + 4)%6))),
                     this.seJuegaConFlor());
-            mesa3 = new Mesa(new Equipo(this.equipos.get(indiceJugadores % 2).getNombre(), Arrays.asList(jugadores.get((indiceJugadores + 2)%6))),
+            this.mesa3 = new Mesa(new Equipo(this.equipos.get(indiceJugadores % 2).getNombre(), Arrays.asList(jugadores.get((indiceJugadores + 2)%6))),
                     new Equipo(this.equipos.get((indiceJugadores + 1) % 2).getNombre(), Arrays.asList(jugadores.get((indiceJugadores + 5)%6))),
                     this.seJuegaConFlor);
             //esto es un pijaso lo se, pero manejo la ronda desde aca y crea mesas ordenadas que respetan el orden de la mesa general, which is nice
@@ -167,10 +170,10 @@ public class MesaPicaPica{
             //luego sumo puntos cuando se terminen los tres
             this.mesaActual = mesas.get(this.indiceMesa % 3);
             this.indiceMesa++;
-            if((this.indiceMesa%4) ==0) {
+            if((this.indiceMesa % 4) == 0) {
                 //si entra aca, se jugaron las tres mesas del pica a pica
                 //entonces tengo que sumar puntos y meter la mesa principal
-                for (int i= 0 ; i<3 ;i++){
+                for (int i = 0; i < 3; i++){
                     this.equipo1.sumarPuntos(mesas.get(i).puntaje(this.equipo1));
                     this.equipo2.sumarPuntos(mesas.get(i).puntaje(this.equipo2));
                 }
@@ -181,10 +184,11 @@ public class MesaPicaPica{
             }
         }
 
-
     }
 
     public int getPuntajeMaximo() {
         return Math.max(mesaGeneral.puntaje(equipo1), mesaGeneral.puntaje(equipo2));
     }
+
+
 }
