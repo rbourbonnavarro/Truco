@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.image.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.control.*?>
@@ -71,6 +72,16 @@
                                         <Button fx:id="botonCartaJugada1Jugador2" layoutX="306.0" layoutY="14.0" mnemonicParsing="false" />
                                         <Button fx:id="botonCartaJugada2Jugador2" layoutX="363.0" layoutY="64.0" mnemonicParsing="false" />
                                         <Button fx:id="botonCartaJugada3Jugador2" layoutX="422.0" layoutY="123.0" mnemonicParsing="false" />
+                              <ImageView fx:id="imagenMazoJ1" fitHeight="114.0" fitWidth="76.0" layoutX="198.0" layoutY="425.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../gui/images/imagenesCartas/mazo.png" />
+                                 </image>
+                              </ImageView>
+                              <ImageView fx:id="imagenMazoJ2" fitHeight="114.0" fitWidth="76.0" layoutX="484.0" layoutY="41.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../gui/images/imagenesCartas/mazo.png" />
+                                 </image>
+                              </ImageView>
                                     </children>
                                 </AnchorPane>
                             </items>

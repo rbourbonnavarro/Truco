@@ -1,6 +1,5 @@
 package fiuba.algo3.truco.vista;
 
-import com.sun.javaws.exceptions.InvalidArgumentException;
 import fiuba.algo3.truco.modelo.*;
 import fiuba.algo3.truco.modelo.Jugadas.EstadoJuego;
 import fiuba.algo3.truco.modelo.Jugadas.Truco.*;
@@ -11,24 +10,26 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.*;
-import javafx.scene.image.Image;
-import javafx.scene.shape.Rectangle;
-import javafx.scene.shape.Shape;
 
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.List;
 
 public class VentanaJuegoController {
 
     private static final String DORSO_CARTA = "/gui/images/imagenesCartas/dorsoCarta (Custom).png";
-    private static final String MAZO = "/gui/images/imagenesCartas/mazo.png";
     @FXML
     protected ImageView imagenMazoJ1;
     @FXML
     protected ImageView imagenMazoJ2;
+    @FXML
+    protected ImageView imagenMazoJ3;
+    @FXML
+    protected ImageView imagenMazoJ4;
+    @FXML
+    protected ImageView imagenMazoJ5;
+    @FXML
+    protected ImageView imagenMazoJ6;
     @FXML
     protected Label turno;
     @FXML
@@ -180,7 +181,7 @@ public class VentanaJuegoController {
         this.visibilizarBotones(Arrays.asList(this.botonRetruco, this.botonValeCuatro), false);
         //this.imagenMesa.setImage(new Image("/gui/images/mesa.png"));
 
-        this.imagenesMazo = new ArrayList<>(Arrays.asList(this.imagenMazoJ1, this.imagenMazoJ2));
+        this.imagenesMazo = new ArrayList<>(Arrays.asList(this.imagenMazoJ1, this.imagenMazoJ2, this.imagenMazoJ3, this.imagenMazoJ4));
         this.visibilizarImagenes(this.imagenesMazo, false);
         this.imagenesMazo.get(0).setVisible(true);
 
