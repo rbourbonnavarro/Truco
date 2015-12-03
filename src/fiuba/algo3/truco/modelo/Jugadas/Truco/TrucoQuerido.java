@@ -106,7 +106,7 @@ public class TrucoQuerido implements EstadoJuego {
     @Override
     public EstadoJuego quiero() {
 
-        throw new EstadoYaQueridoException();
+        throw new TrucoYaFueQueridoException();
 
     }
 

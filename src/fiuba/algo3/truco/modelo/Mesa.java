@@ -124,7 +124,7 @@ public class Mesa {
 
     }
 
-    public void contraFlorAlResto(){
+    public void contraFlorAlResto() {
 
         this.equipoActual.flor();
 
@@ -134,7 +134,7 @@ public class Mesa {
 
     }
 
-    public void contraFlorAlPartido(){
+    public void contraFlorAlPartido() {
 
         this.equipoActual.flor();
 

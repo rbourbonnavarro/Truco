@@ -8,10 +8,7 @@ import fiuba.algo3.truco.modelo.*;
 import fiuba.algo3.truco.modelo.Jugadas.Envido.EnvidoNoQueridoNoSePuedeJugarException;
 import fiuba.algo3.truco.modelo.Jugadas.Envido.NoSePuedeCantarEnvido;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.JuegoSinFlorException;
-import fiuba.algo3.truco.modelo.Jugadas.Truco.EquipoQueCantoRetrucoNoPuedeCantarValeCuatroException;
-import fiuba.algo3.truco.modelo.Jugadas.Truco.EquipoQueCantoTrucoNoPuedeCantarRetrucoException;
-import fiuba.algo3.truco.modelo.Jugadas.Truco.EstadoYaQueridoException;
-import fiuba.algo3.truco.modelo.Jugadas.Truco.TrucoNoQueridoNoSePuedeJugarException;
+import fiuba.algo3.truco.modelo.Jugadas.Truco.*;
 import fiuba.algo3.truco.modelo.Palo.Basto;
 import fiuba.algo3.truco.modelo.Palo.Copa;
 import fiuba.algo3.truco.modelo.Palo.Espada;
@@ -88,7 +85,7 @@ public class HacerJugadaTest {
 
 	}
 	
-	@Test(expected = EstadoYaQueridoException.class)
+	@Test(expected = TrucoYaFueQueridoException.class)
 	public void noSePuedeQuererDosVecesElTruco() {
 		mesa.truco();
 		mesa.quieroTruco();

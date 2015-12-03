@@ -110,7 +110,7 @@ public class RetrucoQuerido implements EstadoJuego {
     @Override
     public EstadoJuego quiero() {
 
-        throw new EstadoYaQueridoException();
+        throw new RetrucoYaFueQueridoException();
 
     }
 

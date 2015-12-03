@@ -6,7 +6,7 @@ import java.util.List;
 
 public class CalculadorTanto {
 
-    public int envido(List<Carta> cartas) throws CantasteEnvidoCuandoTenesFlorException {
+    public int envido(List<Carta> cartas) {
 
         int envido1 = cartas.get(0).sumarParaEnvido(cartas.get(1));
         int envido2 = cartas.get(1).sumarParaEnvido(cartas.get(2));

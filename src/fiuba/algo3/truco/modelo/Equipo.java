@@ -17,7 +17,7 @@ public class Equipo {
 
     public Equipo(String nombre, List<Jugador> jugadores) {
 
-        if(jugadores.size() == 0)
+        if(jugadores.isEmpty())
             throw new EquipoSinIntegrantesException();
 
     	this.nombre = nombre;

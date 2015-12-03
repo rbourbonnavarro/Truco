@@ -106,7 +106,7 @@ public class ValeCuatroQuerido implements EstadoJuego {
     @Override
     public EstadoJuego quiero() {
 
-        throw new EstadoYaQueridoException();
+        throw new ValeCuatroYaFueQueridoException();
 
     }
 

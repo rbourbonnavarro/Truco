@@ -3,7 +3,6 @@ package fiuba.algo3.truco.tests.Jugada.Envido;
 import fiuba.algo3.truco.modelo.Carta;
 import fiuba.algo3.truco.modelo.Figura;
 import fiuba.algo3.truco.modelo.Jugadas.Envido.CalculadorTanto;
-import fiuba.algo3.truco.modelo.Jugadas.Envido.CantasteEnvidoCuandoTenesFlorException;
 import fiuba.algo3.truco.modelo.Jugadas.Flor.JuegoSinFlorException;
 import fiuba.algo3.truco.modelo.Palo.Copa;
 import fiuba.algo3.truco.modelo.Palo.Espada;
@@ -34,7 +33,7 @@ public class CalculadorTantoTest {
     }
 
     @Test
-    public void test1EnvidoDevuelve20SiHayDosFiguras() throws CantasteEnvidoCuandoTenesFlorException {
+    public void test1EnvidoDevuelve20SiHayDosFiguras() {
 
         carta1 = new Carta(7,new Espada());
         carta2 = new Figura(12,new Copa());
@@ -47,7 +46,7 @@ public class CalculadorTantoTest {
     }
 
     @Test
-    public void test2EnvidoDevuelve25SiHayFiguraYUnCinco() throws CantasteEnvidoCuandoTenesFlorException {
+    public void test2EnvidoDevuelve25SiHayFiguraYUnCinco() {
 
         carta1 = new Carta(5,new Espada());
         carta2 = new Figura(12,new Espada());
@@ -60,7 +59,7 @@ public class CalculadorTantoTest {
     }
 
     @Test
-    public void test3EnvidoDevuelveCartaMasAltaSiPalosDistintos() throws CantasteEnvidoCuandoTenesFlorException {
+    public void test3EnvidoDevuelveCartaMasAltaSiPalosDistintos() {
 
         carta1 = new Carta(5,new Oro());
         carta2 = new Figura(12,new Espada());
@@ -73,7 +72,7 @@ public class CalculadorTantoTest {
     }
 
     @Test
-    public void test5FlorDevuelveTanto() throws CantasteEnvidoCuandoTenesFlorException, JuegoSinFlorException {
+    public void test5FlorDevuelveTanto() {
 
         carta1 = new Carta(5,new Oro());
         carta2 = new Figura(12,new Oro());
