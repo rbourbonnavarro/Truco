@@ -64,7 +64,11 @@
                                 </AnchorPane>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="573.0" prefWidth="728.0">
                                     <children>
-                                        <Ellipse fill="#30752a" layoutX="365.0" layoutY="291.0" radiusX="466.0" radiusY="420.0" stroke="BLACK" strokeType="INSIDE" />
+                              <ImageView fitHeight="839.0" fitWidth="905.0" layoutX="-88.0" layoutY="-63.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../gui/images/mesa.JPG" />
+                                 </image>
+                              </ImageView>
                                         <Button fx:id="botonCartaJugada1Jugador1" layoutX="322.0" layoutY="430.0" mnemonicParsing="false" />
                                         <Button fx:id="botonCartaJugada2Jugador1" layoutX="322.0" layoutY="374.0" mnemonicParsing="false" />
                                         <Button fx:id="botonCartaJugada3Jugador1" layoutX="322.0" layoutY="310.0" mnemonicParsing="false" />

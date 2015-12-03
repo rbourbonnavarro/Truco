@@ -66,7 +66,11 @@
                                 </AnchorPane>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                     <children>
-                              <Ellipse fill="#2b7526" layoutX="358.0" layoutY="284.0" radiusX="409.0" radiusY="340.0" stroke="BLACK" strokeType="INSIDE" />
+                              <ImageView fitHeight="614.0" fitWidth="812.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../gui/images/mesa.JPG" />
+                                 </image>
+                              </ImageView>
                                         <Button fx:id="botonCartaJugada1Jugador1" layoutX="316.0" layoutY="415.0" mnemonicParsing="false" textFill="#110909" />
                                         <Button fx:id="botonCartaJugada2Jugador1" layoutX="373.0" layoutY="353.0" mnemonicParsing="false" />
                                         <Button fx:id="botonCartaJugada3Jugador1" layoutX="431.0" layoutY="289.0" mnemonicParsing="false" />
@@ -75,12 +79,12 @@
                                         <Button fx:id="botonCartaJugada3Jugador2" layoutX="431.0" layoutY="144.0" mnemonicParsing="false" />
                               <ImageView fx:id="imagenMazoJ1" fitHeight="114.0" fitWidth="76.0" layoutX="188.0" layoutY="415.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../gui/images/imagenesCartas/mazo.png" />
+                                    <Image url="@../../../../gui/images/imagenesCartas/dorsoCarta%20(Custom).png" />
                                  </image>
                               </ImageView>
                               <ImageView fx:id="imagenMazoJ2" fitHeight="114.0" fitWidth="76.0" layoutX="508.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../gui/images/imagenesCartas/mazo.png" />
+                                    <Image url="@../../../../gui/images/imagenesCartas/dorsoCarta%20(Custom).png" />
                                  </image>
                               </ImageView>
                                     </children>

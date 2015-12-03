@@ -64,7 +64,11 @@
                                 </AnchorPane>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                     <children>
-                              <Ellipse fill="#376b25" layoutX="364.0" layoutY="291.0" radiusX="457.0" radiusY="417.0" stroke="BLACK" strokeType="INSIDE" />
+                              <ImageView fitHeight="590.0" fitWidth="788.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../../../gui/images/mesa.JPG" />
+                                 </image>
+                              </ImageView>
                                         <Button fx:id="botonCartaJugada1Jugador1" layoutX="106.0" layoutY="417.0" mnemonicParsing="false" />
                                         <Button fx:id="botonCartaJugada2Jugador1" layoutX="158.0" layoutY="379.0" mnemonicParsing="false" />
                                         <Button fx:id="botonCartaJugada3Jugador1" layoutX="210.0" layoutY="338.0" mnemonicParsing="false" />
@@ -79,22 +83,22 @@
                               <Button fx:id="botonCartaJugada3Jugador3" layoutX="427.0" layoutY="126.0" mnemonicParsing="false" />
                               <ImageView fx:id="imagenMazoJ1" fitHeight="95.0" fitWidth="66.0" layoutX="24.0" layoutY="291.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../gui/images/imagenesCartas/mazo.png" />
+                                    <Image url="@../../../../gui/images/imagenesCartas/dorsoCarta%20(Custom).png" />
                                  </image>
                               </ImageView>
                               <ImageView fx:id="imagenMazoJ2" fitHeight="95.0" fitWidth="66.0" layoutX="331.0" layoutY="291.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../gui/images/imagenesCartas/mazo.png" />
+                                    <Image url="@../../../../gui/images/imagenesCartas/dorsoCarta%20(Custom).png" />
                                  </image>
                               </ImageView>
                               <ImageView fx:id="imagenMazoJ3" fitHeight="95.0" fitWidth="66.0" layoutX="639.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../gui/images/imagenesCartas/mazo.png" />
+                                    <Image url="@../../../../gui/images/imagenesCartas/dorsoCarta%20(Custom).png" />
                                  </image>
                               </ImageView>
                               <ImageView fx:id="imagenMazoJ4" fitHeight="95.0" fitWidth="66.0" layoutX="331.0" layoutY="54.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
-                                    <Image url="@../../../../gui/images/imagenesCartas/mazo.png" />
+                                    <Image url="@../../../../gui/images/imagenesCartas/dorsoCarta%20(Custom).png" />
                                  </image>
                               </ImageView>
                                     </children>
