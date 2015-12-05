@@ -108,7 +108,7 @@ public class Main extends Application {
         try {
 
             FXMLLoader loader = new FXMLLoader();
-            loader.setLocation(Main.class.getResource("DisenioRaiz.fxml"));
+            loader.setLocation(Main.class.getResource("disenioRaiz.fxml"));
             this.disenioRaiz = loader.load();
 
             DisenioRaizController controlador = loader.getController();

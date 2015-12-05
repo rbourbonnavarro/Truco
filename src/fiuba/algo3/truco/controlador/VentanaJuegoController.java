@@ -180,7 +180,6 @@ public class VentanaJuegoController {
         this.visibilizarBotones(this.botonesCartasJugadasJugador6, false);
         this.visibilizarBotones(this.botonesQuiero, false);
         this.visibilizarBotones(Arrays.asList(this.botonRetruco, this.botonValeCuatro), false);
-        //this.imagenMesa.setImage(new Image("/gui/images/mesa.png"));
 
         this.imagenesMazo = new ArrayList<>(Arrays.asList(this.imagenMazoJ1, this.imagenMazoJ2, this.imagenMazoJ3, this.imagenMazoJ4));
         this.visibilizarImagenes(this.imagenesMazo, false);
@@ -223,8 +222,6 @@ public class VentanaJuegoController {
 
     @FXML
     protected void MostarCartasHandler() {
-
-        EstadoJuego estadoJuego = this.mesa.getEstadoVuelta().getEstadoJuego();
 
         try {
 

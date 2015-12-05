@@ -5,10 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 
-/**
- * Created by GomezPeter on 29/11/2015.
- */
 public class VentanaJuegoTerminadoController {
+
     @FXML
     private Button comenzarJuego;
     @FXML
@@ -19,18 +17,26 @@ public class VentanaJuegoTerminadoController {
     private Main main;
 
 
-    public void setMain(Main main,String equipoGanador) {
+    public void setMain(Main main, String equipoGanador) {
+
         this.main = main;
         this.equipoGanador.setText(equipoGanador);
+
     }
 
     @FXML
-    private void setComenzarJuego(){
+    private void setComenzarJuego() {
+
         this.main.iniciarSeleccionModoDeJuego();
+
     }
+
     @FXML
     private void salir(){
-            this.main.salir();
+
+        this.main.salir();
 
     }
+
+
 }

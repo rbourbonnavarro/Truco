@@ -38,7 +38,7 @@ public class DisenioRaizController {
                 "Desarrollado por:\n\n" +
                 "Rodrigo Bourbon Navarro, mail: rodrigobourbon44@gmail.com\n\n" +
                         "Federico Gomez Peter, mail: fedemgp@gmail.com\n\n" +
-                        "Maximiliano Suppes, mail: \n" +
+                        "Maximiliano Suppes, mail: maxisuppes@gmail.com\n" +
                         "\n\n" +
                         "Repositorio de github del proyecto:\n" +
                         "https://github.com/rbourbonnavarro/Truco"

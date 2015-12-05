@@ -582,10 +582,7 @@ public class VentanaJuegoPicaPicaController {
 
         }
 
-        if((this.mesa.getEquipoActual().getCantidadIntegrantes() * 2) != this.cantidadJugadores)
-            this.rondaPicaPica = true;
-        else
-            this.rondaPicaPica = false;
+        this.rondaPicaPica = (this.mesa.getEquipoActual().getCantidadIntegrantes() * 2) != this.cantidadJugadores;
 
         try {
             this.mesa.getJugadorActual().flor();
