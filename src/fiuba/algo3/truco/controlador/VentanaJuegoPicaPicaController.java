@@ -184,7 +184,6 @@ public class VentanaJuegoPicaPicaController {
         this.visibilizarBotones(this.botonesCartasJugadasJugador6, false);
         this.visibilizarBotones(this.botonesQuiero, false);
         this.visibilizarBotones(Arrays.asList(this.botonRetruco, this.botonValeCuatro), false);
-        //this.imagenMesa.setImage(new Image("/gui/images/mesa.png"));
 
         this.imagenesMazo = new ArrayList<>(Arrays.asList(this.imagenMazoJ1, this.imagenMazoJ2, this.imagenMazoJ3, this.imagenMazoJ4, this.imagenMazoJ5,
                 this.imagenMazoJ6));
@@ -220,16 +219,7 @@ public class VentanaJuegoPicaPicaController {
 
         for (int i = 0; i < this.cartasJugadorActual.size(); i++) {
 
-            // boolean continuar = false;
-
-            //  while(!continuar) {
-            //     try {
             this.botonesCartasJugadorActual.get(i).setGraphic(new ImageView(this.diccionarioCartas.representacionCarta(this.cartasJugadorActual.get(i))));
-            //          continuar = true;
-            //   } catch (RuntimeException a) {
-
-            //  }
-            //}
 
             if(!this.mesa.getJugadorActual().obtenerCartasEnMano().contains(this.cartasJugadorActual.get(i)))
                 this.botonesCartasJugadorActual.get(i).setDisable(true);
@@ -358,18 +348,7 @@ public class VentanaJuegoPicaPicaController {
 
         botonCartaJugada.setVisible(true);
 
-        //boolean continuar = false;
-
-        // while(!continuar) {
-
-        //   try {
         botonCartaJugada.setGraphic(new ImageView(this.diccionarioCartas.representacionCarta(cartaJugada)));
-        //      continuar = true;
-        //   } catch (RuntimeException a) {
-
-        //   }
-
-        //}
 
         this.cantidadJugadasJugador.set(this.indiceJugador, numeroJugada + 1);
 
